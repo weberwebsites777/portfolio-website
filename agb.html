@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGB — Weber Websites</title>
+  <meta name="robots" content="noindex, follow">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black:          oklch(7% 0.006 60);
+      --surface:        oklch(12% 0.006 60);
+      --surface-raised: oklch(17% 0.006 60);
+      --white:          oklch(96% 0.005 60);
+      --muted:          oklch(60% 0.005 60);
+      --border:         oklch(26% 0.005 60);
+      --yellow:         oklch(85% 0.195 92);
+      --yellow-15:      oklch(85% 0.195 92 / 0.15);
+      --yellow-dim:     oklch(72% 0.15 92);
+      --font:  'Inter', system-ui, -apple-system, sans-serif;
+      --max:   1240px;
+      --r:     6px;
+      --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 48px; }
+
+    /* NAV */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 64px; display: flex; align-items: center;
+      background: oklch(12% 0.006 60 / 0.92);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--yellow-15);
+    }
+    .nav-row { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo-img { height: 30px; width: auto; display: block; filter: invert(1); }
+    nav ul { list-style: none; display: flex; align-items: center; gap: 32px; }
+    nav ul a { font-size: 13.5px; font-weight: 500; color: var(--muted); transition: color 160ms var(--ease-out-quint); }
+    nav ul a:hover { color: var(--white); }
+    .nav-pill {
+      font-size: 12.5px; font-weight: 700; color: var(--yellow) !important;
+      border: 1px solid oklch(85% 0.195 92 / 0.5); padding: 7px 16px; border-radius: var(--r);
+      transition: background 160ms var(--ease-out-quint), color 160ms var(--ease-out-quint) !important;
+    }
+    .nav-pill:hover { background: var(--yellow) !important; color: var(--black) !important; }
+
+    /* PAGE HEADER */
+    .legal-header {
+      padding: 128px 0 64px;
+      border-bottom: 1px solid var(--border);
+    }
+    .legal-eyebrow {
+      font-size: 10.5px; font-weight: 500; letter-spacing: 0.24em;
+      text-transform: uppercase; color: var(--yellow-dim); margin-bottom: 20px;
+    }
+    .legal-title {
+      font-size: clamp(36px, 4.5vw, 56px); font-weight: 800;
+      letter-spacing: -0.035em; line-height: 1.05;
+    }
+    .legal-subtitle {
+      font-size: 16px; color: var(--muted); line-height: 1.65; margin-top: 18px; max-width: 560px;
+    }
+
+    /* TABLE OF CONTENTS */
+    .legal-toc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 28px 32px;
+      margin-bottom: 64px;
+    }
+    .legal-toc-title {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--yellow-dim); margin-bottom: 18px;
+    }
+    .legal-toc ol {
+      list-style: none; display: flex; flex-direction: column; gap: 8px; counter-reset: toc;
+    }
+    .legal-toc ol li::before {
+      counter-increment: toc;
+      content: '§ ' counter(toc) ' ';
+      color: var(--yellow-dim); font-size: 12px; font-weight: 600;
+    }
+    .legal-toc ol li a {
+      font-size: 13.5px; color: var(--muted);
+      transition: color 160ms var(--ease-out-quint);
+    }
+    .legal-toc ol li a:hover { color: var(--white); }
+
+    /* LEGAL CONTENT */
+    .legal-body {
+      padding: 72px 0 120px;
+      max-width: 720px;
+    }
+    .legal-section { margin-bottom: 56px; scroll-margin-top: 88px; }
+    .legal-section:last-child { margin-bottom: 0; }
+    .legal-section-num {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--yellow-dim); margin-bottom: 10px;
+    }
+    .legal-h2 {
+      font-size: clamp(20px, 2.2vw, 24px); font-weight: 700;
+      letter-spacing: -0.02em; color: var(--white); margin-bottom: 20px;
+      line-height: 1.25;
+    }
+    .legal-body p {
+      font-size: 15.5px; color: var(--muted); line-height: 1.78;
+      margin-bottom: 14px;
+    }
+    .legal-body p:last-child { margin-bottom: 0; }
+    .legal-body ul {
+      list-style: none; margin: 0 0 14px; padding: 0;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .legal-body ul li {
+      font-size: 15.5px; color: var(--muted); line-height: 1.7;
+      padding-left: 18px; position: relative;
+    }
+    .legal-body ul li::before {
+      content: '';
+      position: absolute; left: 0; top: 10px;
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--yellow-dim);
+    }
+    .legal-body a { color: var(--white); border-bottom: 1px solid var(--border); transition: border-color 160ms var(--ease-out-quint); }
+    .legal-body a:hover { border-color: var(--yellow); }
+    .legal-rule { border: none; border-top: 1px solid var(--border); margin: 56px 0; }
+    .legal-strong { color: var(--white); font-weight: 600; }
+
+    /* FOOTER */
+    footer {
+      background: var(--surface); border-top: 1px solid var(--yellow-15); padding: 26px 0;
+    }
+    .footer-row { display: flex; align-items: center; justify-content: space-between; }
+    .footer-copy { font-size: 12.5px; color: var(--muted); }
+    .footer-copy .yn { color: var(--yellow); }
+    .footer-links { display: flex; gap: 22px; }
+    .footer-links a { font-size: 12.5px; color: var(--muted); transition: color 160ms var(--ease-out-quint); }
+    .footer-links a:hover { color: var(--white); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .wrap { padding: 0 22px; }
+      nav ul { display: none; }
+      .legal-header { padding: 100px 0 48px; }
+      .legal-body { padding: 48px 0 80px; }
+      .legal-toc { padding: 22px 20px; }
+      .footer-row { flex-direction: column; gap: 14px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap">
+    <div class="nav-row">
+      <a href="index.html" class="nav-logo" aria-label="Weber Websites">
+        <img src="logo-cropped.png" alt="Weber Websites" class="nav-logo-img">
+      </a>
+      <ul>
+        <li><a href="index.html#leistungen">Leistungen</a></li>
+        <li><a href="index.html#preise">Preise</a></li>
+        <li><a href="index.html#ergebnisse">Ergebnisse</a></li>
+        <li><a href="index.html#websitecheck" class="nav-pill">Website-Check →</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<section class="legal-header">
+  <div class="wrap">
+    <p class="legal-eyebrow">Rechtliches</p>
+    <h1 class="legal-title">Allgemeine Geschäftsbedingungen</h1>
+    <p class="legal-subtitle">Gültig für alle Webdesign- und Webentwicklungsleistungen von Weber Websites. Stand: Januar 2026.</p>
+  </div>
+</section>
+
+
+<div class="legal-body">
+  <div class="wrap">
+
+    <nav class="legal-toc" aria-label="Inhaltsverzeichnis">
+      <p class="legal-toc-title">Inhaltsverzeichnis</p>
+      <ol>
+        <li><a href="#s1">Geltungsbereich</a></li>
+        <li><a href="#s2">Vertragsschluss</a></li>
+        <li><a href="#s3">Leistungsumfang</a></li>
+        <li><a href="#s4">Mitwirkungspflichten des Auftraggebers</a></li>
+        <li><a href="#s5">Vergütung und Zahlungsbedingungen</a></li>
+        <li><a href="#s6">Liefertermine und Verzug</a></li>
+        <li><a href="#s7">Abnahme</a></li>
+        <li><a href="#s8">Gewährleistung</a></li>
+        <li><a href="#s9">Haftungsbeschränkung</a></li>
+        <li><a href="#s10">Urheberrecht und Nutzungsrechte</a></li>
+        <li><a href="#s11">Geheimhaltung</a></li>
+        <li><a href="#s12">Datenschutz</a></li>
+        <li><a href="#s13">Schlussbestimmungen</a></li>
+      </ol>
+    </nav>
+
+    <div class="legal-section" id="s1">
+      <p class="legal-section-num">§ 1</p>
+      <h2 class="legal-h2">Geltungsbereich</h2>
+      <p>Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge zwischen Weber Websites (nachfolgend "Auftragnehmer") und dem Auftraggeber über die Erbringung von Webdesign-, Webentwicklungs- und damit verbundenen Dienstleistungen.</p>
+      <p>Abweichende oder ergänzende Bedingungen des Auftraggebers gelten nur, wenn der Auftragnehmer diesen ausdrücklich schriftlich zugestimmt hat. Dies gilt auch dann, wenn der Auftragnehmer in Kenntnis entgegenstehender Bedingungen des Auftraggebers die Leistung vorbehaltlos erbringt.</p>
+    </div>
+
+    <div class="legal-section" id="s2">
+      <p class="legal-section-num">§ 2</p>
+      <h2 class="legal-h2">Vertragsschluss</h2>
+      <p>Angebote des Auftragnehmers sind freibleibend und unverbindlich, sofern sie nicht ausdrücklich als verbindlich gekennzeichnet sind. Ein Vertrag kommt erst durch die schriftliche Auftragsbestätigung des Auftragnehmers oder durch den Beginn der Leistungserbringung zustande.</p>
+      <p>Alle Vereinbarungen, die zwischen dem Auftraggeber und dem Auftragnehmer zum Zweck der Vertragserfüllung getroffen werden, sind schriftlich in der Auftragsbestätigung oder in einem gesonderten Projektvertrag niederzulegen.</p>
+    </div>
+
+    <div class="legal-section" id="s3">
+      <p class="legal-section-num">§ 3</p>
+      <h2 class="legal-h2">Leistungsumfang</h2>
+      <p>Der genaue Umfang der zu erbringenden Leistungen ergibt sich aus der schriftlichen Auftragsbestätigung oder dem Projektvertrag. Änderungen und Erweiterungen des Leistungsumfangs bedürfen der schriftlichen Vereinbarung und können zu einer Anpassung von Preis und Liefertermin führen.</p>
+      <p>Der Auftragnehmer ist berechtigt, Teile der Leistung an Dritte (Subunternehmer) zu vergeben, sofern dies der Auftragserfüllung dient und die Qualität der Leistung nicht beeinträchtigt wird.</p>
+      <p>Im vereinbarten Leistungsumfang enthaltene Überarbeitungsrunden umfassen Korrekturen und Anpassungen innerhalb des vereinbarten Projektumfangs. Grundlegende Konzeptänderungen oder wesentliche Erweiterungen stellen neue Leistungen dar und werden gesondert berechnet.</p>
+    </div>
+
+    <div class="legal-section" id="s4">
+      <p class="legal-section-num">§ 4</p>
+      <h2 class="legal-h2">Mitwirkungspflichten des Auftraggebers</h2>
+      <p>Der Auftraggeber ist verpflichtet, alle für die Leistungserbringung notwendigen Informationen, Materialien und Zugangsdaten rechtzeitig und vollständig zur Verfügung zu stellen. Dies umfasst insbesondere:</p>
+      <ul>
+        <li>Texte, Bilder, Logos und sonstige Inhalte in verwendbarer Form und digitaler Qualität</li>
+        <li>Markenrichtlinien, Corporate-Identity-Vorgaben und Gestaltungsrichtlinien</li>
+        <li>Zugangsdaten zu bestehenden Systemen (Hosting, CMS, Domain) soweit erforderlich</li>
+        <li>Feedback und Freigaben innerhalb der im Projektplan vereinbarten Fristen</li>
+      </ul>
+      <p>Verzögerungen der Leistungserbringung, die durch verspätete oder unvollständige Mitwirkung des Auftraggebers entstehen, gehen nicht zu Lasten des Auftragnehmers. Der vereinbarte Liefertermin verschiebt sich in diesem Fall entsprechend.</p>
+      <p>Der Auftraggeber sichert zu, dass alle von ihm bereitgestellten Materialien frei von Rechten Dritter sind oder er über die erforderlichen Nutzungsrechte verfügt. Schadensersatzansprüche Dritter aufgrund von Rechtsverletzungen durch bereitgestellte Materialien gehen vollständig zu Lasten des Auftraggebers.</p>
+    </div>
+
+    <div class="legal-section" id="s5">
+      <p class="legal-section-num">§ 5</p>
+      <h2 class="legal-h2">Vergütung und Zahlungsbedingungen</h2>
+      <p>Die Vergütung ergibt sich aus dem vereinbarten Angebot oder Projektvertrag. Alle genannten Preise verstehen sich als Nettopreise. Sofern der Auftragnehmer als Kleinunternehmer nach § 19 UStG gilt, wird keine Umsatzsteuer berechnet.</p>
+      <p><span class="legal-strong">Zahlungsplan:</span> Bei Projekten bis 1.000 Euro ist der Gesamtbetrag mit Auftragserteilung fällig. Bei Projekten über 1.000 Euro gilt folgende Staffelung: 50 Prozent bei Auftragserteilung, 50 Prozent bei Abnahme.</p>
+      <p>Rechnungen sind innerhalb von 14 Tagen nach Rechnungsdatum ohne Abzug zu begleichen. Bei Zahlungsverzug ist der Auftragnehmer berechtigt, die weitere Leistungserbringung bis zum Zahlungseingang einzustellen sowie Verzugszinsen in Höhe von 9 Prozentpunkten über dem Basiszinssatz zu berechnen.</p>
+      <p>Wurde ein Festpreis vereinbart, umfasst dieser ausschließlich die vertraglich definierten Leistungen. Mehraufwand durch Änderungswünsche außerhalb des vereinbarten Umfangs wird nach vereinbartem Stundensatz abgerechnet.</p>
+    </div>
+
+    <div class="legal-section" id="s6">
+      <p class="legal-section-num">§ 6</p>
+      <h2 class="legal-h2">Liefertermine und Verzug</h2>
+      <p>Vereinbarte Liefertermine sind Zieltermine und setzen die rechtzeitige und vollständige Mitwirkung des Auftraggebers voraus. Der Auftragnehmer teilt drohende Verzögerungen dem Auftraggeber unverzüglich mit.</p>
+      <p>Gerät der Auftragnehmer in Verzug, ist der Auftraggeber berechtigt, nach Ablauf einer angemessenen Nachfrist von mindestens 14 Tagen vom Vertrag zurückzutreten, sofern der Auftragnehmer die Fristüberschreitung zu vertreten hat. Weitergehende Schadensersatzansprüche sind auf die in § 9 genannten Grenzen beschränkt.</p>
+    </div>
+
+    <div class="legal-section" id="s7">
+      <p class="legal-section-num">§ 7</p>
+      <h2 class="legal-h2">Abnahme</h2>
+      <p>Nach Fertigstellung der vereinbarten Leistung erhält der Auftraggeber die Möglichkeit zur Abnahme. Die Abnahme gilt als erteilt, wenn der Auftraggeber nicht innerhalb von 10 Werktagen nach Bereitstellung der Leistung schriftliche Mängelrügen einreicht.</p>
+      <p>Werden Mängel gerügt, ist der Auftragnehmer berechtigt und verpflichtet, diese innerhalb angemessener Frist zu beseitigen. Nach Beseitigung der gerügten Mängel beginnt die Abnahmefrist erneut. Unwesentliche Mängel, die die Nutzung nicht erheblich beeinträchtigen, berechtigen nicht zur Verweigerung der Abnahme.</p>
+    </div>
+
+    <div class="legal-section" id="s8">
+      <p class="legal-section-num">§ 8</p>
+      <h2 class="legal-h2">Gewährleistung</h2>
+      <p>Der Auftragnehmer gewährleistet, dass die erbrachten Leistungen den vereinbarten Spezifikationen entsprechen und zum Zeitpunkt der Abnahme frei von wesentlichen Mängeln sind. Die Gewährleistungsfrist beträgt 12 Monate ab Abnahme.</p>
+      <p>Der Auftraggeber ist verpflichtet, Mängel unverzüglich nach Entdeckung schriftlich anzuzeigen. Der Auftragnehmer hat das Recht zur Nachbesserung. Schlägt die Nachbesserung zweimal fehl, kann der Auftraggeber Minderung oder Rücktritt verlangen.</p>
+      <p>Keine Gewährleistung übernimmt der Auftragnehmer für Fehler, die durch Eingriffe Dritter, durch vom Auftraggeber bereitgestellte fehlerhafte Inhalte, durch Aktualisierungen von Drittanbietersoftware oder durch Änderungen des Auftraggebers nach der Abnahme entstehen.</p>
+    </div>
+
+    <div class="legal-section" id="s9">
+      <p class="legal-section-num">§ 9</p>
+      <h2 class="legal-h2">Haftungsbeschränkung</h2>
+      <p>Der Auftragnehmer haftet unbeschränkt für Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit sowie für Schäden, die auf Vorsatz oder grober Fahrlässigkeit beruhen.</p>
+      <p>Bei leicht fahrlässiger Verletzung wesentlicher Vertragspflichten ist die Haftung auf den vertragstypischen, vorhersehbaren Schaden begrenzt, maximal auf die Höhe der vereinbarten Vergütung für den betreffenden Auftrag.</p>
+      <p>Eine Haftung für mittelbare Schäden, entgangenen Gewinn, Datenverlust oder sonstige Folgeschäden ist ausgeschlossen, soweit nicht Vorsatz oder grobe Fahrlässigkeit vorliegt.</p>
+      <p>Der Auftragnehmer übernimmt keine Garantie dafür, dass die erstellte Website bestimmte Positionen in Suchmaschinen erreicht oder bestimmte Conversion-Raten erzielt. SEO-Maßnahmen basieren auf dem aktuellen Stand der Technik; Suchmaschinenalgorithmen können sich jederzeit ändern.</p>
+    </div>
+
+    <div class="legal-section" id="s10">
+      <p class="legal-section-num">§ 10</p>
+      <h2 class="legal-h2">Urheberrecht und Nutzungsrechte</h2>
+      <p>Alle vom Auftragnehmer erstellten Werke (Designs, Code, Grafiken, Texte) unterliegen dem deutschen Urheberrecht. Der Auftragnehmer räumt dem Auftraggeber nach vollständiger Zahlung der vereinbarten Vergütung ein einfaches, zeitlich und räumlich unbeschränktes Nutzungsrecht für den vereinbarten Verwendungszweck ein.</p>
+      <p>Ohne ausdrückliche schriftliche Genehmigung des Auftragnehmers ist es dem Auftraggeber nicht gestattet, die erstellten Werke zu verändern, weiterzulizenzieren oder für andere als die vereinbarten Zwecke zu nutzen.</p>
+      <p>Der Auftragnehmer ist berechtigt, auf der erstellten Website einen dezenten Hinweis auf Weber Websites als Ersteller anzubringen ("Webdesign: Weber Websites") sowie das Projekt in seinem Portfolio zu zeigen, sofern der Auftraggeber nicht ausdrücklich widerspricht.</p>
+      <p>Verwendete Open-Source-Komponenten, Frameworks oder Drittanbieter-Ressourcen unterliegen den jeweiligen Lizenzbedingungen dieser Anbieter. Der Auftragnehmer informiert den Auftraggeber über verwendete Drittanbieter-Lizenzen.</p>
+    </div>
+
+    <div class="legal-section" id="s11">
+      <p class="legal-section-num">§ 11</p>
+      <h2 class="legal-h2">Geheimhaltung</h2>
+      <p>Beide Parteien verpflichten sich, alle ihnen im Rahmen des Vertragsverhältnisses bekannt gewordenen vertraulichen Informationen der jeweils anderen Partei vertraulich zu behandeln und nicht an Dritte weiterzugeben. Diese Pflicht besteht auch nach Beendigung des Vertragsverhältnisses fort.</p>
+      <p>Als vertraulich gelten insbesondere: Geschäftsgeheimnisse, Kundendaten, Preisgestaltung, unveröffentlichte Marketingstrategien sowie alle ausdrücklich als vertraulich gekennzeichneten Informationen.</p>
+    </div>
+
+    <div class="legal-section" id="s12">
+      <p class="legal-section-num">§ 12</p>
+      <h2 class="legal-h2">Datenschutz</h2>
+      <p>Der Auftragnehmer verarbeitet personenbezogene Daten des Auftraggebers ausschließlich zur Vertragserfüllung und im Einklang mit der Datenschutz-Grundverordnung (DSGVO) sowie dem Bundesdatenschutzgesetz (BDSG).</p>
+      <p>Sofern im Rahmen eines Projekts personenbezogene Daten Dritter verarbeitet werden, ist der Auftraggeber für die Einhaltung datenschutzrechtlicher Anforderungen (z.B. Datenschutzerklärung auf der erstellten Website, ggf. Auftragsverarbeitungsvertrag) eigenverantwortlich.</p>
+    </div>
+
+    <div class="legal-section" id="s13">
+      <p class="legal-section-num">§ 13</p>
+      <h2 class="legal-h2">Schlussbestimmungen</h2>
+      <p>Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts (CISG).</p>
+      <p>Ist der Auftraggeber Kaufmann, juristische Person des öffentlichen Rechts oder öffentlich-rechtliches Sondervermögen, ist Gerichtsstand der Sitz des Auftragnehmers.</p>
+      <p>Sollten einzelne Bestimmungen dieser AGB unwirksam oder undurchführbar sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen davon unberührt. Die unwirksame Bestimmung gilt durch eine wirksame ersetzt, die dem wirtschaftlichen Zweck der unwirksamen am nächsten kommt.</p>
+      <p>Änderungen und Ergänzungen dieser AGB bedürfen der Schriftform. Dies gilt auch für die Aufhebung des Schriftformerfordernisses.</p>
+
+      <hr class="legal-rule" style="margin-top: 40px;">
+      <p style="font-size: 13px; color: oklch(48% 0.005 60);">Stand: Januar 2026. Weber Websites behält sich das Recht vor, diese AGB mit angemessener Vorankündigung zu aktualisieren. Die jeweils aktuelle Version ist auf dieser Seite abrufbar.</p>
+    </div>
+
+  </div>
+</div>
+
+
+<footer>
+  <div class="wrap">
+    <div class="footer-row">
+      <p class="footer-copy">© 2026 <span class="yn">Weber Websites</span> · Webdesign &amp; Entwicklung</p>
+      <div class="footer-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="agb.html">AGB</a>
+        <a href="index.html#websitecheck">Kontakt</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
