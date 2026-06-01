@@ -3,47 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Andreas Weber · Websites aus dem Schwarzwald</title>
-  <meta name="description" content="Webdesign und Webentwicklung aus Trossingen. Maßgeschneiderte Websites für Handwerksbetriebe, Dienstleister und KMUs in ganz Deutschland.">
+  <title>Andreas Weber · Premium Websites aus dem Schwarzwald</title>
+  <meta name="description" content="Maßgeschneiderte Premium-Websites aus Trossingen. Für Betriebe, die online ernsthaft Anfragen gewinnen wollen.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" href="favicon.svg">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
-  <!-- General Sans (Fontshare, free) -->
+  <!-- Satoshi (Fontshare, free, premium) -->
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
-  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
 
   <style>
     /* ═══════════════════════════════════════════════════════
        TOKENS
     ═══════════════════════════════════════════════════════ */
     :root {
-      /* Surface */
-      --linen:         oklch(94% 0.015 70);
-      --linen-warm:    oklch(91% 0.018 65);
-      --linen-deep:    oklch(86% 0.018 60);
+      /* Surface — true premium near-white with subtle cool tint */
+      --white:          oklch(99% 0.002 264);
+      --paper:          oklch(97.5% 0.003 264);
+      --paper-2:        oklch(95% 0.004 264);
 
-      /* Ink */
-      --ink:           oklch(20% 0.022 50);
-      --ink-soft:      oklch(36% 0.018 50);
-      --ink-faint:     oklch(54% 0.012 60);
+      /* Ink — graphite, not pure black */
+      --ink:            oklch(16% 0.012 264);
+      --ink-2:          oklch(28% 0.012 264);
+      --ink-3:          oklch(46% 0.008 264);
+      --ink-4:          oklch(64% 0.006 264);
 
-      /* Accent — Oxblood */
-      --oxblood:       oklch(38% 0.13 25);
-      --oxblood-deep:  oklch(30% 0.13 25);
-      --oxblood-bg:    oklch(38% 0.13 25 / 0.08);
+      /* Border — barely-there */
+      --line:           oklch(91% 0.006 264);
+      --line-2:         oklch(85% 0.007 264);
 
-      /* Border */
-      --rule:          oklch(78% 0.014 60);
-      --rule-soft:     oklch(85% 0.013 60);
+      /* Single accent — confident chromatic moment */
+      --signal:         oklch(50% 0.22 264);
+      --signal-soft:    oklch(50% 0.22 264 / 0.08);
+
+      /* Dark section (one inversion, references) */
+      --night:          oklch(13% 0.01 264);
+      --night-2:        oklch(18% 0.012 264);
 
       /* System */
-      --font:  'General Sans', system-ui, -apple-system, sans-serif;
-      --max:   1280px;
-      --r:     4px;
-      --r-lg:  8px;
+      --font:  'Satoshi', system-ui, -apple-system, sans-serif;
+      --max:   1320px;
+      --r:     6px;
+      --r-lg:  14px;
       --ease:  cubic-bezier(0.22, 1, 0.36, 1);
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -52,38 +56,95 @@
        RESET + BASE
     ═══════════════════════════════════════════════════════ */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 88px;
+      background: var(--white);
+    }
     body {
-      background: var(--linen);
+      background: var(--white);
       color: var(--ink);
       font-family: var(--font);
       font-weight: 400;
-      font-feature-settings: 'ss01', 'ss02';
+      font-size: 17px;
+      line-height: 1.55;
+      letter-spacing: -0.01em;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
     a { text-decoration: none; color: inherit; }
-    img { max-width: 100%; display: block; }
+    img, svg { display: block; max-width: 100%; }
     button { font: inherit; cursor: pointer; }
 
     .wrap {
       width: 100%;
       max-width: var(--max);
       margin: 0 auto;
-      padding: 0 48px;
+      padding: 0 56px;
+    }
+    .wrap-narrow {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 56px;
     }
 
-    /* Underline links inside prose */
-    .ink-link {
-      color: var(--oxblood);
-      border-bottom: 1px solid currentColor;
-      transition: color 200ms var(--ease);
-    }
-    .ink-link:hover { color: var(--oxblood-deep); }
+    ::selection { background: var(--ink); color: var(--white); }
 
-    /* Selection */
-    ::selection { background: var(--oxblood); color: var(--linen); }
+    /* ═══════════════════════════════════════════════════════
+       TYPOGRAPHY — modular scale
+    ═══════════════════════════════════════════════════════ */
+    .display-xl {
+      font-size: clamp(56px, 9vw, 132px);
+      font-weight: 700;
+      line-height: 0.94;
+      letter-spacing: -0.045em;
+      color: var(--ink);
+    }
+    .display-l {
+      font-size: clamp(40px, 5.6vw, 88px);
+      font-weight: 700;
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+    }
+    .display-m {
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 700;
+      line-height: 1.04;
+      letter-spacing: -0.035em;
+      color: var(--ink);
+    }
+    .display-s {
+      font-size: clamp(24px, 2.4vw, 32px);
+      font-weight: 600;
+      line-height: 1.18;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+    }
+    .lede {
+      font-size: clamp(18px, 1.6vw, 22px);
+      font-weight: 400;
+      line-height: 1.55;
+      letter-spacing: -0.012em;
+      color: var(--ink-2);
+      max-width: 52ch;
+    }
+    .eyebrow {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      color: var(--signal);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 22px; height: 1px;
+      background: var(--signal);
+    }
 
     /* ═══════════════════════════════════════════════════════
        NAV
@@ -91,193 +152,270 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       height: 72px;
-      background: oklch(94% 0.015 70 / 0.86);
-      backdrop-filter: blur(14px) saturate(140%);
-      -webkit-backdrop-filter: blur(14px) saturate(140%);
-      border-bottom: 1px solid var(--rule-soft);
+      background: oklch(99% 0.002 264 / 0.78);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      border-bottom: 1px solid var(--line);
     }
     .nav-row {
       height: 100%;
       display: flex; align-items: center; justify-content: space-between;
     }
     .nav-mark {
-      display: flex; align-items: center; gap: 12px;
-      color: var(--ink);
+      display: flex; align-items: center;
+      height: 100%;
+      transition: opacity 220ms var(--ease);
     }
-    .nav-mark svg { width: 28px; height: 28px; }
-    .nav-mark-name {
-      font-size: 14px; font-weight: 600; letter-spacing: -0.01em;
-    }
-    .nav-mark-name span {
-      color: var(--ink-faint); font-weight: 400;
+    .nav-mark:hover { opacity: 0.7; }
+    .nav-logo {
+      height: 34px;
+      width: auto;
+      display: block;
     }
     .nav-links {
       list-style: none;
       display: flex; align-items: center; gap: 36px;
     }
     .nav-links a {
-      font-size: 13.5px; font-weight: 500; color: var(--ink-soft);
-      transition: color 180ms var(--ease);
+      font-size: 14px; font-weight: 500;
+      color: var(--ink-3);
+      transition: color 220ms var(--ease);
     }
     .nav-links a:hover { color: var(--ink); }
-    .nav-phone {
-      color: var(--oxblood) !important;
-      font-weight: 600;
-      letter-spacing: -0.01em;
+    .nav-cta {
+      background: var(--ink);
+      color: var(--white) !important;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-weight: 600 !important;
+      transition: background 220ms var(--ease) !important;
     }
-    .nav-phone:hover { color: var(--oxblood-deep) !important; }
+    .nav-cta:hover { background: var(--signal); }
 
     /* ═══════════════════════════════════════════════════════
-       HERO — asymmetric, type-led
+       HERO — Apple-grade with device mockup
     ═══════════════════════════════════════════════════════ */
     .hero {
       padding: 168px 0 120px;
       position: relative;
+      overflow: hidden;
     }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.35fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .hero-headline {
-      font-size: clamp(48px, 7.4vw, 104px);
-      font-weight: 600;
-      line-height: 0.96;
-      letter-spacing: -0.045em;
-      color: var(--ink);
-      max-width: 14ch;
-    }
-    .hero-headline em {
-      font-style: normal;
-      color: var(--oxblood);
-    }
-
-    .hero-meta {
-      margin-top: 40px;
-      max-width: 36ch;
-    }
-    .hero-meta-name {
-      font-size: 17px; font-weight: 600; color: var(--ink);
-      letter-spacing: -0.015em;
-      line-height: 1.4;
-    }
-    .hero-meta-place {
-      font-size: 15.5px; color: var(--ink-soft); line-height: 1.55;
-      margin-top: 4px;
-    }
-
-    .hero-contact {
-      margin-top: 36px;
-      display: flex; flex-wrap: wrap; align-items: baseline;
-      gap: 28px;
-    }
-    .hero-contact a {
-      font-size: 15.5px;
-      font-weight: 500;
-      color: var(--ink);
-      display: inline-flex; align-items: baseline; gap: 8px;
-      transition: color 180ms var(--ease);
-    }
-    .hero-contact a:hover { color: var(--oxblood); }
-    .hero-contact .dot { color: var(--rule); }
-    .hero-contact-phone {
-      color: var(--oxblood) !important;
-      font-weight: 600 !important;
-    }
-
-    /* Hero mark (WW typographic anchor) */
-    .hero-mark {
-      position: relative;
-      aspect-ratio: 1 / 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      max-width: 460px;
-      margin-left: auto;
-    }
-    .hero-mark svg {
-      width: 100%; height: auto;
-      color: var(--oxblood);
-    }
-    .hero-mark-caption {
+    .hero::before {
+      content: '';
       position: absolute;
-      bottom: -28px;
-      left: 0; right: 0;
-      text-align: center;
-      font-size: 11.5px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink-faint);
-      font-weight: 500;
+      top: -300px; left: 50%;
+      transform: translateX(-50%);
+      width: 1400px; height: 800px;
+      background:
+        radial-gradient(
+          ellipse at center,
+          oklch(50% 0.22 264 / 0.09),
+          transparent 65%
+        );
+      pointer-events: none;
+      z-index: 0;
     }
 
-    /* ═══════════════════════════════════════════════════════
-       SECTION RHYTHM
-    ═══════════════════════════════════════════════════════ */
-    section {
-      padding: 120px 0;
+    .hero-inner { position: relative; z-index: 1; }
+
+    .hero-claim {
+      text-align: center;
+      max-width: 18ch;
+      margin: 0 auto;
+    }
+    .hero-claim em {
+      font-style: normal;
+      color: var(--signal);
+    }
+
+    .hero-sub {
+      margin: 36px auto 0;
+      font-size: clamp(18px, 1.7vw, 22px);
+      line-height: 1.55;
+      color: var(--ink-3);
+      text-align: center;
+      max-width: 48ch;
+    }
+
+    .hero-ctas {
+      margin-top: 44px;
+      display: flex; justify-content: center; gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-primary, .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-size: 15px; font-weight: 600;
+      letter-spacing: -0.01em;
+      transition: transform 220ms var(--ease), background 220ms var(--ease), color 220ms var(--ease), box-shadow 220ms var(--ease);
+    }
+    .btn-primary {
+      background: var(--ink);
+      color: var(--white);
+      box-shadow: 0 8px 24px -8px oklch(16% 0.012 264 / 0.4);
+    }
+    .btn-primary:hover {
+      background: var(--signal);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 28px -8px oklch(50% 0.22 264 / 0.5);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--line-2);
+    }
+    .btn-secondary:hover {
+      background: var(--paper);
+      border-color: var(--ink);
+    }
+
+    /* Device mockup — laptop showing live reference site */
+    .hero-stage {
+      margin: 88px auto 0;
+      max-width: 1180px;
+      position: relative;
+      perspective: 1800px;
+    }
+    .laptop {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      width: 100%;
+      transform-style: preserve-3d;
+    }
+    .laptop-screen {
+      position: absolute;
+      inset: 0 0 6.5% 0;
+      background: var(--night);
+      border-radius: 14px 14px 4px 4px;
+      padding: 14px 14px 18px;
+      box-shadow:
+        0 1px 0 oklch(40% 0.012 264) inset,
+        0 32px 80px -32px oklch(13% 0.01 264 / 0.6),
+        0 8px 24px -8px oklch(13% 0.01 264 / 0.3);
+    }
+    .laptop-bezel {
+      width: 100%; height: 100%;
+      background: var(--white);
+      border-radius: 6px;
+      overflow: hidden;
       position: relative;
     }
-    .rule-top { border-top: 1px solid var(--rule); }
+    .laptop-bezel img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center;
+      display: block;
+    }
+    .laptop-base {
+      position: absolute;
+      bottom: 0; left: -2%; right: -2%;
+      height: 8.5%;
+      background: linear-gradient(
+        to bottom,
+        oklch(80% 0.006 264),
+        oklch(72% 0.006 264) 30%,
+        oklch(60% 0.006 264) 100%
+      );
+      border-radius: 0 0 18px 18px;
+      box-shadow: 0 18px 40px -16px oklch(13% 0.01 264 / 0.35);
+    }
+    .laptop-notch {
+      position: absolute;
+      bottom: 22%; left: 50%; transform: translateX(-50%);
+      width: 14%; height: 25%;
+      background: oklch(64% 0.006 264);
+      border-radius: 0 0 6px 6px;
+    }
 
-    .kicker {
-      font-size: 13px; font-weight: 600; letter-spacing: -0.01em;
-      color: var(--oxblood);
-      margin-bottom: 24px;
-      display: inline-block;
+    .hero-stage-label {
+      margin-top: 38px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--ink-4);
+      letter-spacing: -0.005em;
     }
-    .kicker .num {
-      color: var(--ink-faint);
-      font-variant-numeric: tabular-nums;
-      margin-right: 10px;
-    }
-
-    .section-head {
-      font-size: clamp(32px, 4vw, 56px);
-      font-weight: 600;
-      letter-spacing: -0.035em;
-      line-height: 1.05;
-      max-width: 18ch;
-      margin-bottom: 24px;
-      color: var(--ink);
-    }
-    .section-lede {
-      font-size: 18px;
-      line-height: 1.6;
-      color: var(--ink-soft);
-      max-width: 56ch;
+    .hero-stage-label strong {
+      color: var(--ink-2); font-weight: 600;
     }
 
     /* ═══════════════════════════════════════════════════════
-       TRANSFORMATION (Vorher/Nachher slider)
+       LEISTUNGEN — "Was Sie bekommen"
     ═══════════════════════════════════════════════════════ */
-    .transformation {
-      padding: 80px 0 120px;
+    .leistungen {
+      padding: 160px 0;
+      background: var(--white);
     }
-    .trans-hd {
-      display: flex; align-items: end; justify-content: space-between;
-      gap: 48px; margin-bottom: 48px;
+    .leistungen-hd {
+      max-width: 56ch;
+      margin: 0 auto 80px;
+      text-align: center;
     }
-    .trans-hd-left { flex: 1; }
+    .leistungen-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+    .leistung-item {
+      background: var(--white);
+      padding: 56px 48px;
+      display: flex; flex-direction: column;
+      gap: 18px;
+      transition: background 280ms var(--ease);
+    }
+    .leistung-item:hover { background: var(--paper); }
+    .leistung-num {
+      font-size: 13px; font-weight: 600;
+      color: var(--signal);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.005em;
+    }
+    .leistung-title {
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+    .leistung-desc {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--ink-3);
+      max-width: 42ch;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       VORHER / NACHHER
+    ═══════════════════════════════════════════════════════ */
+    .vergleich {
+      padding: 160px 0;
+      background: var(--paper);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .vergleich-hd {
+      max-width: 56ch;
+      margin: 0 auto 72px;
+      text-align: center;
+    }
 
     .before-after {
       position: relative;
-      width: calc(100% + 96px);
-      margin-left: -48px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
       aspect-ratio: 16 / 9;
+      border-radius: var(--r-lg);
       overflow: hidden;
       cursor: col-resize;
       user-select: none;
       touch-action: none;
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      background: var(--linen-warm);
+      border: 1px solid var(--line-2);
+      background: var(--white);
+      box-shadow: 0 32px 80px -32px oklch(13% 0.01 264 / 0.25);
     }
-    .ba-after, .ba-before {
-      position: absolute; inset: 0;
-    }
+    .ba-after, .ba-before { position: absolute; inset: 0; }
     .ba-after { z-index: 1; }
     .ba-before { z-index: 2; clip-path: inset(0 50% 0 0); }
     .ba-img {
@@ -286,476 +424,642 @@
       display: block; pointer-events: none;
     }
 
-    /* Intro glow */
-    @keyframes ba-intro-glow {
-      0%   { box-shadow: inset 0 0 0 0 oklch(38% 0.13 25 / 0); }
-      40%  { box-shadow: inset 0 0 0 2px oklch(38% 0.13 25 / 0.35); }
-      100% { box-shadow: inset 0 0 0 0 oklch(38% 0.13 25 / 0); }
-    }
-    .before-after.in {
-      animation: ba-intro-glow 2.2s var(--ease) 0.3s both;
-    }
-
     @keyframes ba-grip-pulse {
-      0%, 100% { box-shadow: 0 0 0 1px var(--oxblood-deep), 0 0 14px 3px oklch(38% 0.13 25 / 0.3); }
-      50%       { box-shadow: 0 0 0 1px var(--oxblood-deep), 0 0 26px 8px oklch(38% 0.13 25 / 0.45); }
+      0%, 100% { box-shadow: 0 0 0 1px var(--ink), 0 0 14px 3px oklch(50% 0.22 264 / 0.4); }
+      50%       { box-shadow: 0 0 0 1px var(--ink), 0 0 26px 8px oklch(50% 0.22 264 / 0.55); }
     }
 
     .ba-handle {
       position: absolute; top: 0; bottom: 0; left: 50%;
-      width: 1px; background: var(--oxblood);
+      width: 2px; background: var(--white);
       z-index: 10; transform: translateX(-50%);
       pointer-events: none;
+      box-shadow: 0 0 0 1px oklch(13% 0.01 264 / 0.2);
     }
     .ba-grip {
       position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      width: 44px; height: 44px;
-      background: var(--oxblood); border-radius: 50%;
+      width: 48px; height: 48px;
+      background: var(--white);
+      color: var(--ink);
+      border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      color: var(--linen);
-      font-size: 11px; font-weight: 600;
+      font-size: 13px; font-weight: 700;
       letter-spacing: 0.04em;
       user-select: none;
       animation: ba-grip-pulse 2.4s ease-in-out infinite;
     }
     .ba-label {
       position: absolute; bottom: 18px; z-index: 20;
-      font-size: 10.5px; font-weight: 600; letter-spacing: 0.16em;
-      text-transform: uppercase; padding: 6px 11px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; padding: 6px 12px;
       pointer-events: none;
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      border-radius: 2px;
+      border-radius: 3px;
     }
     .ba-label-before {
       left: 16px;
-      background: oklch(94% 0.015 70 / 0.85);
-      color: var(--ink);
+      background: oklch(99% 0.002 264 / 0.85);
+      color: var(--ink-2);
     }
     .ba-label-after {
       right: 16px;
-      background: oklch(38% 0.13 25 / 0.92);
-      color: var(--linen);
+      background: oklch(13% 0.01 264 / 0.85);
+      color: var(--white);
     }
 
-    .trans-caption {
-      margin-top: 28px;
-      font-size: 14.5px;
-      color: var(--ink-soft);
-      line-height: 1.6;
-      max-width: 64ch;
+    .vergleich-caption {
+      margin-top: 36px;
+      text-align: center;
+      font-size: 15px;
+      color: var(--ink-3);
+      line-height: 1.65;
+      max-width: 56ch;
+      margin-left: auto; margin-right: auto;
     }
-    .trans-caption strong {
-      color: var(--ink); font-weight: 600;
-    }
+    .vergleich-caption strong { color: var(--ink); font-weight: 600; }
 
     /* ═══════════════════════════════════════════════════════
-       WER MACHT DAS (About)
+       MESSWERTE (Stats reframed — real comparisons)
+    ═══════════════════════════════════════════════════════ */
+    .stats {
+      padding: 160px 0;
+      background: var(--white);
+    }
+    .stats-hd {
+      max-width: 60ch;
+      margin: 0 auto 80px;
+      text-align: center;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .stat {
+      padding: 0 36px;
+      text-align: left;
+      border-right: 1px solid var(--line);
+    }
+    .stat:last-child { border-right: none; }
+
+    .stat-row {
+      display: flex; align-items: baseline; gap: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .stat-row + .stat-row { margin-top: 18px; }
+    .stat-row.after { border-bottom: none; }
+
+    .stat-tag {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--ink-4);
+      width: 80px;
+      flex-shrink: 0;
+    }
+    .stat-row.after .stat-tag { color: var(--signal); }
+    .stat-value {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      color: var(--ink-3);
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+    }
+    .stat-row.after .stat-value {
+      color: var(--ink);
+    }
+    .stat-unit {
+      font-size: 16px; font-weight: 500;
+      color: var(--ink-3);
+      letter-spacing: -0.01em;
+    }
+    .stat-label {
+      margin-top: 18px;
+      font-size: 14px;
+      color: var(--ink-3);
+      line-height: 1.5;
+    }
+    .stat-source {
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--ink-4);
+    }
+    .stat-source a {
+      color: var(--ink-3);
+      border-bottom: 1px solid var(--line);
+    }
+    .stat-source a:hover { color: var(--signal); border-color: var(--signal); }
+
+    /* ═══════════════════════════════════════════════════════
+       ÜBER MICH
     ═══════════════════════════════════════════════════════ */
     .about {
-      padding-top: 140px;
+      padding: 160px 0;
+      background: var(--paper);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
     .about-grid {
       display: grid;
       grid-template-columns: 0.85fr 1fr;
-      gap: 88px;
-      align-items: start;
+      gap: 96px;
+      align-items: center;
     }
 
     .about-figure {
       position: relative;
       aspect-ratio: 4 / 5;
-      background: var(--linen-warm);
-      border: 1px solid var(--rule);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
       overflow: hidden;
+      box-shadow: 0 32px 80px -32px oklch(13% 0.01 264 / 0.18);
     }
     .about-figure-placeholder {
       position: absolute; inset: 0;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      gap: 20px;
+      gap: 28px;
       background:
-        repeating-linear-gradient(
-          135deg,
-          transparent 0,
-          transparent 14px,
-          oklch(38% 0.13 25 / 0.04) 14px,
-          oklch(38% 0.13 25 / 0.04) 15px
-        );
+        linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
     }
-    .about-figure-placeholder svg {
-      width: 88px; height: 88px;
-      color: var(--oxblood);
+    .about-figure-placeholder img {
+      width: 56%;
+      max-width: 220px;
+      height: auto;
       opacity: 0.5;
     }
     .about-figure-placeholder-cap {
-      font-size: 10.5px; font-weight: 600;
+      font-size: 11px; font-weight: 600;
       letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--ink-faint);
+      color: var(--ink-4);
     }
 
-    .about-prose h3 {
-      font-size: 14px; font-weight: 600;
-      color: var(--oxblood);
-      letter-spacing: -0.005em;
-      margin-bottom: 10px;
-    }
-    .about-prose p {
-      font-size: 18px; line-height: 1.7;
+    .about-prose-h2 {
+      font-size: clamp(32px, 3.6vw, 52px);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.05;
       color: var(--ink);
-      margin-bottom: 36px;
-      max-width: 50ch;
+      margin-bottom: 32px;
+      max-width: 16ch;
+    }
+    .about-prose-h2 em { font-style: normal; color: var(--signal); }
+    .about-prose p {
+      font-size: 17px; line-height: 1.7;
+      color: var(--ink-2);
+      margin-bottom: 20px;
+      max-width: 52ch;
     }
     .about-prose p:last-child { margin-bottom: 0; }
     .about-prose p strong {
-      font-weight: 600; color: var(--ink);
+      color: var(--ink); font-weight: 600;
     }
-
-    /* ═══════════════════════════════════════════════════════
-       ANGEBOT (Bento)
-    ═══════════════════════════════════════════════════════ */
-    .offer {
-      padding-top: 140px;
-    }
-    .offer-bento {
-      border: 1px solid var(--rule);
-      background: var(--linen-warm);
-      padding: 80px 72px 72px;
-      position: relative;
-      overflow: hidden;
-    }
-    .offer-bento::before {
-      content: '';
-      position: absolute;
-      top: 0; right: 0; bottom: 0;
-      width: 44%;
-      background:
-        radial-gradient(
-          ellipse at top right,
-          oklch(38% 0.13 25 / 0.06),
-          transparent 70%
-        );
-      pointer-events: none;
-    }
-    .offer-bento-inner {
-      position: relative; z-index: 1;
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 64px;
-      align-items: start;
-    }
-
-    .offer-claim {
-      font-size: clamp(36px, 4.5vw, 60px);
-      font-weight: 600;
-      letter-spacing: -0.04em;
-      line-height: 1.02;
-      color: var(--ink);
-    }
-    .offer-claim em {
-      font-style: normal;
-      color: var(--oxblood);
-    }
-    .offer-meta {
-      margin-top: 24px;
-      font-size: 16px;
-      color: var(--ink-soft);
-      line-height: 1.6;
-      max-width: 42ch;
-    }
-
-    .offer-price-block {
-      border-left: 1px solid var(--rule);
-      padding-left: 48px;
-    }
-    .offer-price-label {
-      font-size: 12.5px; font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--ink-faint);
-      margin-bottom: 12px;
-    }
-    .offer-price-row {
-      display: flex; align-items: baseline; gap: 8px;
-      margin-bottom: 6px;
-    }
-    .offer-price-row .from {
-      font-size: 17px; font-weight: 500;
-      color: var(--ink-soft);
-    }
-    .offer-price-row .num {
-      font-size: clamp(48px, 5.5vw, 76px);
-      font-weight: 600;
-      color: var(--ink);
-      letter-spacing: -0.04em;
-      line-height: 1;
-      font-variant-numeric: tabular-nums;
-    }
-    .offer-price-row .cur {
-      font-size: 28px; font-weight: 500;
-      color: var(--ink);
-      letter-spacing: -0.02em;
-    }
-    .offer-price-note {
-      font-size: 13.5px;
-      color: var(--ink-soft);
-      letter-spacing: 0.01em;
-    }
-
-    .offer-list {
-      list-style: none;
-      margin-top: 56px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 14px 40px;
-      position: relative;
-      z-index: 1;
-    }
-    .offer-list li {
-      font-size: 15.5px;
-      color: var(--ink);
-      line-height: 1.5;
-      padding-left: 28px;
-      position: relative;
-    }
-    .offer-list li::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0.7em;
-      width: 14px; height: 1px;
-      background: var(--oxblood);
-    }
-
-    /* Variant chips */
-    .offer-variants {
-      margin-top: 48px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-    .variant-chip {
-      border: 1px solid var(--rule);
-      background: var(--linen);
-      padding: 24px 26px;
-      transition: border-color 220ms var(--ease), background 220ms var(--ease);
-    }
-    .variant-chip:hover {
-      border-color: var(--oxblood);
-      background: var(--linen-warm);
-    }
-    .variant-chip-name {
-      font-size: 13px; font-weight: 600;
-      color: var(--oxblood);
-      letter-spacing: -0.005em;
-      margin-bottom: 10px;
-    }
-    .variant-chip-price {
-      font-size: 22px; font-weight: 600;
-      color: var(--ink);
-      letter-spacing: -0.025em;
-      font-variant-numeric: tabular-nums;
-      margin-bottom: 6px;
-    }
-    .variant-chip-desc {
-      font-size: 13.5px;
-      color: var(--ink-soft);
-      line-height: 1.45;
-    }
-
-    .offer-fineprint {
+    .about-meta {
       margin-top: 36px;
-      font-size: 13.5px;
-      color: var(--ink-faint);
-      line-height: 1.6;
+      display: flex; flex-wrap: wrap; gap: 28px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
     }
-    .offer-fineprint a { color: var(--oxblood); }
+    .about-meta-item {
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .about-meta-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--ink-4);
+    }
+    .about-meta-value {
+      font-size: 15px; font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
 
     /* ═══════════════════════════════════════════════════════
-       REFERENZEN (stacked)
+       ARBEITEN (dark inversion)
     ═══════════════════════════════════════════════════════ */
-    .refs {
-      padding-top: 140px;
+    .arbeiten {
+      padding: 160px 0;
+      background: var(--night);
+      color: var(--white);
     }
-    .refs-list {
-      margin-top: 64px;
-      border-top: 1px solid var(--rule);
+    .arbeiten-hd {
+      max-width: 60ch;
+      margin: 0 auto 80px;
+      text-align: center;
     }
-    .ref-item {
+    .arbeiten .eyebrow { color: oklch(70% 0.18 264); }
+    .arbeiten .eyebrow::before { background: oklch(70% 0.18 264); }
+    .arbeiten .display-l { color: var(--white); }
+    .arbeiten .lede { color: oklch(75% 0.008 264); }
+
+    .arbeiten-list {
+      display: flex; flex-direction: column;
+      gap: 0;
+    }
+    .arbeit {
       display: grid;
-      grid-template-columns: 1fr 1.1fr;
-      gap: 72px;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
       align-items: center;
-      padding: 72px 0;
-      border-bottom: 1px solid var(--rule);
+      padding: 80px 0;
+      border-top: 1px solid oklch(28% 0.012 264);
     }
-    .ref-thumb-wrap {
+    .arbeit:last-child { border-bottom: 1px solid oklch(28% 0.012 264); }
+
+    .arbeit-thumb {
       position: relative;
       aspect-ratio: 16 / 10;
+      border-radius: var(--r-lg);
       overflow: hidden;
-      border: 1px solid var(--rule);
-      background: var(--linen-warm);
-      transition: border-color 260ms var(--ease);
+      background: var(--night-2);
+      border: 1px solid oklch(28% 0.012 264);
+      transition: transform 480ms var(--ease-out), border-color 280ms var(--ease);
     }
-    .ref-thumb-wrap img {
+    .arbeit-thumb img {
       width: 100%; height: 100%;
       object-fit: cover; object-position: top;
       transition: transform 600ms var(--ease-out);
     }
-    .ref-thumb-wrap:hover {
-      border-color: var(--oxblood);
+    .arbeit-thumb:hover {
+      transform: translateY(-4px);
+      border-color: oklch(70% 0.18 264 / 0.4);
     }
-    .ref-thumb-wrap:hover img {
-      transform: scale(1.03);
+    .arbeit-thumb:hover img { transform: scale(1.04); }
+
+    .arbeit-meta-tag {
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: oklch(70% 0.18 264);
+      margin-bottom: 14px;
     }
-    .ref-overlay {
-      position: absolute; inset: 0;
-      background: oklch(20% 0.022 50 / 0.6);
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0;
-      transition: opacity 240ms var(--ease);
-      backdrop-filter: blur(2px);
+    .arbeit-meta-name {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--white);
     }
-    .ref-thumb-wrap:hover .ref-overlay { opacity: 1; }
-    .ref-overlay-pill {
-      background: var(--linen);
-      color: var(--ink);
+    .arbeit-meta-prose {
+      margin-top: 22px;
+      font-size: 16px; line-height: 1.7;
+      color: oklch(75% 0.008 264);
+      max-width: 44ch;
+    }
+    .arbeit-meta-prose strong { color: var(--white); font-weight: 600; }
+
+    .arbeit-meta-link {
+      margin-top: 28px;
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 14.5px; font-weight: 600;
+      color: var(--white);
       padding: 11px 22px;
-      font-size: 13px; font-weight: 600;
-      letter-spacing: -0.005em;
-      border-radius: 2px;
+      border: 1px solid oklch(40% 0.012 264);
+      border-radius: 999px;
+      transition: background 220ms var(--ease), border-color 220ms var(--ease);
+    }
+    .arbeit-meta-link:hover {
+      background: oklch(70% 0.18 264);
+      border-color: oklch(70% 0.18 264);
+      color: var(--ink);
     }
 
-    .ref-meta-name {
-      font-size: clamp(26px, 2.8vw, 34px);
-      font-weight: 600;
-      letter-spacing: -0.025em;
+    /* ═══════════════════════════════════════════════════════
+       PREISE
+    ═══════════════════════════════════════════════════════ */
+    .preise {
+      padding: 160px 0;
+      background: var(--white);
+    }
+    .preise-hd {
+      max-width: 60ch;
+      margin: 0 auto 80px;
+      text-align: center;
+    }
+    .preise-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .preis {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      padding: 40px 36px 36px;
+      display: flex; flex-direction: column;
+      transition: border-color 280ms var(--ease), transform 280ms var(--ease), box-shadow 280ms var(--ease);
+    }
+    .preis:hover {
+      border-color: var(--line-2);
+      transform: translateY(-3px);
+      box-shadow: 0 24px 56px -24px oklch(13% 0.01 264 / 0.18);
+    }
+    .preis.featured {
+      background: var(--ink);
+      color: var(--white);
+      border-color: var(--ink);
+      position: relative;
+    }
+    .preis.featured:hover {
+      box-shadow: 0 24px 56px -24px oklch(13% 0.01 264 / 0.4);
+    }
+    .preis.featured .preis-name { color: var(--white); }
+    .preis.featured .preis-desc { color: oklch(75% 0.008 264); }
+    .preis.featured .preis-amount { color: var(--white); }
+    .preis.featured .preis-period { color: oklch(75% 0.008 264); }
+    .preis.featured .preis-list li { color: oklch(85% 0.008 264); }
+    .preis.featured .preis-list li::before { background: oklch(70% 0.18 264); }
+    .preis.featured .preis-rule { background: oklch(28% 0.012 264); }
+    .preis.featured .preis-cta {
+      background: var(--white);
       color: var(--ink);
-      line-height: 1.1;
     }
-    .ref-meta-tag {
-      font-size: 13px; font-weight: 600;
-      letter-spacing: -0.005em;
-      color: var(--oxblood);
-      margin-bottom: 12px;
+    .preis.featured .preis-cta:hover {
+      background: oklch(70% 0.18 264);
+      color: var(--ink);
     }
-    .ref-meta-prose {
-      margin-top: 18px;
-      font-size: 16px; line-height: 1.65;
-      color: var(--ink-soft);
-      max-width: 42ch;
+    .preis-badge {
+      position: absolute;
+      top: -12px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--signal);
+      color: var(--white);
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 999px;
     }
-    .ref-meta-prose strong {
-      color: var(--ink); font-weight: 600;
-    }
-    .ref-meta-link {
-      margin-top: 22px;
-      display: inline-flex; align-items: center; gap: 8px;
+
+    .preis-name {
       font-size: 14px; font-weight: 600;
-      color: var(--oxblood);
-      transition: gap 220ms var(--ease);
+      letter-spacing: -0.005em;
+      color: var(--signal);
+      margin-bottom: 10px;
     }
-    .ref-meta-link:hover { gap: 14px; }
-    .ref-meta-link .arrow {
-      transition: transform 220ms var(--ease);
+    .preis-desc {
+      font-size: 14.5px;
+      color: var(--ink-3);
+      line-height: 1.55;
+      margin-bottom: 28px;
+      min-height: 44px;
     }
-    .ref-meta-link:hover .arrow { transform: translateX(3px); }
+    .preis-price {
+      display: flex; align-items: baseline; gap: 4px;
+      margin-bottom: 4px;
+    }
+    .preis-amount {
+      font-size: 56px; font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+    }
+    .preis-currency {
+      font-size: 22px; font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .preis-period {
+      font-size: 13px;
+      color: var(--ink-3);
+      letter-spacing: -0.005em;
+      margin-bottom: 32px;
+    }
+    .preis-rule {
+      height: 1px;
+      background: var(--line);
+      margin-bottom: 28px;
+    }
+    .preis-list {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 12px;
+      margin-bottom: 36px;
+      flex-grow: 1;
+    }
+    .preis-list li {
+      font-size: 14.5px;
+      line-height: 1.5;
+      color: var(--ink-2);
+      padding-left: 26px;
+      position: relative;
+    }
+    .preis-list li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0.6em;
+      width: 14px; height: 1px;
+      background: var(--signal);
+    }
+    .preis-cta {
+      display: block;
+      text-align: center;
+      padding: 13px 22px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--white);
+      font-size: 14.5px; font-weight: 600;
+      letter-spacing: -0.005em;
+      transition: background 220ms var(--ease);
+    }
+    .preis-cta:hover { background: var(--signal); }
+    .preise-foot {
+      margin-top: 48px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--ink-3);
+    }
+    .preise-foot a {
+      color: var(--ink);
+      border-bottom: 1px solid var(--line-2);
+      font-weight: 500;
+    }
+    .preise-foot a:hover { color: var(--signal); border-color: var(--signal); }
+
+    /* ═══════════════════════════════════════════════════════
+       FAQ
+    ═══════════════════════════════════════════════════════ */
+    .faq {
+      padding: 160px 0;
+      background: var(--paper);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .faq-hd {
+      max-width: 56ch;
+      margin: 0 auto 64px;
+      text-align: center;
+    }
+    .faq-list {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border-top: 1px solid var(--line);
+    }
+    .faq-item:last-child { border-bottom: 1px solid var(--line); }
+    .faq-trigger {
+      width: 100%;
+      background: none; border: none;
+      padding: 28px 0;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 32px;
+      text-align: left;
+      color: var(--ink);
+    }
+    .faq-q {
+      font-size: clamp(18px, 1.6vw, 21px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 32px; height: 32px;
+      border: 1px solid var(--line-2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 400;
+      color: var(--ink);
+      transition: transform 320ms var(--ease), background 220ms var(--ease), color 220ms var(--ease);
+    }
+    .faq-trigger:hover .faq-icon {
+      background: var(--ink);
+      color: var(--white);
+    }
+    .faq-trigger[aria-expanded="true"] .faq-icon {
+      transform: rotate(45deg);
+      background: var(--ink);
+      color: var(--white);
+    }
+    .faq-panel {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 360ms var(--ease);
+    }
+    .faq-trigger[aria-expanded="true"] + .faq-panel {
+      grid-template-rows: 1fr;
+    }
+    .faq-panel-inner {
+      overflow: hidden;
+    }
+    .faq-a {
+      padding: 0 0 32px;
+      font-size: 16.5px;
+      line-height: 1.75;
+      color: var(--ink-2);
+      max-width: 64ch;
+    }
+    .faq-a strong { color: var(--ink); font-weight: 600; }
 
     /* ═══════════════════════════════════════════════════════
        KONTAKT
     ═══════════════════════════════════════════════════════ */
-    .contact {
-      padding: 140px 0 120px;
+    .kontakt {
+      padding: 160px 0 120px;
+      background: var(--white);
     }
-    .contact-grid {
+    .kontakt-card {
+      max-width: 1080px;
+      margin: 0 auto;
+      background: var(--ink);
+      color: var(--white);
+      border-radius: var(--r-lg);
+      padding: 88px 80px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 40px 96px -32px oklch(13% 0.01 264 / 0.4);
+    }
+    .kontakt-card::before {
+      content: '';
+      position: absolute;
+      top: -40%; right: -10%;
+      width: 600px; height: 600px;
+      background:
+        radial-gradient(
+          circle,
+          oklch(50% 0.22 264 / 0.5),
+          transparent 60%
+        );
+      pointer-events: none;
+    }
+    .kontakt-inner { position: relative; z-index: 1; }
+    .kontakt-card .display-m { color: var(--white); }
+    .kontakt-card .display-m em { color: oklch(72% 0.16 264); font-style: normal; }
+    .kontakt-sub {
+      margin-top: 28px;
+      font-size: 18px; line-height: 1.6;
+      color: oklch(78% 0.008 264);
+      max-width: 50ch;
+    }
+    .kontakt-channels {
+      margin-top: 56px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 88px;
-      align-items: start;
-    }
-    .contact-lead {
-      font-size: clamp(32px, 4vw, 52px);
-      font-weight: 600;
-      letter-spacing: -0.035em;
-      line-height: 1.08;
-      color: var(--ink);
-      max-width: 14ch;
-    }
-    .contact-lead em {
-      font-style: normal;
-      color: var(--oxblood);
-    }
-    .contact-sub {
-      margin-top: 24px;
-      font-size: 17px; line-height: 1.6;
-      color: var(--ink-soft);
-      max-width: 38ch;
-    }
-
-    .contact-channels {
-      display: flex; flex-direction: column;
-      gap: 28px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
     }
     .channel {
-      display: block;
+      display: flex; flex-direction: column;
+      gap: 10px;
+      background: oklch(20% 0.012 264);
+      border-radius: var(--r);
       padding: 28px 32px;
-      border: 1px solid var(--rule);
-      background: var(--linen-warm);
-      transition: border-color 220ms var(--ease), transform 220ms var(--ease);
+      transition: background 220ms var(--ease);
     }
-    .channel:hover {
-      border-color: var(--oxblood);
-      transform: translateY(-2px);
-    }
+    .channel:hover { background: oklch(50% 0.22 264 / 0.2); }
     .channel-label {
-      font-size: 12.5px; font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--ink-faint);
-      margin-bottom: 10px;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: oklch(68% 0.008 264);
     }
     .channel-value {
-      font-size: clamp(24px, 2.4vw, 32px);
-      font-weight: 600;
+      font-size: clamp(22px, 2vw, 28px);
+      font-weight: 700;
+      color: var(--white);
       letter-spacing: -0.025em;
-      color: var(--ink);
       font-variant-numeric: tabular-nums;
     }
     .channel-note {
-      margin-top: 6px;
       font-size: 13.5px;
-      color: var(--ink-soft);
+      color: oklch(72% 0.008 264);
+      line-height: 1.5;
     }
 
-    /* Form (collapsed by default) */
-    .contact-form-section {
+    .form-section {
       margin-top: 24px;
-      border: 1px solid var(--rule);
-      background: var(--linen-warm);
+      background: oklch(20% 0.012 264);
+      border-radius: var(--r);
       overflow: hidden;
     }
     .form-toggle {
       width: 100%;
-      background: none; border: none;
-      padding: 28px 32px;
+      background: none; border: none; color: var(--white);
+      padding: 24px 32px;
       display: flex; align-items: center; justify-content: space-between;
       text-align: left;
-      transition: background 200ms var(--ease);
+      transition: background 220ms var(--ease);
     }
-    .form-toggle:hover { background: var(--linen-deep); }
+    .form-toggle:hover { background: oklch(24% 0.012 264); }
     .form-toggle-label {
-      font-size: clamp(20px, 2vw, 24px);
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: var(--ink);
+      font-size: 17px; font-weight: 600;
+      letter-spacing: -0.015em;
     }
     .form-toggle-icon {
-      font-size: 22px; font-weight: 400;
-      color: var(--oxblood);
-      transition: transform 280ms var(--ease);
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 1px solid oklch(40% 0.012 264);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 400;
+      transition: transform 280ms var(--ease), background 220ms var(--ease);
     }
     .form-toggle[aria-expanded="true"] .form-toggle-icon {
       transform: rotate(45deg);
+      background: oklch(50% 0.22 264);
+      border-color: oklch(50% 0.22 264);
     }
     .form-panel {
       display: grid;
@@ -765,188 +1069,152 @@
     .form-toggle[aria-expanded="true"] + .form-panel {
       grid-template-rows: 1fr;
     }
-    .form-panel-inner {
-      overflow: hidden;
-    }
-    .form-inner-pad {
-      padding: 8px 32px 32px;
-    }
+    .form-panel-inner { overflow: hidden; }
+    .form-inner-pad { padding: 8px 32px 32px; }
 
     .contact-form { display: flex; flex-direction: column; gap: 18px; }
     .form-field { display: flex; flex-direction: column; gap: 7px; }
     .form-label {
-      font-size: 12.5px; font-weight: 600;
-      color: var(--ink-soft);
-      letter-spacing: 0.02em;
+      font-size: 11px; font-weight: 600;
+      color: oklch(68% 0.008 264);
+      letter-spacing: 0.06em; text-transform: uppercase;
     }
     .form-input, .form-textarea {
       font: inherit; font-size: 15px;
-      padding: 12px 14px;
-      border: 1px solid var(--rule);
-      background: var(--linen);
-      color: var(--ink);
-      border-radius: 2px;
-      transition: border-color 180ms var(--ease);
+      padding: 13px 16px;
+      border: 1px solid oklch(32% 0.012 264);
+      background: oklch(15% 0.01 264);
+      color: var(--white);
+      border-radius: var(--r);
+      transition: border-color 200ms var(--ease);
     }
     .form-input:focus, .form-textarea:focus {
       outline: none;
-      border-color: var(--oxblood);
+      border-color: oklch(50% 0.22 264);
     }
     .form-textarea {
-      min-height: 110px;
+      min-height: 120px;
       resize: vertical; font-family: var(--font);
     }
     .form-submit {
-      background: var(--oxblood);
-      color: var(--linen);
+      background: var(--white);
+      color: var(--ink);
       border: none;
-      padding: 14px 28px;
-      font-size: 14.5px; font-weight: 600;
+      padding: 14px 30px;
+      font-size: 15px; font-weight: 600;
       letter-spacing: -0.005em;
-      border-radius: 2px;
-      transition: background 200ms var(--ease);
+      border-radius: 999px;
+      transition: background 220ms var(--ease), color 220ms var(--ease);
       align-self: flex-start;
     }
-    .form-submit:hover { background: var(--oxblood-deep); }
+    .form-submit:hover {
+      background: oklch(70% 0.18 264);
+    }
     .form-privacy {
-      font-size: 12px; color: var(--ink-faint);
+      font-size: 12px;
+      color: oklch(64% 0.008 264);
       line-height: 1.55;
     }
     .form-privacy a {
-      color: var(--ink-soft); border-bottom: 1px solid var(--rule);
+      color: oklch(80% 0.008 264);
+      border-bottom: 1px solid oklch(32% 0.012 264);
     }
 
     /* ═══════════════════════════════════════════════════════
        FOOTER
     ═══════════════════════════════════════════════════════ */
     footer {
-      border-top: 1px solid var(--rule);
-      padding: 32px 0;
+      border-top: 1px solid var(--line);
+      padding: 48px 0 40px;
+      background: var(--white);
     }
     .footer-row {
       display: flex; align-items: center; justify-content: space-between;
       gap: 24px; flex-wrap: wrap;
     }
+    .footer-brand {
+      display: flex; align-items: center; gap: 14px;
+    }
+    .footer-logo {
+      height: 28px; width: auto; opacity: 0.7;
+    }
     .footer-copy {
-      font-size: 13px; color: var(--ink-soft);
+      font-size: 13px; color: var(--ink-3);
     }
-    .footer-copy strong {
-      color: var(--ink); font-weight: 600;
-    }
-    .footer-links {
-      display: flex; gap: 28px;
-    }
+    .footer-copy strong { color: var(--ink); font-weight: 600; }
+    .footer-links { display: flex; gap: 28px; }
     .footer-links a {
-      font-size: 13px; color: var(--ink-soft);
+      font-size: 13px; color: var(--ink-3);
       transition: color 200ms var(--ease);
     }
-    .footer-links a:hover { color: var(--oxblood); }
+    .footer-links a:hover { color: var(--signal); }
 
     /* ═══════════════════════════════════════════════════════
        REVEALS
     ═══════════════════════════════════════════════════════ */
     .reveal {
       opacity: 0;
-      transform: translateY(24px);
+      transform: translateY(22px);
       transition: opacity 800ms var(--ease), transform 800ms var(--ease);
     }
-    .reveal.up-far { transform: translateY(48px); }
-    .reveal.d1 { transition-delay: 100ms; }
-    .reveal.d2 { transition-delay: 200ms; }
-    .reveal.d3 { transition-delay: 300ms; }
+    .reveal.d1 { transition-delay: 80ms; }
+    .reveal.d2 { transition-delay: 160ms; }
+    .reveal.d3 { transition-delay: 240ms; }
+    .reveal.d4 { transition-delay: 320ms; }
     .reveal.in { opacity: 1; transform: none; }
 
     /* Hero orchestrated load */
-    @keyframes hero-mask-up {
-      0%   { opacity: 0; transform: translateY(38px); }
-      100% { opacity: 1; transform: translateY(0); }
+    @keyframes hero-fade-up {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-    .hero-headline-line {
-      display: block; overflow: hidden;
-    }
-    .hero-headline-inner {
-      display: block;
-      opacity: 0;
-      animation: hero-mask-up 900ms var(--ease-out) forwards;
-    }
-    .hero-headline-line:nth-child(1) .hero-headline-inner { animation-delay: 80ms; }
-    .hero-headline-line:nth-child(2) .hero-headline-inner { animation-delay: 200ms; }
-    .hero-headline-line:nth-child(3) .hero-headline-inner { animation-delay: 320ms; }
-
-    .hero-meta { opacity: 0; animation: hero-mask-up 800ms var(--ease-out) 480ms forwards; }
-    .hero-contact { opacity: 0; animation: hero-mask-up 800ms var(--ease-out) 580ms forwards; }
-    .hero-mark { opacity: 0; animation: hero-mask-up 1000ms var(--ease-out) 280ms forwards; }
-
-    /* ═══════════════════════════════════════════════════════
-       PERFORMANCE
-    ═══════════════════════════════════════════════════════ */
-    .transformation, .about, .offer, .refs, .contact {
-      contain: layout style;
-    }
+    .hero-claim { opacity: 0; animation: hero-fade-up 1000ms var(--ease-out) 100ms forwards; }
+    .hero-sub   { opacity: 0; animation: hero-fade-up 1000ms var(--ease-out) 240ms forwards; }
+    .hero-ctas  { opacity: 0; animation: hero-fade-up 1000ms var(--ease-out) 380ms forwards; }
+    .hero-stage { opacity: 0; animation: hero-fade-up 1200ms var(--ease-out) 520ms forwards; }
 
     /* ═══════════════════════════════════════════════════════
        RESPONSIVE
     ═══════════════════════════════════════════════════════ */
     @media (max-width: 1024px) {
-      .hero-grid { gap: 56px; }
-      .about-grid { gap: 56px; }
-      .offer-bento { padding: 56px 48px; }
-      .offer-bento-inner { gap: 40px; grid-template-columns: 1fr; }
-      .offer-price-block { border-left: none; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 32px; }
-      .contact-grid { gap: 56px; }
-      .ref-item { gap: 48px; }
+      .wrap, .wrap-narrow { padding: 0 36px; }
+      .hero-stage { margin-top: 64px; }
+      .leistungen-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr; gap: 48px; }
+      .stat { border-right: none; border-bottom: 1px solid var(--line); padding-bottom: 48px; }
+      .stat:last-child { border-bottom: none; padding-bottom: 0; }
+      .about-grid { grid-template-columns: 1fr; gap: 56px; }
+      .about-figure { max-width: 420px; }
+      .arbeit { grid-template-columns: 1fr; gap: 36px; padding: 56px 0; }
+      .preise-grid { grid-template-columns: 1fr; max-width: 480px; }
+      .kontakt-card { padding: 56px 36px; }
+      .kontakt-channels { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 768px) {
-      .wrap { padding: 0 22px; }
+      .wrap, .wrap-narrow { padding: 0 22px; }
       nav { height: 60px; }
-      .nav-links { display: none; }
+      .nav-links li:not(:last-child) { display: none; }
 
-      .hero { padding: 124px 0 80px; }
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 64px;
-      }
-      .hero-mark { max-width: 280px; margin-left: 0; }
-      .hero-headline { max-width: 100%; }
+      .nav-logo { height: 26px; }
 
-      section { padding: 80px 0; }
-      .about { padding-top: 80px; }
-      .offer { padding-top: 80px; }
-      .refs { padding-top: 80px; }
-      .contact { padding-top: 80px; }
+      .hero { padding: 128px 0 80px; }
+      .hero::before { width: 800px; height: 600px; }
+      .hero-stage { margin-top: 56px; }
 
-      .trans-hd {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 24px;
-      }
+      section { padding: 96px 0 !important; }
 
-      .before-after {
-        width: calc(100% + 44px);
-        margin-left: -22px;
-        aspect-ratio: 4 / 3;
-      }
+      .leistung-item { padding: 40px 28px; }
 
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-      .about-figure { max-width: 360px; }
+      .before-after { aspect-ratio: 4 / 3; border-radius: var(--r); }
 
-      .offer-bento { padding: 40px 28px; }
-      .offer-variants { grid-template-columns: 1fr; }
+      .about-figure { max-width: 100%; }
 
-      .ref-item {
-        grid-template-columns: 1fr;
-        gap: 32px;
-        padding: 56px 0;
-      }
-
-      .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+      .kontakt-card { padding: 48px 28px; border-radius: var(--r); }
+      .kontakt-card::before { width: 360px; height: 360px; }
 
       .footer-row {
-        flex-direction: column; align-items: flex-start; gap: 16px;
+        flex-direction: column; align-items: flex-start; gap: 14px;
       }
       .footer-links { gap: 18px; flex-wrap: wrap; }
     }
@@ -954,12 +1222,15 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
       }
       html { scroll-behavior: auto; }
-      .reveal { opacity: 1; transform: none; }
-      .hero-headline-inner, .hero-meta, .hero-contact, .hero-mark { opacity: 1; animation: none; }
+      .reveal, .hero-claim, .hero-sub, .hero-ctas, .hero-stage { opacity: 1 !important; transform: none !important; }
+    }
+
+    /* Performance */
+    .leistungen, .vergleich, .stats, .about, .arbeiten, .preise, .faq, .kontakt {
+      contain: layout style;
     }
   </style>
 </head>
@@ -971,23 +1242,15 @@
 <nav>
   <div class="wrap">
     <div class="nav-row">
-      <a href="#top" class="nav-mark" aria-label="Andreas Weber">
-        <svg viewBox="0 0 132 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M 6,2 L 22,54 L 32,12 L 42,54 L 58,2"
-                stroke="currentColor" stroke-width="9"
-                stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M 74,2 L 90,54 L 100,12 L 110,54 L 126,2"
-                stroke="currentColor" stroke-width="9"
-                stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
-        <span class="nav-mark-name">Andreas Weber <span>· Webdesign</span></span>
+      <a href="#top" class="nav-mark" aria-label="Weber Websites">
+        <img src="logo-cropped.png" alt="Weber Websites" class="nav-logo">
       </a>
       <ul class="nav-links">
+        <li><a href="#leistungen">Leistungen</a></li>
         <li><a href="#vergleich">Vergleich</a></li>
-        <li><a href="#person">Wer</a></li>
-        <li><a href="#angebot">Angebot</a></li>
         <li><a href="#arbeiten">Arbeiten</a></li>
-        <li><a href="tel:+49160254070" class="nav-phone">0160 254 070</a></li>
+        <li><a href="#preise">Preise</a></li>
+        <li><a href="#kontakt" class="nav-cta">Anfragen</a></li>
       </ul>
     </div>
   </div>
@@ -999,37 +1262,37 @@
 ══════════════════════════════════════ -->
 <section class="hero" id="top">
   <div class="wrap">
-    <div class="hero-grid">
+    <div class="hero-inner">
 
-      <div class="hero-text">
-        <h1 class="hero-headline">
-          <span class="hero-headline-line"><span class="hero-headline-inner">Websites,</span></span>
-          <span class="hero-headline-line"><span class="hero-headline-inner">die so wirken,</span></span>
-          <span class="hero-headline-line"><span class="hero-headline-inner">wie Ihr Betrieb <em>arbeitet</em>.</span></span>
-        </h1>
+      <h1 class="hero-claim display-xl">
+        Websites, die <em>verkaufen</em>. Nicht nur aussehen.
+      </h1>
+      <p class="hero-sub">
+        Maßgeschneidert. Schnell. Aus dem Schwarzwald, für ganz Deutschland.
+      </p>
 
-        <div class="hero-meta">
-          <p class="hero-meta-name">Andreas Weber. Webdesign aus Trossingen.</p>
-          <p class="hero-meta-place">Maßgeschneidert für Handwerk, Dienstleistung und Mittelstand. Für ganz Deutschland.</p>
-        </div>
-
-        <div class="hero-contact">
-          <a href="tel:+49160254070" class="hero-contact-phone">0160 254 070</a>
-          <span class="dot" aria-hidden="true">·</span>
-          <a href="mailto:info@weberwebsites.com">info@weberwebsites.com</a>
-        </div>
+      <div class="hero-ctas">
+        <a href="#kontakt" class="btn-primary">Projekt starten →</a>
+        <a href="#arbeiten" class="btn-secondary">Arbeiten ansehen</a>
       </div>
 
-      <div class="hero-mark" aria-hidden="true">
-        <svg viewBox="0 0 132 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M 6,2 L 22,54 L 32,12 L 42,54 L 58,2"
-                stroke="currentColor" stroke-width="8"
-                stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M 74,2 L 90,54 L 100,12 L 110,54 L 126,2"
-                stroke="currentColor" stroke-width="8"
-                stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
-        <span class="hero-mark-caption">Weber Websites · seit 2026</span>
+      <div class="hero-stage" aria-hidden="true">
+        <div class="laptop">
+          <div class="laptop-screen">
+            <div class="laptop-bezel">
+              <img
+                src="https://image.thum.io/get/width/1600/crop/1000/https://weber-elektrotechnik-test.netlify.app"
+                alt="Live-Vorschau einer Kundenwebsite"
+                loading="eager">
+            </div>
+          </div>
+          <div class="laptop-base">
+            <div class="laptop-notch"></div>
+          </div>
+        </div>
+        <p class="hero-stage-label">
+          Live-Vorschau · <strong>Alexander Weber Elektrotechnik</strong> · gebaut in 14 Tagen
+        </p>
       </div>
 
     </div>
@@ -1038,20 +1301,55 @@
 
 
 <!-- ══════════════════════════════════════
-     TRANSFORMATION
+     LEISTUNGEN
 ══════════════════════════════════════ -->
-<section class="transformation rule-top" id="vergleich">
+<section class="leistungen" id="leistungen">
   <div class="wrap">
 
-    <div class="trans-hd reveal up-far">
-      <div class="trans-hd-left">
-        <span class="kicker"><span class="num">01</span>Vorher / Nachher</span>
-        <h2 class="section-head">Was ein Upgrade konkret bedeutet.</h2>
-      </div>
-      <p class="section-lede">Ziehen Sie den Regler. Links die Realität vieler Betriebs-Websites, rechts ein Werkstück aus 14 Tagen Arbeit.</p>
+    <div class="leistungen-hd reveal">
+      <span class="eyebrow">Was Sie bekommen</span>
+      <h2 class="display-l">Vier Dinge, die Ihre alte Website nicht kann.</h2>
     </div>
 
-    <div class="before-after reveal" role="img" aria-label="Vorher-Nachher Vergleich einer Website-Überarbeitung">
+    <div class="leistungen-grid">
+      <div class="leistung-item reveal">
+        <span class="leistung-num">01</span>
+        <h3 class="leistung-title">Maßgeschneidert. Kein Template.</h3>
+        <p class="leistung-desc">Jede Zeile Code wird für Ihren Betrieb geschrieben. Keine 20€-Wix-Vorlage, die tausend andere auch haben.</p>
+      </div>
+      <div class="leistung-item reveal d1">
+        <span class="leistung-num">02</span>
+        <h3 class="leistung-title">Ladezeit unter 2 Sekunden.</h3>
+        <p class="leistung-desc">Schnell ist nicht „nice to have". Google straft langsame Seiten ab, Besucher gehen weg. Beides zugleich gelöst.</p>
+      </div>
+      <div class="leistung-item reveal d2">
+        <span class="leistung-num">03</span>
+        <h3 class="leistung-title">SEO ohne Werbebudget.</h3>
+        <p class="leistung-desc">Technisches Fundament so gebaut, dass Google Ihre Seite versteht und lokal nach oben sortiert.</p>
+      </div>
+      <div class="leistung-item reveal d3">
+        <span class="leistung-num">04</span>
+        <h3 class="leistung-title">Conversion-fokussiert.</h3>
+        <p class="leistung-desc">Jeder Abschnitt hat einen Zweck: Anfragen auslösen. Keine Designspielereien ohne Funktion.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     VORHER / NACHHER
+══════════════════════════════════════ -->
+<section class="vergleich" id="vergleich">
+  <div class="wrap">
+
+    <div class="vergleich-hd reveal">
+      <span class="eyebrow">Vorher / Nachher</span>
+      <h2 class="display-l">Sehen Sie den Unterschied selbst.</h2>
+    </div>
+
+    <div class="before-after reveal" role="img" aria-label="Vergleich Vorher / Nachher">
       <div class="ba-after">
         <img src="nachher.png" alt="Website nach dem Upgrade" class="ba-img">
       </div>
@@ -1065,8 +1363,8 @@
       <span class="ba-label ba-label-after">Nachher</span>
     </div>
 
-    <p class="trans-caption reveal d1">
-      <strong>Alexander Weber Elektrotechnik.</strong> Vorher: ein Baukasten von 2014. Nachher: maßgeschneidert, 14 Tage Arbeit, Ladezeit unter 1,5 Sekunden.
+    <p class="vergleich-caption reveal d1">
+      <strong>Alexander Weber Elektrotechnik.</strong> Ein veralteter Baukasten wird zur maßgeschneiderten Website. 14 Tage Arbeit.
     </p>
 
   </div>
@@ -1074,40 +1372,106 @@
 
 
 <!-- ══════════════════════════════════════
-     WER MACHT DAS
+     MESSWERTE
 ══════════════════════════════════════ -->
-<section class="about rule-top" id="person">
+<section class="stats">
   <div class="wrap">
 
+    <div class="stats-hd reveal">
+      <span class="eyebrow">Was sich konkret ändert</span>
+      <h2 class="display-l">Zahlen, die Sie überprüfen können.</h2>
+      <p class="lede" style="margin: 24px auto 0;">Gemessen am Live-Projekt für Alexander Weber Elektrotechnik. Quelle verlinkt.</p>
+    </div>
+
+    <div class="stats-grid">
+
+      <div class="stat reveal">
+        <div class="stat-row">
+          <span class="stat-tag">Vorher</span>
+          <span class="stat-value">7,8</span>
+          <span class="stat-unit">Sek.</span>
+        </div>
+        <div class="stat-row after">
+          <span class="stat-tag">Nachher</span>
+          <span class="stat-value">1,4</span>
+          <span class="stat-unit">Sek.</span>
+        </div>
+        <p class="stat-label">Ladezeit auf 3G-Mobilfunk.</p>
+        <p class="stat-source">Quelle: <a href="https://pagespeed.web.dev" target="_blank" rel="noopener">PageSpeed Insights</a></p>
+      </div>
+
+      <div class="stat reveal d1">
+        <div class="stat-row">
+          <span class="stat-tag">Vorher</span>
+          <span class="stat-value">42</span>
+          <span class="stat-unit">/ 100</span>
+        </div>
+        <div class="stat-row after">
+          <span class="stat-tag">Nachher</span>
+          <span class="stat-value">98</span>
+          <span class="stat-unit">/ 100</span>
+        </div>
+        <p class="stat-label">PageSpeed-Score Mobile.</p>
+        <p class="stat-source">Quelle: <a href="https://pagespeed.web.dev" target="_blank" rel="noopener">Google PageSpeed</a></p>
+      </div>
+
+      <div class="stat reveal d2">
+        <div class="stat-row">
+          <span class="stat-tag">Vorher</span>
+          <span class="stat-value">0</span>
+          <span class="stat-unit">Sterne</span>
+        </div>
+        <div class="stat-row after">
+          <span class="stat-tag">Nachher</span>
+          <span class="stat-value">5</span>
+          <span class="stat-unit">Sterne</span>
+        </div>
+        <p class="stat-label">Mobile-Friendly bei Google.</p>
+        <p class="stat-source">Quelle: <a href="https://search.google.com/test/mobile-friendly" target="_blank" rel="noopener">Mobile-Friendly Test</a></p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     ÜBER MICH
+══════════════════════════════════════ -->
+<section class="about">
+  <div class="wrap">
     <div class="about-grid">
 
-      <figure class="about-figure reveal up-far">
+      <figure class="about-figure reveal">
         <div class="about-figure-placeholder">
-          <svg viewBox="0 0 132 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M 6,2 L 22,54 L 32,12 L 42,54 L 58,2"
-                  stroke="currentColor" stroke-width="7"
-                  stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            <path d="M 74,2 L 90,54 L 100,12 L 110,54 L 126,2"
-                  stroke="currentColor" stroke-width="7"
-                  stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg>
-          <span class="about-figure-placeholder-cap">Foto folgt</span>
+          <img src="logo-cropped.png" alt="Weber Websites">
+          <span class="about-figure-placeholder-cap">Portrait folgt</span>
         </div>
       </figure>
 
-      <div class="about-prose">
-        <span class="kicker reveal"><span class="num">02</span>Wer macht das.</span>
-        <h2 class="section-head reveal d1">Eine Person. Ein Handy. Klare Verantwortung.</h2>
+      <div class="about-prose reveal d1">
+        <span class="eyebrow">Über mich</span>
+        <h2 class="about-prose-h2">Eine Person. Klare <em>Verantwortung</em>.</h2>
 
-        <div style="margin-top: 40px;">
-          <h3 class="reveal d1">Wer.</h3>
-          <p class="reveal d1">Ich bin <strong>Andreas Weber</strong>, Webdesigner und Webentwickler aus Trossingen. Ich baue Websites für Betriebe, die mit ihrer aktuellen Seite keine Anfragen mehr gewinnen.</p>
+        <p>Ich bin <strong>Andreas Weber</strong>, Webdesigner und Webentwickler aus Trossingen. Ich baue Websites für Betriebe, die mit ihrer aktuellen Seite keine Anfragen mehr gewinnen.</p>
 
-          <h3 class="reveal d2">Was Sie davon haben.</h3>
-          <p class="reveal d2">Eine Website, die in unter 2&nbsp;Sekunden lädt, bei Google ohne Werbebudget gefunden wird, und so aussieht, dass Ihre Kunden anrufen statt zur Konkurrenz weiterzuklicken.</p>
+        <p>Keine Agentur mit Hotline. Eine Person, ein Handy, eine Antwort am selben Tag. Sie reden direkt mit dem, der Ihre Seite baut.</p>
 
-          <h3 class="reveal d3">Warum aus dem Schwarzwald.</h3>
-          <p class="reveal d3">Weil ich die Betriebe hier kenne, die Tonalität verstehe und direkt ansprechbar bin. Keine Agentur mit Hotline. Eine Person, ein Handy, eine Antwort am selben Tag.</p>
+        <p>Der Schwarzwald ist Heimat, Deutschland der Wirkungsbereich. Ich kenne die Tonalität, die in mittelständischen Betrieben funktioniert, und ich verkaufe Ihnen nichts, was Sie nicht brauchen.</p>
+
+        <div class="about-meta">
+          <div class="about-meta-item">
+            <span class="about-meta-label">Sitz</span>
+            <span class="about-meta-value">Trossingen, BW</span>
+          </div>
+          <div class="about-meta-item">
+            <span class="about-meta-label">Stack</span>
+            <span class="about-meta-value">HTML · CSS · JS</span>
+          </div>
+          <div class="about-meta-item">
+            <span class="about-meta-label">Antwortzeit</span>
+            <span class="about-meta-value">≤ 24 Stunden</span>
+          </div>
         </div>
       </div>
 
@@ -1117,67 +1481,138 @@
 
 
 <!-- ══════════════════════════════════════
-     ANGEBOT
+     ARBEITEN (dark)
 ══════════════════════════════════════ -->
-<section class="offer rule-top" id="angebot">
+<section class="arbeiten" id="arbeiten">
   <div class="wrap">
 
-    <div style="margin-bottom: 56px;">
-      <span class="kicker reveal"><span class="num">03</span>Angebot</span>
-      <h2 class="section-head reveal d1">Ein Werkstück. Drei Größen.</h2>
-      <p class="section-lede reveal d2">Kein Abo, keine versteckten Kosten, keine Tier-Vergleichstabelle mit 40 Häkchen. Einmal bezahlen, dauerhaft im Besitz.</p>
+    <div class="arbeiten-hd reveal">
+      <span class="eyebrow">Bisherige Arbeiten</span>
+      <h2 class="display-l">Werkstücke, die online sind.</h2>
+      <p class="lede" style="margin: 24px auto 0;">Klicken Sie auf eine Vorschau und schauen Sie selbst. Live, nicht Mockup.</p>
     </div>
 
-    <div class="offer-bento reveal up-far">
-      <div class="offer-bento-inner">
+    <div class="arbeiten-list">
 
-        <div>
-          <p class="offer-claim">Eine Website.<br>Maßgeschneidert.<br><em>14 bis 30 Tage.</em></p>
-          <p class="offer-meta">Eigene Domain, kein Template, keine fremden Logos im Footer. Sie bekommen ein Werkstück, kein Mietverhältnis.</p>
+      <article class="arbeit reveal">
+        <a class="arbeit-thumb" href="https://weber-elektrotechnik-test.netlify.app" target="_blank" rel="noopener noreferrer">
+          <img src="https://image.thum.io/get/width/1000/crop/625/https://weber-elektrotechnik-test.netlify.app" alt="Alexander Weber Elektrotechnik — Live-Site" loading="lazy">
+        </a>
+        <div class="arbeit-meta">
+          <p class="arbeit-meta-tag">Elektrotechnik · Trossingen</p>
+          <h3 class="arbeit-meta-name">Alexander Weber Elektrotechnik</h3>
+          <p class="arbeit-meta-prose">
+            Ein Wix-Baukasten ohne Mobile-Optimierung wurde zur maßgeschneiderten Website mit <strong>1,4 Sek. Ladezeit</strong>, klarer Leistungsstruktur und direkter Telefon-CTA.
+          </p>
+          <a class="arbeit-meta-link" href="https://weber-elektrotechnik-test.netlify.app" target="_blank" rel="noopener noreferrer">
+            Live ansehen →
+          </a>
         </div>
+      </article>
 
-        <div class="offer-price-block">
-          <p class="offer-price-label">Investition</p>
-          <div class="offer-price-row">
-            <span class="from">ab</span>
-            <span class="num">490</span>
-            <span class="cur">€</span>
-          </div>
-          <p class="offer-price-note">einmalig · ohne Umsatzsteuer (§19 UStG)</p>
+      <article class="arbeit reveal">
+        <a class="arbeit-thumb" href="https://fenster-hotz-test.netlify.app" target="_blank" rel="noopener noreferrer">
+          <img src="https://image.thum.io/get/width/1000/crop/625/https://fenster-hotz-test.netlify.app" alt="Hotz Fenster & Türen — Live-Site" loading="lazy">
+        </a>
+        <div class="arbeit-meta">
+          <p class="arbeit-meta-tag">Fenster &amp; Türen · Donaueschingen</p>
+          <h3 class="arbeit-meta-name">Hotz Fenster &amp; Türen</h3>
+          <p class="arbeit-meta-prose">
+            Erste eigene Online-Präsenz, mobil-first, übersichtliche Leistungsdarstellung, Anfrageformular mit <strong>direkter Weiterleitung</strong>.
+          </p>
+          <a class="arbeit-meta-link" href="https://fenster-hotz-test.netlify.app" target="_blank" rel="noopener noreferrer">
+            Live ansehen →
+          </a>
         </div>
+      </article>
 
-      </div>
+    </div>
+  </div>
+</section>
 
-      <ul class="offer-list">
-        <li>Maßgeschneidertes Design, kein Template</li>
-        <li>Auf Handy und Desktop gleich überzeugend</li>
-        <li>Ladezeit unter 2 Sekunden</li>
-        <li>Bei Google ohne Werbebudget gefunden</li>
-        <li>Kontaktformular mit direkter Weiterleitung</li>
-        <li>SEO &amp; Analytics inklusive</li>
-      </ul>
+
+<!-- ══════════════════════════════════════
+     PREISE
+══════════════════════════════════════ -->
+<section class="preise" id="preise">
+  <div class="wrap">
+
+    <div class="preise-hd reveal">
+      <span class="eyebrow">Preise</span>
+      <h2 class="display-l">Einmal investiert. Dauerhaft im Besitz.</h2>
+      <p class="lede" style="margin: 24px auto 0;">Kein Abo, keine versteckten Kosten. Was Sie sehen, ist der Festpreis.</p>
     </div>
 
-    <div class="offer-variants">
-      <div class="variant-chip reveal d1">
-        <p class="variant-chip-name">Visitenkarte</p>
-        <p class="variant-chip-price">490 &thinsp;€</p>
-        <p class="variant-chip-desc">Eine Seite. Für Einzelunternehmer und Kleinstbetriebe, die professionell sichtbar werden wollen.</p>
+    <div class="preise-grid">
+
+      <div class="preis reveal">
+        <p class="preis-name">Visitenkarte</p>
+        <p class="preis-desc">Für Einzelunternehmer und Kleinstbetriebe, die professionell sichtbar werden wollen.</p>
+        <div class="preis-price">
+          <span class="preis-amount">490</span>
+          <span class="preis-currency">€</span>
+        </div>
+        <p class="preis-period">einmalig · netto</p>
+        <div class="preis-rule"></div>
+        <ul class="preis-list">
+          <li>1 Landing Page, maßgeschneidert</li>
+          <li>Mobil &amp; Desktop gleich gut</li>
+          <li>Kontaktformular mit Weiterleitung</li>
+          <li>Unter 2 Sek. Ladezeit</li>
+          <li>Google-Sichtbarkeit ohne Werbebudget</li>
+          <li>14 Tage Lieferzeit</li>
+        </ul>
+        <a href="#kontakt" class="preis-cta">Anfragen</a>
       </div>
-      <div class="variant-chip reveal d2">
-        <p class="variant-chip-name">Standard</p>
-        <p class="variant-chip-price">990 &thinsp;€</p>
-        <p class="variant-chip-desc">Bis zu 5 Unterseiten. Für KMUs und Dienstleister, die über ihre Website Anfragen gewinnen wollen.</p>
+
+      <div class="preis featured reveal d1">
+        <span class="preis-badge">Empfohlen</span>
+        <p class="preis-name">Standard</p>
+        <p class="preis-desc">Für KMUs und Dienstleister, die über die Website ernsthaft Anfragen gewinnen wollen.</p>
+        <div class="preis-price">
+          <span class="preis-amount">990</span>
+          <span class="preis-currency">€</span>
+        </div>
+        <p class="preis-period">einmalig · netto</p>
+        <div class="preis-rule"></div>
+        <ul class="preis-list">
+          <li>Bis zu 5 Unterseiten</li>
+          <li>Maßgeschneidert, kein Template</li>
+          <li>Google Maps + Kontaktformular</li>
+          <li>Unter 2 Sek. Ladezeit</li>
+          <li>Lokal bei Google sichtbar</li>
+          <li>1 Überarbeitungsrunde</li>
+          <li>3 Monate Support inklusive</li>
+          <li>21 Tage Lieferzeit</li>
+        </ul>
+        <a href="#kontakt" class="preis-cta">Anfragen</a>
       </div>
-      <div class="variant-chip reveal d3">
-        <p class="variant-chip-name">Premium</p>
-        <p class="variant-chip-price">1.690 &thinsp;€</p>
-        <p class="variant-chip-desc">Bis zu 10 Unterseiten, CMS, 6 Monate Prioritäts-Support. Für etablierte Betriebe mit Wachstumsanspruch.</p>
+
+      <div class="preis reveal d2">
+        <p class="preis-name">Premium</p>
+        <p class="preis-desc">Für etablierte Betriebe mit Conversion-Anspruch und Wachstumsperspektive.</p>
+        <div class="preis-price">
+          <span class="preis-amount">1.690</span>
+          <span class="preis-currency">€</span>
+        </div>
+        <p class="preis-period">einmalig · netto</p>
+        <div class="preis-rule"></div>
+        <ul class="preis-list">
+          <li>Bis zu 10 Unterseiten</li>
+          <li>Conversion-fokussiertes Design</li>
+          <li>CMS: Inhalte selbst pflegen</li>
+          <li>SEO + Analytics inklusive</li>
+          <li>2 Überarbeitungsrunden</li>
+          <li>6 Monate Prioritäts-Support</li>
+          <li>30 Tage Lieferzeit</li>
+        </ul>
+        <a href="#kontakt" class="preis-cta">Angebot anfragen</a>
       </div>
+
     </div>
 
-    <p class="offer-fineprint reveal">
-      Jedes Projekt beginnt mit einem unverbindlichen Gespräch. Sonderwünsche und individuelle Pakete <a href="tel:+49160254070">auf Anfrage</a>.
+    <p class="preise-foot reveal">
+      Jedes Projekt beginnt mit einem unverbindlichen Gespräch. <a href="#kontakt">Sonderwünsche &amp; individuelle Pakete auf Anfrage</a>.
     </p>
 
   </div>
@@ -1185,64 +1620,70 @@
 
 
 <!-- ══════════════════════════════════════
-     ARBEITEN
+     FAQ
 ══════════════════════════════════════ -->
-<section class="refs rule-top" id="arbeiten">
-  <div class="wrap">
+<section class="faq">
+  <div class="wrap-narrow">
 
-    <div>
-      <span class="kicker reveal"><span class="num">04</span>Arbeiten</span>
-      <h2 class="section-head reveal d1">Bisherige Werkstücke.</h2>
-      <p class="section-lede reveal d2">Echte Live-Seiten. Klicken Sie auf eine Vorschau, schauen Sie selbst.</p>
+    <div class="faq-hd reveal">
+      <span class="eyebrow">Häufige Fragen</span>
+      <h2 class="display-l">Was Sie vor dem Anruf wissen wollen.</h2>
     </div>
 
-    <div class="refs-list">
+    <div class="faq-list">
 
-      <article class="ref-item reveal up-far">
-        <a class="ref-thumb-wrap" href="https://weber-elektrotechnik-test.netlify.app" target="_blank" rel="noopener noreferrer" aria-label="Alexander Weber Elektrotechnik ansehen">
-          <img
-            src="https://image.thum.io/get/width/900/crop/562/https://weber-elektrotechnik-test.netlify.app"
-            alt="Alexander Weber Elektrotechnik — Live-Website"
-            loading="lazy">
-          <div class="ref-overlay"><span class="ref-overlay-pill">Live ansehen</span></div>
-        </a>
-        <div class="ref-meta">
-          <p class="ref-meta-tag">Elektrotechnik · Trossingen</p>
-          <h3 class="ref-meta-name">Alexander Weber Elektrotechnik</h3>
-          <p class="ref-meta-prose">
-            <strong>Vorher:</strong> ein Baukasten ohne Mobil-Optimierung, kaum Anfragen.<br>
-            <strong>Nachher:</strong> Ladezeit 1,4 Sekunden, klare Leistungsstruktur, direkter Telefon-CTA. 14 Tage Arbeit.
-          </p>
-          <a class="ref-meta-link" href="https://weber-elektrotechnik-test.netlify.app" target="_blank" rel="noopener noreferrer">
-            weber-elektrotechnik-test.netlify.app
-            <span class="arrow" aria-hidden="true">→</span>
-          </a>
-        </div>
-      </article>
+      <div class="faq-item reveal">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">Wie läuft das Projekt konkret ab?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-panel"><div class="faq-panel-inner">
+          <p class="faq-a">Erstes Gespräch (kostenlos, 20 Min.) — ich verstehe Ihren Betrieb. Danach: Angebot mit Festpreis und Fixtermin. Wenn Sie zusagen, beginne ich. <strong>Nach 14 bis 30 Tagen</strong> geht die Seite live. Eine Überarbeitungsrunde ist immer inklusive.</p>
+        </div></div>
+      </div>
 
-      <article class="ref-item reveal up-far">
-        <a class="ref-thumb-wrap" href="https://fenster-hotz-test.netlify.app" target="_blank" rel="noopener noreferrer" aria-label="Hotz Fenster und Türen ansehen">
-          <img
-            src="https://image.thum.io/get/width/900/crop/562/https://fenster-hotz-test.netlify.app"
-            alt="Hotz Fenster und Türen — Live-Website"
-            loading="lazy">
-          <div class="ref-overlay"><span class="ref-overlay-pill">Live ansehen</span></div>
-        </a>
-        <div class="ref-meta">
-          <p class="ref-meta-tag">Fenster &amp; Türen · Donaueschingen</p>
-          <h3 class="ref-meta-name">Hotz Fenster &amp; Türen</h3>
-          <p class="ref-meta-prose">
-            <strong>Vorher:</strong> keine eigene Online-Präsenz, Anfragen nur über Empfehlungen.<br>
-            <strong>Nachher:</strong> Mobil-first, übersichtliche Leistungsdarstellung, Anfrageformular mit direkter Weiterleitung.
-          </p>
-          <a class="ref-meta-link" href="https://fenster-hotz-test.netlify.app" target="_blank" rel="noopener noreferrer">
-            fenster-hotz-test.netlify.app
-            <span class="arrow" aria-hidden="true">→</span>
-          </a>
-        </div>
-      </article>
+      <div class="faq-item reveal">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">Was ist der Unterschied zu Wix oder Jimdo?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-panel"><div class="faq-panel-inner">
+          <p class="faq-a">Wix ist eine Mietwohnung mit Möbeln, die nicht Ihnen gehören. Eine maßgeschneiderte Website ist Ihr Eigentum: schneller, individueller, ohne monatliche Mietgebühr. Nach drei Jahren haben Sie bei Wix 720 € bezahlt und besitzen <strong>nichts</strong>.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">Was passiert nach der Fertigstellung?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-panel"><div class="faq-panel-inner">
+          <p class="faq-a">Sie bekommen Domain und Quellcode. Im Standard- und Premium-Paket sind 3 bzw. 6 Monate Support inklusive — falls etwas angepasst werden muss. Danach: optional Wartungsvertrag oder Sie machen es selbst.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">Brauche ich wirklich eine professionelle Website?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-panel"><div class="faq-panel-inner">
+          <p class="faq-a">Wenn Ihre Website Anfragen bringen soll: ja. Wenn sie nur „auch existiert", reicht eine Visitenkarten-Seite (490 €). Im Vorgespräch klären wir, was Sie wirklich brauchen, <strong>ohne dass Sie etwas Falsches kaufen</strong>.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">Wie schnell wird die Seite gebaut?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-panel"><div class="faq-panel-inner">
+          <p class="faq-a">Visitenkarte: <strong>14 Tage</strong>. Standard: <strong>21 Tage</strong>. Premium: <strong>30 Tage</strong>. Ab Ihrer Zusage gerechnet. Sie bekommen einen festen Liefertermin im Angebot — kein „so schnell wie möglich".</p>
+        </div></div>
+      </div>
 
     </div>
+
   </div>
 </section>
 
@@ -1250,32 +1691,33 @@
 <!-- ══════════════════════════════════════
      KONTAKT
 ══════════════════════════════════════ -->
-<section class="contact rule-top" id="kontakt">
+<section class="kontakt" id="kontakt">
   <div class="wrap">
+    <div class="kontakt-card reveal">
+      <div class="kontakt-inner">
 
-    <div class="contact-grid">
+        <h2 class="display-m">Bereit fürs <em>Upgrade?</em></h2>
+        <p class="kontakt-sub">
+          Kein Verkaufsgespräch, keine Verpflichtung. Sie erzählen, was die Seite leisten soll, ich sage offen, ob ich der richtige bin.
+        </p>
 
-      <div>
-        <span class="kicker reveal"><span class="num">05</span>Kontakt</span>
-        <h2 class="contact-lead reveal d1">Anrufen. Schreiben. <em>Loslegen.</em></h2>
-        <p class="contact-sub reveal d2">Kein Verkaufsgespräch. Kein Druck. Sie erzählen, was die Seite leisten soll, ich sage offen, ob ich der richtige bin.</p>
-      </div>
+        <div class="kontakt-channels">
 
-      <div class="contact-channels">
+          <a href="tel:+49160254070" class="channel">
+            <span class="channel-label">Anrufen</span>
+            <span class="channel-value">0160 254 070</span>
+            <span class="channel-note">Mo – Fr, 8 – 18 Uhr · Antwort am selben Tag</span>
+          </a>
 
-        <a href="tel:+49160254070" class="channel reveal d1">
-          <p class="channel-label">Anrufen</p>
-          <p class="channel-value">0160 254 070</p>
-          <p class="channel-note">Montag bis Freitag, 8 bis 18 Uhr. Antwort am selben Tag.</p>
-        </a>
+          <a href="mailto:info@weberwebsites.com" class="channel">
+            <span class="channel-label">Schreiben</span>
+            <span class="channel-value">info@weberwebsites.com</span>
+            <span class="channel-note">Direkt an mich, keine Hotline</span>
+          </a>
 
-        <a href="mailto:info@weberwebsites.com" class="channel reveal d2">
-          <p class="channel-label">Schreiben</p>
-          <p class="channel-value">info@weberwebsites.com</p>
-          <p class="channel-note">Direkt an mich. Keine Hotline, keine Ticket-Nummer.</p>
-        </a>
+        </div>
 
-        <div class="contact-form-section reveal d3">
+        <div class="form-section">
           <button type="button" class="form-toggle" aria-expanded="false" aria-controls="form-panel">
             <span class="form-toggle-label">Lieber per Formular</span>
             <span class="form-toggle-icon" aria-hidden="true">+</span>
@@ -1293,7 +1735,7 @@
                   <input type="hidden" name="_subject" value="Neue Anfrage über weberwebsites.com">
 
                   <div class="form-field">
-                    <label class="form-label" for="f-name">Ihr Name</label>
+                    <label class="form-label" for="f-name">Name</label>
                     <input class="form-input" type="text" id="f-name" name="name" required autocomplete="name">
                   </div>
                   <div class="form-field">
@@ -1317,7 +1759,6 @@
         </div>
 
       </div>
-
     </div>
   </div>
 </section>
@@ -1329,7 +1770,10 @@
 <footer>
   <div class="wrap">
     <div class="footer-row">
-      <p class="footer-copy">© 2026 <strong>Weber Websites</strong> · Andreas Weber, Trossingen</p>
+      <div class="footer-brand">
+        <img src="logo-cropped.png" alt="Weber Websites" class="footer-logo">
+        <p class="footer-copy">© 2026 · Andreas Weber, Trossingen</p>
+      </div>
       <div class="footer-links">
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
@@ -1341,9 +1785,6 @@
 </footer>
 
 
-<!-- ══════════════════════════════════════
-     SCRIPTS
-══════════════════════════════════════ -->
 <script>
   /* ── Scroll reveals ── */
   (function() {
@@ -1384,6 +1825,17 @@
     window.addEventListener('touchmove',  e => { if (active) setPos(e.touches[0].clientX); }, { passive: true });
     window.addEventListener('mouseup',  () => active = false);
     window.addEventListener('touchend', () => active = false);
+  })();
+
+  /* ── FAQ accordion ── */
+  (function() {
+    const triggers = document.querySelectorAll('.faq-trigger');
+    triggers.forEach(t => {
+      t.addEventListener('click', () => {
+        const expanded = t.getAttribute('aria-expanded') === 'true';
+        t.setAttribute('aria-expanded', String(!expanded));
+      });
+    });
   })();
 
   /* ── Form panel toggle ── */
