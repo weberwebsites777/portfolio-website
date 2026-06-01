@@ -3,52 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Andreas Weber · Websites aus dem Schwarzwald</title>
-  <meta name="description" content="Maßgeschneiderte Premium-Websites aus Trossingen. Cinematische Demos, echte Live-Referenzen, Festpreis ab 490 €.">
+  <title>Weber Websites · Webdesign für Betriebe in Deutschland</title>
+  <meta name="description" content="Maßgeschneiderte Websites für Handwerk, Dienstleistung und Mittelstand. Festpreis ab 490 €, klare Liefertermine, ein direkter Ansprechpartner.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" href="favicon.svg">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
-
   <style>
     /* ═══════════════════════════════════════════════════════
-       TOKENS — Cinematic Dark + Aurora
+       TOKENS
+       Apple/Notion-Sprache: warm-off-white, graphite ink, mono only.
+       Single deliberate inversion (featured plan + final CTA).
     ═══════════════════════════════════════════════════════ */
     :root {
       /* Surface */
-      --void:         oklch(7% 0.012 264);
-      --night:        oklch(11% 0.014 264);
-      --night-2:      oklch(15% 0.014 264);
-      --night-3:      oklch(20% 0.014 264);
+      --bg:        oklch(98.6% 0.002 70);
+      --surface:   oklch(96.8% 0.003 70);
+      --surface-2: oklch(94% 0.004 70);
 
-      /* Text */
-      --paper:        oklch(97% 0.005 70);
-      --paper-2:      oklch(82% 0.006 264);
-      --paper-3:      oklch(62% 0.008 264);
-      --paper-4:      oklch(46% 0.008 264);
+      /* Ink */
+      --ink:       oklch(14% 0.008 70);
+      --ink-2:     oklch(28% 0.006 70);
+      --ink-3:     oklch(48% 0.005 70);
+      --ink-4:     oklch(66% 0.004 70);
 
-      /* Aurora pair */
-      --cyan:         oklch(80% 0.16 220);
-      --cyan-deep:    oklch(64% 0.18 220);
-      --violet:       oklch(68% 0.22 310);
-      --violet-deep:  oklch(54% 0.24 305);
-      --magenta:      oklch(70% 0.24 350);
+      /* Lines */
+      --line:      oklch(89% 0.004 70);
+      --line-2:    oklch(82% 0.005 70);
 
-      /* Borders */
-      --line:         oklch(22% 0.014 264);
-      --line-2:       oklch(28% 0.014 264);
+      /* Inverted (used sparingly) */
+      --night:     oklch(14% 0.008 70);
+      --night-2:   oklch(22% 0.008 70);
 
       /* System */
-      --font:         'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
-      --max:          1320px;
-      --r:            6px;
-      --r-lg:         14px;
-      --ease:         cubic-bezier(0.22, 1, 0.36, 1);
-      --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+      --font:      -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", system-ui, sans-serif;
+      --font-num:  "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      --r-sm:      6px;
+      --r:         10px;
+      --r-lg:      18px;
+      --max:       1180px;
+      --max-narrow: 800px;
+      --ease:      cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     /* ═══════════════════════════════════════════════════════
@@ -57,106 +53,143 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html {
       scroll-behavior: smooth;
-      background: var(--void);
+      scroll-padding-top: 80px;
+      background: var(--bg);
     }
     body {
-      background: var(--void);
-      color: var(--paper);
+      background: var(--bg);
+      color: var(--ink);
       font-family: var(--font);
       font-weight: 400;
       font-size: 17px;
-      line-height: 1.55;
-      letter-spacing: -0.005em;
-      overflow-x: hidden;
+      line-height: 1.5;
+      letter-spacing: -0.011em;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
-      font-variation-settings: 'opsz' 16;
     }
     a { text-decoration: none; color: inherit; }
     img, svg { display: block; max-width: 100%; }
     button { font: inherit; cursor: pointer; }
+    ::selection { background: var(--ink); color: var(--bg); }
 
+    /* Container */
     .wrap {
       width: 100%;
       max-width: var(--max);
       margin: 0 auto;
-      padding: 0 56px;
+      padding: 0 32px;
     }
     .wrap-narrow {
-      max-width: 980px;
+      width: 100%;
+      max-width: var(--max-narrow);
       margin: 0 auto;
-      padding: 0 56px;
+      padding: 0 32px;
     }
-
-    ::selection { background: var(--violet); color: var(--paper); }
 
     /* ═══════════════════════════════════════════════════════
-       TYPOGRAPHY
+       TYPOGRAPHY SCALE
+       Tight modular scale, weight + size carry hierarchy.
     ═══════════════════════════════════════════════════════ */
-    .display-xxl {
-      font-family: var(--font);
-      font-size: clamp(72px, 14vw, 220px);
-      font-weight: 700;
-      line-height: 0.88;
-      letter-spacing: -0.05em;
-      font-variation-settings: 'opsz' 96;
-    }
-    .display-xl {
-      font-size: clamp(48px, 7vw, 96px);
-      font-weight: 700;
-      line-height: 0.96;
-      letter-spacing: -0.04em;
-      font-variation-settings: 'opsz' 72;
-    }
-    .display-l {
-      font-size: clamp(40px, 5.4vw, 80px);
-      font-weight: 700;
-      line-height: 0.98;
-      letter-spacing: -0.038em;
-      font-variation-settings: 'opsz' 60;
-    }
-    .display-m {
-      font-size: clamp(32px, 4vw, 56px);
-      font-weight: 700;
-      line-height: 1.04;
-      letter-spacing: -0.034em;
-      font-variation-settings: 'opsz' 48;
-    }
-    .lede {
-      font-size: clamp(18px, 1.55vw, 22px);
-      line-height: 1.55;
-      letter-spacing: -0.01em;
-      color: var(--paper-2);
-      max-width: 56ch;
-    }
-    .eyebrow {
-      font-size: 12px;
+    .t-hero {
+      font-size: clamp(48px, 7.2vw, 96px);
       font-weight: 600;
-      letter-spacing: 0.04em;
-      color: var(--cyan);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+    }
+    .t-h2 {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 600;
+      line-height: 1.06;
+      letter-spacing: -0.032em;
+      color: var(--ink);
+    }
+    .t-h3 {
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .t-lede {
+      font-size: clamp(18px, 1.5vw, 21px);
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: -0.012em;
+      color: var(--ink-3);
+      max-width: 58ch;
+    }
+    .t-body {
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--ink-2);
+    }
+    .t-mono {
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 13px;
+      letter-spacing: 0;
+      color: var(--ink-4);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       BUTTONS
+    ═══════════════════════════════════════════════════════ */
+    .btn {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 28px;
-      text-transform: uppercase;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -0.008em;
+      transition: background 200ms var(--ease), color 200ms var(--ease), border-color 200ms var(--ease);
+      cursor: pointer;
+      border: 1px solid transparent;
+      white-space: nowrap;
     }
-    .eyebrow::before {
-      content: '';
-      width: 28px; height: 1px;
-      background: linear-gradient(90deg, var(--cyan), var(--violet));
+    .btn-primary {
+      background: var(--ink);
+      color: var(--bg);
     }
+    .btn-primary:hover { background: var(--ink-2); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--line-2);
+    }
+    .btn-secondary:hover {
+      background: var(--surface);
+      border-color: var(--ink);
+    }
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.008em;
+      transition: gap 200ms var(--ease);
+    }
+    .btn-link::after {
+      content: '→';
+      transition: transform 200ms var(--ease);
+    }
+    .btn-link:hover { gap: 10px; }
 
     /* ═══════════════════════════════════════════════════════
        NAV
     ═══════════════════════════════════════════════════════ */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      height: 72px;
-      background: oklch(7% 0.012 264 / 0.72);
-      backdrop-filter: blur(20px) saturate(160%);
-      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      height: 64px;
+      background: oklch(98.6% 0.002 70 / 0.84);
+      backdrop-filter: saturate(180%) blur(16px);
+      -webkit-backdrop-filter: saturate(180%) blur(16px);
       border-bottom: 1px solid var(--line);
-      transition: background 320ms var(--ease);
     }
     .nav-row {
       height: 100%;
@@ -165,1086 +198,735 @@
     .nav-mark {
       display: flex; align-items: center;
       height: 100%;
-      transition: opacity 220ms var(--ease);
+      transition: opacity 180ms var(--ease);
     }
     .nav-mark:hover { opacity: 0.7; }
     .nav-logo {
-      height: 32px;
+      height: 28px;
       width: auto;
-      display: block;
-      filter: invert(1) brightness(1.1);
     }
     .nav-links {
       list-style: none;
-      display: flex; align-items: center; gap: 36px;
+      display: flex; align-items: center; gap: 32px;
     }
     .nav-links a {
-      font-size: 14px; font-weight: 500;
-      color: var(--paper-3);
-      transition: color 220ms var(--ease);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-3);
+      letter-spacing: -0.008em;
+      transition: color 180ms var(--ease);
     }
-    .nav-links a:hover { color: var(--paper); }
+    .nav-links a:hover { color: var(--ink); }
     .nav-cta {
-      background: linear-gradient(135deg, var(--cyan), var(--violet));
-      color: var(--void) !important;
-      padding: 9px 20px;
+      background: var(--ink);
+      color: var(--bg) !important;
+      padding: 7px 16px;
       border-radius: 999px;
-      font-weight: 700 !important;
-      transition: transform 220ms var(--ease), box-shadow 220ms var(--ease) !important;
+      transition: background 200ms var(--ease);
     }
-    .nav-cta:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 24px -8px oklch(68% 0.22 310 / 0.5);
-    }
+    .nav-cta:hover { background: var(--ink-2); color: var(--bg) !important; }
 
     /* ═══════════════════════════════════════════════════════
-       CINEMATIC INTRO — sticky scroll storytelling
-       Container = 500vh, inner = sticky 100vh
+       SECTION RHYTHM
     ═══════════════════════════════════════════════════════ */
-    .cinematic {
-      position: relative;
-      height: 500vh;
-      background: var(--void);
+    section { position: relative; }
+    .section-pad {
+      padding: clamp(96px, 13vw, 168px) 0;
     }
-    .cinematic-stage {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      width: 100%;
-      overflow: hidden;
+    .section-pad-sm {
+      padding: clamp(80px, 10vw, 120px) 0;
+    }
+    .rule {
+      border: none;
+      border-top: 1px solid var(--line);
+      margin: 0;
+    }
+
+    /* Section labeling — Notion-style mono kicker */
+    .section-meta {
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 32px;
     }
-
-    /* Aurora backdrop */
-    .aurora {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .aurora-blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.55;
-      mix-blend-mode: screen;
-      transition: transform 600ms var(--ease), opacity 600ms var(--ease);
-      will-change: transform;
-    }
-    .aurora-blob.a {
-      width: 60vw; height: 60vw;
-      background: var(--cyan-deep);
-      top: -15vw; left: -10vw;
-    }
-    .aurora-blob.b {
-      width: 55vw; height: 55vw;
-      background: var(--violet-deep);
-      bottom: -15vw; right: -10vw;
-    }
-    .aurora-blob.c {
-      width: 40vw; height: 40vw;
-      background: var(--magenta);
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      opacity: 0.3;
-    }
-
-    /* Stage progress (set via JS as --p 0→1) */
-    .cinematic-stage { --p: 0; }
-
-    /* Aurora drifts with scroll */
-    .cinematic-stage .aurora-blob.a {
-      transform: translate(calc(var(--p) * 8vw), calc(var(--p) * -6vh));
-    }
-    .cinematic-stage .aurora-blob.b {
-      transform: translate(calc(var(--p) * -10vw), calc(var(--p) * 8vh));
-    }
-    .cinematic-stage .aurora-blob.c {
-      transform:
-        translate(-50%, -50%)
-        scale(calc(1 + var(--p) * 0.5));
-    }
-
-    /* Headline morph */
-    .cine-headline-wrap {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      max-width: 1400px;
-      padding: 0 56px;
-    }
-    .cine-headline {
-      color: var(--paper);
-      display: inline-block;
-      position: relative;
-    }
-    .cine-headline-anchor {
-      display: inline-block;
-      transform-origin: center center;
-      transform: scale(calc(0.5 + var(--p1) * 0.5));
-      opacity: calc(var(--p0) * 1.5);
-    }
-    .cine-headline-ext {
-      display: inline-block;
-      opacity: 0;
-      transform: translateX(-20px);
-      transition: opacity 600ms var(--ease), transform 600ms var(--ease);
-    }
-    .cine-headline-ext em {
-      font-style: italic;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--cyan), var(--violet));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    /* Stage 2-3: shrink + position headline as caption */
-    [data-stage="2"] .cine-headline-wrap,
-    [data-stage="3"] .cine-headline-wrap,
-    [data-stage="4"] .cine-headline-wrap {
-      position: absolute;
-      top: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: auto;
-      transition: top 600ms var(--ease), transform 600ms var(--ease);
-    }
-    [data-stage="2"] .cine-headline,
-    [data-stage="3"] .cine-headline,
-    [data-stage="4"] .cine-headline {
-      font-size: clamp(20px, 2vw, 28px) !important;
-      line-height: 1.2;
-      font-variation-settings: 'opsz' 20 !important;
-    }
-    [data-stage="2"] .cine-headline-anchor,
-    [data-stage="3"] .cine-headline-anchor,
-    [data-stage="4"] .cine-headline-anchor {
-      transform: scale(1);
-      opacity: 1;
-    }
-
-    /* Stage 1 onward: ext appears */
-    [data-stage="1"] .cine-headline-ext,
-    [data-stage="2"] .cine-headline-ext,
-    [data-stage="3"] .cine-headline-ext,
-    [data-stage="4"] .cine-headline-ext {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    /* Devices */
-    .cine-devices {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 48px;
-      padding: 160px 56px 80px;
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .cine-laptop, .cine-phone {
-      position: relative;
-      transition:
-        transform 900ms var(--ease-out),
-        opacity 700ms var(--ease);
-      will-change: transform, opacity;
-    }
-
-    .cine-laptop {
-      width: clamp(360px, 56vw, 800px);
-      aspect-ratio: 16 / 10;
-      opacity: 0;
-      transform: translateY(120%) rotate(-6deg) scale(0.9);
-    }
-    .cine-phone {
-      width: clamp(160px, 22vw, 280px);
-      aspect-ratio: 9 / 19;
-      opacity: 0;
-      transform: translateX(120%) rotate(8deg) scale(0.9);
-    }
-
-    [data-stage="2"] .cine-laptop,
-    [data-stage="3"] .cine-laptop,
-    [data-stage="4"] .cine-laptop {
-      opacity: 1;
-      transform: translateY(0) rotate(-4deg) scale(1);
-    }
-    [data-stage="3"] .cine-phone,
-    [data-stage="4"] .cine-phone {
-      opacity: 1;
-      transform: translateX(0) rotate(6deg) scale(1);
-    }
-
-    /* Laptop frame */
-    .laptop-screen {
-      width: 100%; height: 92%;
-      background: oklch(10% 0.01 264);
-      border-radius: 12px 12px 4px 4px;
-      padding: 10px 10px 14px;
-      box-shadow:
-        0 0 0 1px oklch(28% 0.014 264) inset,
-        0 28px 80px -24px oklch(7% 0.012 264 / 0.9),
-        0 0 100px -20px oklch(64% 0.18 220 / 0.4);
-    }
-    .laptop-bezel {
-      width: 100%; height: 100%;
-      background: var(--paper);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-    .laptop-bezel img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: top center;
-    }
-    .laptop-base {
-      position: absolute;
-      bottom: 0; left: -2%; right: -2%;
-      height: 7%;
-      background: linear-gradient(180deg, oklch(50% 0.012 264), oklch(34% 0.012 264));
-      border-radius: 0 0 14px 14px;
-    }
-
-    /* Phone frame */
-    .phone-frame {
-      width: 100%; height: 100%;
-      background: oklch(8% 0.01 264);
-      border-radius: 32px;
-      padding: 10px 8px;
-      box-shadow:
-        0 0 0 2px oklch(20% 0.014 264) inset,
-        0 28px 80px -24px oklch(7% 0.012 264 / 0.9),
-        0 0 100px -20px oklch(68% 0.22 310 / 0.4);
-    }
-    .phone-screen {
-      width: 100%; height: 100%;
-      background: var(--paper);
-      border-radius: 24px;
-      overflow: hidden;
-      position: relative;
-    }
-    .phone-screen img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: top center;
-    }
-    .phone-notch {
-      position: absolute;
-      top: 8px; left: 50%; transform: translateX(-50%);
-      width: 34%; height: 18px;
-      background: oklch(8% 0.01 264);
-      border-radius: 999px;
-      z-index: 2;
-    }
-
-    /* Stats reveal */
-    .cine-stats {
-      position: absolute;
-      bottom: 56px; left: 0; right: 0;
-      display: flex;
-      justify-content: center;
-      gap: clamp(32px, 6vw, 96px);
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 700ms var(--ease), transform 700ms var(--ease);
-      z-index: 3;
-      pointer-events: none;
-    }
-    [data-stage="4"] .cine-stats {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-    .cine-stat {
-      text-align: center;
-    }
-    .cine-stat-num {
-      font-size: clamp(40px, 5vw, 76px);
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      line-height: 1;
-      font-variation-settings: 'opsz' 60;
-      background: linear-gradient(135deg, var(--cyan), var(--violet));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .section-meta-num {
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 13px;
+      color: var(--ink-4);
       font-variant-numeric: tabular-nums;
     }
-    .cine-stat-label {
-      margin-top: 10px;
-      font-size: 12px;
+    .section-meta-label {
+      font-size: 13px;
       font-weight: 500;
-      color: var(--paper-3);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    /* Scroll hint at stage 0 */
-    .cine-hint {
-      position: absolute;
-      bottom: 48px; left: 50%; transform: translateX(-50%);
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--paper-4);
-      display: flex; flex-direction: column; align-items: center;
-      gap: 12px;
-      opacity: calc(1 - var(--p) * 3);
-      transition: opacity 200ms;
-    }
-    .cine-hint::after {
-      content: '';
-      width: 1px; height: 32px;
-      background: linear-gradient(180deg, var(--cyan), transparent);
-      animation: hint-pulse 2.2s ease-in-out infinite;
-    }
-    @keyframes hint-pulse {
-      0%, 100% { opacity: 0.3; transform: scaleY(0.7); }
-      50%       { opacity: 1; transform: scaleY(1); }
+      color: var(--ink-3);
+      letter-spacing: -0.005em;
     }
 
     /* ═══════════════════════════════════════════════════════
-       LEISTUNGEN
+       HERO
+       Centered. Confident. No tricks.
     ═══════════════════════════════════════════════════════ */
-    .leistungen {
-      padding: 160px 0;
-      background: var(--void);
-      position: relative;
-    }
-    .leistungen-hd {
-      max-width: 60ch;
-      margin: 0 auto 96px;
+    .hero {
+      padding: clamp(120px, 16vw, 200px) 0 clamp(80px, 10vw, 120px);
       text-align: center;
     }
-    .leistungen-grid {
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-2);
+      letter-spacing: -0.005em;
+      margin-bottom: 32px;
+    }
+    .hero-pill-dot {
+      width: 6px; height: 6px;
+      background: var(--ink);
+      border-radius: 50%;
+    }
+    .hero-headline {
+      max-width: 18ch;
+      margin: 0 auto;
+    }
+    .hero-sub {
+      margin: 28px auto 0;
+      text-align: center;
+    }
+    .hero-actions {
+      margin-top: 44px;
+      display: inline-flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .hero-trust {
+      margin-top: 56px;
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      color: var(--ink-3);
+    }
+    .hero-trust span {
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .hero-trust span::before {
+      content: '';
+      width: 14px; height: 14px;
+      border: 1px solid var(--ink-3);
+      border-radius: 50%;
+      background:
+        linear-gradient(135deg, transparent 47%, var(--ink-3) 47%, var(--ink-3) 53%, transparent 53%);
+      position: relative;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       LEISTUNGEN — was Sie bekommen
+       Notion-style row list with hairline separators.
+    ═══════════════════════════════════════════════════════ */
+    .leistungen-head {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 64px;
+      align-items: end;
+      margin-bottom: 72px;
+    }
+    .leistungen-list {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 32px;
+      gap: 0;
+      border-top: 1px solid var(--line);
     }
     .leistung {
-      background: var(--night);
-      border: 1px solid var(--line);
-      border-radius: var(--r-lg);
-      padding: 48px 44px;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 320ms var(--ease), transform 320ms var(--ease);
+      padding: 36px 0;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 16px;
+      align-items: start;
     }
-    .leistung::before {
-      content: '';
-      position: absolute;
-      top: -2px; left: -2px; right: -2px;
-      height: 200px;
-      background: radial-gradient(circle at top, oklch(64% 0.18 220 / 0.12), transparent 70%);
-      opacity: 0;
-      transition: opacity 360ms var(--ease);
-      pointer-events: none;
+    .leistung:nth-child(odd) {
+      padding-right: 32px;
+      border-right: 1px solid var(--line);
     }
-    .leistung:hover {
-      border-color: var(--cyan-deep);
-      transform: translateY(-3px);
+    .leistung:nth-child(even) {
+      padding-left: 32px;
     }
-    .leistung:hover::before { opacity: 1; }
     .leistung-num {
-      font-size: 14px; font-weight: 600;
-      color: var(--cyan);
-      letter-spacing: 0.04em;
-      margin-bottom: 24px;
-      display: inline-block;
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 13px;
+      color: var(--ink-4);
+      font-variant-numeric: tabular-nums;
+      padding-top: 4px;
     }
     .leistung-title {
-      font-size: 26px;
+      font-size: 17px;
       font-weight: 600;
-      letter-spacing: -0.025em;
-      line-height: 1.15;
-      color: var(--paper);
-      margin-bottom: 14px;
-      font-variation-settings: 'opsz' 28;
+      line-height: 1.35;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+      margin-bottom: 6px;
     }
     .leistung-desc {
-      font-size: 16px;
-      line-height: 1.6;
-      color: var(--paper-3);
-      max-width: 46ch;
-    }
-
-    /* ═══════════════════════════════════════════════════════
-       VORHER / NACHHER
-    ═══════════════════════════════════════════════════════ */
-    .vergleich {
-      padding: 160px 0;
-      background: var(--void);
-      position: relative;
-    }
-    .vergleich-hd {
-      max-width: 56ch;
-      margin: 0 auto 72px;
-      text-align: center;
-    }
-    .before-after {
-      position: relative;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      aspect-ratio: 16 / 9;
-      border-radius: var(--r-lg);
-      overflow: hidden;
-      cursor: col-resize;
-      user-select: none;
-      touch-action: none;
-      border: 1px solid var(--line);
-      background: var(--night);
-      box-shadow:
-        0 32px 96px -32px oklch(0% 0 0 / 0.6),
-        0 0 120px -20px oklch(64% 0.18 220 / 0.2);
-    }
-    .ba-after, .ba-before { position: absolute; inset: 0; }
-    .ba-after { z-index: 1; }
-    .ba-before { z-index: 2; clip-path: inset(0 50% 0 0); }
-    .ba-img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: top center;
-      display: block; pointer-events: none;
-    }
-    @keyframes ba-grip-pulse {
-      0%, 100% { box-shadow: 0 0 0 1px var(--cyan), 0 0 16px 3px oklch(64% 0.18 220 / 0.4); }
-      50%       { box-shadow: 0 0 0 1px var(--cyan), 0 0 28px 8px oklch(64% 0.18 220 / 0.6); }
-    }
-    .ba-handle {
-      position: absolute; top: 0; bottom: 0; left: 50%;
-      width: 2px;
-      background: linear-gradient(180deg, var(--cyan), var(--violet));
-      z-index: 10; transform: translateX(-50%);
-      pointer-events: none;
-    }
-    .ba-grip {
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 52px; height: 52px;
-      background: var(--paper);
-      color: var(--void);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 13px; font-weight: 700;
-      animation: ba-grip-pulse 2.4s ease-in-out infinite;
-    }
-    .ba-label {
-      position: absolute; bottom: 20px; z-index: 20;
-      font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
-      text-transform: uppercase; padding: 7px 13px;
-      pointer-events: none;
-      border-radius: 3px;
-      backdrop-filter: blur(8px);
-    }
-    .ba-label-before {
-      left: 18px;
-      background: oklch(97% 0.005 70 / 0.88);
-      color: var(--void);
-    }
-    .ba-label-after {
-      right: 18px;
-      background: linear-gradient(135deg, oklch(80% 0.16 220 / 0.92), oklch(68% 0.22 310 / 0.92));
-      color: var(--void);
-    }
-    .vergleich-caption {
-      margin-top: 36px;
-      text-align: center;
       font-size: 15px;
-      color: var(--paper-3);
-      line-height: 1.65;
+      line-height: 1.55;
+      color: var(--ink-3);
+      max-width: 42ch;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       PROZESS — so läuft es ab
+       Numbered timeline, left-aligned.
+    ═══════════════════════════════════════════════════════ */
+    .prozess {
+      background: var(--surface);
+    }
+    .prozess-head {
+      margin-bottom: 72px;
       max-width: 56ch;
-      margin-left: auto; margin-right: auto;
     }
-    .vergleich-caption strong { color: var(--paper); font-weight: 600; }
-
-    /* ═══════════════════════════════════════════════════════
-       ÜBER MICH
-    ═══════════════════════════════════════════════════════ */
-    .about {
-      padding: 160px 0;
-      background:
-        radial-gradient(ellipse at top, oklch(15% 0.014 264), var(--void) 70%);
-      position: relative;
-    }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 0.85fr 1fr;
-      gap: 96px;
-      align-items: center;
-    }
-    .about-figure {
-      position: relative;
-      aspect-ratio: 4 / 5;
-      background: var(--night);
-      border: 1px solid var(--line);
-      border-radius: var(--r-lg);
-      overflow: hidden;
-      box-shadow: 0 32px 80px -32px oklch(0% 0 0 / 0.6);
-    }
-    .about-figure-placeholder {
-      position: absolute; inset: 0;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 28px;
-      background:
-        linear-gradient(180deg, var(--night-2) 0%, var(--night) 100%);
-    }
-    .about-figure-placeholder img {
-      width: 56%;
-      max-width: 220px;
-      filter: invert(1) brightness(0.9);
-      opacity: 0.4;
-    }
-    .about-figure-placeholder-cap {
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--paper-4);
-    }
-    .about-prose-h2 {
-      font-size: clamp(32px, 3.8vw, 56px);
-      font-weight: 700;
-      letter-spacing: -0.034em;
-      line-height: 1.05;
-      color: var(--paper);
-      margin-bottom: 32px;
-      max-width: 18ch;
-      font-variation-settings: 'opsz' 48;
-    }
-    .about-prose-h2 em {
-      font-style: normal;
-      background: linear-gradient(135deg, var(--cyan), var(--violet));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .about-prose p {
-      font-size: 17px; line-height: 1.7;
-      color: var(--paper-2);
-      margin-bottom: 22px;
-      max-width: 54ch;
-    }
-    .about-prose p:last-of-type { margin-bottom: 0; }
-    .about-prose p strong {
-      color: var(--paper); font-weight: 600;
-    }
-    .about-meta {
-      margin-top: 36px;
-      display: flex; flex-wrap: wrap; gap: 28px;
-      padding-top: 28px;
-      border-top: 1px solid var(--line);
-    }
-    .about-meta-item { display: flex; flex-direction: column; gap: 5px; }
-    .about-meta-label {
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--paper-4);
-    }
-    .about-meta-value {
-      font-size: 15px; font-weight: 600;
-      color: var(--paper);
-      letter-spacing: -0.01em;
-    }
-
-    /* ═══════════════════════════════════════════════════════
-       ARBEITEN
-    ═══════════════════════════════════════════════════════ */
-    .arbeiten {
-      padding: 160px 0;
-      background: var(--void);
-    }
-    .arbeiten-hd {
-      max-width: 60ch;
-      margin: 0 auto 80px;
-      text-align: center;
-    }
-    .arbeiten-list {
-      display: flex; flex-direction: column;
+    .prozess-list {
+      display: flex;
+      flex-direction: column;
       gap: 0;
+      counter-reset: step;
     }
-    .arbeit {
+    .prozess-step {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-      padding: 80px 0;
+      grid-template-columns: 120px 1fr 1.6fr;
+      gap: 48px;
+      padding: 40px 0;
       border-top: 1px solid var(--line);
+      align-items: start;
     }
-    .arbeit:last-child { border-bottom: 1px solid var(--line); }
-    .arbeit-thumb {
-      position: relative;
-      aspect-ratio: 16 / 10;
-      border-radius: var(--r-lg);
-      overflow: hidden;
-      background: var(--night);
+    .prozess-step:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+    .prozess-step-num {
+      font-family: var(--font-num);
+      font-size: 48px;
+      font-weight: 300;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .prozess-step-title {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      color: var(--ink);
+      padding-top: 14px;
+    }
+    .prozess-step-desc {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--ink-2);
+      padding-top: 14px;
+      max-width: 56ch;
+    }
+    .prozess-step-meta {
+      display: inline-block;
+      margin-top: 12px;
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 12px;
+      color: var(--ink-4);
+      padding: 4px 10px;
+      background: var(--bg);
       border: 1px solid var(--line);
-      transition: transform 480ms var(--ease-out), border-color 280ms var(--ease), box-shadow 480ms var(--ease);
-    }
-    .arbeit-thumb img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: top;
-      transition: transform 800ms var(--ease-out);
-    }
-    .arbeit-thumb:hover {
-      transform: translateY(-6px);
-      border-color: var(--cyan-deep);
-      box-shadow:
-        0 32px 64px -24px oklch(0% 0 0 / 0.6),
-        0 0 80px -20px oklch(64% 0.18 220 / 0.3);
-    }
-    .arbeit-thumb:hover img { transform: scale(1.04); }
-    .arbeit-meta-tag {
-      font-size: 12px; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 14px;
-    }
-    .arbeit-meta-name {
-      font-size: clamp(28px, 3vw, 44px);
-      font-weight: 700;
-      letter-spacing: -0.032em;
-      line-height: 1.05;
-      color: var(--paper);
-      font-variation-settings: 'opsz' 36;
-    }
-    .arbeit-meta-prose {
-      margin-top: 22px;
-      font-size: 16px; line-height: 1.7;
-      color: var(--paper-2);
-      max-width: 44ch;
-    }
-    .arbeit-meta-prose strong { color: var(--paper); font-weight: 600; }
-    .arbeit-meta-link {
-      margin-top: 28px;
-      display: inline-flex; align-items: center; gap: 10px;
-      font-size: 14.5px; font-weight: 600;
-      color: var(--paper);
-      padding: 12px 24px;
-      border: 1px solid var(--line-2);
-      border-radius: 999px;
-      transition: background 220ms var(--ease), border-color 220ms var(--ease), color 220ms var(--ease);
-    }
-    .arbeit-meta-link:hover {
-      background: linear-gradient(135deg, var(--cyan), var(--violet));
-      border-color: transparent;
-      color: var(--void);
+      border-radius: var(--r-sm);
     }
 
     /* ═══════════════════════════════════════════════════════
        PREISE
     ═══════════════════════════════════════════════════════ */
-    .preise {
-      padding: 160px 0;
-      background:
-        radial-gradient(ellipse at bottom, oklch(15% 0.014 264), var(--void) 70%);
-      position: relative;
-    }
-    .preise-hd {
-      max-width: 60ch;
-      margin: 0 auto 80px;
+    .preise-head {
       text-align: center;
+      max-width: 56ch;
+      margin: 0 auto 72px;
+    }
+    .preise-head .t-lede {
+      margin: 24px auto 0;
     }
     .preise-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      max-width: 1200px;
-      margin: 0 auto;
+      gap: 16px;
     }
     .preis {
-      background: var(--night);
+      background: var(--bg);
       border: 1px solid var(--line);
       border-radius: var(--r-lg);
-      padding: 44px 36px 36px;
-      display: flex; flex-direction: column;
+      padding: 36px 32px 32px;
+      display: flex;
+      flex-direction: column;
       position: relative;
-      transition: border-color 320ms var(--ease), transform 320ms var(--ease), box-shadow 320ms var(--ease);
+      transition: border-color 200ms var(--ease);
     }
-    .preis:hover {
-      border-color: var(--line-2);
-      transform: translateY(-4px);
-    }
+    .preis:hover { border-color: var(--line-2); }
     .preis.featured {
-      background: var(--night-2);
-      border: 1px solid transparent;
-      background-clip: padding-box;
-      position: relative;
-    }
-    .preis.featured::before {
-      content: '';
-      position: absolute;
-      inset: -1px;
-      border-radius: var(--r-lg);
-      background: linear-gradient(135deg, var(--cyan), var(--violet));
-      z-index: -1;
-    }
-    .preis.featured:hover {
-      box-shadow: 0 24px 64px -24px oklch(64% 0.18 220 / 0.4);
+      background: var(--night);
+      border-color: var(--night);
+      color: var(--bg);
     }
     .preis-badge {
       position: absolute;
-      top: -12px; left: 50%; transform: translateX(-50%);
-      background: linear-gradient(135deg, var(--cyan), var(--violet));
-      color: var(--void);
-      font-size: 11px; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      padding: 6px 14px;
-      border-radius: 999px;
+      top: 20px; right: 20px;
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 11px;
+      letter-spacing: 0;
+      color: var(--bg);
+      background: oklch(36% 0.008 70);
+      padding: 4px 8px;
+      border-radius: var(--r-sm);
     }
     .preis-name {
-      font-size: 14px; font-weight: 600;
-      color: var(--cyan);
-      letter-spacing: 0.005em;
-      margin-bottom: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.012em;
+      margin-bottom: 8px;
     }
+    .preis.featured .preis-name { color: var(--bg); }
     .preis-desc {
       font-size: 14.5px;
-      color: var(--paper-3);
-      line-height: 1.55;
+      color: var(--ink-3);
+      line-height: 1.5;
       margin-bottom: 28px;
       min-height: 44px;
     }
-    .preis-price {
-      display: flex; align-items: baseline; gap: 4px;
-      margin-bottom: 6px;
+    .preis.featured .preis-desc { color: oklch(72% 0.005 70); }
+    .preis-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 4px;
     }
     .preis-amount {
-      font-size: 60px; font-weight: 700;
-      letter-spacing: -0.045em;
-      color: var(--paper);
-      font-variant-numeric: tabular-nums;
+      font-family: var(--font-num);
+      font-size: 52px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.04em;
       line-height: 1;
-      font-variation-settings: 'opsz' 72;
+      font-variant-numeric: tabular-nums;
     }
+    .preis.featured .preis-amount { color: var(--bg); }
     .preis-currency {
-      font-size: 22px; font-weight: 600;
-      color: var(--paper);
-      letter-spacing: -0.02em;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.025em;
     }
+    .preis.featured .preis-currency { color: var(--bg); }
     .preis-period {
       font-size: 13px;
-      color: var(--paper-3);
+      color: var(--ink-3);
       letter-spacing: -0.005em;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
+    .preis.featured .preis-period { color: oklch(68% 0.005 70); }
     .preis-rule {
       height: 1px;
       background: var(--line);
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
+    .preis.featured .preis-rule { background: oklch(32% 0.008 70); }
     .preis-list {
       list-style: none;
-      display: flex; flex-direction: column; gap: 12px;
-      margin-bottom: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
       flex-grow: 1;
     }
     .preis-list li {
       font-size: 14.5px;
       line-height: 1.5;
-      color: var(--paper-2);
-      padding-left: 26px;
+      color: var(--ink-2);
+      padding-left: 24px;
       position: relative;
     }
+    .preis.featured .preis-list li { color: oklch(85% 0.005 70); }
     .preis-list li::before {
       content: '';
       position: absolute;
-      left: 0; top: 0.6em;
-      width: 14px; height: 1px;
-      background: linear-gradient(90deg, var(--cyan), var(--violet));
+      left: 0; top: 0.45em;
+      width: 12px; height: 7px;
+      border-left: 1.5px solid var(--ink);
+      border-bottom: 1.5px solid var(--ink);
+      transform: rotate(-45deg);
+    }
+    .preis.featured .preis-list li::before {
+      border-color: var(--bg);
     }
     .preis-cta {
       display: block;
       text-align: center;
-      padding: 13px 22px;
+      padding: 12px 22px;
       border-radius: 999px;
-      background: oklch(20% 0.014 264);
-      color: var(--paper);
-      font-size: 14.5px; font-weight: 600;
-      letter-spacing: -0.005em;
-      border: 1px solid var(--line-2);
-      transition: background 240ms var(--ease), border-color 240ms var(--ease), color 240ms var(--ease);
+      background: var(--ink);
+      color: var(--bg);
+      font-size: 14.5px;
+      font-weight: 500;
+      letter-spacing: -0.008em;
+      transition: background 200ms var(--ease);
     }
-    .preis-cta:hover {
-      background: var(--paper);
-      color: var(--void);
-      border-color: var(--paper);
-    }
+    .preis-cta:hover { background: var(--ink-2); }
     .preis.featured .preis-cta {
-      background: linear-gradient(135deg, var(--cyan), var(--violet));
-      color: var(--void);
-      border-color: transparent;
+      background: var(--bg);
+      color: var(--ink);
     }
     .preis.featured .preis-cta:hover {
-      background: var(--paper);
-      color: var(--void);
+      background: oklch(92% 0.004 70);
     }
     .preise-foot {
-      margin-top: 48px;
+      margin-top: 36px;
       text-align: center;
       font-size: 14px;
-      color: var(--paper-3);
+      color: var(--ink-3);
     }
     .preise-foot a {
-      color: var(--paper);
+      color: var(--ink);
       border-bottom: 1px solid var(--line-2);
-      font-weight: 500;
     }
-    .preise-foot a:hover { color: var(--cyan); border-color: var(--cyan); }
+    .preise-foot a:hover { border-color: var(--ink); }
+
+    /* ═══════════════════════════════════════════════════════
+       ÜBER MICH
+    ═══════════════════════════════════════════════════════ */
+    .ueber {
+      background: var(--surface);
+    }
+    .ueber-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .ueber-card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      padding: 56px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+    .ueber-card img {
+      width: 110px;
+      height: auto;
+      opacity: 0.85;
+    }
+    .ueber-card-name {
+      text-align: center;
+    }
+    .ueber-card-name-h {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.018em;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .ueber-card-name-r {
+      font-size: 14px;
+      color: var(--ink-3);
+      letter-spacing: -0.005em;
+    }
+    .ueber-card-meta {
+      width: 100%;
+      border-top: 1px solid var(--line);
+      padding-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .ueber-card-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 13.5px;
+    }
+    .ueber-card-meta-key {
+      color: var(--ink-4);
+    }
+    .ueber-card-meta-val {
+      color: var(--ink);
+      font-weight: 500;
+      letter-spacing: -0.008em;
+    }
+
+    .ueber-prose h2 {
+      margin-bottom: 32px;
+      max-width: 18ch;
+    }
+    .ueber-prose p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--ink-2);
+      margin-bottom: 22px;
+      max-width: 56ch;
+    }
+    .ueber-prose p:last-child { margin-bottom: 0; }
+    .ueber-prose strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
 
     /* ═══════════════════════════════════════════════════════
        FAQ
     ═══════════════════════════════════════════════════════ */
-    .faq {
-      padding: 160px 0;
-      background: var(--void);
-    }
-    .faq-hd {
+    .faq-head {
+      text-align: center;
       max-width: 56ch;
       margin: 0 auto 64px;
-      text-align: center;
     }
     .faq-list {
-      max-width: 900px;
+      max-width: 800px;
       margin: 0 auto;
-    }
-    .faq-item {
       border-top: 1px solid var(--line);
     }
-    .faq-item:last-child { border-bottom: 1px solid var(--line); }
+    .faq-item {
+      border-bottom: 1px solid var(--line);
+    }
     .faq-trigger {
       width: 100%;
-      background: none; border: none;
+      background: none;
+      border: none;
       padding: 28px 0;
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       gap: 32px;
       text-align: left;
-      color: var(--paper);
+      color: var(--ink);
     }
     .faq-q {
-      font-size: clamp(18px, 1.6vw, 22px);
+      font-size: 18px;
       font-weight: 600;
-      letter-spacing: -0.02em;
-      line-height: 1.3;
+      letter-spacing: -0.018em;
+      line-height: 1.35;
     }
     .faq-icon {
       flex-shrink: 0;
-      width: 34px; height: 34px;
-      border: 1px solid var(--line-2);
+      width: 28px; height: 28px;
       border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; font-weight: 400;
-      color: var(--paper);
-      transition: transform 320ms var(--ease), background 240ms var(--ease), border-color 240ms var(--ease), color 240ms var(--ease);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink);
+      transition: background 200ms var(--ease), border-color 200ms var(--ease), transform 280ms var(--ease);
     }
+    .faq-icon svg { width: 12px; height: 12px; transition: transform 280ms var(--ease); }
     .faq-trigger:hover .faq-icon {
-      background: linear-gradient(135deg, var(--cyan), var(--violet));
-      border-color: transparent;
-      color: var(--void);
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--bg);
     }
     .faq-trigger[aria-expanded="true"] .faq-icon {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--bg);
+    }
+    .faq-trigger[aria-expanded="true"] .faq-icon svg {
       transform: rotate(45deg);
-      background: linear-gradient(135deg, var(--cyan), var(--violet));
-      border-color: transparent;
-      color: var(--void);
     }
     .faq-panel {
       display: grid;
       grid-template-rows: 0fr;
-      transition: grid-template-rows 360ms var(--ease);
+      transition: grid-template-rows 320ms var(--ease);
     }
     .faq-trigger[aria-expanded="true"] + .faq-panel {
       grid-template-rows: 1fr;
     }
     .faq-panel-inner { overflow: hidden; }
     .faq-a {
-      padding: 0 0 32px;
-      font-size: 16.5px;
-      line-height: 1.75;
-      color: var(--paper-2);
+      padding: 0 0 28px;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--ink-2);
       max-width: 64ch;
     }
-    .faq-a strong { color: var(--paper); font-weight: 600; }
+    .faq-a strong { color: var(--ink); font-weight: 600; }
 
     /* ═══════════════════════════════════════════════════════
-       KONTAKT
+       KONTAKT — final inverted CTA card
     ═══════════════════════════════════════════════════════ */
-    .kontakt {
-      padding: 160px 0 120px;
-      background: var(--void);
-    }
     .kontakt-card {
-      max-width: 1080px;
+      max-width: 980px;
       margin: 0 auto;
       background: var(--night);
-      border: 1px solid var(--line);
+      color: var(--bg);
       border-radius: var(--r-lg);
-      padding: 88px 80px;
+      padding: clamp(56px, 7vw, 88px) clamp(40px, 6vw, 80px);
       position: relative;
       overflow: hidden;
-      box-shadow: 0 40px 96px -32px oklch(0% 0 0 / 0.6);
     }
-    .kontakt-card::before {
-      content: '';
-      position: absolute;
-      top: -40%; right: -10%;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, oklch(68% 0.22 310 / 0.4), transparent 60%);
-      pointer-events: none;
+    .kontakt-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
     }
-    .kontakt-card::after {
-      content: '';
-      position: absolute;
-      bottom: -40%; left: -10%;
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, oklch(64% 0.18 220 / 0.3), transparent 60%);
-      pointer-events: none;
-    }
-    .kontakt-inner { position: relative; z-index: 1; }
-    .kontakt-card .display-m { color: var(--paper); }
-    .kontakt-card .display-m em {
-      font-style: normal;
-      background: linear-gradient(135deg, var(--cyan), var(--violet));
-      -webkit-background-clip: text; background-clip: text;
-      color: transparent;
+    .kontakt-left h2 {
+      color: var(--bg);
+      font-size: clamp(28px, 3.6vw, 42px);
+      font-weight: 600;
+      letter-spacing: -0.032em;
+      line-height: 1.08;
+      margin-bottom: 24px;
+      max-width: 14ch;
     }
     .kontakt-sub {
-      margin-top: 28px;
-      font-size: 18px; line-height: 1.6;
-      color: var(--paper-2);
-      max-width: 52ch;
+      font-size: 16px;
+      line-height: 1.65;
+      color: oklch(75% 0.005 70);
+      max-width: 36ch;
     }
     .kontakt-channels {
-      margin-top: 56px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
     .channel {
-      display: flex; flex-direction: column;
-      gap: 10px;
-      background: var(--night-2);
-      border: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 22px 26px;
+      background: oklch(20% 0.008 70);
+      border: 1px solid oklch(28% 0.008 70);
       border-radius: var(--r);
-      padding: 28px 32px;
-      transition: background 240ms var(--ease), border-color 240ms var(--ease);
+      transition: background 200ms var(--ease), border-color 200ms var(--ease);
     }
     .channel:hover {
-      background: var(--night-3);
-      border-color: var(--cyan-deep);
+      background: oklch(24% 0.008 70);
+      border-color: oklch(40% 0.008 70);
     }
     .channel-label {
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--paper-3);
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 12px;
+      color: oklch(64% 0.005 70);
     }
     .channel-value {
-      font-size: clamp(22px, 2vw, 28px);
-      font-weight: 700;
-      color: var(--paper);
-      letter-spacing: -0.025em;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--bg);
+      letter-spacing: -0.022em;
       font-variant-numeric: tabular-nums;
     }
     .channel-note {
-      font-size: 13.5px;
-      color: var(--paper-3);
+      font-size: 13px;
+      color: oklch(70% 0.005 70);
       line-height: 1.5;
     }
+
     .form-section {
-      margin-top: 24px;
-      background: var(--night-2);
-      border: 1px solid var(--line);
+      margin-top: 14px;
+      background: oklch(20% 0.008 70);
+      border: 1px solid oklch(28% 0.008 70);
       border-radius: var(--r);
       overflow: hidden;
     }
     .form-toggle {
       width: 100%;
-      background: none; border: none; color: var(--paper);
-      padding: 24px 32px;
-      display: flex; align-items: center; justify-content: space-between;
+      background: none;
+      border: none;
+      color: var(--bg);
+      padding: 22px 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       text-align: left;
-      transition: background 240ms var(--ease);
+      transition: background 200ms var(--ease);
     }
-    .form-toggle:hover { background: var(--night-3); }
+    .form-toggle:hover { background: oklch(24% 0.008 70); }
     .form-toggle-label {
-      font-size: 17px; font-weight: 600;
-      letter-spacing: -0.015em;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -0.012em;
     }
     .form-toggle-icon {
-      width: 28px; height: 28px;
+      width: 24px; height: 24px;
       border-radius: 50%;
-      border: 1px solid var(--line-2);
+      border: 1px solid oklch(40% 0.008 70);
       display: flex; align-items: center; justify-content: center;
-      font-size: 16px;
-      transition: transform 280ms var(--ease), background 240ms var(--ease), border-color 240ms var(--ease);
+      transition: transform 280ms var(--ease), background 200ms var(--ease);
     }
+    .form-toggle-icon svg { width: 10px; height: 10px; }
     .form-toggle[aria-expanded="true"] .form-toggle-icon {
       transform: rotate(45deg);
-      background: linear-gradient(135deg, var(--cyan), var(--violet));
-      border-color: transparent;
-      color: var(--void);
+      background: var(--bg);
+      border-color: var(--bg);
+      color: var(--ink);
     }
     .form-panel {
       display: grid;
       grid-template-rows: 0fr;
-      transition: grid-template-rows 360ms var(--ease);
+      transition: grid-template-rows 320ms var(--ease);
     }
     .form-toggle[aria-expanded="true"] + .form-panel {
       grid-template-rows: 1fr;
     }
     .form-panel-inner { overflow: hidden; }
-    .form-inner-pad { padding: 8px 32px 32px; }
+    .form-inner-pad { padding: 4px 26px 26px; }
 
-    .contact-form { display: flex; flex-direction: column; gap: 18px; }
-    .form-field { display: flex; flex-direction: column; gap: 7px; }
+    .contact-form { display: flex; flex-direction: column; gap: 14px; }
+    .form-field { display: flex; flex-direction: column; gap: 6px; }
     .form-label {
-      font-size: 11px; font-weight: 600;
-      color: var(--paper-3);
-      letter-spacing: 0.06em; text-transform: uppercase;
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 11px;
+      color: oklch(70% 0.005 70);
     }
     .form-input, .form-textarea {
-      font: inherit; font-size: 15px;
-      padding: 13px 16px;
-      border: 1px solid var(--line-2);
-      background: var(--void);
-      color: var(--paper);
-      border-radius: var(--r);
+      font: inherit;
+      font-family: var(--font);
+      font-size: 14.5px;
+      padding: 11px 14px;
+      border: 1px solid oklch(32% 0.008 70);
+      background: oklch(14% 0.008 70);
+      color: var(--bg);
+      border-radius: var(--r-sm);
       transition: border-color 200ms var(--ease);
     }
     .form-input:focus, .form-textarea:focus {
       outline: none;
-      border-color: var(--cyan);
+      border-color: var(--bg);
     }
     .form-textarea {
-      min-height: 120px;
-      resize: vertical; font-family: var(--font);
+      min-height: 110px;
+      resize: vertical;
     }
     .form-submit {
-      background: linear-gradient(135deg, var(--cyan), var(--violet));
-      color: var(--void);
+      background: var(--bg);
+      color: var(--ink);
       border: none;
-      padding: 14px 30px;
-      font-size: 15px; font-weight: 700;
-      letter-spacing: -0.005em;
+      padding: 12px 24px;
+      font-size: 14.5px;
+      font-weight: 500;
+      letter-spacing: -0.008em;
       border-radius: 999px;
-      transition: transform 220ms var(--ease), box-shadow 220ms var(--ease);
+      transition: background 200ms var(--ease);
       align-self: flex-start;
     }
-    .form-submit:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 12px 28px -8px oklch(68% 0.22 310 / 0.5);
-    }
+    .form-submit:hover { background: oklch(92% 0.004 70); }
     .form-privacy {
       font-size: 12px;
-      color: var(--paper-4);
+      color: oklch(60% 0.005 70);
       line-height: 1.55;
     }
     .form-privacy a {
-      color: var(--paper-3);
-      border-bottom: 1px solid var(--line-2);
+      color: oklch(80% 0.005 70);
+      border-bottom: 1px solid oklch(36% 0.008 70);
     }
 
     /* ═══════════════════════════════════════════════════════
@@ -1252,104 +934,87 @@
     ═══════════════════════════════════════════════════════ */
     footer {
       border-top: 1px solid var(--line);
-      padding: 48px 0 40px;
-      background: var(--void);
+      padding: 40px 0 32px;
+      background: var(--bg);
     }
     .footer-row {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 24px; flex-wrap: wrap;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
     }
-    .footer-brand { display: flex; align-items: center; gap: 14px; }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
     .footer-logo {
-      height: 26px; width: auto;
-      filter: invert(1) brightness(1.1);
-      opacity: 0.6;
+      height: 24px;
+      width: auto;
+      opacity: 0.7;
     }
     .footer-copy {
-      font-size: 13px; color: var(--paper-3);
+      font-size: 13px;
+      color: var(--ink-3);
     }
-    .footer-copy strong { color: var(--paper); font-weight: 600; }
-    .footer-links { display: flex; gap: 28px; }
+    .footer-links {
+      display: flex;
+      gap: 26px;
+    }
     .footer-links a {
-      font-size: 13px; color: var(--paper-3);
-      transition: color 200ms var(--ease);
+      font-size: 13px;
+      color: var(--ink-3);
+      transition: color 180ms var(--ease);
     }
-    .footer-links a:hover { color: var(--cyan); }
-
-    /* ═══════════════════════════════════════════════════════
-       REVEALS
-    ═══════════════════════════════════════════════════════ */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 900ms var(--ease), transform 900ms var(--ease);
-    }
-    .reveal.d1 { transition-delay: 80ms; }
-    .reveal.d2 { transition-delay: 160ms; }
-    .reveal.d3 { transition-delay: 240ms; }
-    .reveal.d4 { transition-delay: 320ms; }
-    .reveal.in { opacity: 1; transform: none; }
+    .footer-links a:hover { color: var(--ink); }
 
     /* ═══════════════════════════════════════════════════════
        RESPONSIVE
     ═══════════════════════════════════════════════════════ */
-    @media (max-width: 1024px) {
-      .wrap, .wrap-narrow { padding: 0 32px; }
-      .leistungen-grid { grid-template-columns: 1fr; gap: 20px; }
-      .about-grid { grid-template-columns: 1fr; gap: 56px; }
-      .about-figure { max-width: 420px; }
-      .arbeit { grid-template-columns: 1fr; gap: 36px; padding: 56px 0; }
-      .preise-grid { grid-template-columns: 1fr; max-width: 480px; }
-      .kontakt-card { padding: 56px 36px; }
-      .kontakt-channels { grid-template-columns: 1fr; }
-
-      .cine-devices {
-        flex-direction: column;
-        gap: 24px;
-        padding: 140px 32px 80px;
+    @media (max-width: 980px) {
+      .wrap, .wrap-narrow { padding: 0 24px; }
+      .leistungen-head { grid-template-columns: 1fr; gap: 24px; }
+      .leistungen-list { grid-template-columns: 1fr; }
+      .leistung:nth-child(odd) {
+        padding-right: 0;
+        border-right: none;
       }
-      .cine-laptop { width: 70vw; }
-      .cine-phone { width: 28vw; }
+      .leistung:nth-child(even) {
+        padding-left: 0;
+      }
+      .prozess-step {
+        grid-template-columns: 80px 1fr;
+        gap: 24px;
+      }
+      .prozess-step-num { font-size: 36px; }
+      .prozess-step-title { padding-top: 6px; grid-column: 2; }
+      .prozess-step-desc { padding-top: 4px; grid-column: 2; }
+      .preise-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
+      .ueber-grid { grid-template-columns: 1fr; gap: 48px; }
+      .ueber-card { max-width: 360px; }
+      .kontakt-inner { grid-template-columns: 1fr; gap: 40px; }
     }
 
-    @media (max-width: 768px) {
-      .wrap, .wrap-narrow { padding: 0 22px; }
-      nav { height: 60px; }
-      .nav-logo { height: 26px; }
+    @media (max-width: 640px) {
+      nav { height: 56px; }
+      .nav-logo { height: 24px; }
+      .nav-links { gap: 18px; }
       .nav-links li:not(:last-child) { display: none; }
 
-      .cinematic { height: 460vh; }
-      .cine-devices { padding: 120px 22px 100px; }
-      .cine-laptop { width: 80vw; }
-      .cine-phone { width: 40vw; }
-      .cine-stats { bottom: 36px; gap: 28px; }
-
-      section { padding: 96px 0 !important; }
-
-      .leistung { padding: 36px 28px; }
-      .before-after { aspect-ratio: 4 / 3; border-radius: var(--r); }
-
-      .about-figure { max-width: 100%; }
-      .kontakt-card { padding: 48px 28px; }
-
-      .footer-row { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .footer-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
       .footer-links { gap: 18px; flex-wrap: wrap; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
-        animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
       }
       html { scroll-behavior: auto; }
-      .reveal { opacity: 1 !important; transform: none !important; }
-      .cinematic { height: auto; }
-      .cinematic-stage { position: relative; height: auto; padding: 120px 0; }
-      .cine-laptop, .cine-phone { opacity: 1 !important; transform: none !important; }
-    }
-
-    .leistungen, .vergleich, .about, .arbeiten, .preise, .faq, .kontakt {
-      contain: layout style;
     }
   </style>
 </head>
@@ -1366,9 +1031,9 @@
       </a>
       <ul class="nav-links">
         <li><a href="#leistungen">Leistungen</a></li>
-        <li><a href="#vergleich">Vergleich</a></li>
-        <li><a href="#arbeiten">Arbeiten</a></li>
+        <li><a href="#prozess">Ablauf</a></li>
         <li><a href="#preise">Preise</a></li>
+        <li><a href="#ueber">Über</a></li>
         <li><a href="#kontakt" class="nav-cta">Anfragen</a></li>
       </ul>
     </div>
@@ -1377,64 +1042,34 @@
 
 
 <!-- ══════════════════════════════════════
-     CINEMATIC INTRO
+     HERO
 ══════════════════════════════════════ -->
-<section class="cinematic" id="top" aria-label="Cinematic Intro">
-  <div class="cinematic-stage" data-stage="0">
+<section class="hero" id="top">
+  <div class="wrap">
 
-    <div class="aurora" aria-hidden="true">
-      <div class="aurora-blob a"></div>
-      <div class="aurora-blob b"></div>
-      <div class="aurora-blob c"></div>
+    <div class="hero-pill">
+      <span class="hero-pill-dot" aria-hidden="true"></span>
+      Aktuell zwei freie Plätze für Q3 2026
     </div>
 
-    <div class="cine-headline-wrap">
-      <h1 class="cine-headline display-xxl">
-        <span class="cine-headline-anchor">Websites</span><span class="cine-headline-ext">, die <em>verkaufen</em>.</span>
-      </h1>
+    <h1 class="hero-headline t-hero">
+      Webdesign für Betriebe, die mit ihrer Website Anfragen gewinnen wollen.
+    </h1>
+
+    <p class="hero-sub t-lede">
+      Maßgeschneidert. Festpreis ab 490 €. Liefertermin im Angebot. Sie reden direkt mit dem, der die Seite baut.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn btn-primary">Projekt anfragen</a>
+      <a href="#preise" class="btn btn-secondary">Preise ansehen</a>
     </div>
 
-    <div class="cine-devices" aria-hidden="true">
-      <div class="cine-laptop">
-        <div class="laptop-screen">
-          <div class="laptop-bezel">
-            <img
-              src="https://image.thum.io/get/width/1600/crop/1000/https://weber-elektrotechnik-test.netlify.app"
-              alt=""
-              loading="eager">
-          </div>
-        </div>
-        <div class="laptop-base"></div>
-      </div>
-      <div class="cine-phone">
-        <div class="phone-frame">
-          <div class="phone-screen">
-            <div class="phone-notch"></div>
-            <img
-              src="https://image.thum.io/get/width/600/crop/1266/https://fenster-hotz-test.netlify.app"
-              alt=""
-              loading="eager">
-          </div>
-        </div>
-      </div>
+    <div class="hero-trust">
+      <span>Festpreis, kein Stundensatz</span>
+      <span>Fixer Liefertermin</span>
+      <span>Direkter Ansprechpartner</span>
     </div>
-
-    <div class="cine-stats" aria-hidden="true">
-      <div class="cine-stat">
-        <div class="cine-stat-num" data-target="1.4" data-decimals="1" data-suffix=" s">0,0 s</div>
-        <div class="cine-stat-label">Ladezeit</div>
-      </div>
-      <div class="cine-stat">
-        <div class="cine-stat-num" data-target="98" data-decimals="0" data-suffix=" / 100">0 / 100</div>
-        <div class="cine-stat-label">PageSpeed</div>
-      </div>
-      <div class="cine-stat">
-        <div class="cine-stat-num" data-target="5" data-decimals="0" data-suffix=" ★">0 ★</div>
-        <div class="cine-stat-label">Mobile-Friendly</div>
-      </div>
-    </div>
-
-    <div class="cine-hint" aria-hidden="true">Scrollen</div>
 
   </div>
 </section>
@@ -1443,166 +1078,140 @@
 <!-- ══════════════════════════════════════
      LEISTUNGEN
 ══════════════════════════════════════ -->
-<section class="leistungen" id="leistungen">
+<section class="section-pad" id="leistungen">
   <div class="wrap">
 
-    <div class="leistungen-hd reveal">
-      <span class="eyebrow">Was Sie bekommen</span>
-      <h2 class="display-l">Vier Dinge, die Ihre alte Website nicht kann.</h2>
+    <div class="leistungen-head">
+      <div>
+        <div class="section-meta">
+          <span class="section-meta-num">01</span>
+          <span class="section-meta-label">Leistungen</span>
+        </div>
+        <h2 class="t-h2">Was Sie bekommen.</h2>
+      </div>
+      <p class="t-lede">
+        Eine Website ist ein Werkstück, kein Mietverhältnis. Sie bekommen Eigentum: Domain, Quellcode und eine Seite, die für Ihren Betrieb arbeitet.
+      </p>
     </div>
 
-    <div class="leistungen-grid">
-      <div class="leistung reveal">
+    <div class="leistungen-list">
+
+      <div class="leistung">
         <span class="leistung-num">01</span>
-        <h3 class="leistung-title">Maßgeschneidert. Kein Template.</h3>
-        <p class="leistung-desc">Jede Zeile Code für Ihren Betrieb geschrieben. Keine 20€-Wix-Vorlage, die tausend andere auch haben.</p>
+        <div>
+          <p class="leistung-title">Maßgeschneidertes Design</p>
+          <p class="leistung-desc">Jede Zeile Code für Ihren Betrieb geschrieben. Kein Template, das hundert andere Firmen auch haben.</p>
+        </div>
       </div>
-      <div class="leistung reveal d1">
+
+      <div class="leistung">
         <span class="leistung-num">02</span>
-        <h3 class="leistung-title">Unter 2 Sek. Ladezeit.</h3>
-        <p class="leistung-desc">Schnell ist nicht „nice to have". Google straft langsame Seiten ab, Besucher springen ab. Beides gelöst.</p>
+        <div>
+          <p class="leistung-title">Ladezeit unter 2 Sekunden</p>
+          <p class="leistung-desc">Geschwindigkeit als Standard, nicht als Aufpreis. Google bewertet das, Besucher merken es.</p>
+        </div>
       </div>
-      <div class="leistung reveal d2">
+
+      <div class="leistung">
         <span class="leistung-num">03</span>
-        <h3 class="leistung-title">SEO ohne Werbebudget.</h3>
-        <p class="leistung-desc">Technisches Fundament so gebaut, dass Google Ihre Seite versteht und lokal nach oben sortiert.</p>
+        <div>
+          <p class="leistung-title">Mobil und Desktop gleich gut</p>
+          <p class="leistung-desc">Jede Seite wird auf beiden Geräten getestet, nicht nur fürs eine optimiert.</p>
+        </div>
       </div>
-      <div class="leistung reveal d3">
+
+      <div class="leistung">
         <span class="leistung-num">04</span>
-        <h3 class="leistung-title">Conversion-fokussiert.</h3>
-        <p class="leistung-desc">Jeder Abschnitt hat einen Zweck: Anfragen auslösen. Keine Designspielereien ohne Funktion.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════
-     VORHER / NACHHER
-══════════════════════════════════════ -->
-<section class="vergleich" id="vergleich">
-  <div class="wrap">
-
-    <div class="vergleich-hd reveal">
-      <span class="eyebrow">Vorher / Nachher</span>
-      <h2 class="display-l">Sehen Sie den Unterschied selbst.</h2>
-    </div>
-
-    <div class="before-after reveal" role="img" aria-label="Vergleich Vorher / Nachher">
-      <div class="ba-after">
-        <img src="nachher.png" alt="Website nach dem Upgrade" class="ba-img">
-      </div>
-      <div class="ba-before">
-        <img src="vorher.png" alt="Website vorher" class="ba-img">
-      </div>
-      <div class="ba-handle" aria-hidden="true">
-        <div class="ba-grip">◀ ▶</div>
-      </div>
-      <span class="ba-label ba-label-before">Vorher</span>
-      <span class="ba-label ba-label-after">Nachher</span>
-    </div>
-
-    <p class="vergleich-caption reveal d1">
-      <strong>Alexander Weber Elektrotechnik.</strong> Ein veralteter Baukasten wird zur maßgeschneiderten Website. 14 Tage Arbeit.
-    </p>
-
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════
-     ÜBER MICH
-══════════════════════════════════════ -->
-<section class="about">
-  <div class="wrap">
-    <div class="about-grid">
-
-      <figure class="about-figure reveal">
-        <div class="about-figure-placeholder">
-          <img src="logo-cropped.png" alt="Weber Websites">
-          <span class="about-figure-placeholder-cap">Portrait folgt</span>
+        <div>
+          <p class="leistung-title">SEO ohne Werbebudget</p>
+          <p class="leistung-desc">Technisches Fundament so gebaut, dass Google Ihre Seite versteht und lokal nach oben sortiert.</p>
         </div>
-      </figure>
+      </div>
 
-      <div class="about-prose reveal d1">
-        <span class="eyebrow">Über mich</span>
-        <h2 class="about-prose-h2">Eine Person. Klare <em>Verantwortung</em>.</h2>
+      <div class="leistung">
+        <span class="leistung-num">05</span>
+        <div>
+          <p class="leistung-title">Kontaktformular mit Weiterleitung</p>
+          <p class="leistung-desc">Anfragen landen direkt in Ihrem Postfach. Keine Plattform dazwischen, keine Drittanbieter-Logos.</p>
+        </div>
+      </div>
 
-        <p>Ich bin <strong>Andreas Weber</strong>, Webdesigner und Webentwickler aus Trossingen. Ich baue Websites für Betriebe, die mit ihrer aktuellen Seite keine Anfragen mehr gewinnen.</p>
-
-        <p>Keine Agentur mit Hotline. Eine Person, ein Handy, eine Antwort am selben Tag. Sie reden direkt mit dem, der Ihre Seite baut.</p>
-
-        <p>Der Schwarzwald ist Heimat, Deutschland der Wirkungsbereich. Ich kenne die Tonalität, die in mittelständischen Betrieben funktioniert.</p>
-
-        <div class="about-meta">
-          <div class="about-meta-item">
-            <span class="about-meta-label">Sitz</span>
-            <span class="about-meta-value">Trossingen, BW</span>
-          </div>
-          <div class="about-meta-item">
-            <span class="about-meta-label">Stack</span>
-            <span class="about-meta-value">HTML · CSS · JS</span>
-          </div>
-          <div class="about-meta-item">
-            <span class="about-meta-label">Antwortzeit</span>
-            <span class="about-meta-value">≤ 24 Stunden</span>
-          </div>
+      <div class="leistung">
+        <span class="leistung-num">06</span>
+        <div>
+          <p class="leistung-title">Klare Übergabe</p>
+          <p class="leistung-desc">Sie bekommen Domain, Quellcode und eine kurze Einführung. Was danach passiert, entscheiden Sie.</p>
         </div>
       </div>
 
     </div>
+
   </div>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     ARBEITEN
+     PROZESS
 ══════════════════════════════════════ -->
-<section class="arbeiten" id="arbeiten">
+<section class="section-pad prozess" id="prozess">
   <div class="wrap">
 
-    <div class="arbeiten-hd reveal">
-      <span class="eyebrow">Bisherige Arbeiten</span>
-      <h2 class="display-l">Werkstücke, die online sind.</h2>
-      <p class="lede" style="margin: 24px auto 0;">Klicken Sie auf eine Vorschau und schauen Sie selbst. Live, nicht Mockup.</p>
+    <div class="prozess-head">
+      <div class="section-meta">
+        <span class="section-meta-num">02</span>
+        <span class="section-meta-label">Ablauf</span>
+      </div>
+      <h2 class="t-h2">So läuft es ab.</h2>
     </div>
 
-    <div class="arbeiten-list">
+    <ol class="prozess-list">
 
-      <article class="arbeit reveal">
-        <a class="arbeit-thumb" href="https://weber-elektrotechnik-test.netlify.app" target="_blank" rel="noopener noreferrer">
-          <img src="https://image.thum.io/get/width/1000/crop/625/https://weber-elektrotechnik-test.netlify.app" alt="Alexander Weber Elektrotechnik" loading="lazy">
-        </a>
-        <div class="arbeit-meta">
-          <p class="arbeit-meta-tag">Elektrotechnik · Trossingen</p>
-          <h3 class="arbeit-meta-name">Alexander Weber Elektrotechnik</h3>
-          <p class="arbeit-meta-prose">
-            Ein Wix-Baukasten ohne Mobile-Optimierung wurde zur maßgeschneiderten Website mit <strong>1,4 Sek. Ladezeit</strong>, klarer Leistungsstruktur und direkter Telefon-CTA.
+      <li class="prozess-step">
+        <span class="prozess-step-num">01</span>
+        <p class="prozess-step-title">Gespräch</p>
+        <div>
+          <p class="prozess-step-desc">
+            Ein kurzes Telefonat, in dem ich verstehe, was Ihr Betrieb macht, wer Ihre Kunden sind und was die Website leisten soll. Kostenlos, unverbindlich.
           </p>
-          <a class="arbeit-meta-link" href="https://weber-elektrotechnik-test.netlify.app" target="_blank" rel="noopener noreferrer">
-            Live ansehen →
-          </a>
+          <span class="prozess-step-meta">~ 20 Min · Telefon</span>
         </div>
-      </article>
+      </li>
 
-      <article class="arbeit reveal">
-        <a class="arbeit-thumb" href="https://fenster-hotz-test.netlify.app" target="_blank" rel="noopener noreferrer">
-          <img src="https://image.thum.io/get/width/1000/crop/625/https://fenster-hotz-test.netlify.app" alt="Hotz Fenster & Türen" loading="lazy">
-        </a>
-        <div class="arbeit-meta">
-          <p class="arbeit-meta-tag">Fenster &amp; Türen · Donaueschingen</p>
-          <h3 class="arbeit-meta-name">Hotz Fenster &amp; Türen</h3>
-          <p class="arbeit-meta-prose">
-            Erste eigene Online-Präsenz. Mobil-first, übersichtliche Leistungsdarstellung, Anfrageformular mit <strong>direkter Weiterleitung</strong>.
+      <li class="prozess-step">
+        <span class="prozess-step-num">02</span>
+        <p class="prozess-step-title">Angebot</p>
+        <div>
+          <p class="prozess-step-desc">
+            Sie bekommen ein schriftliches Angebot mit Festpreis, Lieferumfang und Liefertermin. Keine Überraschungen, keine Zusatzkosten.
           </p>
-          <a class="arbeit-meta-link" href="https://fenster-hotz-test.netlify.app" target="_blank" rel="noopener noreferrer">
-            Live ansehen →
-          </a>
+          <span class="prozess-step-meta">~ 2 Werktage</span>
         </div>
-      </article>
+      </li>
 
-    </div>
+      <li class="prozess-step">
+        <span class="prozess-step-num">03</span>
+        <p class="prozess-step-title">Bauen</p>
+        <div>
+          <p class="prozess-step-desc">
+            Ab Ihrer Zusage beginne ich. Zwischendurch ein erster Entwurf, eine Überarbeitungsrunde ist immer inklusive. Sie behalten den Überblick.
+          </p>
+          <span class="prozess-step-meta">14 bis 30 Tage</span>
+        </div>
+      </li>
+
+      <li class="prozess-step">
+        <span class="prozess-step-num">04</span>
+        <p class="prozess-step-title">Übergabe</p>
+        <div>
+          <p class="prozess-step-desc">
+            Die Seite geht live. Sie bekommen Domain, Quellcode und eine kurze Einführung in die Verwaltung. Bei Bedarf laufender Support.
+          </p>
+          <span class="prozess-step-meta">3 – 6 Monate Support inklusive</span>
+        </div>
+      </li>
+
+    </ol>
+
   </div>
 </section>
 
@@ -1610,42 +1219,45 @@
 <!-- ══════════════════════════════════════
      PREISE
 ══════════════════════════════════════ -->
-<section class="preise" id="preise">
+<section class="section-pad" id="preise">
   <div class="wrap">
 
-    <div class="preise-hd reveal">
-      <span class="eyebrow">Preise</span>
-      <h2 class="display-l">Einmal investiert. Dauerhaft im Besitz.</h2>
-      <p class="lede" style="margin: 24px auto 0;">Kein Abo, keine versteckten Kosten. Was Sie sehen, ist der Festpreis.</p>
+    <div class="preise-head">
+      <div class="section-meta" style="justify-content: center;">
+        <span class="section-meta-num">03</span>
+        <span class="section-meta-label">Preise</span>
+      </div>
+      <h2 class="t-h2">Drei Größen. Ein Festpreis.</h2>
+      <p class="t-lede">Kein Abo, keine versteckten Kosten. Was Sie sehen, ist der Preis.</p>
     </div>
 
     <div class="preise-grid">
 
-      <div class="preis reveal">
+      <div class="preis">
         <p class="preis-name">Visitenkarte</p>
         <p class="preis-desc">Für Einzelunternehmer und Kleinstbetriebe, die professionell sichtbar werden wollen.</p>
-        <div class="preis-price">
+        <div class="preis-price-row">
           <span class="preis-amount">490</span>
           <span class="preis-currency">€</span>
         </div>
         <p class="preis-period">einmalig · netto</p>
         <div class="preis-rule"></div>
         <ul class="preis-list">
-          <li>1 Landing Page, maßgeschneidert</li>
-          <li>Mobil &amp; Desktop gleich gut</li>
-          <li>Kontaktformular mit Weiterleitung</li>
+          <li>1 Landing Page</li>
+          <li>Mobil &amp; Desktop</li>
+          <li>Kontaktformular</li>
           <li>Unter 2 Sek. Ladezeit</li>
-          <li>Google-Sichtbarkeit ohne Werbebudget</li>
+          <li>Lokale Google-Sichtbarkeit</li>
           <li>14 Tage Lieferzeit</li>
         </ul>
         <a href="#kontakt" class="preis-cta">Anfragen</a>
       </div>
 
-      <div class="preis featured reveal d1">
+      <div class="preis featured">
         <span class="preis-badge">Empfohlen</span>
         <p class="preis-name">Standard</p>
         <p class="preis-desc">Für KMUs und Dienstleister, die über die Website ernsthaft Anfragen gewinnen wollen.</p>
-        <div class="preis-price">
+        <div class="preis-price-row">
           <span class="preis-amount">990</span>
           <span class="preis-currency">€</span>
         </div>
@@ -1653,21 +1265,20 @@
         <div class="preis-rule"></div>
         <ul class="preis-list">
           <li>Bis zu 5 Unterseiten</li>
-          <li>Maßgeschneidert, kein Template</li>
-          <li>Google Maps + Kontaktformular</li>
+          <li>Kontaktformular + Google Maps</li>
           <li>Unter 2 Sek. Ladezeit</li>
-          <li>Lokal bei Google sichtbar</li>
+          <li>SEO-Fundament</li>
           <li>1 Überarbeitungsrunde</li>
-          <li>3 Monate Support inklusive</li>
+          <li>3 Monate Support</li>
           <li>21 Tage Lieferzeit</li>
         </ul>
         <a href="#kontakt" class="preis-cta">Anfragen</a>
       </div>
 
-      <div class="preis reveal d2">
+      <div class="preis">
         <p class="preis-name">Premium</p>
         <p class="preis-desc">Für etablierte Betriebe mit Conversion-Anspruch und Wachstumsperspektive.</p>
-        <div class="preis-price">
+        <div class="preis-price-row">
           <span class="preis-amount">1.690</span>
           <span class="preis-currency">€</span>
         </div>
@@ -1675,9 +1286,8 @@
         <div class="preis-rule"></div>
         <ul class="preis-list">
           <li>Bis zu 10 Unterseiten</li>
-          <li>Conversion-fokussiertes Design</li>
           <li>CMS: Inhalte selbst pflegen</li>
-          <li>SEO + Analytics inklusive</li>
+          <li>SEO + Analytics</li>
           <li>2 Überarbeitungsrunden</li>
           <li>6 Monate Prioritäts-Support</li>
           <li>30 Tage Lieferzeit</li>
@@ -1687,9 +1297,69 @@
 
     </div>
 
-    <p class="preise-foot reveal">
-      Jedes Projekt beginnt mit einem unverbindlichen Gespräch. <a href="#kontakt">Sonderwünsche &amp; individuelle Pakete auf Anfrage</a>.
+    <p class="preise-foot">
+      Sonderwünsche oder ein individuelles Paket? <a href="#kontakt">Auf Anfrage</a>.
     </p>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     ÜBER
+══════════════════════════════════════ -->
+<section class="section-pad ueber" id="ueber">
+  <div class="wrap">
+
+    <div class="ueber-grid">
+
+      <div class="ueber-card">
+        <img src="logo-cropped.png" alt="Weber Websites">
+        <div class="ueber-card-name">
+          <p class="ueber-card-name-h">Andreas Weber</p>
+          <p class="ueber-card-name-r">Webdesigner &amp; Webentwickler</p>
+        </div>
+        <div class="ueber-card-meta">
+          <div class="ueber-card-meta-row">
+            <span class="ueber-card-meta-key">Sitz</span>
+            <span class="ueber-card-meta-val">Trossingen, BW</span>
+          </div>
+          <div class="ueber-card-meta-row">
+            <span class="ueber-card-meta-key">Stack</span>
+            <span class="ueber-card-meta-val">HTML · CSS · JavaScript</span>
+          </div>
+          <div class="ueber-card-meta-row">
+            <span class="ueber-card-meta-key">Antwortzeit</span>
+            <span class="ueber-card-meta-val">≤ 24 Stunden</span>
+          </div>
+          <div class="ueber-card-meta-row">
+            <span class="ueber-card-meta-key">Tätig seit</span>
+            <span class="ueber-card-meta-val">2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ueber-prose">
+        <div class="section-meta">
+          <span class="section-meta-num">04</span>
+          <span class="section-meta-label">Über</span>
+        </div>
+        <h2 class="t-h2">Eine Person. Klare Verantwortung.</h2>
+
+        <p>
+          Ich bin <strong>Andreas Weber</strong> und baue Websites für Betriebe in Deutschland. Keine Agentur mit Hotline, kein Whitelabel-Netzwerk. Sie sprechen direkt mit dem, der den Code schreibt.
+        </p>
+
+        <p>
+          Mein Sitz ist Trossingen im Schwarzwald. Mein Wirkungsbereich ist ganz Deutschland. Die Tonalität, die in mittelständischen und handwerklichen Betrieben funktioniert, kenne ich. Ich verkaufe niemandem etwas, was er nicht braucht.
+        </p>
+
+        <p>
+          Mein Anspruch ist <strong>handwerkliche Qualität in einem digitalen Werkstück</strong>: schnell, sauber strukturiert, langlebig. Eine Website, die in zwei Jahren noch dieselbe Funktion hat wie am Tag der Übergabe.
+        </p>
+      </div>
+
+    </div>
 
   </div>
 </section>
@@ -1698,63 +1368,106 @@
 <!-- ══════════════════════════════════════
      FAQ
 ══════════════════════════════════════ -->
-<section class="faq">
+<section class="section-pad">
   <div class="wrap-narrow">
 
-    <div class="faq-hd reveal">
-      <span class="eyebrow">Häufige Fragen</span>
-      <h2 class="display-l">Was Sie vor dem Anruf wissen wollen.</h2>
+    <div class="faq-head">
+      <div class="section-meta" style="justify-content: center;">
+        <span class="section-meta-num">05</span>
+        <span class="section-meta-label">Häufige Fragen</span>
+      </div>
+      <h2 class="t-h2">Was Sie vor dem Anruf wissen wollen.</h2>
     </div>
 
     <div class="faq-list">
 
-      <div class="faq-item reveal">
+      <div class="faq-item">
         <button class="faq-trigger" aria-expanded="false">
           <span class="faq-q">Wie läuft das Projekt konkret ab?</span>
-          <span class="faq-icon" aria-hidden="true">+</span>
+          <span class="faq-icon" aria-hidden="true">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <line x1="6" y1="1" x2="6" y2="11"/>
+              <line x1="1" y1="6" x2="11" y2="6"/>
+            </svg>
+          </span>
         </button>
         <div class="faq-panel"><div class="faq-panel-inner">
-          <p class="faq-a">Erstes Gespräch (kostenlos, 20 Min.) — ich verstehe Ihren Betrieb. Danach: Angebot mit Festpreis und Fixtermin. Wenn Sie zusagen, beginne ich. <strong>Nach 14 bis 30 Tagen</strong> geht die Seite live. Eine Überarbeitungsrunde ist immer inklusive.</p>
+          <p class="faq-a">Erst ein kurzes Telefonat (kostenlos, 20 Min.). Danach ein schriftliches Angebot mit <strong>Festpreis und Liefertermin</strong>. Wenn Sie zusagen, beginne ich. Eine Überarbeitungsrunde ist immer inklusive.</p>
         </div></div>
       </div>
 
-      <div class="faq-item reveal">
+      <div class="faq-item">
         <button class="faq-trigger" aria-expanded="false">
-          <span class="faq-q">Was ist der Unterschied zu Wix oder Jimdo?</span>
-          <span class="faq-icon" aria-hidden="true">+</span>
+          <span class="faq-q">Was ist der Unterschied zu einem Baukasten?</span>
+          <span class="faq-icon" aria-hidden="true">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <line x1="6" y1="1" x2="6" y2="11"/>
+              <line x1="1" y1="6" x2="11" y2="6"/>
+            </svg>
+          </span>
         </button>
         <div class="faq-panel"><div class="faq-panel-inner">
-          <p class="faq-a">Wix ist eine Mietwohnung mit Möbeln, die nicht Ihnen gehören. Eine maßgeschneiderte Website ist Ihr Eigentum: schneller, individueller, ohne monatliche Mietgebühr. Nach drei Jahren haben Sie bei Wix 720 € bezahlt und besitzen <strong>nichts</strong>.</p>
+          <p class="faq-a">Ein Baukasten ist eine Mietwohnung mit Möbeln, die nicht Ihnen gehören. Eine maßgeschneiderte Website ist Ihr Eigentum: schneller, individueller, ohne monatliche Gebühr. Nach drei Jahren haben Sie bei einem Baukasten 720 € bezahlt und besitzen <strong>nichts</strong>.</p>
         </div></div>
       </div>
 
-      <div class="faq-item reveal">
+      <div class="faq-item">
         <button class="faq-trigger" aria-expanded="false">
-          <span class="faq-q">Was passiert nach der Fertigstellung?</span>
-          <span class="faq-icon" aria-hidden="true">+</span>
+          <span class="faq-q">Wem gehört die fertige Seite?</span>
+          <span class="faq-icon" aria-hidden="true">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <line x1="6" y1="1" x2="6" y2="11"/>
+              <line x1="1" y1="6" x2="11" y2="6"/>
+            </svg>
+          </span>
         </button>
         <div class="faq-panel"><div class="faq-panel-inner">
-          <p class="faq-a">Sie bekommen Domain und Quellcode. Im Standard- und Premium-Paket sind 3 bzw. 6 Monate Support inklusive — falls etwas angepasst werden muss. Danach: optional Wartungsvertrag oder Sie machen es selbst.</p>
+          <p class="faq-a">Ihnen. Sie bekommen den vollständigen Quellcode und die Domain auf Ihren Namen. Sie sind nicht an einen Anbieter gebunden, nicht an mich, an niemanden.</p>
         </div></div>
       </div>
 
-      <div class="faq-item reveal">
+      <div class="faq-item">
         <button class="faq-trigger" aria-expanded="false">
-          <span class="faq-q">Brauche ich wirklich eine professionelle Website?</span>
-          <span class="faq-icon" aria-hidden="true">+</span>
+          <span class="faq-q">Was kommt nach der Fertigstellung?</span>
+          <span class="faq-icon" aria-hidden="true">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <line x1="6" y1="1" x2="6" y2="11"/>
+              <line x1="1" y1="6" x2="11" y2="6"/>
+            </svg>
+          </span>
         </button>
         <div class="faq-panel"><div class="faq-panel-inner">
-          <p class="faq-a">Wenn Ihre Website Anfragen bringen soll: ja. Wenn sie nur „auch existiert", reicht eine Visitenkarten-Seite (490 €). Im Vorgespräch klären wir, was Sie wirklich brauchen, <strong>ohne dass Sie etwas Falsches kaufen</strong>.</p>
+          <p class="faq-a">Im Standard- und Premium-Paket sind 3 bzw. 6 Monate Support inklusive, falls etwas angepasst werden muss. Danach optional ein Wartungsvertrag oder Sie machen es selbst. Beides ist möglich.</p>
         </div></div>
       </div>
 
-      <div class="faq-item reveal">
+      <div class="faq-item">
         <button class="faq-trigger" aria-expanded="false">
           <span class="faq-q">Wie schnell wird die Seite gebaut?</span>
-          <span class="faq-icon" aria-hidden="true">+</span>
+          <span class="faq-icon" aria-hidden="true">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <line x1="6" y1="1" x2="6" y2="11"/>
+              <line x1="1" y1="6" x2="11" y2="6"/>
+            </svg>
+          </span>
         </button>
         <div class="faq-panel"><div class="faq-panel-inner">
-          <p class="faq-a">Visitenkarte: <strong>14 Tage</strong>. Standard: <strong>21 Tage</strong>. Premium: <strong>30 Tage</strong>. Ab Ihrer Zusage gerechnet. Sie bekommen einen festen Liefertermin im Angebot, kein „so schnell wie möglich".</p>
+          <p class="faq-a">Visitenkarte: <strong>14 Tage</strong>. Standard: <strong>21 Tage</strong>. Premium: <strong>30 Tage</strong>. Ab Ihrer Zusage gerechnet. Im Angebot bekommen Sie einen festen Liefertermin, kein „so schnell wie möglich".</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">Was, wenn ich keine Texte oder Bilder habe?</span>
+          <span class="faq-icon" aria-hidden="true">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <line x1="6" y1="1" x2="6" y2="11"/>
+              <line x1="1" y1="6" x2="11" y2="6"/>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-panel"><div class="faq-panel-inner">
+          <p class="faq-a">Texte können wir gemeinsam erarbeiten, oft schreibe ich einen ersten Entwurf den Sie nur freigeben. Bilder: ich empfehle einen Fototermin mit einem lokalen Fotografen (200 – 400 €), das hebt jede Seite spürbar. Stock-Fotos gehen auch.</p>
         </div></div>
       </div>
 
@@ -1767,75 +1480,88 @@
 <!-- ══════════════════════════════════════
      KONTAKT
 ══════════════════════════════════════ -->
-<section class="kontakt" id="kontakt">
+<section class="section-pad-sm" id="kontakt">
   <div class="wrap">
-    <div class="kontakt-card reveal">
+
+    <div class="kontakt-card">
       <div class="kontakt-inner">
 
-        <h2 class="display-m">Bereit fürs <em>Upgrade?</em></h2>
-        <p class="kontakt-sub">
-          Kein Verkaufsgespräch, keine Verpflichtung. Sie erzählen, was die Seite leisten soll, ich sage offen, ob ich der richtige bin.
-        </p>
+        <div class="kontakt-left">
+          <div class="section-meta" style="margin-bottom: 24px;">
+            <span class="section-meta-num" style="color: oklch(60% 0.005 70);">06</span>
+            <span class="section-meta-label" style="color: oklch(70% 0.005 70);">Kontakt</span>
+          </div>
+          <h2>Reden wir kurz.</h2>
+          <p class="kontakt-sub">
+            Kein Verkaufsgespräch, keine Verpflichtung. 20 Minuten, in denen Sie erzählen, was die Seite leisten soll, und ich sage offen, ob ich der richtige bin.
+          </p>
+        </div>
 
         <div class="kontakt-channels">
 
           <a href="tel:+49160254070" class="channel">
-            <span class="channel-label">Anrufen</span>
+            <span class="channel-label">// anrufen</span>
             <span class="channel-value">0160 254 070</span>
-            <span class="channel-note">Mo – Fr, 8 – 18 Uhr · Antwort am selben Tag</span>
+            <span class="channel-note">Mo – Fr, 8 – 18 Uhr. Antwort am selben Tag.</span>
           </a>
 
           <a href="mailto:info@weberwebsites.com" class="channel">
-            <span class="channel-label">Schreiben</span>
+            <span class="channel-label">// schreiben</span>
             <span class="channel-value">info@weberwebsites.com</span>
-            <span class="channel-note">Direkt an mich, keine Hotline</span>
+            <span class="channel-note">Direkt an mich, keine Hotline.</span>
           </a>
 
-        </div>
+          <div class="form-section">
+            <button type="button" class="form-toggle" aria-expanded="false" aria-controls="form-panel">
+              <span class="form-toggle-label">Lieber per Formular</span>
+              <span class="form-toggle-icon" aria-hidden="true">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                  <line x1="6" y1="1" x2="6" y2="11"/>
+                  <line x1="1" y1="6" x2="11" y2="6"/>
+                </svg>
+              </span>
+            </button>
+            <div class="form-panel" id="form-panel">
+              <div class="form-panel-inner">
+                <div class="form-inner-pad">
 
-        <div class="form-section">
-          <button type="button" class="form-toggle" aria-expanded="false" aria-controls="form-panel">
-            <span class="form-toggle-label">Lieber per Formular</span>
-            <span class="form-toggle-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="form-panel" id="form-panel">
-            <div class="form-panel-inner">
-              <div class="form-inner-pad">
+                  <form
+                    class="contact-form"
+                    action="https://formspree.io/f/mgoqrqoa"
+                    method="POST"
+                    novalidate>
+                    <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <input type="hidden" name="_subject" value="Neue Anfrage über weberwebsites.com">
 
-                <form
-                  class="contact-form"
-                  action="https://formspree.io/f/mgoqrqoa"
-                  method="POST"
-                  novalidate>
-                  <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
-                  <input type="hidden" name="_subject" value="Neue Anfrage über weberwebsites.com">
+                    <div class="form-field">
+                      <label class="form-label" for="f-name">// name</label>
+                      <input class="form-input" type="text" id="f-name" name="name" required autocomplete="name">
+                    </div>
+                    <div class="form-field">
+                      <label class="form-label" for="f-email">// e-mail</label>
+                      <input class="form-input" type="email" id="f-email" name="email" required autocomplete="email">
+                    </div>
+                    <div class="form-field">
+                      <label class="form-label" for="f-message">// nachricht</label>
+                      <textarea class="form-textarea" id="f-message" name="message" required></textarea>
+                    </div>
 
-                  <div class="form-field">
-                    <label class="form-label" for="f-name">Name</label>
-                    <input class="form-input" type="text" id="f-name" name="name" required autocomplete="name">
-                  </div>
-                  <div class="form-field">
-                    <label class="form-label" for="f-email">E-Mail</label>
-                    <input class="form-input" type="email" id="f-email" name="email" required autocomplete="email">
-                  </div>
-                  <div class="form-field">
-                    <label class="form-label" for="f-message">Worum geht's?</label>
-                    <textarea class="form-textarea" id="f-message" name="message" required></textarea>
-                  </div>
+                    <p class="form-privacy">
+                      Mit Klick auf „Anfrage senden" akzeptieren Sie die <a href="datenschutz.html">Datenschutzerklärung</a>.
+                    </p>
+                    <button type="submit" class="form-submit">Anfrage senden</button>
+                  </form>
 
-                  <p class="form-privacy">
-                    Mit Klick auf „Anfrage senden" akzeptieren Sie die <a href="datenschutz.html">Datenschutzerklärung</a>.
-                  </p>
-                  <button type="submit" class="form-submit">Anfrage senden →</button>
-                </form>
-
+                </div>
               </div>
             </div>
           </div>
+
         </div>
 
       </div>
     </div>
+
   </div>
 </section>
 
@@ -1861,161 +1587,23 @@
 </footer>
 
 
-<!-- ══════════════════════════════════════
-     SCRIPTS
-══════════════════════════════════════ -->
 <script>
-  /* ── Cinematic Scroll Choreography ── */
-  (function() {
-    const root  = document.querySelector('.cinematic');
-    const stage = document.querySelector('.cinematic-stage');
-    if (!root || !stage) return;
-
-    const stats = document.querySelectorAll('.cine-stat-num');
-    let statsAnimated = false;
-
-    // Stage thresholds (progress 0→1 through 500vh)
-    const THRESH = [0, 0.18, 0.38, 0.60, 0.78, 1.01];
-
-    function getStage(p) {
-      for (let i = THRESH.length - 1; i >= 0; i--) {
-        if (p >= THRESH[i]) return Math.min(i, 4);
-      }
-      return 0;
-    }
-
-    function animateStats() {
-      if (statsAnimated) return;
-      statsAnimated = true;
-      const duration = 1200;
-      const start = performance.now();
-      stats.forEach(el => {
-        const target  = parseFloat(el.dataset.target);
-        const dec     = parseInt(el.dataset.decimals, 10);
-        const suffix  = el.dataset.suffix || '';
-        function step(t) {
-          const elapsed = t - start;
-          const p = Math.min(1, elapsed / duration);
-          const eased = 1 - Math.pow(1 - p, 3);
-          const v = target * eased;
-          el.textContent = v.toFixed(dec).replace('.', ',') + suffix;
-          if (p < 1) requestAnimationFrame(step);
-          else el.textContent = target.toFixed(dec).replace('.', ',') + suffix;
-        }
-        requestAnimationFrame(step);
-      });
-    }
-
-    function resetStats() {
-      statsAnimated = false;
-      stats.forEach(el => {
-        const dec = parseInt(el.dataset.decimals, 10);
-        const suffix = el.dataset.suffix || '';
-        el.textContent = (0).toFixed(dec).replace('.', ',') + suffix;
-      });
-    }
-
-    function update() {
-      const rect = root.getBoundingClientRect();
-      const vh   = window.innerHeight;
-      const total = rect.height - vh;
-      if (total <= 0) return;
-      const scrolled = Math.max(0, -rect.top);
-      const p = Math.max(0, Math.min(1, scrolled / total));
-
-      // Per-stage local progress
-      const stageIdx = getStage(p);
-      stage.setAttribute('data-stage', String(stageIdx));
-      stage.style.setProperty('--p', p);
-
-      // Local progress for stage 0 (anchor scale)
-      const p0 = Math.max(0, Math.min(1, p / 0.18));
-      stage.style.setProperty('--p0', p0);
-
-      // Local progress for stage 1 (anchor full size)
-      const p1 = Math.max(0, Math.min(1, (p - 0.05) / 0.13));
-      stage.style.setProperty('--p1', p1);
-
-      // Trigger stats count on stage 4
-      if (stageIdx === 4) animateStats();
-      else if (stageIdx < 4) resetStats();
-    }
-
-    let raf = null;
-    function onScroll() {
-      if (raf) return;
-      raf = requestAnimationFrame(() => {
-        update();
-        raf = null;
-      });
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    update();
-  })();
-
-  /* ── Scroll reveals ── */
-  (function() {
-    const els = document.querySelectorAll('.reveal');
-    if (!('IntersectionObserver' in window) || !els.length) {
-      els.forEach(el => el.classList.add('in'));
-      return;
-    }
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
-    els.forEach(el => io.observe(el));
-  })();
-
-  /* ── Before / After slider ── */
-  (function() {
-    const slider = document.querySelector('.before-after');
-    if (!slider) return;
-    const before = slider.querySelector('.ba-before');
-    const handle = slider.querySelector('.ba-handle');
-    let active = false;
-
-    function setPos(clientX) {
-      const rect = slider.getBoundingClientRect();
-      const p = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-      before.style.clipPath = `inset(0 ${((1 - p) * 100).toFixed(2)}% 0 0)`;
-      handle.style.left = `${(p * 100).toFixed(2)}%`;
-    }
-
-    slider.addEventListener('mousedown',  e => { active = true; setPos(e.clientX); });
-    slider.addEventListener('touchstart', e => { active = true; setPos(e.touches[0].clientX); }, { passive: true });
-    window.addEventListener('mousemove',  e => { if (active) setPos(e.clientX); });
-    window.addEventListener('touchmove',  e => { if (active) setPos(e.touches[0].clientX); }, { passive: true });
-    window.addEventListener('mouseup',  () => active = false);
-    window.addEventListener('touchend', () => active = false);
-  })();
-
-  /* ── FAQ accordion ── */
-  (function() {
-    const triggers = document.querySelectorAll('.faq-trigger');
-    triggers.forEach(t => {
-      t.addEventListener('click', () => {
-        const expanded = t.getAttribute('aria-expanded') === 'true';
-        t.setAttribute('aria-expanded', String(!expanded));
-      });
+  /* FAQ accordion */
+  document.querySelectorAll('.faq-trigger').forEach(t => {
+    t.addEventListener('click', () => {
+      const expanded = t.getAttribute('aria-expanded') === 'true';
+      t.setAttribute('aria-expanded', String(!expanded));
     });
-  })();
+  });
 
-  /* ── Form panel toggle ── */
-  (function() {
-    const toggle = document.querySelector('.form-toggle');
-    if (!toggle) return;
-    toggle.addEventListener('click', () => {
-      const expanded = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', String(!expanded));
+  /* Form panel toggle */
+  const formToggle = document.querySelector('.form-toggle');
+  if (formToggle) {
+    formToggle.addEventListener('click', () => {
+      const expanded = formToggle.getAttribute('aria-expanded') === 'true';
+      formToggle.setAttribute('aria-expanded', String(!expanded));
     });
-  })();
+  }
 </script>
 
 </body>
