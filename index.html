@@ -251,152 +251,308 @@
     }
 
     /* ════════════════════════════════════════════════════════════
-       HERO — Werkstatt-Titelblatt:
-       Logo + Overline + Display + Sub + CTAs + Specs-Leiste
+       HERO — Asymmetric Apple-grade:
+       Left column: Trust-Badge / Headline / Sub / CTAs / Trust-Strip
+       Right column: 3D-tilted Live-Mockup + floating data cards
     ════════════════════════════════════════════════════════════ */
     .hero {
-      padding: clamp(112px, 13vw, 152px) 0 clamp(48px, 6vw, 72px);
-      text-align: center;
+      padding: clamp(108px, 12vw, 144px) 0 clamp(72px, 9vw, 112px);
       position: relative;
+      overflow: hidden;
     }
-    /* Subtle dot-grid backdrop — drafting paper feel */
+    /* Soft warm halo behind the mockup */
     .hero::before {
       content: '';
       position: absolute;
+      top: 18%;
+      right: -10%;
+      width: 720px; height: 720px;
+      background:
+        radial-gradient(circle at center,
+          oklch(44% 0.13 32 / 0.10),
+          transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+      will-change: transform;
+    }
+    /* Drafting-paper dot grid */
+    .hero::after {
+      content: '';
+      position: absolute;
       inset: 0;
-      background-image: radial-gradient(circle at center, oklch(15% 0.01 60 / 0.07) 1px, transparent 1.4px);
+      background-image: radial-gradient(circle at center, oklch(15% 0.01 60 / 0.05) 1px, transparent 1.4px);
       background-size: 28px 28px;
-      mask-image: radial-gradient(ellipse 70% 60% at center 38%, oklch(0% 0 0) 0%, transparent 75%);
-      -webkit-mask-image: radial-gradient(ellipse 70% 60% at center 38%, oklch(0% 0 0) 0%, transparent 75%);
+      mask-image: radial-gradient(ellipse 90% 80% at center 40%, oklch(0% 0 0) 0%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 90% 80% at center 40%, oklch(0% 0 0) 0%, transparent 80%);
       pointer-events: none;
       z-index: 0;
     }
     .hero > .wrap { position: relative; z-index: 1; }
 
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: center;
+    }
+
     @keyframes fade-up {
-      from { opacity: 0; transform: translateY(16px); }
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .hero-logo {
-      height: clamp(40px, 4vw, 52px);
-      width: auto;
-      margin: 0 auto clamp(32px, 4vw, 48px);
-      display: block;
+    /* LEFT COLUMN */
+    .hero-text {
+      max-width: 640px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      padding: 6px 6px 6px 14px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 12.5px;
+      color: var(--ink-2);
+      letter-spacing: -0.005em;
+      margin-bottom: clamp(28px, 3vw, 40px);
+      box-shadow: 0 1px 2px oklch(15% 0.01 60 / 0.04);
       opacity: 0;
       animation: fade-up 900ms var(--ease-out) 60ms forwards;
     }
-
-    .hero-overline {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 11.5px;
-      color: var(--ink-3);
-      letter-spacing: 0.14em;
+    .hero-badge-text strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .hero-badge-sep {
+      width: 1px; height: 14px;
+      background: var(--line);
+      margin: 0 12px;
+    }
+    .hero-badge-stars {
+      display: inline-flex; align-items: center; gap: 2px;
+      margin-right: 8px;
+    }
+    .hero-badge-stars svg {
+      width: 11px; height: 11px;
+      color: var(--brick);
+    }
+    .hero-badge-pill {
+      background: var(--ink);
+      color: var(--paper);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      font-weight: 500;
-      margin-bottom: clamp(28px, 3vw, 40px);
-      opacity: 0;
-      animation: fade-up 900ms var(--ease-out) 160ms forwards;
-    }
-    .hero-overline-rule {
-      display: inline-block;
-      width: 24px;
-      height: 1px;
-      background: var(--line-2);
-    }
-    .hero-overline-dot {
-      width: 6px; height: 6px;
-      background: var(--brick);
-      border-radius: 50%;
-      flex-shrink: 0;
+      padding: 5px 10px;
+      border-radius: 999px;
+      margin-left: 12px;
     }
 
     .hero-headline {
+      font-size: clamp(48px, 6.2vw, 96px);
+      font-weight: 600;
+      line-height: 0.98;
+      letter-spacing: -0.044em;
+      color: var(--ink);
       max-width: 18ch;
-      margin: 0 auto;
-      opacity: 0;
-      animation: fade-up 1000ms var(--ease-out) 260ms forwards;
     }
+    .hero-headline .word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fade-up 900ms var(--ease-out) forwards;
+    }
+    .hero-headline-em {
+      color: var(--brick);
+    }
+
     .hero-sub {
-      margin: clamp(20px, 2.4vw, 32px) auto 0;
-      max-width: 48ch;
+      margin-top: clamp(24px, 2.8vw, 36px);
+      font-size: clamp(17px, 1.4vw, 20px);
+      line-height: 1.5;
+      color: var(--ink-2);
+      letter-spacing: -0.012em;
+      max-width: 44ch;
       opacity: 0;
-      animation: fade-up 900ms var(--ease-out) 420ms forwards;
+      animation: fade-up 900ms var(--ease-out) 720ms forwards;
     }
+    .hero-sub strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
     .hero-actions {
       margin-top: clamp(32px, 3.6vw, 44px);
       display: inline-flex;
       align-items: center;
-      gap: 28px;
+      gap: 16px;
       flex-wrap: wrap;
-      justify-content: center;
       opacity: 0;
-      animation: fade-up 900ms var(--ease-out) 560ms forwards;
+      animation: fade-up 900ms var(--ease-out) 860ms forwards;
     }
-    .hero-actions .nav-phone-mobile {
-      font-size: 14.5px;
-      font-weight: 400;
-      color: var(--ink-3);
-      letter-spacing: -0.011em;
-      transition: color 200ms var(--ease);
-    }
-    .hero-actions .nav-phone-mobile strong {
-      color: var(--ink);
-      font-weight: 600;
-      font-variant-numeric: tabular-nums;
-      margin-left: 4px;
-    }
-    .hero-actions .nav-phone-mobile:hover { color: var(--ink); }
-    .hero-actions .nav-phone-mobile:hover strong { color: var(--brick); }
+    .hero-actions .btn { padding: 15px 26px; font-size: 15.5px; }
 
-    /* Specs-Leiste: title-block style technical info */
-    .hero-specs {
-      max-width: 760px;
-      margin: clamp(56px, 7vw, 88px) auto 0;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+    /* Trust strip below CTAs */
+    .hero-trust {
+      margin-top: clamp(40px, 5vw, 60px);
+      padding-top: clamp(28px, 3vw, 36px);
       border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      opacity: 0;
-      animation: fade-up 1100ms var(--ease-out) 720ms forwards;
-    }
-    .hero-spec {
-      padding: 20px 24px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      text-align: left;
+      gap: 14px;
+      opacity: 0;
+      animation: fade-up 1000ms var(--ease-out) 1000ms forwards;
+    }
+    .hero-trust-label {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--ink-4);
+    }
+    .hero-trust-row {
+      display: flex;
+      align-items: center;
+      gap: clamp(20px, 2.4vw, 36px);
+      flex-wrap: wrap;
+    }
+    .hero-trust-client {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.014em;
+      transition: color 220ms var(--ease);
+    }
+    .hero-trust-client:hover { color: var(--brick); }
+    .hero-trust-sep {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--ink-4);
+    }
+
+    /* RIGHT COLUMN — Mockup with floating cards */
+    .hero-mockup {
       position: relative;
+      perspective: 1600px;
+      transform-style: preserve-3d;
+      will-change: transform;
     }
-    .hero-spec + .hero-spec::before {
-      content: '';
+    .hero-mockup-glow {
       position: absolute;
-      top: 16px; bottom: 16px; left: 0;
-      width: 1px;
-      background: var(--line);
+      inset: 15% -5% -10% -5%;
+      background: radial-gradient(ellipse at center,
+        oklch(44% 0.13 32 / 0.14),
+        transparent 60%);
+      filter: blur(50px);
+      z-index: 0;
+      pointer-events: none;
     }
-    .hero-spec-label {
+    .hero-device {
+      position: relative;
+      z-index: 1;
+      background: var(--ink);
+      border-radius: 14px;
+      padding: 12px;
+      transform: rotateY(-7deg) rotateX(4deg);
+      box-shadow:
+        0 1px 0 oklch(34% 0.01 60) inset,
+        0 0 0 1px oklch(8% 0.01 60),
+        0 48px 96px -32px oklch(15% 0.01 60 / 0.28),
+        0 20px 56px -8px oklch(15% 0.01 60 / 0.15);
+      animation: device-breathe 8s ease-in-out infinite;
+      opacity: 0;
+      animation: device-breathe 8s ease-in-out infinite, fade-up 1200ms var(--ease-out) 480ms forwards;
+    }
+    @keyframes device-breathe {
+      0%, 100% { transform: rotateY(-7deg) rotateX(4deg) translateY(0); }
+      50%      { transform: rotateY(-7deg) rotateX(4deg) translateY(-10px); }
+    }
+    .hero-device-screen {
+      border-radius: 4px;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      background: var(--paper);
+    }
+    .hero-device-screen img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    /* Floating data cards */
+    .float-card {
+      position: absolute;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow:
+        0 1px 0 oklch(100% 0 0) inset,
+        0 16px 32px -8px oklch(15% 0.01 60 / 0.18),
+        0 6px 12px -4px oklch(15% 0.01 60 / 0.1);
+      z-index: 3;
+      min-width: 168px;
+      backdrop-filter: blur(4px);
+    }
+    .float-card-label {
       font-size: 10.5px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--ink-4);
       font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
-    .hero-spec-val {
-      font-size: 16px;
+    .float-card-label::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--brick);
+      border-radius: 50%;
+    }
+    .float-card-value {
+      font-size: 26px;
+      font-weight: 600;
       color: var(--ink);
-      letter-spacing: -0.012em;
-      font-weight: 500;
+      letter-spacing: -0.028em;
+      line-height: 1;
       font-variant-numeric: tabular-nums;
     }
-    .hero-spec-val small {
-      font-size: 12.5px;
-      font-weight: 400;
+    .float-card-sub {
+      font-size: 12px;
       color: var(--ink-3);
       letter-spacing: -0.005em;
-      margin-left: 6px;
+    }
+    .float-card-sub .delta {
+      color: var(--brick);
+      font-weight: 600;
+      margin-left: 4px;
+    }
+    .float-card.top {
+      top: -28px;
+      left: -36px;
+      animation: float-1 5.5s ease-in-out infinite, fade-up 1000ms var(--ease-out) 900ms forwards;
+      opacity: 0;
+    }
+    .float-card.bottom {
+      bottom: -32px;
+      right: -28px;
+      animation: float-2 6.5s ease-in-out infinite, fade-up 1000ms var(--ease-out) 1100ms forwards;
+      opacity: 0;
+    }
+    @keyframes float-1 {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-14px); }
+    }
+    @keyframes float-2 {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(10px); }
     }
 
     /* ════════════════════════════════════════════════════════════
@@ -1184,6 +1340,13 @@
     @media (max-width: 1024px) {
       .wrap, .wrap-text { padding: 0 28px; }
 
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 80px;
+      }
+      .hero-text { max-width: 720px; margin: 0 auto; }
+      .hero-mockup { max-width: 580px; margin: 0 auto; }
+
       .case-head { grid-template-columns: 1fr; gap: 32px; align-items: start; }
       .case-body, .case.reverse .case-body { grid-template-columns: 1fr; gap: 48px; }
       .case.reverse .case-thumb { order: 0; }
@@ -1202,27 +1365,33 @@
       .nav-links { display: none; }
       .nav-logo { height: 26px; }
 
-      .hero { padding-top: 100px; }
-      .hero-logo { height: 36px; margin-bottom: 24px; }
-      .hero-overline { font-size: 10.5px; letter-spacing: 0.12em; }
-      .hero-overline-rule { width: 18px; }
-      .hero-actions { flex-direction: column; width: 100%; align-items: stretch; gap: 18px; }
+      .hero { padding-top: 100px; padding-bottom: 64px; }
+      .hero-grid { gap: 56px; }
+      .hero-badge {
+        flex-wrap: wrap;
+        gap: 8px 0;
+        font-size: 11.5px;
+        padding: 7px 8px 7px 12px;
+      }
+      .hero-badge-sep { display: none; }
+      .hero-badge-pill { margin-left: auto; }
+      .hero-headline { font-size: clamp(40px, 10vw, 56px); max-width: 100%; }
+      .hero-sub { font-size: 16px; }
+      .hero-actions { flex-direction: column; width: 100%; align-items: stretch; gap: 16px; }
       .hero-actions .btn { width: 100%; justify-content: center; }
-      .hero-actions .nav-phone-mobile { text-align: center; padding: 8px 0; }
+      .hero-actions .btn-text { justify-content: center; }
+      .hero-trust { margin-top: 36px; padding-top: 24px; }
+      .hero-trust-row { gap: 14px 22px; }
 
-      .hero-specs {
-        grid-template-columns: 1fr;
-        margin-top: 48px;
+      .hero-device { transform: rotateY(-4deg) rotateX(3deg); }
+      @keyframes device-breathe {
+        0%, 100% { transform: rotateY(-4deg) rotateX(3deg) translateY(0); }
+        50%      { transform: rotateY(-4deg) rotateX(3deg) translateY(-6px); }
       }
-      .hero-spec {
-        padding: 18px 4px;
-        border-top: 1px solid var(--line);
-      }
-      .hero-spec:first-child { border-top: none; }
-      .hero-spec + .hero-spec::before { display: none; }
-      .hero-specs {
-        border-top: none;
-      }
+      .float-card { min-width: 140px; padding: 11px 13px; }
+      .float-card-value { font-size: 22px; }
+      .float-card.top { top: -18px; left: -12px; }
+      .float-card.bottom { bottom: -22px; right: -12px; }
 
       .before-after { aspect-ratio: 4 / 3; }
       .proof-caption { grid-template-columns: 1fr; gap: 12px; padding: 0 22px; }
@@ -1248,11 +1417,12 @@
         transition-duration: 0.01ms !important;
       }
       html { scroll-behavior: auto; }
-      .reveal, .hero-logo, .hero-overline, .hero-headline, .hero-sub, .hero-actions, .hero-specs, .proof-frame {
+      .reveal, .hero-badge, .hero-headline, .hero-headline .word, .hero-sub, .hero-actions, .hero-trust, .hero-device, .float-card, .proof-frame {
         opacity: 1 !important;
         transform: none !important;
         animation: none !important;
       }
+      .hero-device { transform: rotateY(-7deg) rotateX(4deg) !important; }
     }
 
     .proof, .case, .werkstatt, .angebot, .faq, .kontakt {
@@ -1288,49 +1458,88 @@
 ════════════════════════════════════════════════════════════ -->
 <section class="hero" id="top">
   <div class="wrap">
+    <div class="hero-grid">
 
-    <img src="logo-cropped.png" alt="Weber Websites" class="hero-logo">
+      <!-- LEFT — Trust Badge / Headline / Sub / CTAs / Trust Strip -->
+      <div class="hero-text">
 
-    <div class="hero-overline">
-      <span class="hero-overline-rule" aria-hidden="true"></span>
-      <span class="hero-overline-dot" aria-hidden="true"></span>
-      Verfügbar ab Q3 2026
-      <span class="hero-overline-rule" aria-hidden="true"></span>
+        <div class="hero-badge">
+          <span class="hero-badge-stars" aria-hidden="true">
+            <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 .5l1.6 3.6 3.9.4-3 2.7.9 3.9L6 9.2 2.6 11.1l.9-3.9-3-2.7 3.9-.4z"/></svg>
+            <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 .5l1.6 3.6 3.9.4-3 2.7.9 3.9L6 9.2 2.6 11.1l.9-3.9-3-2.7 3.9-.4z"/></svg>
+            <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 .5l1.6 3.6 3.9.4-3 2.7.9 3.9L6 9.2 2.6 11.1l.9-3.9-3-2.7 3.9-.4z"/></svg>
+            <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 .5l1.6 3.6 3.9.4-3 2.7.9 3.9L6 9.2 2.6 11.1l.9-3.9-3-2.7 3.9-.4z"/></svg>
+            <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 .5l1.6 3.6 3.9.4-3 2.7.9 3.9L6 9.2 2.6 11.1l.9-3.9-3-2.7 3.9-.4z"/></svg>
+          </span>
+          <span class="hero-badge-text"><strong>5.0</strong> · 2+ Live-Projekte</span>
+          <span class="hero-badge-sep" aria-hidden="true"></span>
+          <span class="hero-badge-text">Lieferung in <strong>14 – 30 Tagen</strong></span>
+          <span class="hero-badge-pill">Q3 frei</span>
+        </div>
+
+        <h1 class="hero-headline">
+          <span class="word" style="animation-delay: 200ms">Websites,</span>
+          <span class="word" style="animation-delay: 290ms">die</span>
+          <span class="word" style="animation-delay: 370ms">Besucher</span>
+          <span class="word" style="animation-delay: 460ms">in</span>
+          <span class="word hero-headline-em" style="animation-delay: 540ms">Kunden</span>
+          <span class="word hero-headline-em" style="animation-delay: 620ms">verwandeln.</span>
+        </h1>
+
+        <p class="hero-sub">
+          Maßgeschneiderte Websites für deutsche Betriebe, die <strong>Vertrauen schaffen, professionell wirken</strong> und qualifizierte Anfragen liefern. Festpreis und Liefertermin im Angebot.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#kontakt" class="btn btn-primary">
+            Kostenloses Erstgespräch
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="#arbeiten" class="btn-text">
+            Projekte ansehen
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <div class="hero-trust">
+          <span class="hero-trust-label">Vertraut von Betrieben in Deutschland</span>
+          <div class="hero-trust-row">
+            <a href="https://weber-elektrotechnik-test.netlify.app" target="_blank" rel="noopener noreferrer" class="hero-trust-client">Alexander Weber Elektrotechnik</a>
+            <span class="hero-trust-sep" aria-hidden="true"></span>
+            <a href="https://fenster-hotz-test.netlify.app" target="_blank" rel="noopener noreferrer" class="hero-trust-client">Hotz Fenster &amp; Türen</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT — 3D-Mockup mit floating data cards -->
+      <div class="hero-mockup" aria-hidden="true">
+        <div class="hero-mockup-glow"></div>
+
+        <div class="hero-device">
+          <div class="hero-device-screen">
+            <img
+              src="https://image.thum.io/get/width/1400/crop/875/https://weber-elektrotechnik-test.netlify.app"
+              alt=""
+              loading="eager"
+              fetchpriority="high">
+          </div>
+        </div>
+
+        <div class="float-card top">
+          <span class="float-card-label">Performance</span>
+          <span class="float-card-value">98<span style="font-size: 0.55em; color: var(--ink-3); font-weight: 500;"> / 100</span></span>
+          <span class="float-card-sub">PageSpeed Mobile</span>
+        </div>
+
+        <div class="float-card bottom">
+          <span class="float-card-label">Ladezeit</span>
+          <span class="float-card-value">1,4<span style="font-size: 0.55em; color: var(--ink-3); font-weight: 500;"> s</span></span>
+          <span class="float-card-sub">vorher 7,8 s<span class="delta">−82 %</span></span>
+        </div>
+      </div>
+
     </div>
-
-    <h1 class="hero-headline display-1">
-      Website-Werkstatt aus dem Schwarzwald.
-    </h1>
-
-    <p class="hero-sub lede">
-      Maßgeschneiderte Websites für deutsche Betriebe. Festpreis ab 490 €. Liefertermin im Angebot.
-    </p>
-
-    <div class="hero-actions">
-      <a href="#kontakt" class="btn btn-primary">
-        Kostenloses Erstgespräch
-        <span class="arrow" aria-hidden="true">→</span>
-      </a>
-      <a href="tel:+49160254070" class="nav-phone-mobile">
-        oder anrufen: <strong>0160 254 070</strong>
-      </a>
-    </div>
-
-    <dl class="hero-specs">
-      <div class="hero-spec">
-        <dt class="hero-spec-label">Festpreis</dt>
-        <dd class="hero-spec-val">ab 490 € <small>netto</small></dd>
-      </div>
-      <div class="hero-spec">
-        <dt class="hero-spec-label">Liefertermin</dt>
-        <dd class="hero-spec-val">14 – 30 <small>Tage</small></dd>
-      </div>
-      <div class="hero-spec">
-        <dt class="hero-spec-label">Ansprechpartner</dt>
-        <dd class="hero-spec-val">direkt <small>kein Vertrieb</small></dd>
-      </div>
-    </dl>
-
   </div>
 </section>
 
@@ -1807,6 +2016,23 @@
       if (!raf) raf = requestAnimationFrame(update);
     }, { passive: true });
     update();
+  })();
+
+  /* Subtle hero mockup parallax on scroll */
+  (function() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const mockup = document.querySelector('.hero-mockup');
+    if (!mockup) return;
+    let raf = null;
+    function update() {
+      const y = window.scrollY;
+      if (y > 1200) { raf = null; return; }
+      mockup.style.setProperty('translate', `0 ${y * -0.08}px`);
+      raf = null;
+    }
+    window.addEventListener('scroll', () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    }, { passive: true });
   })();
 
   /* Scroll reveals */
