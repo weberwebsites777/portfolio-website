@@ -33,9 +33,9 @@
       --line-2:      oklch(72% 0.012 60);
 
       /* Accent — deep brick, used sparingly */
-      --brick:       oklch(46% 0.16 32);
-      --brick-2:     oklch(38% 0.15 32);
-      --brick-soft:  oklch(46% 0.16 32 / 0.08);
+      --brick:       oklch(44% 0.13 32);
+      --brick-2:     oklch(36% 0.13 32);
+      --brick-soft:  oklch(44% 0.13 32 / 0.08);
 
       /* System */
       --font:        -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", system-ui, sans-serif;
@@ -147,27 +147,32 @@
       text-transform: uppercase;
     }
 
-    /* Section count marker — used 3x max, strategically */
+    /* Section count marker — clean, no rule line */
     .section-mark {
-      display: flex;
+      display: inline-flex;
       align-items: baseline;
       gap: 14px;
-      margin-bottom: 32px;
-      font-size: 13px;
+      margin-bottom: 28px;
+      font-size: 12px;
       color: var(--ink-3);
-      letter-spacing: -0.005em;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
       font-variant-numeric: tabular-nums;
     }
     .section-mark-num {
-      font-weight: 600;
-      color: var(--ink);
+      color: var(--ink-4);
+      font-weight: 500;
     }
-    .section-mark-rule {
-      flex: 1;
+    .section-mark-num::after {
+      content: '';
+      display: inline-block;
+      width: 24px;
       height: 1px;
-      background: var(--line);
-      max-width: 60px;
-      transform: translateY(-3px);
+      background: var(--line-2);
+      vertical-align: middle;
+      margin-left: 14px;
+      margin-bottom: 3px;
     }
 
     /* ════════════════════════════════════════════════════════════
@@ -256,21 +261,24 @@
     .hero-status {
       display: inline-flex;
       align-items: center;
-      gap: 9px;
+      gap: 10px;
       font-size: 12.5px;
       color: var(--ink-3);
-      letter-spacing: -0.005em;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 500;
       margin-bottom: clamp(36px, 4vw, 56px);
       opacity: 0;
       animation: fade-up 900ms var(--ease-out) 60ms forwards;
     }
     .hero-status-dot {
-      width: 7px; height: 7px;
+      width: 6px; height: 6px;
       background: var(--brick);
       border-radius: 50%;
+      flex-shrink: 0;
     }
     .hero-status strong {
-      color: var(--ink-2);
+      color: var(--ink);
       font-weight: 600;
     }
     @keyframes fade-up {
@@ -302,17 +310,19 @@
     }
     .hero-actions .nav-phone-mobile {
       font-size: 14.5px;
-      font-weight: 500;
-      color: var(--ink-2);
+      font-weight: 400;
+      color: var(--ink-3);
       letter-spacing: -0.011em;
-      font-variant-numeric: tabular-nums;
       transition: color 200ms var(--ease);
     }
-    .hero-actions .nav-phone-mobile:hover { color: var(--brick); }
-    .hero-actions .nav-phone-mobile-label {
-      color: var(--ink-4);
-      margin-right: 4px;
+    .hero-actions .nav-phone-mobile strong {
+      color: var(--ink);
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      margin-left: 4px;
     }
+    .hero-actions .nav-phone-mobile:hover { color: var(--ink); }
+    .hero-actions .nav-phone-mobile:hover strong { color: var(--brick); }
 
     /* ════════════════════════════════════════════════════════════
        PROOF — Vorher / Nachher slider as primary visual anchor
@@ -404,31 +414,35 @@
     }
 
     .proof-caption {
-      margin: 36px auto 0;
-      max-width: 760px;
+      margin: 32px auto 0;
+      max-width: 720px;
       padding: 0 40px;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 32px;
-      align-items: start;
-    }
-    .proof-caption-label {
-      font-size: 12.5px;
-      font-weight: 600;
-      color: var(--ink-3);
-      letter-spacing: -0.005em;
-      font-variant-numeric: tabular-nums;
-      padding-top: 3px;
-    }
-    .proof-caption-text {
-      font-size: 15px;
+      text-align: center;
+      font-size: 14.5px;
       line-height: 1.65;
-      color: var(--ink-2);
+      color: var(--ink-3);
       letter-spacing: -0.008em;
     }
-    .proof-caption-text strong {
+    .proof-caption strong {
       color: var(--ink);
       font-weight: 600;
+    }
+    .proof-caption a {
+      color: var(--ink-2);
+      border-bottom: 1px solid var(--line-2);
+      transition: color 220ms var(--ease), border-color 220ms var(--ease);
+    }
+    .proof-caption a:hover {
+      color: var(--brick);
+      border-color: var(--brick);
+    }
+    .proof-caption-hint {
+      display: block;
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--ink-4);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
 
     /* ════════════════════════════════════════════════════════════
@@ -441,40 +455,50 @@
     .case-head {
       display: grid;
       grid-template-columns: 1fr 2fr;
-      gap: 80px;
-      align-items: end;
+      gap: 64px;
+      align-items: start;
       margin-bottom: clamp(48px, 6vw, 80px);
     }
     .case-tagline {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 12px;
+      padding-top: 12px;
     }
     .case-tagline-num {
       font-family: var(--font-num);
-      font-size: clamp(56px, 7vw, 96px);
+      font-size: 13px;
       font-weight: 600;
-      letter-spacing: -0.05em;
-      line-height: 1;
-      color: var(--ink);
+      letter-spacing: 0.04em;
+      color: var(--ink-4);
       font-variant-numeric: tabular-nums;
     }
+    .case-tagline-num::after {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--line-2);
+      vertical-align: middle;
+      margin-left: 14px;
+      margin-bottom: 3px;
+    }
     .case-tagline-tag {
-      font-size: 13px;
-      color: var(--ink-3);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+      font-size: 14px;
+      color: var(--ink);
+      letter-spacing: -0.012em;
       font-weight: 500;
     }
     .case-head-text h2 {
-      max-width: 14ch;
+      max-width: 16ch;
       margin-bottom: 20px;
     }
     .case-head-text p {
       font-size: 17px;
-      line-height: 1.65;
+      line-height: 1.6;
       color: var(--ink-2);
       max-width: 52ch;
+      letter-spacing: -0.008em;
     }
     .case-head-text p strong { color: var(--ink); font-weight: 600; }
 
@@ -518,26 +542,29 @@
 
     .case-meta dl {
       display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 18px 32px;
+      grid-template-columns: 1fr auto;
+      gap: 0;
       align-items: baseline;
-      padding-bottom: 32px;
-      border-bottom: 1px solid var(--line);
+      border-top: 1px solid var(--line);
     }
     .case-meta dt {
-      font-size: 12.5px;
+      font-size: 12px;
       color: var(--ink-3);
-      letter-spacing: 0.04em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       font-weight: 500;
+      padding: 18px 32px 18px 0;
+      border-bottom: 1px solid var(--line);
     }
     .case-meta dd {
-      font-size: 17px;
+      font-size: 16px;
       color: var(--ink);
       letter-spacing: -0.012em;
       font-variant-numeric: tabular-nums;
       font-weight: 500;
       text-align: right;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
     }
     .case-meta dd .delta {
       color: var(--brick);
@@ -578,33 +605,40 @@
       border: 1px solid var(--line);
       border-radius: var(--r);
       overflow: hidden;
-      box-shadow: 0 32px 64px -32px oklch(15% 0.01 60 / 0.15);
+      display: grid;
+      grid-template-rows: 1fr auto;
+      padding: 36px 32px 32px;
+    }
+    .werkstatt-portrait-art {
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 24px;
-      padding: 40px;
-      text-align: center;
     }
-    .werkstatt-portrait img {
-      width: 50%;
-      max-width: 200px;
-      opacity: 0.5;
+    .werkstatt-portrait-art img {
+      width: 60%;
+      max-width: 180px;
+      opacity: 0.35;
     }
-    .werkstatt-portrait-caption {
-      font-size: 12.5px;
-      color: var(--ink-3);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      font-weight: 500;
+    .werkstatt-portrait-foot {
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
     }
     .werkstatt-portrait-name {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 600;
       color: var(--ink);
       letter-spacing: -0.018em;
-      margin-top: 4px;
+    }
+    .werkstatt-portrait-caption {
+      font-size: 11.5px;
+      color: var(--ink-4);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
     }
 
     .werkstatt-text h2 {
@@ -694,9 +728,10 @@
     .angebot-tier-tagline {
       font-size: 14px;
       color: var(--ink-3);
-      line-height: 1.5;
+      line-height: 1.55;
       margin-bottom: 32px;
-      min-height: 42px;
+      letter-spacing: -0.008em;
+      max-width: 28ch;
     }
     .angebot-tier-price {
       display: flex;
@@ -812,7 +847,7 @@
       width: 100%;
       padding: 28px 0;
       display: flex;
-      align-items: baseline;
+      align-items: center;
       justify-content: space-between;
       gap: 32px;
       text-align: left;
@@ -827,15 +862,30 @@
     }
     .faq-toggle {
       flex-shrink: 0;
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--ink-3);
-      width: 24px;
-      text-align: right;
-      transition: color 220ms var(--ease);
+      width: 18px; height: 18px;
+      position: relative;
+      transition: transform 320ms var(--ease);
     }
-    .faq-trigger:hover .faq-toggle { color: var(--brick); }
-    .faq-trigger[aria-expanded="true"] .faq-toggle { color: var(--brick); }
+    .faq-toggle::before,
+    .faq-toggle::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 0;
+      width: 100%; height: 1.5px;
+      background: var(--ink-2);
+      transform-origin: center;
+      transition: background 220ms var(--ease), transform 320ms var(--ease);
+    }
+    .faq-toggle::after {
+      transform: rotate(90deg);
+    }
+    .faq-trigger:hover .faq-toggle::before,
+    .faq-trigger:hover .faq-toggle::after { background: var(--brick); }
+    .faq-trigger[aria-expanded="true"] .faq-toggle::before { background: var(--brick); }
+    .faq-trigger[aria-expanded="true"] .faq-toggle::after {
+      transform: rotate(0deg);
+      background: var(--brick);
+    }
     .faq-panel {
       display: grid;
       grid-template-rows: 0fr;
@@ -887,32 +937,37 @@
       gap: 20px;
     }
     .channel {
-      padding: 28px 0;
+      padding: 24px 0;
       border-top: 1px solid var(--line);
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 16px;
+      grid-template-columns: 100px 1fr auto;
+      gap: 24px;
       align-items: baseline;
       transition: padding 240ms var(--ease);
     }
     .channel:last-of-type { border-bottom: 1px solid var(--line); }
     .channel-key {
-      font-size: 14px;
-      color: var(--ink-3);
-      letter-spacing: 0.04em;
+      font-size: 12px;
+      color: var(--ink-4);
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       font-weight: 500;
     }
     .channel-val {
-      font-size: clamp(20px, 2vw, 26px);
+      font-size: clamp(20px, 2vw, 24px);
       font-weight: 600;
       color: var(--ink);
       letter-spacing: -0.022em;
       font-variant-numeric: tabular-nums;
-      text-align: right;
       transition: color 220ms var(--ease);
     }
+    .channel-arrow {
+      font-size: 16px;
+      color: var(--ink-4);
+      transition: color 220ms var(--ease), transform 240ms var(--ease);
+    }
     .channel:hover .channel-val { color: var(--brick); }
+    .channel:hover .channel-arrow { color: var(--brick); transform: translateX(3px); }
 
     .kontakt-form-section { margin-top: 32px; }
     .form-toggle {
@@ -1084,8 +1139,12 @@
 
       .angebot-tier { padding: 36px 28px 32px; }
 
-      .channel { grid-template-columns: 1fr; gap: 6px; }
-      .channel-val { text-align: left; }
+      .channel {
+        grid-template-columns: 1fr auto;
+        gap: 8px 16px;
+      }
+      .channel-key { grid-column: 1 / -1; }
+      .channel-arrow { align-self: end; }
 
       .footer-row { flex-direction: column; align-items: flex-start; gap: 14px; }
       .footer-links { gap: 18px; flex-wrap: wrap; }
@@ -1140,7 +1199,7 @@
 
     <div class="hero-status">
       <span class="hero-status-dot" aria-hidden="true"></span>
-      Aktuell <strong>verfügbar</strong> für Projekte ab Q3 2026
+      Verfügbar ab Q3 2026
     </div>
 
     <h1 class="hero-headline display-1">
@@ -1157,7 +1216,7 @@
         <span class="arrow" aria-hidden="true">→</span>
       </a>
       <a href="tel:+49160254070" class="nav-phone-mobile">
-        <span class="nav-phone-mobile-label">Anrufen</span> 0160 254 070
+        oder anrufen: <strong>0160 254 070</strong>
       </a>
     </div>
 
@@ -1185,12 +1244,10 @@
       <span class="ba-label ba-label-after">Nachher</span>
     </div>
 
-    <div class="proof-caption">
-      <span class="proof-caption-label">↔  Ziehen</span>
-      <p class="proof-caption-text">
-        <strong>Alexander Weber Elektrotechnik, Trossingen.</strong> Ein veralteter Baukasten wurde zur maßgeschneiderten Site mit 1,4 s Ladezeit. 14 Tage Arbeit. Live unter <a href="https://weber-elektrotechnik-test.netlify.app" target="_blank" rel="noopener noreferrer" style="color: var(--ink); border-bottom: 1px solid var(--line-2);">weber-elektrotechnik-test.netlify.app</a>.
-      </p>
-    </div>
+    <p class="proof-caption">
+      <strong>Alexander Weber Elektrotechnik, Trossingen.</strong> Vom Wix-Baukasten zur maßgeschneiderten Site mit 1,4 s Ladezeit. 14 Tage Arbeit. <a href="https://weber-elektrotechnik-test.netlify.app" target="_blank" rel="noopener noreferrer">Live ansehen</a>.
+      <span class="proof-caption-hint">Ziehen zum Vergleichen</span>
+    </p>
 
   </div>
 </section>
@@ -1296,10 +1353,12 @@
     <div class="werkstatt-grid">
 
       <figure class="werkstatt-portrait reveal">
-        <img src="logo-cropped.png" alt="">
-        <div>
-          <div class="werkstatt-portrait-caption">Portrait folgt</div>
-          <div class="werkstatt-portrait-name">Andreas Weber</div>
+        <div class="werkstatt-portrait-art">
+          <img src="logo-cropped.png" alt="">
+        </div>
+        <div class="werkstatt-portrait-foot">
+          <span class="werkstatt-portrait-name">Andreas Weber</span>
+          <span class="werkstatt-portrait-caption">Portrait folgt</span>
         </div>
       </figure>
 
@@ -1461,7 +1520,7 @@
     <div class="faq-item">
       <button class="faq-trigger" aria-expanded="false">
         <span class="faq-q">Wie läuft das Projekt konkret ab?</span>
-        <span class="faq-toggle" aria-hidden="true">Öffnen</span>
+        <span class="faq-toggle" aria-hidden="true"></span>
       </button>
       <div class="faq-panel"><div class="faq-panel-inner">
         <p class="faq-a">Erst ein 20-Minuten-Telefonat, kostenlos. Wir klären, ob es passt. Danach ein schriftliches Angebot mit <strong>Festpreis und Liefertermin</strong>. Wenn Sie zusagen, beginne ich. Nach 7 Tagen ein erster Entwurf, eine Überarbeitungsrunde ist immer inklusive.</p>
@@ -1471,7 +1530,7 @@
     <div class="faq-item">
       <button class="faq-trigger" aria-expanded="false">
         <span class="faq-q">Was ist der Unterschied zu Wix, Jimdo oder einer Agentur?</span>
-        <span class="faq-toggle" aria-hidden="true">Öffnen</span>
+        <span class="faq-toggle" aria-hidden="true"></span>
       </button>
       <div class="faq-panel"><div class="faq-panel-inner">
         <p class="faq-a"><strong>Wix oder Jimdo</strong> ist eine Mietwohnung mit fremden Möbeln. 20 € pro Monat klingen günstig, sind aber 240 € im Jahr ohne Eigentum. <strong>Eine klassische Agentur</strong> hat Hotline, drei Ansprechpartner, oft Whitelabel-Subunternehmer. <strong>Bei mir:</strong> ein Festpreis, ein Termin, ein Mensch.</p>
@@ -1481,7 +1540,7 @@
     <div class="faq-item">
       <button class="faq-trigger" aria-expanded="false">
         <span class="faq-q">Wem gehört die fertige Seite?</span>
-        <span class="faq-toggle" aria-hidden="true">Öffnen</span>
+        <span class="faq-toggle" aria-hidden="true"></span>
       </button>
       <div class="faq-panel"><div class="faq-panel-inner">
         <p class="faq-a"><strong>Ihnen, vollständig.</strong> Sie bekommen Quellcode und die Domain auf Ihren Namen. Sie sind nicht an mich gebunden, nicht an einen Anbieter. Wenn Sie nach drei Jahren wechseln wollen: kein Problem, kein Datenverlust.</p>
@@ -1491,7 +1550,7 @@
     <div class="faq-item">
       <button class="faq-trigger" aria-expanded="false">
         <span class="faq-q">Was passiert nach der Fertigstellung?</span>
-        <span class="faq-toggle" aria-hidden="true">Öffnen</span>
+        <span class="faq-toggle" aria-hidden="true"></span>
       </button>
       <div class="faq-panel"><div class="faq-panel-inner">
         <p class="faq-a">Im Standard- und Premium-Paket sind <strong>3 bzw. 6 Monate Support</strong> inklusive. Anpassungen, Texte ergänzen, neue Bilder einbauen: kein Problem, kein Stundenzettel. Danach optional ein Wartungsvertrag ab 19 € pro Monat oder Sie pflegen selbst.</p>
@@ -1501,7 +1560,7 @@
     <div class="faq-item">
       <button class="faq-trigger" aria-expanded="false">
         <span class="faq-q">Wie schnell wird die Seite gebaut?</span>
-        <span class="faq-toggle" aria-hidden="true">Öffnen</span>
+        <span class="faq-toggle" aria-hidden="true"></span>
       </button>
       <div class="faq-panel"><div class="faq-panel-inner">
         <p class="faq-a">Visitenkarte: <strong>14 Tage</strong>. Standard: <strong>21 Tage</strong>. Premium: <strong>30 Tage</strong>. Ab Ihrer Zusage gerechnet. Im Angebot bekommen Sie einen festen Liefertermin, kein „so schnell wie möglich".</p>
@@ -1511,7 +1570,7 @@
     <div class="faq-item">
       <button class="faq-trigger" aria-expanded="false">
         <span class="faq-q">Was, wenn ich keine Texte oder Bilder habe?</span>
-        <span class="faq-toggle" aria-hidden="true">Öffnen</span>
+        <span class="faq-toggle" aria-hidden="true"></span>
       </button>
       <div class="faq-panel"><div class="faq-panel-inner">
         <p class="faq-a">Texte schreibe ich für Sie vor, Sie geben sie frei. Günstiger als ein externer Texter, in der Tonalität Ihres Betriebs. Für Bilder empfehle ich einen Fototermin mit einem lokalen Fotografen (200 bis 400 €), das hebt jede Seite spürbar. Stock-Fotos gehen auch.</p>
@@ -1532,7 +1591,6 @@
     <div class="kontakt-left reveal">
       <div class="section-mark">
         <span class="section-mark-num">06</span>
-        <span class="section-mark-rule" aria-hidden="true"></span>
         <span>Kontakt</span>
       </div>
       <h2 class="display-2">Reden wir 20 Minuten.</h2>
@@ -1544,11 +1602,13 @@
       <a href="tel:+49160254070" class="channel">
         <span class="channel-key">Telefon</span>
         <span class="channel-val">0160 254 070</span>
+        <span class="channel-arrow" aria-hidden="true">→</span>
       </a>
 
       <a href="mailto:info@weberwebsites.com" class="channel">
         <span class="channel-key">E-Mail</span>
         <span class="channel-val">info@weberwebsites.com</span>
+        <span class="channel-arrow" aria-hidden="true">→</span>
       </a>
 
       <div class="kontakt-form-section">
@@ -1684,8 +1744,6 @@
     t.addEventListener('click', () => {
       const expanded = t.getAttribute('aria-expanded') === 'true';
       t.setAttribute('aria-expanded', String(!expanded));
-      const toggle = t.querySelector('.faq-toggle');
-      if (toggle) toggle.textContent = expanded ? 'Öffnen' : 'Schließen';
     });
   });
 
