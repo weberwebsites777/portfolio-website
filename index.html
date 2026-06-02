@@ -293,48 +293,66 @@
     }
 
     /* ════════════════════════════════════════════════════════════
-       HERO
+       HERO — Logo prominent, ein Claim, ein CTA, Live-Site als Anker
     ════════════════════════════════════════════════════════════ */
     .hero {
-      padding: clamp(120px, 16vw, 192px) 0 clamp(96px, 12vw, 144px);
+      padding: clamp(112px, 13vw, 152px) 0 clamp(56px, 8vw, 96px);
       position: relative;
       overflow: hidden;
+      text-align: center;
     }
     .hero-glow {
       position: absolute;
-      top: -200px; left: 50%;
+      top: -240px; left: 50%;
       transform: translateX(-50%);
-      width: 900px; height: 600px;
+      width: 1100px; height: 700px;
       background:
         radial-gradient(
           ellipse at center,
-          oklch(42% 0.18 268 / 0.12),
+          oklch(42% 0.18 268 / 0.14),
           transparent 65%
         );
       pointer-events: none;
       z-index: 0;
       will-change: transform;
     }
-    .hero-inner { position: relative; z-index: 1; }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Fade-up keyframe for hero choreography */
+    @keyframes hero-fade-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-logo {
+      height: clamp(48px, 5vw, 64px);
+      width: auto;
+      margin: 0 auto clamp(28px, 3vw, 40px);
+      display: block;
+      opacity: 0;
+      animation: hero-fade-up 900ms var(--ease-out) 60ms forwards;
+    }
 
     .hero-pill {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      padding: 7px 14px 7px 12px;
+      gap: 10px;
+      padding: 6px 14px 6px 11px;
       border-radius: 999px;
       background: var(--bg-2);
       border: 1px solid var(--line);
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 500;
       color: var(--ink-2);
-      letter-spacing: -0.008em;
-      margin-bottom: 36px;
-      transition: border-color 280ms var(--ease), background 280ms var(--ease);
-    }
-    .hero-pill:hover {
-      border-color: var(--line-3);
-      background: var(--bg);
+      letter-spacing: -0.005em;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: hero-fade-up 800ms var(--ease-out) 160ms forwards;
     }
     .hero-pill-dot {
       width: 7px; height: 7px;
@@ -356,74 +374,174 @@
       0%, 100% { transform: scale(0.85); opacity: 0.4; }
       50% { transform: scale(1.3); opacity: 0; }
     }
-    .hero-pill-text strong { color: var(--ink); font-weight: 600; }
+    .hero-pill strong { color: var(--ink); font-weight: 600; }
 
-    .hero-text {
-      text-align: center;
-    }
     .hero-headline {
-      max-width: 16ch;
+      font-size: clamp(56px, 8.8vw, 124px);
+      font-weight: 600;
+      line-height: 0.96;
+      letter-spacing: -0.048em;
+      color: var(--ink);
+      max-width: 13ch;
       margin: 0 auto;
-    }
-    .hero-headline .word {
-      display: inline-block;
       opacity: 0;
-      transform: translateY(28px);
-      animation: word-up 900ms var(--ease-out) forwards;
+      animation: hero-fade-up 1000ms var(--ease-out) 260ms forwards;
     }
-    @keyframes word-up {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .hero-headline .word.gradient {
-      background: linear-gradient(135deg, var(--accent), oklch(58% 0.16 285));
+    .hero-headline em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--accent), oklch(58% 0.18 290));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
 
     .hero-sub {
-      margin: 32px auto 0;
-      text-align: center;
+      margin: clamp(20px, 2vw, 28px) auto 0;
+      font-size: clamp(17px, 1.4vw, 20px);
+      line-height: 1.5;
+      color: var(--ink-3);
+      letter-spacing: -0.012em;
+      max-width: 44ch;
       opacity: 0;
-      animation: word-up 900ms var(--ease-out) 700ms forwards;
+      animation: hero-fade-up 900ms var(--ease-out) 400ms forwards;
     }
 
     .hero-actions {
-      margin-top: 44px;
+      margin-top: clamp(28px, 3.2vw, 40px);
       display: inline-flex;
-      gap: 12px;
+      gap: 24px;
+      align-items: center;
       flex-wrap: wrap;
       justify-content: center;
       opacity: 0;
-      animation: word-up 900ms var(--ease-out) 820ms forwards;
+      animation: hero-fade-up 900ms var(--ease-out) 520ms forwards;
     }
+    .hero-actions .btn-primary {
+      padding: 15px 28px;
+      font-size: 15.5px;
+    }
+    .hero-link-secondary {
+      font-size: 14.5px;
+      font-weight: 500;
+      color: var(--ink-2);
+      letter-spacing: -0.012em;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 200ms var(--ease), gap 220ms var(--ease);
+    }
+    .hero-link-secondary:hover { color: var(--accent); gap: 10px; }
 
-    .hero-trust {
-      margin-top: 56px;
-      display: flex;
-      justify-content: center;
-      gap: clamp(24px, 4vw, 40px);
-      flex-wrap: wrap;
-      font-size: 13.5px;
-      color: var(--ink-3);
-      letter-spacing: -0.008em;
+    /* Showcase — browser frame with live site */
+    .hero-showcase {
+      margin-top: clamp(56px, 7vw, 96px);
+      max-width: 1120px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 1;
       opacity: 0;
-      animation: word-up 900ms var(--ease-out) 940ms forwards;
+      animation: hero-fade-up 1100ms var(--ease-out) 700ms forwards;
     }
-    .hero-trust-item {
-      display: inline-flex; align-items: center; gap: 8px;
+    .browser-frame {
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow:
+        0 1px 0 oklch(100% 0 0 / 0.8) inset,
+        0 40px 96px -32px oklch(14% 0.014 268 / 0.22),
+        0 12px 32px -8px oklch(14% 0.014 268 / 0.12),
+        0 0 80px -20px var(--accent-glow);
+      transition: transform 480ms var(--ease-out), box-shadow 480ms var(--ease-out);
     }
-    .hero-trust-check {
-      width: 16px; height: 16px;
+    .browser-frame:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 1px 0 oklch(100% 0 0 / 0.8) inset,
+        0 56px 112px -32px oklch(14% 0.014 268 / 0.28),
+        0 16px 40px -8px oklch(14% 0.014 268 / 0.14),
+        0 0 100px -16px var(--accent-glow);
+    }
+    .browser-chrome {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 11px 16px;
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--line);
+    }
+    .browser-dots {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .browser-dots span {
+      width: 11px; height: 11px;
       border-radius: 50%;
-      background: var(--accent-soft);
-      color: var(--accent);
+    }
+    .browser-dots span:nth-child(1) { background: oklch(70% 0.16 25); }
+    .browser-dots span:nth-child(2) { background: oklch(82% 0.14 82); }
+    .browser-dots span:nth-child(3) { background: oklch(72% 0.16 145); }
+    .browser-url {
+      flex: 1;
+      max-width: 360px;
+      margin: 0 auto;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-3);
+      padding: 5px 14px;
+      background: var(--bg);
+      border-radius: 6px;
+      border: 1px solid var(--line);
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 8px;
+    }
+    .browser-url::before {
+      content: '';
+      width: 10px; height: 10px;
+      border: 1.5px solid var(--ink-4);
+      border-radius: 50%;
+      border-top-color: transparent;
+      transform: rotate(45deg);
       flex-shrink: 0;
     }
-    .hero-trust-check svg { width: 9px; height: 9px; }
+    .browser-viewport {
+      aspect-ratio: 16 / 9.6;
+      background: var(--bg);
+      overflow: hidden;
+      position: relative;
+    }
+    .browser-viewport img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    .browser-credit {
+      position: absolute;
+      bottom: 14px; right: 14px;
+      background: oklch(14% 0.014 268 / 0.82);
+      backdrop-filter: blur(8px);
+      color: var(--bg);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      letter-spacing: -0.005em;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .browser-credit-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--success);
+    }
 
     /* ════════════════════════════════════════════════════════════
        TRUST METRICS BAR
@@ -1566,9 +1684,15 @@
       .nav-links li:not(:last-child) { display: none; }
       .nav-logo { height: 24px; }
 
-      .hero-trust { gap: 16px 24px; font-size: 13px; }
-      .hero-actions { flex-direction: column; width: 100%; align-items: stretch; }
+      .hero-logo { height: 42px; }
+      .hero-actions { flex-direction: column; width: 100%; align-items: stretch; gap: 14px; }
       .hero-actions .btn { width: 100%; }
+      .hero-link-secondary { justify-content: center; }
+      .hero-showcase { margin-top: 56px; }
+      .browser-chrome { padding: 9px 12px; gap: 10px; }
+      .browser-dots span { width: 9px; height: 9px; }
+      .browser-url { font-size: 11px; max-width: none; padding: 4px 10px; }
+      .browser-credit { font-size: 10.5px; padding: 4px 9px; }
 
       .metrics-grid { grid-template-columns: 1fr; gap: 20px; }
       .metric { border-left: none; padding-left: 0; border-top: 1px solid var(--line); padding-top: 20px; }
@@ -1597,9 +1721,10 @@
       }
       html { scroll-behavior: auto; }
       .reveal, .reveal-left, .reveal-right,
-      .hero-headline .word, .hero-sub, .hero-actions, .hero-trust {
+      .hero-logo, .hero-pill, .hero-headline, .hero-sub, .hero-actions, .hero-showcase {
         opacity: 1 !important;
         transform: none !important;
+        animation: none !important;
       }
     }
 
@@ -1637,64 +1762,59 @@
 <section class="hero" id="top">
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="hero-inner">
+    <div class="hero-content">
 
-      <div style="text-align: center;">
-        <span class="hero-pill">
-          <span class="hero-pill-dot" aria-hidden="true"></span>
-          <span class="hero-pill-text">Noch <strong>2 freie Plätze</strong> für Q3 2026</span>
-        </span>
+      <img src="logo-cropped.png" alt="Weber Websites" class="hero-logo">
+
+      <span class="hero-pill">
+        <span class="hero-pill-dot" aria-hidden="true"></span>
+        Aus dem Schwarzwald · <strong>2 freie Plätze</strong> für Q3 2026
+      </span>
+
+      <h1 class="hero-headline">
+        Websites, die <em>verkaufen.</em>
+      </h1>
+
+      <p class="hero-sub">
+        Maßgeschneidert. Festpreis ab 490 €. Liefertermin garantiert.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#kontakt" class="btn btn-primary" data-magnetic>
+          <span class="btn-magnet-target">
+            Kostenloses Erstgespräch
+            <span class="btn-arrow" aria-hidden="true">→</span>
+          </span>
+        </a>
+        <a href="#arbeiten" class="hero-link-secondary">
+          Live-Arbeiten ansehen
+          <span class="btn-arrow" aria-hidden="true">→</span>
+        </a>
       </div>
 
-      <div class="hero-text">
-        <h1 class="hero-headline t-hero">
-          <span class="word" style="animation-delay: 80ms">Mehr</span> <span class="word" style="animation-delay: 180ms">Anfragen.</span><br>
-          <span class="word" style="animation-delay: 280ms">Mehr</span> <span class="word" style="animation-delay: 380ms">Aufträge.</span><br>
-          <span class="word" style="animation-delay: 480ms">Eine</span> <span class="word" style="animation-delay: 560ms">Website,</span> <span class="word gradient" style="animation-delay: 640ms">die liefert.</span>
-        </h1>
+    </div>
 
-        <p class="hero-sub t-lede">
-          Premium-Webdesign für Handwerksbetriebe und Mittelständler. Festpreis ab 490 €. Liefertermin im Angebot. Ein direkter Ansprechpartner statt Agentur-Hotline.
-        </p>
-
-        <div class="hero-actions">
-          <a href="#kontakt" class="btn btn-primary" data-magnetic>
-            <span class="btn-magnet-target">
-              Kostenloses Erstgespräch
-              <span class="btn-arrow" aria-hidden="true">→</span>
-            </span>
-          </a>
-          <a href="#preise" class="btn btn-secondary">Preise &amp; Pakete ansehen</a>
+    <div class="hero-showcase">
+      <div class="browser-frame">
+        <div class="browser-chrome">
+          <div class="browser-dots" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="browser-url">weber-elektrotechnik.de</div>
+          <div style="width: 36px; flex-shrink: 0;" aria-hidden="true"></div>
         </div>
-
-        <div class="hero-trust">
-          <span class="hero-trust-item">
-            <span class="hero-trust-check" aria-hidden="true">
-              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="2.5,6 5,8.5 9.5,3.5"/>
-              </svg>
-            </span>
-            Festpreis-Garantie
-          </span>
-          <span class="hero-trust-item">
-            <span class="hero-trust-check" aria-hidden="true">
-              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="2.5,6 5,8.5 9.5,3.5"/>
-              </svg>
-            </span>
-            Liefertermin-Garantie
-          </span>
-          <span class="hero-trust-item">
-            <span class="hero-trust-check" aria-hidden="true">
-              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="2.5,6 5,8.5 9.5,3.5"/>
-              </svg>
-            </span>
-            Geld-zurück bei Unzufriedenheit
+        <div class="browser-viewport">
+          <img
+            src="https://image.thum.io/get/width/1600/crop/950/https://weber-elektrotechnik-test.netlify.app"
+            alt="Live-Vorschau: Alexander Weber Elektrotechnik"
+            loading="eager"
+            fetchpriority="high">
+          <span class="browser-credit">
+            <span class="browser-credit-dot" aria-hidden="true"></span>
+            Live · gebaut in 14 Tagen
           </span>
         </div>
       </div>
-
     </div>
   </div>
 </section>
