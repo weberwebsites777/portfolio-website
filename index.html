@@ -251,52 +251,79 @@
     }
 
     /* ════════════════════════════════════════════════════════════
-       HERO — centered claim, scroll-to-proof
+       HERO — Werkstatt-Titelblatt:
+       Logo + Overline + Display + Sub + CTAs + Specs-Leiste
     ════════════════════════════════════════════════════════════ */
     .hero {
-      padding: clamp(120px, 14vw, 168px) 0 clamp(32px, 5vw, 56px);
+      padding: clamp(112px, 13vw, 152px) 0 clamp(48px, 6vw, 72px);
       text-align: center;
       position: relative;
     }
-    .hero-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 12.5px;
-      color: var(--ink-3);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      font-weight: 500;
-      margin-bottom: clamp(36px, 4vw, 56px);
+    /* Subtle dot-grid backdrop — drafting paper feel */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at center, oklch(15% 0.01 60 / 0.07) 1px, transparent 1.4px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(ellipse 70% 60% at center 38%, oklch(0% 0 0) 0%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 60% at center 38%, oklch(0% 0 0) 0%, transparent 75%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero > .wrap { position: relative; z-index: 1; }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-logo {
+      height: clamp(40px, 4vw, 52px);
+      width: auto;
+      margin: 0 auto clamp(32px, 4vw, 48px);
+      display: block;
       opacity: 0;
       animation: fade-up 900ms var(--ease-out) 60ms forwards;
     }
-    .hero-status-dot {
+
+    .hero-overline {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11.5px;
+      color: var(--ink-3);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: clamp(28px, 3vw, 40px);
+      opacity: 0;
+      animation: fade-up 900ms var(--ease-out) 160ms forwards;
+    }
+    .hero-overline-rule {
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--line-2);
+    }
+    .hero-overline-dot {
       width: 6px; height: 6px;
       background: var(--brick);
       border-radius: 50%;
       flex-shrink: 0;
-    }
-    .hero-status strong {
-      color: var(--ink);
-      font-weight: 600;
-    }
-    @keyframes fade-up {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     .hero-headline {
       max-width: 18ch;
       margin: 0 auto;
       opacity: 0;
-      animation: fade-up 1000ms var(--ease-out) 160ms forwards;
+      animation: fade-up 1000ms var(--ease-out) 260ms forwards;
     }
     .hero-sub {
       margin: clamp(20px, 2.4vw, 32px) auto 0;
       max-width: 48ch;
       opacity: 0;
-      animation: fade-up 900ms var(--ease-out) 320ms forwards;
+      animation: fade-up 900ms var(--ease-out) 420ms forwards;
     }
     .hero-actions {
       margin-top: clamp(32px, 3.6vw, 44px);
@@ -306,7 +333,7 @@
       flex-wrap: wrap;
       justify-content: center;
       opacity: 0;
-      animation: fade-up 900ms var(--ease-out) 460ms forwards;
+      animation: fade-up 900ms var(--ease-out) 560ms forwards;
     }
     .hero-actions .nav-phone-mobile {
       font-size: 14.5px;
@@ -323,6 +350,54 @@
     }
     .hero-actions .nav-phone-mobile:hover { color: var(--ink); }
     .hero-actions .nav-phone-mobile:hover strong { color: var(--brick); }
+
+    /* Specs-Leiste: title-block style technical info */
+    .hero-specs {
+      max-width: 760px;
+      margin: clamp(56px, 7vw, 88px) auto 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      opacity: 0;
+      animation: fade-up 1100ms var(--ease-out) 720ms forwards;
+    }
+    .hero-spec {
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-align: left;
+      position: relative;
+    }
+    .hero-spec + .hero-spec::before {
+      content: '';
+      position: absolute;
+      top: 16px; bottom: 16px; left: 0;
+      width: 1px;
+      background: var(--line);
+    }
+    .hero-spec-label {
+      font-size: 10.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-4);
+      font-weight: 500;
+    }
+    .hero-spec-val {
+      font-size: 16px;
+      color: var(--ink);
+      letter-spacing: -0.012em;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+    }
+    .hero-spec-val small {
+      font-size: 12.5px;
+      font-weight: 400;
+      color: var(--ink-3);
+      letter-spacing: -0.005em;
+      margin-left: 6px;
+    }
 
     /* ════════════════════════════════════════════════════════════
        PROOF — Vorher / Nachher slider as primary visual anchor
@@ -1128,9 +1203,26 @@
       .nav-logo { height: 26px; }
 
       .hero { padding-top: 100px; }
+      .hero-logo { height: 36px; margin-bottom: 24px; }
+      .hero-overline { font-size: 10.5px; letter-spacing: 0.12em; }
+      .hero-overline-rule { width: 18px; }
       .hero-actions { flex-direction: column; width: 100%; align-items: stretch; gap: 18px; }
       .hero-actions .btn { width: 100%; justify-content: center; }
       .hero-actions .nav-phone-mobile { text-align: center; padding: 8px 0; }
+
+      .hero-specs {
+        grid-template-columns: 1fr;
+        margin-top: 48px;
+      }
+      .hero-spec {
+        padding: 18px 4px;
+        border-top: 1px solid var(--line);
+      }
+      .hero-spec:first-child { border-top: none; }
+      .hero-spec + .hero-spec::before { display: none; }
+      .hero-specs {
+        border-top: none;
+      }
 
       .before-after { aspect-ratio: 4 / 3; }
       .proof-caption { grid-template-columns: 1fr; gap: 12px; padding: 0 22px; }
@@ -1156,7 +1248,7 @@
         transition-duration: 0.01ms !important;
       }
       html { scroll-behavior: auto; }
-      .reveal, .hero-status, .hero-headline, .hero-sub, .hero-actions, .proof-frame {
+      .reveal, .hero-logo, .hero-overline, .hero-headline, .hero-sub, .hero-actions, .hero-specs, .proof-frame {
         opacity: 1 !important;
         transform: none !important;
         animation: none !important;
@@ -1197,9 +1289,13 @@
 <section class="hero" id="top">
   <div class="wrap">
 
-    <div class="hero-status">
-      <span class="hero-status-dot" aria-hidden="true"></span>
+    <img src="logo-cropped.png" alt="Weber Websites" class="hero-logo">
+
+    <div class="hero-overline">
+      <span class="hero-overline-rule" aria-hidden="true"></span>
+      <span class="hero-overline-dot" aria-hidden="true"></span>
       Verfügbar ab Q3 2026
+      <span class="hero-overline-rule" aria-hidden="true"></span>
     </div>
 
     <h1 class="hero-headline display-1">
@@ -1219,6 +1315,21 @@
         oder anrufen: <strong>0160 254 070</strong>
       </a>
     </div>
+
+    <dl class="hero-specs">
+      <div class="hero-spec">
+        <dt class="hero-spec-label">Festpreis</dt>
+        <dd class="hero-spec-val">ab 490 € <small>netto</small></dd>
+      </div>
+      <div class="hero-spec">
+        <dt class="hero-spec-label">Liefertermin</dt>
+        <dd class="hero-spec-val">14 – 30 <small>Tage</small></dd>
+      </div>
+      <div class="hero-spec">
+        <dt class="hero-spec-label">Ansprechpartner</dt>
+        <dd class="hero-spec-val">direkt <small>kein Vertrieb</small></dd>
+      </div>
+    </dl>
 
   </div>
 </section>
