@@ -247,7 +247,10 @@
     }
     .nav-mark:hover { opacity: 0.7; }
     .nav-logo {
-      height: 26px; width: auto;
+      height: 22px;
+      width: auto;
+      color: var(--ink);
+      display: block;
     }
     .nav-links { list-style: none; display: flex; align-items: center; gap: 26px; }
     .nav-links a {
@@ -1710,9 +1713,10 @@
       gap: 14px;
     }
     .footer-logo {
-      height: 24px;
+      height: 20px;
       width: auto;
-      opacity: 0.7;
+      color: var(--ink-3);
+      display: block;
     }
     .footer-copy {
       font-size: 13px;
@@ -1839,7 +1843,10 @@
   <div class="wrap">
     <div class="nav-row">
       <a href="#top" class="nav-mark" aria-label="Weber Websites">
-        <img src="logo-cropped.png" alt="Weber Websites" class="nav-logo">
+        <svg class="nav-logo" viewBox="0 0 132 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M 6,2 L 22,54 L 32,12 L 42,54 L 58,2" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 74,2 L 90,54 L 100,12 L 110,54 L 126,2" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </a>
       <ul class="nav-links">
         <li><a href="#arbeiten">Arbeiten</a></li>
@@ -1899,14 +1906,6 @@
           </a>
         </div>
 
-        <div class="hero-trust">
-          <span class="hero-trust-label">Zuletzt renoviert</span>
-          <div class="hero-trust-row">
-            <a href="https://weber-elektrotechnik-test.netlify.app" target="_blank" rel="noopener noreferrer" class="hero-trust-client">Weber Elektrotechnik</a>
-            <span class="hero-trust-sep" aria-hidden="true"></span>
-            <a href="https://fenster-hotz-test.netlify.app" target="_blank" rel="noopener noreferrer" class="hero-trust-client">Hotz Fenster &amp; Türen</a>
-          </div>
-        </div>
 
       </div>
 
@@ -2087,7 +2086,10 @@
 
       <figure class="werkstatt-portrait reveal">
         <div class="werkstatt-portrait-art">
-          <img src="logo-cropped.png" alt="">
+          <svg viewBox="0 0 132 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width:55%;max-width:160px;color:var(--ink-4);">
+            <path d="M 6,2 L 22,54 L 32,12 L 42,54 L 58,2" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 74,2 L 90,54 L 100,12 L 110,54 L 126,2" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </div>
         <div class="werkstatt-portrait-foot">
           <span class="werkstatt-portrait-name">Andreas Weber</span>
@@ -2426,7 +2428,10 @@
   <div class="wrap">
     <div class="footer-row">
       <div class="footer-brand">
-        <img src="logo-cropped.png" alt="Weber Websites" class="footer-logo">
+        <svg class="footer-logo" viewBox="0 0 132 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M 6,2 L 22,54 L 32,12 L 42,54 L 58,2" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 74,2 L 90,54 L 100,12 L 110,54 L 126,2" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         <p class="footer-copy">© 2026 · Andreas Weber, Trossingen · Aus dem Schwarzwald, für ganz Deutschland</p>
       </div>
       <div class="footer-links">
