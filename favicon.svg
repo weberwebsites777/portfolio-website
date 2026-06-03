@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="5" fill="#F4ECE0"/>
+  <rect width="32" height="32" rx="5" fill="#15140F"/>
   <g transform="translate(5.8, 11.7) scale(0.155)">
     <path d="M 6,2 L 22,54 L 32,12 L 42,54 L 58,2"
-          stroke="#1E1B17" stroke-width="15"
+          stroke="#F3D04E" stroke-width="15"
           stroke-linecap="round" stroke-linejoin="round" fill="none"/>
     <path d="M 74,2 L 90,54 L 100,12 L 110,54 L 126,2"
-          stroke="#1E1B17" stroke-width="15"
+          stroke="#F3D04E" stroke-width="15"
           stroke-linecap="round" stroke-linejoin="round" fill="none"/>
   </g>
 </svg>
