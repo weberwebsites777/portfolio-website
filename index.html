@@ -214,15 +214,15 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       height: 72px;
-      background: oklch(96.5% 0.009 70 / 0);
+      background: oklch(13% 0.012 60 / 0);
       transition: background 280ms var(--ease), border-color 280ms var(--ease), box-shadow 280ms var(--ease);
       border-bottom: 1px solid transparent;
     }
     nav.scrolled {
-      background: oklch(96.5% 0.009 70 / 0.84);
-      backdrop-filter: saturate(160%) blur(12px);
-      -webkit-backdrop-filter: saturate(160%) blur(12px);
-      border-bottom-color: var(--line);
+      background: oklch(13% 0.012 60 / 0.78);
+      backdrop-filter: saturate(160%) blur(14px);
+      -webkit-backdrop-filter: saturate(160%) blur(14px);
+      border-bottom-color: oklch(26% 0.014 60);
     }
     .nav-row {
       height: 100%;
@@ -235,55 +235,92 @@
       height: 100%;
       transition: opacity 220ms var(--ease);
     }
-    .nav-mark:hover { opacity: 0.6; }
-    .nav-logo { height: 30px; width: auto; }
+    .nav-mark:hover { opacity: 0.7; }
+    .nav-logo {
+      height: 30px; width: auto;
+      filter: invert(1) brightness(1.1);
+    }
     .nav-links { list-style: none; display: flex; align-items: center; gap: 32px; }
     .nav-links a {
       font-size: 14px;
       font-weight: 500;
-      color: var(--ink-2);
+      color: oklch(74% 0.008 60);
       letter-spacing: -0.009em;
       transition: color 200ms var(--ease);
     }
-    .nav-links a:hover { color: var(--brick); }
+    .nav-links a:hover { color: var(--hero-accent); }
     .nav-phone {
       font-variant-numeric: tabular-nums;
+      color: var(--hero-text) !important;
+      font-weight: 600;
+    }
+    .nav-phone:hover { color: var(--hero-accent) !important; }
+
+    /* Tokens fuer den Dark-Hero */
+    :root {
+      --hero-bg:       oklch(13% 0.012 60);
+      --hero-bg-2:     oklch(18% 0.014 60);
+      --hero-bg-3:     oklch(22% 0.014 60);
+      --hero-text:     oklch(98% 0.005 60);
+      --hero-text-2:   oklch(74% 0.008 60);
+      --hero-text-3:   oklch(54% 0.008 60);
+      --hero-line:     oklch(26% 0.014 60);
+      --hero-line-2:   oklch(36% 0.014 60);
+      --hero-accent:   oklch(56% 0.18 28);
+      --hero-accent-2: oklch(46% 0.18 28);
     }
 
     /* ════════════════════════════════════════════════════════════
-       HERO — Asymmetric Apple-grade:
-       Left column: Trust-Badge / Headline / Sub / CTAs / Trust-Strip
-       Right column: 3D-tilted Live-Mockup + floating data cards
+       HERO — Dark Premium Editorial:
+       Bold 900-weight, brick accent, atmospheric backdrop
     ════════════════════════════════════════════════════════════ */
     .hero {
-      padding: clamp(108px, 12vw, 144px) 0 clamp(72px, 9vw, 112px);
+      padding: clamp(120px, 14vw, 168px) 0 clamp(80px, 10vw, 128px);
       position: relative;
       overflow: hidden;
+      background: var(--hero-bg);
+      color: var(--hero-text);
+      margin-bottom: -1px;
     }
-    /* Soft warm halo behind the mockup */
+    /* Atmospheric warm halo (top-right) */
     .hero::before {
       content: '';
       position: absolute;
-      top: 18%;
-      right: -10%;
-      width: 720px; height: 720px;
+      top: -20%;
+      right: -15%;
+      width: 900px; height: 900px;
       background:
         radial-gradient(circle at center,
-          oklch(44% 0.13 32 / 0.10),
-          transparent 65%);
+          oklch(56% 0.18 28 / 0.18),
+          transparent 60%);
       pointer-events: none;
       z-index: 0;
       will-change: transform;
     }
-    /* Drafting-paper dot grid */
+    /* Cool depth halo (bottom-left) */
     .hero::after {
       content: '';
       position: absolute;
+      bottom: -30%;
+      left: -15%;
+      width: 800px; height: 800px;
+      background:
+        radial-gradient(circle at center,
+          oklch(40% 0.14 268 / 0.12),
+          transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    /* Subtle grid texture overlay */
+    .hero-texture {
+      position: absolute;
       inset: 0;
-      background-image: radial-gradient(circle at center, oklch(15% 0.01 60 / 0.05) 1px, transparent 1.4px);
-      background-size: 28px 28px;
-      mask-image: radial-gradient(ellipse 90% 80% at center 40%, oklch(0% 0 0) 0%, transparent 80%);
-      -webkit-mask-image: radial-gradient(ellipse 90% 80% at center 40%, oklch(0% 0 0) 0%, transparent 80%);
+      background-image:
+        linear-gradient(oklch(70% 0.008 60 / 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, oklch(70% 0.008 60 / 0.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 110% 90% at center 40%, oklch(0% 0 0) 0%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse 110% 90% at center 40%, oklch(0% 0 0) 0%, transparent 75%);
       pointer-events: none;
       z-index: 0;
     }
@@ -292,43 +329,43 @@
     .hero-grid {
       display: grid;
       grid-template-columns: 1.05fr 1fr;
-      gap: clamp(40px, 6vw, 80px);
+      gap: clamp(48px, 6vw, 88px);
       align-items: center;
     }
 
     @keyframes fade-up {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(24px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     /* LEFT COLUMN */
     .hero-text {
-      max-width: 640px;
+      max-width: 660px;
     }
 
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0;
       padding: 6px 6px 6px 14px;
-      background: var(--paper);
-      border: 1px solid var(--line);
+      background: oklch(20% 0.014 60 / 0.6);
+      border: 1px solid var(--hero-line);
       border-radius: 999px;
       font-size: 12.5px;
-      color: var(--ink-2);
+      color: var(--hero-text-2);
       letter-spacing: -0.005em;
       margin-bottom: clamp(28px, 3vw, 40px);
-      box-shadow: 0 1px 2px oklch(15% 0.01 60 / 0.04);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       opacity: 0;
       animation: fade-up 900ms var(--ease-out) 60ms forwards;
     }
     .hero-badge-text strong {
-      color: var(--ink);
+      color: var(--hero-text);
       font-weight: 600;
     }
     .hero-badge-sep {
       width: 1px; height: 14px;
-      background: var(--line);
+      background: var(--hero-line);
       margin: 0 12px;
     }
     .hero-badge-stars {
@@ -336,70 +373,126 @@
       margin-right: 8px;
     }
     .hero-badge-stars svg {
-      width: 11px; height: 11px;
-      color: var(--brick);
+      width: 12px; height: 12px;
+      color: var(--hero-accent);
     }
     .hero-badge-pill {
-      background: var(--ink);
-      color: var(--paper);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
+      background: var(--hero-accent);
+      color: var(--hero-text);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 5px 10px;
+      padding: 5px 11px;
       border-radius: 999px;
       margin-left: 12px;
+      box-shadow: 0 0 0 1px oklch(56% 0.18 28 / 0.5) inset;
     }
 
     .hero-headline {
-      font-size: clamp(48px, 6.2vw, 96px);
-      font-weight: 600;
-      line-height: 0.98;
-      letter-spacing: -0.044em;
-      color: var(--ink);
-      max-width: 18ch;
+      font-size: clamp(52px, 7.2vw, 108px);
+      font-weight: 800;
+      line-height: 0.96;
+      letter-spacing: -0.046em;
+      color: var(--hero-text);
+      max-width: 16ch;
     }
     .hero-headline .word {
       display: inline-block;
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(24px);
       animation: fade-up 900ms var(--ease-out) forwards;
     }
     .hero-headline-em {
-      color: var(--brick);
+      color: var(--hero-accent);
     }
 
     .hero-sub {
-      margin-top: clamp(24px, 2.8vw, 36px);
+      margin-top: clamp(28px, 3vw, 40px);
       font-size: clamp(17px, 1.4vw, 20px);
-      line-height: 1.5;
-      color: var(--ink-2);
+      line-height: 1.55;
+      color: var(--hero-text-2);
       letter-spacing: -0.012em;
-      max-width: 44ch;
+      max-width: 46ch;
+      padding-left: 18px;
+      border-left: 2px solid var(--hero-accent);
       opacity: 0;
       animation: fade-up 900ms var(--ease-out) 720ms forwards;
     }
     .hero-sub strong {
-      color: var(--ink);
+      color: var(--hero-text);
       font-weight: 600;
     }
 
     .hero-actions {
-      margin-top: clamp(32px, 3.6vw, 44px);
+      margin-top: clamp(36px, 4vw, 48px);
       display: inline-flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
       flex-wrap: wrap;
       opacity: 0;
       animation: fade-up 900ms var(--ease-out) 860ms forwards;
     }
-    .hero-actions .btn { padding: 15px 26px; font-size: 15.5px; }
+    /* Override base btn styles for dark hero */
+    .hero-actions .btn-cta-primary {
+      background: var(--hero-accent);
+      color: var(--hero-text);
+      padding: 16px 26px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: var(--r-sm);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      transition: background 240ms var(--ease), transform 240ms var(--ease), box-shadow 280ms var(--ease);
+      box-shadow:
+        0 1px 0 oklch(66% 0.18 28) inset,
+        0 14px 32px -8px oklch(56% 0.18 28 / 0.5);
+    }
+    .hero-actions .btn-cta-primary:hover {
+      background: var(--hero-accent-2);
+      transform: translateY(-2px);
+      box-shadow:
+        0 1px 0 oklch(66% 0.18 28) inset,
+        0 20px 40px -8px oklch(56% 0.18 28 / 0.6);
+    }
+    .hero-actions .btn-cta-secondary {
+      background: transparent;
+      color: var(--hero-text);
+      padding: 16px 26px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--hero-line-2);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      transition: background 240ms var(--ease), border-color 240ms var(--ease), transform 240ms var(--ease);
+    }
+    .hero-actions .btn-cta-secondary:hover {
+      background: oklch(22% 0.014 60 / 0.5);
+      border-color: var(--hero-text);
+      transform: translateY(-2px);
+    }
+    .hero-actions .btn-cta-primary .arrow,
+    .hero-actions .btn-cta-secondary .arrow {
+      font-size: 16px;
+      transition: transform 240ms var(--ease);
+    }
+    .hero-actions .btn-cta-primary:hover .arrow,
+    .hero-actions .btn-cta-secondary:hover .arrow {
+      transform: translateX(4px);
+    }
 
     /* Trust strip below CTAs */
     .hero-trust {
-      margin-top: clamp(40px, 5vw, 60px);
+      margin-top: clamp(48px, 5.5vw, 64px);
       padding-top: clamp(28px, 3vw, 36px);
-      border-top: 1px solid var(--line);
+      border-top: 1px solid var(--hero-line);
       display: flex;
       flex-direction: column;
       gap: 14px;
@@ -408,10 +501,10 @@
     }
     .hero-trust-label {
       font-size: 11px;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      font-weight: 500;
-      color: var(--ink-4);
+      font-weight: 600;
+      color: var(--hero-text-3);
     }
     .hero-trust-row {
       display: flex;
@@ -422,18 +515,18 @@
     .hero-trust-client {
       font-size: 14.5px;
       font-weight: 600;
-      color: var(--ink);
-      letter-spacing: -0.014em;
+      color: var(--hero-text);
+      letter-spacing: -0.012em;
       transition: color 220ms var(--ease);
     }
-    .hero-trust-client:hover { color: var(--brick); }
+    .hero-trust-client:hover { color: var(--hero-accent); }
     .hero-trust-sep {
       width: 4px; height: 4px;
       border-radius: 50%;
-      background: var(--ink-4);
+      background: var(--hero-text-3);
     }
 
-    /* RIGHT COLUMN — Mockup with floating cards */
+    /* RIGHT COLUMN — Mockup with floating cards (dark theme) */
     .hero-mockup {
       position: relative;
       perspective: 1600px;
@@ -442,27 +535,27 @@
     }
     .hero-mockup-glow {
       position: absolute;
-      inset: 15% -5% -10% -5%;
+      inset: 12% -5% -15% -5%;
       background: radial-gradient(ellipse at center,
-        oklch(44% 0.13 32 / 0.14),
+        oklch(56% 0.18 28 / 0.22),
         transparent 60%);
-      filter: blur(50px);
+      filter: blur(60px);
       z-index: 0;
       pointer-events: none;
     }
     .hero-device {
       position: relative;
       z-index: 1;
-      background: var(--ink);
-      border-radius: 14px;
-      padding: 12px;
+      background: oklch(7% 0.01 60);
+      border: 1px solid oklch(28% 0.014 60);
+      border-radius: 12px;
+      padding: 10px;
       transform: rotateY(-7deg) rotateX(4deg);
       box-shadow:
-        0 1px 0 oklch(34% 0.01 60) inset,
-        0 0 0 1px oklch(8% 0.01 60),
-        0 48px 96px -32px oklch(15% 0.01 60 / 0.28),
-        0 20px 56px -8px oklch(15% 0.01 60 / 0.15);
-      animation: device-breathe 8s ease-in-out infinite;
+        0 1px 0 oklch(34% 0.012 60) inset,
+        0 48px 120px -32px oklch(0% 0 0 / 0.55),
+        0 24px 56px -12px oklch(0% 0 0 / 0.4),
+        0 0 60px -10px oklch(56% 0.18 28 / 0.2);
       opacity: 0;
       animation: device-breathe 8s ease-in-out infinite, fade-up 1200ms var(--ease-out) 480ms forwards;
     }
@@ -482,30 +575,31 @@
       object-position: top center;
     }
 
-    /* Floating data cards */
+    /* Floating data cards — dark theme */
     .float-card {
       position: absolute;
-      background: var(--paper);
-      border: 1px solid var(--line);
+      background: oklch(18% 0.014 60 / 0.94);
+      border: 1px solid oklch(32% 0.014 60);
       border-radius: var(--r);
-      padding: 14px 16px;
+      padding: 14px 18px;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 6px;
       box-shadow:
-        0 1px 0 oklch(100% 0 0) inset,
-        0 16px 32px -8px oklch(15% 0.01 60 / 0.18),
-        0 6px 12px -4px oklch(15% 0.01 60 / 0.1);
+        0 1px 0 oklch(38% 0.014 60) inset,
+        0 24px 48px -12px oklch(0% 0 0 / 0.5),
+        0 8px 16px -4px oklch(0% 0 0 / 0.3);
       z-index: 3;
-      min-width: 168px;
-      backdrop-filter: blur(4px);
+      min-width: 180px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
     .float-card-label {
       font-size: 10.5px;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--ink-4);
-      font-weight: 500;
+      color: var(--hero-text-3);
+      font-weight: 600;
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -513,26 +607,32 @@
     .float-card-label::before {
       content: '';
       width: 6px; height: 6px;
-      background: var(--brick);
+      background: var(--hero-accent);
       border-radius: 50%;
+      box-shadow: 0 0 8px var(--hero-accent);
     }
     .float-card-value {
-      font-size: 26px;
-      font-weight: 600;
-      color: var(--ink);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--hero-text);
       letter-spacing: -0.028em;
       line-height: 1;
       font-variant-numeric: tabular-nums;
     }
+    .float-card-value-unit {
+      font-size: 0.5em;
+      color: var(--hero-text-3);
+      font-weight: 500;
+    }
     .float-card-sub {
       font-size: 12px;
-      color: var(--ink-3);
+      color: var(--hero-text-3);
       letter-spacing: -0.005em;
     }
     .float-card-sub .delta {
-      color: var(--brick);
-      font-weight: 600;
-      margin-left: 4px;
+      color: var(--hero-accent);
+      font-weight: 700;
+      margin-left: 6px;
     }
     .float-card.top {
       top: -28px;
@@ -559,7 +659,18 @@
        PROOF — Vorher / Nachher slider as primary visual anchor
     ════════════════════════════════════════════════════════════ */
     .proof {
-      padding: clamp(40px, 6vw, 80px) 0 clamp(80px, 10vw, 128px);
+      padding: clamp(72px, 9vw, 120px) 0 clamp(80px, 10vw, 128px);
+      background: var(--paper);
+      position: relative;
+    }
+    /* Soft transition from dark hero */
+    .proof::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 80px;
+      background: linear-gradient(180deg, oklch(13% 0.012 60 / 0.06), transparent);
+      pointer-events: none;
     }
     .proof-frame {
       max-width: 1280px;
@@ -1457,6 +1568,7 @@
      HERO
 ════════════════════════════════════════════════════════════ -->
 <section class="hero" id="top">
+  <div class="hero-texture" aria-hidden="true"></div>
   <div class="wrap">
     <div class="hero-grid">
 
@@ -1480,7 +1592,7 @@
         <h1 class="hero-headline">
           <span class="word" style="animation-delay: 200ms">Websites,</span>
           <span class="word" style="animation-delay: 290ms">die</span>
-          <span class="word" style="animation-delay: 370ms">Besucher</span>
+          <span class="word" style="animation-delay: 370ms">Besucher</span><br>
           <span class="word" style="animation-delay: 460ms">in</span>
           <span class="word hero-headline-em" style="animation-delay: 540ms">Kunden</span>
           <span class="word hero-headline-em" style="animation-delay: 620ms">verwandeln.</span>
@@ -1491,11 +1603,11 @@
         </p>
 
         <div class="hero-actions">
-          <a href="#kontakt" class="btn btn-primary">
+          <a href="#kontakt" class="btn-cta-primary">
             Kostenloses Erstgespräch
             <span class="arrow" aria-hidden="true">→</span>
           </a>
-          <a href="#arbeiten" class="btn-text">
+          <a href="#arbeiten" class="btn-cta-secondary">
             Projekte ansehen
             <span class="arrow" aria-hidden="true">→</span>
           </a>
@@ -1528,13 +1640,13 @@
 
         <div class="float-card top">
           <span class="float-card-label">Performance</span>
-          <span class="float-card-value">98<span style="font-size: 0.55em; color: var(--ink-3); font-weight: 500;"> / 100</span></span>
+          <span class="float-card-value">98<span class="float-card-value-unit"> / 100</span></span>
           <span class="float-card-sub">PageSpeed Mobile</span>
         </div>
 
         <div class="float-card bottom">
           <span class="float-card-label">Ladezeit</span>
-          <span class="float-card-value">1,4<span style="font-size: 0.55em; color: var(--ink-3); font-weight: 500;"> s</span></span>
+          <span class="float-card-value">1,4<span class="float-card-value-unit"> s</span></span>
           <span class="float-card-sub">vorher 7,8 s<span class="delta">−82 %</span></span>
         </div>
       </div>
