@@ -355,6 +355,12 @@
       max-width: 720px;
     }
 
+    .hero-logo {
+      height: clamp(36px, 4vw, 52px);
+      width: auto;
+      display: block;
+    }
+
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -1820,7 +1826,7 @@
         transition-duration: 0.01ms !important;
       }
       html { scroll-behavior: auto; }
-      .reveal, .hero-badge, .hero-headline, .hero-headline .word, .hero-sub, .hero-actions, .hero-trust, .hero-device, .float-card, .proof-frame {
+      .reveal, .hero-logo-wrap, .hero-badge, .hero-headline, .hero-headline .word, .hero-sub, .hero-actions, .hero-trust, .hero-device, .float-card, .proof-frame {
         opacity: 1 !important;
         transform: none !important;
         animation: none !important;
@@ -1867,18 +1873,8 @@
       <!-- LEFT — Trust Badge / Headline / Sub / CTAs / Trust Strip -->
       <div class="hero-text">
 
-        <div class="hero-badge">
-          <span class="hero-badge-stars" aria-hidden="true">
-            <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 .5l1.6 3.6 3.9.4-3 2.7.9 3.9L6 9.2 2.6 11.1l.9-3.9-3-2.7 3.9-.4z"/></svg>
-            <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 .5l1.6 3.6 3.9.4-3 2.7.9 3.9L6 9.2 2.6 11.1l.9-3.9-3-2.7 3.9-.4z"/></svg>
-            <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 .5l1.6 3.6 3.9.4-3 2.7.9 3.9L6 9.2 2.6 11.1l.9-3.9-3-2.7 3.9-.4z"/></svg>
-            <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 .5l1.6 3.6 3.9.4-3 2.7.9 3.9L6 9.2 2.6 11.1l.9-3.9-3-2.7 3.9-.4z"/></svg>
-            <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 .5l1.6 3.6 3.9.4-3 2.7.9 3.9L6 9.2 2.6 11.1l.9-3.9-3-2.7 3.9-.4z"/></svg>
-          </span>
-          <span class="hero-badge-text"><strong>Werkstatt</strong> · Trossingen</span>
-          <span class="hero-badge-sep" aria-hidden="true"></span>
-          <span class="hero-badge-text"><strong>14 – 30 Tage</strong> Lieferung</span>
-          <span class="hero-badge-pill">Q3 frei</span>
+        <div class="hero-logo-wrap" style="margin-bottom: clamp(28px, 3vw, 40px); opacity: 0; animation: fade-up 900ms var(--ease-out) 60ms forwards;">
+          <img src="logo-cropped.png" alt="Weber Websites" class="hero-logo">
         </div>
 
         <h1 class="hero-headline">
