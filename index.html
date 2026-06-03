@@ -1453,150 +1453,239 @@
     .faq-a strong { color: var(--ink); font-weight: 600; }
 
     /* ════════════════════════════════════════════════════════════
-       KONTAKT — direct, no inverted card, no aurora
+       KONTAKT — Yellow CTA panel links, Formular immer offen
     ════════════════════════════════════════════════════════════ */
     .kontakt {
-      padding: clamp(48px, 5.5vw, 72px) 0 clamp(40px, 5vw, 64px);
       border-top: 1px solid var(--line);
+      background: var(--paper);
     }
     .kontakt-inner {
-      max-width: 1040px;
+      max-width: var(--max);
       margin: 0 auto;
-      padding: 0 32px;
       display: grid;
-      grid-template-columns: 5fr 6fr;
-      gap: 64px;
-      align-items: start;
+      grid-template-columns: 5fr 7fr;
+      min-height: 640px;
     }
-    .kontakt-left h2 {
-      max-width: 14ch;
-      margin-bottom: 20px;
-    }
-    .kontakt-left p {
-      font-size: 16px;
-      line-height: 1.6;
-      color: var(--ink-2);
-      max-width: 40ch;
-    }
-    .kontakt-channels {
+
+    /* LEFT — Yellow CTA panel */
+    .kontakt-left {
+      background: var(--brick);
+      padding: clamp(56px, 7vw, 96px) clamp(32px, 4vw, 64px);
       display: flex;
       flex-direction: column;
-      gap: 14px;
-    }
-    .channel {
-      padding: 18px 0;
-      border-top: 1px solid var(--line);
-      display: grid;
-      grid-template-columns: 100px 1fr auto;
-      gap: 18px;
-      align-items: baseline;
-      transition: padding 240ms var(--ease);
-    }
-    .channel:last-of-type { border-bottom: 1px solid var(--line); }
-    .channel-key {
-      font-size: 12px;
-      color: var(--ink-4);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-weight: 500;
-    }
-    .channel-val {
-      font-size: clamp(17px, 1.6vw, 20px);
-      font-weight: 600;
-      color: var(--ink);
-      letter-spacing: -0.022em;
-      font-variant-numeric: tabular-nums;
-      transition: color 220ms var(--ease);
-    }
-    .channel-arrow {
-      font-size: 16px;
-      color: var(--ink-4);
-      transition: color 220ms var(--ease), transform 240ms var(--ease);
-    }
-    .channel:hover .channel-val { color: var(--brick); }
-    .channel:hover .channel-arrow { color: var(--brick); transform: translateX(3px); }
-
-    .kontakt-form-section { margin-top: 32px; }
-    .form-toggle {
-      width: 100%;
-      padding: 18px 0;
-      display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      color: var(--ink);
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      transition: border-color 240ms var(--ease);
+      gap: 40px;
+      position: relative;
+      overflow: hidden;
     }
-    .form-toggle-label {
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--ink-2);
+    .kontakt-left::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(oklch(15% 0.01 60 / 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, oklch(15% 0.01 60 / 0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 140% 120% at 10% 90%, oklch(0% 0 0) 0%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse 140% 120% at 10% 90%, oklch(0% 0 0) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .kontakt-left-content { position: relative; z-index: 1; }
+    .kontakt-left-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: oklch(22% 0.01 60);
+      margin-bottom: 24px;
+    }
+    .kontakt-left-kicker::before {
+      content: '';
+      width: 24px; height: 1px;
+      background: oklch(22% 0.01 60);
+    }
+    .kontakt-left h2 {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5.2vw, 72px);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.044em;
+      color: oklch(13% 0.01 60);
+      max-width: 12ch;
+      margin-bottom: 24px;
+    }
+    .kontakt-left p {
+      font-size: clamp(15px, 1.2vw, 17px);
+      line-height: 1.55;
+      color: oklch(22% 0.01 60);
+      max-width: 34ch;
       letter-spacing: -0.011em;
     }
-    .form-toggle-icon {
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--ink-3);
-      transition: color 220ms var(--ease);
-    }
-    .form-toggle:hover { border-color: var(--ink-3); }
-    .form-toggle:hover .form-toggle-icon { color: var(--brick); }
-    .form-toggle[aria-expanded="true"] .form-toggle-icon { color: var(--brick); }
-    .form-panel {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows 360ms var(--ease);
-    }
-    .form-toggle[aria-expanded="true"] + .form-panel { grid-template-rows: 1fr; }
-    .form-panel-inner { overflow: hidden; }
-    .form-inner-pad { padding: 28px 0 0; }
 
-    .contact-form { display: flex; flex-direction: column; gap: 18px; }
-    .form-field { display: flex; flex-direction: column; gap: 7px; }
-    .form-label {
-      font-size: 12px;
-      color: var(--ink-3);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+    /* Trust chips */
+    .kontakt-trust {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .kontakt-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13.5px;
       font-weight: 500;
+      color: oklch(18% 0.01 60);
+      letter-spacing: -0.008em;
+    }
+    .kontakt-trust-item::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: oklch(13% 0.01 60);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* Primary phone CTA on yellow */
+    .kontakt-cta-phone {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 24px;
+      background: oklch(13% 0.01 60);
+      color: var(--brick);
+      border-radius: var(--r-sm);
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2vw, 22px);
+      font-weight: 800;
+      letter-spacing: -0.022em;
+      font-variant-numeric: tabular-nums;
+      transition: background 240ms var(--ease), transform 240ms var(--ease), box-shadow 280ms var(--ease);
+      box-shadow: 0 8px 28px -8px oklch(13% 0.01 60 / 0.4);
+      align-self: flex-start;
+    }
+    .kontakt-cta-phone:hover {
+      background: oklch(18% 0.01 60);
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px -8px oklch(13% 0.01 60 / 0.5);
+    }
+    .kontakt-cta-phone svg {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+    }
+
+    /* Email link below button */
+    .kontakt-cta-email {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: oklch(22% 0.01 60);
+      letter-spacing: -0.008em;
+      margin-top: 12px;
+      transition: color 200ms var(--ease);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: oklch(22% 0.01 60 / 0.4);
+    }
+    .kontakt-cta-email:hover { color: oklch(13% 0.01 60); }
+
+    /* RIGHT — Form panel */
+    .kontakt-right {
+      background: var(--paper);
+      padding: clamp(56px, 7vw, 96px) clamp(32px, 4vw, 64px);
+      border-left: 1px solid var(--line);
+    }
+    .kontakt-form-head {
+      margin-bottom: 32px;
+    }
+    .kontakt-form-head p {
+      font-size: 13px;
+      color: var(--ink-3);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .kontakt-form-head h3 {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.4vw, 30px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .form-field { display: flex; flex-direction: column; gap: 6px; }
+    .form-label {
+      font-size: 11.5px;
+      color: var(--ink-3);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      font-weight: 600;
     }
     .form-input, .form-textarea {
       font: inherit;
       font-family: var(--font);
-      font-size: 15.5px;
-      padding: 12px 14px;
+      font-size: 15px;
+      padding: 13px 14px;
       border: 1px solid var(--line);
-      background: var(--paper);
+      background: var(--paper-2);
       color: var(--ink);
       border-radius: var(--r-sm);
-      transition: border-color 220ms var(--ease);
+      transition: border-color 220ms var(--ease), background 220ms var(--ease);
     }
     .form-input:focus, .form-textarea:focus {
       outline: none;
-      border-color: var(--ink);
+      border-color: var(--brick);
+      background: var(--paper);
     }
-    .form-textarea { min-height: 110px; resize: vertical; }
+    .form-textarea { min-height: 120px; resize: vertical; }
     .form-submit {
-      background: var(--ink);
-      color: var(--paper);
-      padding: 14px 26px;
+      background: var(--brick);
+      color: oklch(13% 0.01 60);
+      padding: 16px 30px;
+      font-family: var(--font-display);
       font-size: 15px;
-      font-weight: 500;
+      font-weight: 800;
       letter-spacing: -0.011em;
       border-radius: var(--r-sm);
-      transition: background 220ms var(--ease);
+      transition: background 220ms var(--ease), transform 240ms var(--ease), box-shadow 280ms var(--ease);
       align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 16px -4px oklch(82% 0.17 88 / 0.5);
     }
-    .form-submit:hover { background: var(--brick); }
+    .form-submit:hover {
+      background: var(--brick-2);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px -6px oklch(82% 0.17 88 / 0.55);
+    }
+    .form-submit .arrow { font-size: 16px; transition: transform 240ms var(--ease); }
+    .form-submit:hover .arrow { transform: translateX(3px); }
     .form-privacy {
-      font-size: 12.5px;
-      color: var(--ink-3);
+      font-size: 12px;
+      color: var(--ink-4);
       line-height: 1.55;
     }
     .form-privacy a {
-      color: var(--ink-2);
+      color: var(--ink-3);
       border-bottom: 1px solid var(--line-2);
     }
 
@@ -1672,7 +1761,9 @@
 
       .angebot-grid { grid-template-columns: 1fr; }
 
-      .kontakt-inner { grid-template-columns: 1fr; gap: 40px; }
+      .kontakt-inner { grid-template-columns: 1fr; }
+      .kontakt-left { min-height: auto; }
+      .kontakt-right { border-left: none; border-top: 1px solid oklch(72% 0.16 85); }
     }
 
     @media (max-width: 640px) {
@@ -1714,12 +1805,7 @@
 
       .angebot-tier { padding: 24px 20px 22px; }
 
-      .channel {
-        grid-template-columns: 1fr auto;
-        gap: 8px 16px;
-      }
-      .channel-key { grid-column: 1 / -1; }
-      .channel-arrow { align-self: end; }
+      .form-row { grid-template-columns: 1fr; }
 
       .footer-row { flex-direction: column; align-items: flex-start; gap: 14px; }
       .footer-links { gap: 18px; flex-wrap: wrap; }
@@ -2256,69 +2342,76 @@
 <section class="kontakt" id="kontakt">
   <div class="kontakt-inner">
 
+    <!-- LEFT — Yellow CTA Panel -->
     <div class="kontakt-left reveal">
-      <div class="section-mark">
-        <span class="section-mark-num">06</span>
-        <span>Kontakt</span>
+      <div class="kontakt-left-content">
+        <div class="kontakt-left-kicker">Kontakt · 06</div>
+        <h2>Reden wir.<br>Kostenfrei.</h2>
+        <p>20 Minuten Telefon. Kein Verkaufsgespräch — Sie erzählen, was Ihre Seite leisten soll, ich sage Ihnen offen, ob ich der richtige bin.</p>
       </div>
-      <h2 class="display-2">20 Minuten.<br>Telefon.</h2>
-      <p>Kein Verkaufsgespräch. Sie erzählen, was die Seite leisten soll — ich sage Ihnen offen, ob ich der richtige bin.</p>
+
+      <div class="kontakt-trust reveal d1">
+        <div class="kontakt-trust-item">Antwort am selben Tag</div>
+        <div class="kontakt-trust-item">Festpreis &amp; Liefertermin im Angebot</div>
+        <div class="kontakt-trust-item">Ein Mensch — kein Subunternehmer</div>
+        <div class="kontakt-trust-item">Keine Verpflichtung</div>
+      </div>
+
+      <div class="reveal d2">
+        <a href="tel:+49160254070" class="kontakt-cta-phone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.89 12 19.79 19.79 0 0 1 1.83 3.5 2 2 0 0 1 3.81 1.3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.11a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          0160 254 070
+        </a>
+        <a href="mailto:info@weberwebsites.com" class="kontakt-cta-email">info@weberwebsites.com</a>
+      </div>
     </div>
 
-    <div class="kontakt-channels reveal d1">
+    <!-- RIGHT — Form always open -->
+    <div class="kontakt-right reveal d1">
 
-      <a href="tel:+49160254070" class="channel">
-        <span class="channel-key">Telefon</span>
-        <span class="channel-val">0160 254 070</span>
-        <span class="channel-arrow" aria-hidden="true">→</span>
-      </a>
+      <div class="kontakt-form-head">
+        <p>Oder schreiben Sie</p>
+        <h3>Anfrage senden —<br>ich melde mich heute.</h3>
+      </div>
 
-      <a href="mailto:info@weberwebsites.com" class="channel">
-        <span class="channel-key">E-Mail</span>
-        <span class="channel-val">info@weberwebsites.com</span>
-        <span class="channel-arrow" aria-hidden="true">→</span>
-      </a>
+      <form
+        class="contact-form"
+        action="https://formspree.io/f/mgoqrqoa"
+        method="POST"
+        novalidate>
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="_subject" value="Neue Anfrage über weberwebsites.com">
 
-      <div class="kontakt-form-section">
-        <button type="button" class="form-toggle" aria-expanded="false" aria-controls="form-panel">
-          <span class="form-toggle-label">Anfrage per Formular senden</span>
-          <span class="form-toggle-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="form-panel" id="form-panel">
-          <div class="form-panel-inner">
-            <div class="form-inner-pad">
-
-              <form
-                class="contact-form"
-                action="https://formspree.io/f/mgoqrqoa"
-                method="POST"
-                novalidate>
-                <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
-                <input type="hidden" name="_subject" value="Neue Anfrage über weberwebsites.com">
-
-                <div class="form-field">
-                  <label class="form-label" for="f-name">Name</label>
-                  <input class="form-input" type="text" id="f-name" name="name" required autocomplete="name">
-                </div>
-                <div class="form-field">
-                  <label class="form-label" for="f-email">E-Mail</label>
-                  <input class="form-input" type="email" id="f-email" name="email" required autocomplete="email">
-                </div>
-                <div class="form-field">
-                  <label class="form-label" for="f-message">Worum geht's?</label>
-                  <textarea class="form-textarea" id="f-message" name="message" required></textarea>
-                </div>
-
-                <p class="form-privacy">
-                  Mit Klick auf „Anfrage senden" akzeptieren Sie die <a href="datenschutz.html">Datenschutzerklärung</a>.
-                </p>
-                <button type="submit" class="form-submit">Anfrage senden</button>
-              </form>
-
-            </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label" for="f-name">Name</label>
+            <input class="form-input" type="text" id="f-name" name="name" required autocomplete="name" placeholder="Max Mustermann">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="f-phone">Telefon</label>
+            <input class="form-input" type="tel" id="f-phone" name="phone" autocomplete="tel" placeholder="0160 …">
           </div>
         </div>
-      </div>
+
+        <div class="form-field">
+          <label class="form-label" for="f-email">E-Mail</label>
+          <input class="form-input" type="email" id="f-email" name="email" required autocomplete="email" placeholder="max@musterbetrieb.de">
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="f-message">Was soll Ihre Website leisten?</label>
+          <textarea class="form-textarea" id="f-message" name="message" required placeholder="Kurz beschreiben: Was machen Sie, was leistet Ihre aktuelle Seite nicht, was soll sich ändern?"></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">
+          Anfrage senden
+          <span class="arrow" aria-hidden="true">→</span>
+        </button>
+
+        <p class="form-privacy">
+          Mit dem Absenden stimmen Sie der <a href="datenschutz.html">Datenschutzerklärung</a> zu.
+        </p>
+      </form>
 
     </div>
 
@@ -2432,17 +2525,7 @@
     });
   });
 
-  /* Form toggle */
-  (function() {
-    const toggle = document.querySelector('.form-toggle');
-    if (!toggle) return;
-    const icon = toggle.querySelector('.form-toggle-icon');
-    toggle.addEventListener('click', () => {
-      const expanded = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', String(!expanded));
-      if (icon) icon.textContent = expanded ? '+' : '−';
-    });
-  })();
+  /* Form toggle removed — form is always visible */
 </script>
 
 </body>
