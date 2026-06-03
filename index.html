@@ -791,31 +791,113 @@
     }
 
     /* ════════════════════════════════════════════════════════════
-       CASE STUDY — editorial spread, 2 of these
+       CASE STUDY — dark showcase, generic decoupled
     ════════════════════════════════════════════════════════════ */
-    .case {
-      padding: clamp(56px, 6.5vw, 88px) 0;
-      border-top: 1px solid var(--line);
+    .cases-wrap {
+      background: var(--hero-bg);
+      color: var(--hero-text);
+      position: relative;
+      overflow: hidden;
     }
+    .cases-wrap::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle at center,
+        oklch(82% 0.17 88 / 0.10),
+        transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .cases-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      left: -10%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle at center,
+        oklch(58% 0.14 82 / 0.10),
+        transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .cases-intro {
+      padding: clamp(72px, 8vw, 112px) 0 clamp(24px, 3vw, 40px);
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .cases-intro-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--hero-accent);
+      margin-bottom: 16px;
+    }
+    .cases-intro-label::before {
+      content: '';
+      width: 24px; height: 1px;
+      background: var(--hero-accent);
+    }
+    .cases-intro h2 {
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--hero-text);
+      max-width: 20ch;
+      margin: 0 auto;
+    }
+    .cases-intro h2 em {
+      font-style: normal;
+      color: var(--hero-accent);
+    }
+    .cases-intro-sub {
+      margin: 18px auto 0;
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--hero-text-2);
+      max-width: 52ch;
+      letter-spacing: -0.011em;
+    }
+
+    .case {
+      padding: clamp(56px, 7vw, 96px) 0;
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid oklch(22% 0.014 60);
+    }
+    .cases-wrap .case:first-of-type {
+      border-top: 1px solid oklch(22% 0.014 60);
+      margin-top: clamp(24px, 3vw, 40px);
+    }
+
     .case-head {
       display: grid;
       grid-template-columns: 1fr 2fr;
       gap: 48px;
       align-items: start;
-      margin-bottom: clamp(32px, 4vw, 48px);
+      margin-bottom: clamp(40px, 5vw, 64px);
     }
     .case-tagline {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      padding-top: 12px;
+      gap: 14px;
+      padding-top: 10px;
     }
     .case-tagline-num {
       font-family: var(--font-num);
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.04em;
-      color: var(--ink-4);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--hero-accent);
       font-variant-numeric: tabular-nums;
     }
     .case-tagline-num::after {
@@ -823,34 +905,46 @@
       display: inline-block;
       width: 28px;
       height: 1px;
-      background: var(--line-2);
+      background: var(--hero-accent);
       vertical-align: middle;
       margin-left: 14px;
       margin-bottom: 3px;
     }
     .case-tagline-tag {
-      font-size: 14px;
-      color: var(--ink);
-      letter-spacing: -0.012em;
+      font-size: 13px;
+      color: var(--hero-text-2);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
       font-weight: 500;
     }
-    .case-head-text h2 {
-      max-width: 16ch;
-      margin-bottom: 14px;
+    .case-head-text h3 {
+      font-size: clamp(32px, 4.6vw, 56px);
+      font-weight: 800;
+      line-height: 1.04;
+      letter-spacing: -0.038em;
+      color: var(--hero-text);
+      max-width: 18ch;
+      margin-bottom: 22px;
+    }
+    .case-head-text h3 em {
+      font-style: normal;
+      color: var(--hero-accent);
     }
     .case-head-text p {
-      font-size: 15px;
-      line-height: 1.6;
-      color: var(--ink-2);
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--hero-text-2);
       max-width: 52ch;
-      letter-spacing: -0.008em;
+      letter-spacing: -0.011em;
+      padding-left: 16px;
+      border-left: 2px solid var(--hero-accent);
     }
-    .case-head-text p strong { color: var(--ink); font-weight: 600; }
+    .case-head-text p strong { color: var(--hero-text); font-weight: 600; }
 
     .case-body {
       display: grid;
       grid-template-columns: 7fr 5fr;
-      gap: 56px;
+      gap: 64px;
       align-items: start;
     }
     .case.reverse .case-body {
@@ -861,14 +955,16 @@
     .case-thumb {
       display: block;
       position: relative;
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 16 / 10;
       overflow: hidden;
-      background: var(--paper-2);
-      border: 1px solid var(--line);
+      background: oklch(7% 0.01 60);
+      border: 1px solid oklch(28% 0.014 60);
       border-radius: var(--r);
       box-shadow:
-        0 32px 64px -32px oklch(15% 0.01 60 / 0.15),
-        0 8px 16px -4px oklch(15% 0.01 60 / 0.05);
+        0 1px 0 oklch(34% 0.012 60) inset,
+        0 32px 80px -32px oklch(0% 0 0 / 0.5),
+        0 16px 40px -8px oklch(0% 0 0 / 0.3),
+        0 0 60px -16px oklch(82% 0.17 88 / 0.15);
       transition: transform 520ms var(--ease-out), box-shadow 520ms var(--ease-out);
     }
     .case-thumb img {
@@ -878,55 +974,68 @@
       transition: transform 800ms var(--ease-out);
     }
     .case-thumb:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px);
       box-shadow:
-        0 48px 80px -32px oklch(15% 0.01 60 / 0.2),
-        0 12px 20px -4px oklch(15% 0.01 60 / 0.08);
+        0 1px 0 oklch(34% 0.012 60) inset,
+        0 48px 96px -32px oklch(0% 0 0 / 0.6),
+        0 24px 56px -12px oklch(0% 0 0 / 0.4),
+        0 0 80px -16px oklch(82% 0.17 88 / 0.25);
     }
-    .case-thumb:hover img { transform: scale(1.02); }
+    .case-thumb:hover img { transform: scale(1.03); }
 
     .case-meta dl {
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 0;
       align-items: baseline;
-      border-top: 1px solid var(--line);
+      border-top: 1px solid oklch(28% 0.014 60);
     }
     .case-meta dt {
-      font-size: 11.5px;
-      color: var(--ink-3);
-      letter-spacing: 0.06em;
+      font-size: 11px;
+      color: var(--hero-text-3);
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      font-weight: 500;
-      padding: 13px 24px 13px 0;
-      border-bottom: 1px solid var(--line);
+      font-weight: 600;
+      padding: 16px 24px 16px 0;
+      border-bottom: 1px solid oklch(22% 0.014 60);
     }
     .case-meta dd {
-      font-size: 15px;
-      color: var(--ink);
-      letter-spacing: -0.012em;
+      font-size: 17px;
+      color: var(--hero-text);
+      letter-spacing: -0.014em;
       font-variant-numeric: tabular-nums;
-      font-weight: 500;
+      font-weight: 600;
       text-align: right;
-      padding: 13px 0;
-      border-bottom: 1px solid var(--line);
+      padding: 16px 0;
+      border-bottom: 1px solid oklch(22% 0.014 60);
     }
     .case-meta dd .delta {
-      color: var(--brick);
-      font-weight: 600;
+      color: var(--hero-accent);
+      font-weight: 700;
     }
     .case-meta-link {
-      margin-top: 20px;
+      margin-top: 28px;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--ink);
-      letter-spacing: -0.011em;
-      transition: color 220ms var(--ease), gap 220ms var(--ease);
+      gap: 10px;
+      padding: 12px 22px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--hero-text);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid var(--hero-line-2);
+      border-radius: var(--r-sm);
+      transition: background 240ms var(--ease), border-color 240ms var(--ease), color 240ms var(--ease), transform 240ms var(--ease);
     }
-    .case-meta-link:hover { color: var(--brick); gap: 12px; }
+    .case-meta-link:hover {
+      background: var(--hero-accent);
+      color: oklch(13% 0.012 60);
+      border-color: var(--hero-accent);
+      transform: translateY(-1px);
+    }
+    .case-meta-link .arrow { transition: transform 240ms var(--ease); }
+    .case-meta-link:hover .arrow { transform: translateX(3px); }
 
     /* ════════════════════════════════════════════════════════════
        WERKSTATT / ABOUT
@@ -1687,95 +1796,110 @@
 
 
 <!-- ════════════════════════════════════════════════════════════
-     CASE 1 — Elektrotechnik (editorial spread)
+     CASES — Generic Showcase, dark premium
 ════════════════════════════════════════════════════════════ -->
-<section class="case" id="arbeiten">
-  <div class="wrap">
+<div class="cases-wrap" id="arbeiten">
 
-    <div class="case-head reveal">
-      <div class="case-tagline">
-        <span class="case-tagline-num">01</span>
-        <span class="case-tagline-tag">Elektrotechnik · Trossingen</span>
-      </div>
-      <div class="case-head-text">
-        <h2 class="display-3">Alexander Weber Elektrotechnik.</h2>
-        <p>Vom <strong>Wix-Baukasten ohne Mobile-Optimierung</strong> zur maßgeschneiderten Premium-Website mit klarer Anfrage-Logik und direktem Telefon-CTA. Ein Familienbetrieb in dritter Generation, der wieder online präsent ist.</p>
-      </div>
+  <section class="cases-intro">
+    <div class="wrap">
+      <span class="cases-intro-label">Ausgewählte Arbeiten</span>
+      <h2>Vom Baukasten zur <em>Conversion-Maschine.</em></h2>
+      <p class="cases-intro-sub">Zwei echte Live-Projekte. Identische Ausgangslage: alte Website ohne Anfragen. Identisches Ergebnis: messbar besser. Das könnte Ihr nächstes Projekt sein.</p>
     </div>
+  </section>
 
-    <div class="case-body">
-      <a class="case-thumb reveal" href="https://weber-elektrotechnik-test.netlify.app" target="_blank" rel="noopener noreferrer">
-        <img src="https://image.thum.io/get/width/1200/crop/900/https://weber-elektrotechnik-test.netlify.app" alt="Alexander Weber Elektrotechnik" loading="lazy">
-      </a>
+  <!-- CASE 01 -->
+  <section class="case">
+    <div class="wrap">
 
-      <div class="case-meta reveal d1">
-        <dl>
-          <dt>Ladezeit vorher</dt>
-          <dd>7,8 s</dd>
-          <dt>Ladezeit nachher</dt>
-          <dd><span class="delta">1,4 s</span></dd>
-          <dt>PageSpeed Score</dt>
-          <dd>98 / 100</dd>
-          <dt>Liefertermin</dt>
-          <dd>14 Tage (gehalten)</dd>
-          <dt>Festpreis</dt>
-          <dd>Standard-Paket</dd>
-        </dl>
-        <a class="case-meta-link" href="https://weber-elektrotechnik-test.netlify.app" target="_blank" rel="noopener noreferrer">
-          Live-Site ansehen
-          <span class="arrow" aria-hidden="true">→</span>
+      <div class="case-head reveal">
+        <div class="case-tagline">
+          <span class="case-tagline-num">Projekt 01</span>
+          <span class="case-tagline-tag">Elektrofachbetrieb · Süddeutschland</span>
+        </div>
+        <div class="case-head-text">
+          <h3>Vom 7,8 s langsamen Baukasten zur <em>1,4 s Premium-Site.</em></h3>
+          <p>Veralteter Baukasten ohne Mobile-Optimierung wurde zur <strong>maßgeschneiderten Conversion-Website</strong> mit klarer Anfrage-Strecke, direktem Telefon-CTA und PageSpeed 98 von 100. <strong>14 Tage Lieferzeit, Festpreis gehalten.</strong></p>
+        </div>
+      </div>
+
+      <div class="case-body">
+        <a class="case-thumb reveal" href="https://weber-elektrotechnik-test.netlify.app" target="_blank" rel="noopener noreferrer" aria-label="Live-Site ansehen">
+          <img src="https://image.thum.io/get/width/1200/crop/750/https://weber-elektrotechnik-test.netlify.app" alt="Projekt 01 Live-Vorschau" loading="lazy">
         </a>
+
+        <div class="case-meta reveal d1">
+          <dl>
+            <dt>Ladezeit vorher</dt>
+            <dd>7,8 s</dd>
+            <dt>Ladezeit nachher</dt>
+            <dd><span class="delta">1,4 s · −82 %</span></dd>
+            <dt>PageSpeed Score</dt>
+            <dd><span class="delta">98 / 100</span></dd>
+            <dt>Mobile-Friendly</dt>
+            <dd>100 %</dd>
+            <dt>Liefertermin</dt>
+            <dd>14 Tage gehalten</dd>
+            <dt>Investition</dt>
+            <dd>Standard-Paket</dd>
+          </dl>
+          <a class="case-meta-link" href="https://weber-elektrotechnik-test.netlify.app" target="_blank" rel="noopener noreferrer">
+            Live ansehen
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
+
     </div>
-
-  </div>
-</section>
+  </section>
 
 
-<!-- ════════════════════════════════════════════════════════════
-     CASE 2 — Hotz (editorial spread, reversed)
-════════════════════════════════════════════════════════════ -->
-<section class="case reverse">
-  <div class="wrap">
+  <!-- CASE 02 -->
+  <section class="case reverse">
+    <div class="wrap">
 
-    <div class="case-head reveal">
-      <div class="case-tagline">
-        <span class="case-tagline-num">02</span>
-        <span class="case-tagline-tag">Fenster &amp; Türen · Donaueschingen</span>
+      <div class="case-head reveal">
+        <div class="case-tagline">
+          <span class="case-tagline-num">Projekt 02</span>
+          <span class="case-tagline-tag">Handwerksbetrieb · Süddeutschland</span>
+        </div>
+        <div class="case-head-text">
+          <h3>Von <em>keiner Online-Präsenz</em> zur Anfrage-Maschine.</h3>
+          <p>Lokaler Handwerksbetrieb ohne digitale Sichtbarkeit. Heute: <strong>mobil-first entworfene Website</strong> mit übersichtlicher Leistungsdarstellung und Anfrage-Formular mit direkter Weiterleitung. <strong>21 Tage Lieferzeit, Festpreis gehalten.</strong></p>
+        </div>
       </div>
-      <div class="case-head-text">
-        <h2 class="display-3">Hotz Fenster &amp; Türen.</h2>
-        <p>Erste eigene Online-Präsenz für einen lokalen Handwerksbetrieb: <strong>mobil-first entworfen</strong>, übersichtliche Leistungsdarstellung, Anfrage-Formular mit direkter Weiterleitung. Vorher: Anfragen nur über Empfehlung.</p>
-      </div>
-    </div>
 
-    <div class="case-body">
-      <a class="case-thumb reveal" href="https://fenster-hotz-test.netlify.app" target="_blank" rel="noopener noreferrer">
-        <img src="https://image.thum.io/get/width/1200/crop/900/https://fenster-hotz-test.netlify.app" alt="Hotz Fenster und Türen" loading="lazy">
-      </a>
-
-      <div class="case-meta reveal d1">
-        <dl>
-          <dt>Online vorher</dt>
-          <dd>keine Präsenz</dd>
-          <dt>Online nachher</dt>
-          <dd><span class="delta">Live + Formular</span></dd>
-          <dt>Mobile-Friendly</dt>
-          <dd>100 %</dd>
-          <dt>Liefertermin</dt>
-          <dd>21 Tage (gehalten)</dd>
-          <dt>Festpreis</dt>
-          <dd>Standard-Paket</dd>
-        </dl>
-        <a class="case-meta-link" href="https://fenster-hotz-test.netlify.app" target="_blank" rel="noopener noreferrer">
-          Live-Site ansehen
-          <span class="arrow" aria-hidden="true">→</span>
+      <div class="case-body">
+        <a class="case-thumb reveal" href="https://fenster-hotz-test.netlify.app" target="_blank" rel="noopener noreferrer" aria-label="Live-Site ansehen">
+          <img src="https://image.thum.io/get/width/1200/crop/750/https://fenster-hotz-test.netlify.app" alt="Projekt 02 Live-Vorschau" loading="lazy">
         </a>
-      </div>
-    </div>
 
-  </div>
-</section>
+        <div class="case-meta reveal d1">
+          <dl>
+            <dt>Online vorher</dt>
+            <dd>keine Präsenz</dd>
+            <dt>Online nachher</dt>
+            <dd><span class="delta">Live + Formular</span></dd>
+            <dt>Mobile-Friendly</dt>
+            <dd><span class="delta">100 %</span></dd>
+            <dt>Anfrage-Strecke</dt>
+            <dd>direkt im Postfach</dd>
+            <dt>Liefertermin</dt>
+            <dd>21 Tage gehalten</dd>
+            <dt>Investition</dt>
+            <dd>Standard-Paket</dd>
+          </dl>
+          <a class="case-meta-link" href="https://fenster-hotz-test.netlify.app" target="_blank" rel="noopener noreferrer">
+            Live ansehen
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
 
 
 <!-- ════════════════════════════════════════════════════════════
