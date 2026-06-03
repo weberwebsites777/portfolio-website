@@ -283,393 +283,228 @@
     }
 
     /* ════════════════════════════════════════════════════════════
-       HERO — Dark Premium Editorial:
-       Bold 900-weight, brick accent, atmospheric backdrop
+       HERO — V1 Split Layout: Logo | Divider | Statement | Phone
     ════════════════════════════════════════════════════════════ */
     .hero {
-      padding: clamp(112px, 11vw, 144px) 0 clamp(64px, 8vw, 96px);
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
       position: relative;
       overflow: hidden;
       background: var(--hero-bg);
       color: var(--hero-text);
-      margin-bottom: -1px;
     }
-    /* Honey halo top-right — more committed */
+    /* Dot grid */
     .hero::before {
       content: '';
       position: absolute;
-      top: -30%;
-      right: -20%;
-      width: 1100px; height: 1100px;
-      background:
-        radial-gradient(circle at center,
-          oklch(82% 0.17 88 / 0.22),
-          transparent 60%);
+      inset: 0;
+      background-image: radial-gradient(circle, oklch(82% 0.17 88 / 0.14) 1.5px, transparent 1.5px);
+      background-size: 28px 28px;
       pointer-events: none;
       z-index: 0;
-      will-change: transform;
     }
-    /* Warm amber halo bottom-left */
+    /* Honey bloom */
     .hero::after {
       content: '';
       position: absolute;
-      bottom: -40%;
-      left: -20%;
-      width: 1000px; height: 1000px;
-      background:
-        radial-gradient(circle at center,
-          oklch(78% 0.16 75 / 0.15),
-          transparent 60%);
+      top: -20%; right: -10%;
+      width: 900px; height: 900px;
+      background: radial-gradient(circle at center, oklch(82% 0.17 88 / 0.18), transparent 60%);
       pointer-events: none;
       z-index: 0;
     }
-    /* Subtle grid texture overlay — light */
-    .hero-texture {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(oklch(15% 0.01 60 / 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, oklch(15% 0.01 60 / 0.035) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: radial-gradient(ellipse 110% 90% at center 40%, oklch(0% 0 0) 0%, transparent 75%);
-      -webkit-mask-image: radial-gradient(ellipse 110% 90% at center 40%, oklch(0% 0 0) 0%, transparent 75%);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .hero > .wrap { position: relative; z-index: 1; }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.25fr 1fr;
-      gap: clamp(48px, 5vw, 72px);
-      align-items: center;
-    }
+    .hero > .wrap { position: relative; z-index: 1; width: 100%; }
 
     @keyframes fade-up {
       from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* LEFT COLUMN */
-    .hero-text {
-      max-width: 720px;
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      min-height: calc(100svh - 64px);
+      gap: 0;
+      padding: 80px 0;
     }
 
-    .hero-logo {
-      height: clamp(48px, 6vw, 80px);
-      width: auto;
+    /* Logo left */
+    .hero-logo-side {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-right: clamp(40px, 5vw, 72px);
+      flex-shrink: 0;
+      opacity: 0;
+      animation: fade-up 700ms var(--ease-out) 60ms forwards;
+    }
+    .hero-logo-large {
+      width: clamp(100px, 13vw, 190px);
+      height: auto;
       display: block;
     }
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 5px 5px 5px 12px;
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      font-size: 11.5px;
-      color: var(--ink-2);
-      letter-spacing: -0.003em;
-      margin-bottom: clamp(20px, 2.4vw, 28px);
-      box-shadow: 0 1px 2px oklch(15% 0.01 60 / 0.05);
-      opacity: 0;
-      animation: fade-up 900ms var(--ease-out) 60ms forwards;
-    }
-    .hero-badge-text strong {
-      color: var(--hero-text);
-      font-weight: 600;
-    }
-    .hero-badge-sep {
-      width: 1px; height: 14px;
-      background: var(--hero-line);
-      margin: 0 12px;
-    }
-    .hero-badge-stars {
-      display: inline-flex; align-items: center; gap: 2px;
-      margin-right: 8px;
-    }
-    .hero-badge-stars svg {
-      width: 11px; height: 11px;
-      color: var(--hero-accent);
-    }
-    .hero-badge-pill {
-      background: var(--hero-accent);
-      color: oklch(13% 0.012 60);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 999px;
-      margin-left: 10px;
-      box-shadow: 0 0 0 1px oklch(92% 0.13 88 / 0.6) inset;
+    /* Vertical divider */
+    .hero-divider {
+      width: 1px;
+      height: 56vh;
+      background: var(--line-2);
+      flex-shrink: 0;
+      align-self: center;
     }
 
-    .hero-headline {
+    /* Statement */
+    .hero-statement {
+      padding: 0 0 0 clamp(40px, 5vw, 72px);
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-h1 {
       font-family: var(--font-display);
-      font-size: clamp(56px, 9vw, 132px);
+      font-size: clamp(52px, 8vw, 116px);
       font-weight: 900;
-      line-height: 0.92;
-      letter-spacing: -0.05em;
-      color: var(--hero-text);
-      max-width: 11ch;
-    }
-    .hero-headline .word {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(24px);
-      animation: fade-up 900ms var(--ease-out) forwards;
-    }
-    .hero-headline-em {
-      color: var(--hero-accent);
-    }
-
-    .hero-sub {
-      margin-top: clamp(22px, 2.4vw, 32px);
-      font-size: clamp(16px, 1.35vw, 19px);
-      line-height: 1.55;
-      color: var(--hero-text-2);
-      letter-spacing: -0.013em;
-      max-width: 42ch;
-      opacity: 0;
-      animation: fade-up 900ms var(--ease-out) 720ms forwards;
-    }
-    .hero-sub strong {
-      color: var(--hero-text);
-      font-weight: 600;
-    }
-
-    .hero-actions {
-      margin-top: clamp(24px, 2.6vw, 32px);
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fade-up 900ms var(--ease-out) 860ms forwards;
-    }
-    /* Override base btn styles for dark hero */
-    .hero-actions .btn-cta-primary {
-      background: var(--hero-accent);
-      color: oklch(13% 0.012 60);
-      padding: 12px 20px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
+      line-height: 0.93;
+      letter-spacing: -0.044em;
       text-transform: uppercase;
+      margin-bottom: clamp(32px, 4vw, 52px);
+      opacity: 0;
+      animation: fade-up 700ms var(--ease-out) 180ms forwards;
+    }
+    .hero-line-1 { display: block; color: var(--ink); }
+    .hero-line-2 { display: block; color: var(--ink); }
+    .hero-line-2 .y { color: var(--brick); }
+
+    .hero-cta {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: flex-start;
+      opacity: 0;
+      animation: fade-up 700ms var(--ease-out) 340ms forwards;
+    }
+    .btn-cta-primary {
+      background: var(--brick);
+      color: oklch(13% 0.012 60);
+      padding: 14px 24px;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
       border-radius: var(--r-sm);
       display: inline-flex;
       align-items: center;
       gap: 10px;
       transition: background 240ms var(--ease), transform 240ms var(--ease), box-shadow 280ms var(--ease);
-      box-shadow:
-        0 1px 0 oklch(92% 0.12 88) inset,
-        0 10px 24px -8px oklch(82% 0.17 88 / 0.4);
+      box-shadow: 0 8px 24px -8px oklch(82% 0.17 88 / 0.45);
     }
-    .hero-actions .btn-cta-primary:hover {
-      background: var(--hero-accent-2);
+    .btn-cta-primary:hover {
+      background: var(--brick-2);
       transform: translateY(-2px);
-      box-shadow:
-        0 1px 0 oklch(88% 0.13 88) inset,
-        0 16px 32px -8px oklch(82% 0.17 88 / 0.5);
+      box-shadow: 0 16px 36px -8px oklch(82% 0.17 88 / 0.5);
     }
-    .hero-actions .btn-cta-secondary {
-      background: transparent;
-      color: var(--hero-text);
-      padding: 12px 20px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border-radius: var(--r-sm);
-      border: 1px solid var(--hero-line-2);
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: background 240ms var(--ease), border-color 240ms var(--ease), transform 240ms var(--ease);
-    }
-    .hero-actions .btn-cta-secondary:hover {
-      background: oklch(22% 0.014 60 / 0.5);
-      border-color: var(--hero-text);
-      transform: translateY(-2px);
-    }
-    .hero-actions .btn-cta-primary .arrow,
-    .hero-actions .btn-cta-secondary .arrow {
-      font-size: 14px;
-      transition: transform 240ms var(--ease);
-    }
-    .hero-actions .btn-cta-primary:hover .arrow,
-    .hero-actions .btn-cta-secondary:hover .arrow {
-      transform: translateX(3px);
-    }
+    .btn-cta-primary .arrow { transition: transform 240ms var(--ease); }
+    .btn-cta-primary:hover .arrow { transform: translateX(3px); }
 
-    /* Trust strip below CTAs */
-    .hero-trust {
-      margin-top: clamp(32px, 3.6vw, 44px);
-      padding-top: clamp(20px, 2.4vw, 28px);
-      border-top: 1px solid var(--hero-line);
+    .hero-trust-chips {
       display: flex;
-      flex-direction: column;
-      gap: 10px;
-      opacity: 0;
-      animation: fade-up 1000ms var(--ease-out) 1000ms forwards;
-    }
-    .hero-trust-label {
-      font-size: 10.5px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      font-weight: 600;
-      color: var(--hero-text-3);
-    }
-    .hero-trust-row {
-      display: flex;
-      align-items: center;
-      gap: clamp(20px, 2.4vw, 36px);
       flex-wrap: wrap;
+      gap: 6px 20px;
     }
-    .hero-trust-client {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--hero-text);
-      letter-spacing: -0.011em;
-      transition: color 220ms var(--ease);
-    }
-    .hero-trust-client:hover { color: var(--hero-accent); }
-    .hero-trust-sep {
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: var(--hero-text-3);
-    }
-
-    /* RIGHT COLUMN — Mockup with floating cards (dark theme) */
-    .hero-mockup {
-      position: relative;
-      perspective: 1600px;
-      transform-style: preserve-3d;
-      will-change: transform;
-      max-width: 540px;
-      margin-left: auto;
-    }
-    .hero-mockup-glow {
-      position: absolute;
-      inset: 12% -5% -15% -5%;
-      background: radial-gradient(ellipse at center,
-        oklch(82% 0.17 88 / 0.22),
-        transparent 60%);
-      filter: blur(60px);
-      z-index: 0;
-      pointer-events: none;
-    }
-    .hero-device {
-      position: relative;
-      z-index: 1;
-      background: oklch(7% 0.01 60);
-      border: 1px solid oklch(28% 0.014 60);
-      border-radius: 12px;
-      padding: 10px;
-      transform: rotateY(-7deg) rotateX(4deg);
-      box-shadow:
-        0 1px 0 oklch(34% 0.012 60) inset,
-        0 48px 120px -32px oklch(0% 0 0 / 0.55),
-        0 24px 56px -12px oklch(0% 0 0 / 0.4),
-        0 0 70px -10px oklch(82% 0.17 88 / 0.22);
-      opacity: 0;
-      animation: device-breathe 8s ease-in-out infinite, fade-up 1200ms var(--ease-out) 480ms forwards;
-    }
-    @keyframes device-breathe {
-      0%, 100% { transform: rotateY(-7deg) rotateX(4deg) translateY(0); }
-      50%      { transform: rotateY(-7deg) rotateX(4deg) translateY(-10px); }
-    }
-    .hero-device-screen {
-      border-radius: 4px;
-      overflow: hidden;
-      aspect-ratio: 16 / 10;
-      background: var(--paper);
-    }
-    .hero-device-screen img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: top center;
-    }
-
-    /* Floating data cards — dark theme */
-    .float-card {
-      position: absolute;
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: var(--r);
-      padding: 11px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      box-shadow:
-        0 1px 0 oklch(100% 0 0 / 0.8) inset,
-        0 18px 36px -12px oklch(15% 0.01 60 / 0.18),
-        0 6px 12px -4px oklch(15% 0.01 60 / 0.08);
-      z-index: 3;
-      min-width: 144px;
-    }
-    .float-card-label {
-      font-size: 9.5px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink-3);
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-    }
-    .float-card-label::before {
-      content: '';
-      width: 5px; height: 5px;
-      background: var(--hero-accent);
-      border-radius: 50%;
-      box-shadow: 0 0 8px oklch(82% 0.17 88 / 0.8);
-    }
-    .float-card-value {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--ink);
-      letter-spacing: -0.028em;
-      line-height: 1;
-      font-variant-numeric: tabular-nums;
-    }
-    .float-card-value-unit {
-      font-size: 0.5em;
-      color: var(--ink-3);
-      font-weight: 500;
-    }
-    .float-card-sub {
-      font-size: 11px;
+    .hero-trust-chips span {
+      font-size: 12.5px;
       color: var(--ink-3);
       letter-spacing: -0.005em;
     }
-    .float-card-sub .delta {
-      color: var(--brick-2);
+    .hero-trust-chips span::before {
+      content: '✓ ';
+      color: var(--brick);
       font-weight: 700;
-      margin-left: 6px;
     }
-    .float-card.top {
-      top: -28px;
-      left: -36px;
-      animation: float-1 5.5s ease-in-out infinite, fade-up 1000ms var(--ease-out) 900ms forwards;
+
+    /* Phone mockup */
+    .hero-phone {
+      flex-shrink: 0;
+      margin-left: clamp(32px, 4vw, 56px);
+      align-self: center;
+      position: relative;
+      z-index: 1;
       opacity: 0;
+      animation: fade-up 700ms var(--ease-out) 480ms forwards;
     }
-    .float-card.bottom {
-      bottom: -32px;
-      right: -28px;
-      animation: float-2 6.5s ease-in-out infinite, fade-up 1000ms var(--ease-out) 1100ms forwards;
-      opacity: 0;
+    .phone-frame {
+      width: 178px;
+      background: oklch(18% 0.01 60);
+      border: 1px solid oklch(82% 0.17 88 / 0.28);
+      border-radius: 38px;
+      padding: 10px;
+      box-shadow:
+        0 44px 90px oklch(15% 0.01 60 / 0.3),
+        inset 0 1px 0 oklch(32% 0.01 60 / 0.5);
+      transform: perspective(900px) rotateY(-8deg) rotateX(2deg);
+      transition: transform 600ms var(--ease-out);
+      position: relative;
     }
-    @keyframes float-1 {
-      0%, 100% { transform: translateY(0); }
-      50%      { transform: translateY(-14px); }
+    .hero-phone:hover .phone-frame { transform: perspective(900px) rotateY(-2deg) rotateX(0deg); }
+    .phone-frame::before {
+      content: '';
+      position: absolute;
+      right: -4px; top: 86px;
+      width: 3px; height: 52px;
+      background: oklch(26% 0.01 60);
+      border-radius: 0 2px 2px 0;
     }
-    @keyframes float-2 {
-      0%, 100% { transform: translateY(0); }
-      50%      { transform: translateY(10px); }
+    .phone-frame::after {
+      content: '';
+      position: absolute;
+      left: -4px; top: 66px;
+      width: 3px; height: 24px;
+      background: oklch(26% 0.01 60);
+      border-radius: 2px 0 0 2px;
+      box-shadow: 0 34px 0 oklch(26% 0.01 60), 0 60px 0 oklch(26% 0.01 60);
     }
+    .phone-screen { background: oklch(10% 0.008 60); border-radius: 28px; overflow: hidden; }
+    .phone-island { width: 66px; height: 18px; background: oklch(4% 0.003 60); border-radius: 0 0 11px 11px; margin: 0 auto 5px; }
+    .ph-status { display: flex; justify-content: space-between; align-items: center; padding: 0 13px 5px; font-size: 7.5px; font-weight: 700; color: oklch(88% 0.005 60); font-family: var(--font); }
+    .ph-status-right { display: flex; align-items: center; gap: 3.5px; }
+    .ph-sig { display: flex; gap: 1.5px; align-items: flex-end; height: 8px; }
+    .ph-sig i { display: block; width: 2px; background: oklch(88% 0.005 60); border-radius: 0.5px; }
+    .ph-sig i:nth-child(1) { height: 3px; }
+    .ph-sig i:nth-child(2) { height: 5px; }
+    .ph-sig i:nth-child(3) { height: 6.5px; }
+    .ph-sig i:nth-child(4) { height: 8px; }
+    .ph-bat { width: 13px; height: 7px; border: 1px solid oklch(52% 0.005 60); border-radius: 1.5px; padding: 1px; position: relative; }
+    .ph-bat::after { content: ''; position: absolute; right: -3px; top: 50%; transform: translateY(-50%); width: 2px; height: 3.5px; background: oklch(42% 0.005 60); border-radius: 0 1px 1px 0; }
+    .ph-bat-fill { height: 100%; width: 74%; background: oklch(88% 0.005 60); border-radius: 0.5px; }
+    .ph-body { padding: 8px 12px 12px; }
+    .ph-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .ph-logo-bar { width: 34px; height: 5px; background: var(--brick); border-radius: 1.5px; }
+    .ph-hamburger { display: flex; flex-direction: column; gap: 2px; }
+    .ph-hamburger i { display: block; width: 12px; height: 1.5px; background: oklch(38% 0.006 60); border-radius: 1px; }
+    .ph-hamburger i:last-child { width: 8px; }
+    .ph-hl { margin-bottom: 9px; }
+    .ph-hl-line { height: 6.5px; background: oklch(82% 0.007 70); border-radius: 1.5px; margin-bottom: 4px; }
+    .ph-hl-line.y { background: var(--brick); width: 66%; }
+    .ph-hl-line.w2 { width: 82%; }
+    .ph-desc { margin-bottom: 11px; }
+    .ph-desc i { display: block; height: 3px; background: oklch(26% 0.005 60); border-radius: 1.5px; margin-bottom: 3px; }
+    .ph-desc i:last-child { width: 58%; }
+    .ph-cta-btn { height: 19px; background: var(--brick); border-radius: 3px; width: 100%; margin-bottom: 14px; }
+    .ph-cards { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
+    .ph-card { background: oklch(15% 0.008 60); border: 1px solid oklch(26% 0.008 60); border-radius: 3px; padding: 7px; }
+    .ph-card-title { height: 4px; background: oklch(78% 0.007 70); border-radius: 1.5px; margin-bottom: 5px; width: 70%; }
+    .ph-card-lines i { display: block; height: 2.5px; background: oklch(26% 0.005 60); border-radius: 1.5px; margin-bottom: 2.5px; }
+    .ph-card-lines i:last-child { width: 52%; }
+    .ph-perf { display: flex; justify-content: space-around; padding: 6px; background: oklch(8% 0.006 60); border-radius: 3px; border: 1px solid oklch(82% 0.17 88 / 0.14); }
+    .ph-perf-item { display: flex; flex-direction: column; align-items: center; gap: 1.5px; }
+    .ph-perf-num { font-size: 8.5px; font-weight: 800; color: var(--brick); font-family: var(--font); }
+    .ph-perf-lbl { font-size: 5.5px; letter-spacing: 0.05em; color: oklch(38% 0.005 60); text-transform: uppercase; font-family: var(--font); }
+    .ph-score-wrap { width: 26px; height: 2px; background: oklch(22% 0.005 60); border-radius: 1px; overflow: hidden; margin-top: 2px; }
+    @keyframes phScoreFill { from { width: 0; } to { width: 96%; } }
+    .ph-score-bar { height: 100%; background: var(--brick); border-radius: 1px; width: 0; animation: phScoreFill 1.8s var(--ease-out) 900ms both; }
+    .phone-home-wrap { padding: 6px 0 8px; background: oklch(7% 0.005 60); display: flex; justify-content: center; }
+    .phone-home-bar { width: 44px; height: 3px; background: oklch(28% 0.005 60); border-radius: 2px; }
 
     /* ════════════════════════════════════════════════════════════
        PROOF — Vorher / Nachher slider as primary visual anchor
@@ -1805,12 +1640,12 @@
     @media (max-width: 1024px) {
       .wrap, .wrap-text { padding: 0 24px; }
 
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 56px;
-      }
-      .hero-text { max-width: 640px; margin: 0 auto; }
-      .hero-mockup { max-width: 520px; margin: 0 auto; }
+      .hero-inner { flex-direction: column; align-items: flex-start; gap: 32px; padding: 100px 0 60px; min-height: unset; }
+      .hero-logo-side { padding-right: 0; }
+      .hero-logo-large { width: clamp(80px, 22vw, 140px); }
+      .hero-divider { width: 40px; height: 1px; }
+      .hero-statement { padding-left: 0; }
+      .hero-phone { margin-left: 0; display: none; }
 
       .case-head { grid-template-columns: 1fr; gap: 24px; align-items: start; }
       .case-body, .case.reverse .case-body { grid-template-columns: 1fr; gap: 40px; }
@@ -1832,32 +1667,9 @@
       .nav-links { display: none; }
       .nav-logo { height: 24px; }
 
-      .hero { padding-top: 88px; padding-bottom: 48px; }
-      .hero-grid { gap: 40px; }
-      .hero-badge {
-        flex-wrap: wrap;
-        gap: 6px 0;
-        font-size: 11px;
-        padding: 5px 6px 5px 11px;
-      }
-      .hero-badge-sep { display: none; }
-      .hero-badge-pill { margin-left: auto; }
-      .hero-headline { font-size: clamp(48px, 13vw, 72px); max-width: 100%; line-height: 0.94; }
-      .hero-sub { font-size: 14.5px; padding-left: 12px; }
-      .hero-actions { flex-direction: column; width: 100%; align-items: stretch; gap: 10px; }
-      .hero-actions .btn-cta-primary, .hero-actions .btn-cta-secondary { width: 100%; justify-content: center; padding: 12px 18px; }
-      .hero-trust { margin-top: 24px; padding-top: 16px; }
-      .hero-trust-row { gap: 10px 18px; }
-
-      .hero-device { transform: rotateY(-4deg) rotateX(3deg); }
-      @keyframes device-breathe {
-        0%, 100% { transform: rotateY(-4deg) rotateX(3deg) translateY(0); }
-        50%      { transform: rotateY(-4deg) rotateX(3deg) translateY(-6px); }
-      }
-      .float-card { min-width: 120px; padding: 9px 11px; }
-      .float-card-value { font-size: 18px; }
-      .float-card.top { top: -14px; left: -8px; }
-      .float-card.bottom { bottom: -18px; right: -8px; }
+      .hero-h1 { font-size: clamp(44px, 12vw, 68px); }
+      .hero-cta { gap: 16px; }
+      .btn-cta-primary { width: 100%; justify-content: center; }
 
       .before-after { aspect-ratio: 4 / 3; }
 
@@ -1877,7 +1689,7 @@
         transition-duration: 0.01ms !important;
       }
       html { scroll-behavior: auto; }
-      .reveal, .hero-logo-wrap, .hero-badge, .hero-headline, .hero-headline .word, .hero-sub, .hero-actions, .hero-trust, .hero-device, .float-card, .proof-frame {
+      .reveal, .hero-logo-side, .hero-h1, .hero-cta, .hero-phone, .proof-frame {
         opacity: 1 !important;
         transform: none !important;
         animation: none !important;
@@ -1914,234 +1726,95 @@
 
 
 <!-- ════════════════════════════════════════════════════════════
-     HERO
+     HERO — V1 Split: Logo | Divider | Statement | Phone
 ════════════════════════════════════════════════════════════ -->
 <section class="hero" id="top">
-  <div class="hero-texture" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="hero-grid">
+    <div class="hero-inner">
 
-      <!-- LEFT — Trust Badge / Headline / Sub / CTAs / Trust Strip -->
-      <div class="hero-text">
+      <!-- Logo links -->
+      <div class="hero-logo-side">
+        <img src="logo-cropped.png" alt="Weber Websites" class="hero-logo-large" fetchpriority="high">
+      </div>
 
-        <div class="hero-logo-wrap" style="padding-bottom: clamp(28px, 3.5vw, 44px); margin-bottom: clamp(28px, 3.5vw, 44px); border-bottom: 1px solid var(--line); opacity: 0; animation: fade-up 900ms var(--ease-out) 60ms forwards;">
-          <img src="logo-cropped.png" alt="Weber Websites" class="hero-logo">
-        </div>
+      <!-- Vertikaler Teiler -->
+      <div class="hero-divider" aria-hidden="true"></div>
 
-        <h1 class="hero-headline">
-          <span class="word" style="animation-delay: 200ms">Ihre</span>
-          <span class="word" style="animation-delay: 320ms">Website.</span><br>
-          <span class="word hero-headline-em" style="animation-delay: 460ms">Renoviert.</span>
+      <!-- Statement -->
+      <div class="hero-statement">
+        <h1 class="hero-h1">
+          <span class="hero-line-1">Ihre</span>
+          <span class="hero-line-1">Website.</span>
+          <span class="hero-line-2"><span class="y">Renoviert.</span></span>
         </h1>
 
-        <p class="hero-sub">
-          Aus einer alten Seite wird ein <strong>maßgeschneidertes Werkstück</strong> — schneller, klarer, langlebig. Festpreis und Liefertermin im Angebot.
-        </p>
-
-        <div class="hero-actions">
+        <div class="hero-cta">
           <a href="#kontakt" class="btn-cta-primary">
             Kostenloses Erstgespräch
             <span class="arrow" aria-hidden="true">→</span>
           </a>
-          <a href="#arbeiten" class="btn-cta-secondary">
-            Projekte ansehen
-            <span class="arrow" aria-hidden="true">→</span>
-          </a>
-        </div>
-
-
-      </div>
-
-      <!-- RIGHT — 3D-Mockup mit floating data cards -->
-      <div class="hero-mockup" aria-hidden="true">
-        <div class="hero-mockup-glow"></div>
-
-        <div class="hero-device">
-          <div class="hero-device-screen">
-            <svg viewBox="0 0 1600 1000" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;" aria-hidden="true">
-              <defs>
-                <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#1C1A16"/>
-                  <stop offset="100%" stop-color="#241F18"/>
-                </linearGradient>
-                <linearGradient id="yg" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#D4A843"/>
-                  <stop offset="100%" stop-color="#C49A38"/>
-                </linearGradient>
-                <radialGradient id="glow" cx="75%" cy="35%" r="55%">
-                  <stop offset="0%" stop-color="#D4A843" stop-opacity="0.18"/>
-                  <stop offset="100%" stop-color="#D4A843" stop-opacity="0"/>
-                </radialGradient>
-                <radialGradient id="glow2" cx="20%" cy="80%" r="45%">
-                  <stop offset="0%" stop-color="#C49A38" stop-opacity="0.10"/>
-                  <stop offset="100%" stop-color="#C49A38" stop-opacity="0"/>
-                </radialGradient>
-              </defs>
-
-              <!-- ── BACKGROUND ── -->
-              <rect width="1600" height="1000" fill="url(#hg)"/>
-              <rect width="1600" height="1000" fill="url(#glow)"/>
-              <rect width="1600" height="1000" fill="url(#glow2)"/>
-
-              <!-- Subtle grid texture -->
-              <g opacity="0.035">
-                <line x1="0" y1="0" x2="0" y2="1000" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="80" y1="0" x2="80" y2="1000" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="160" y1="0" x2="160" y2="1000" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="240" y1="0" x2="240" y2="1000" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="320" y1="0" x2="320" y2="1000" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="400" y1="0" x2="400" y2="1000" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="480" y1="0" x2="480" y2="1000" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="560" y1="0" x2="560" y2="1000" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="640" y1="0" x2="640" y2="1000" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="720" y1="0" x2="720" y2="1000" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="800" y1="0" x2="800" y2="1000" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="880" y1="0" x2="880" y2="1000" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="960" y1="0" x2="960" y2="1000" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="1040" y1="0" x2="1040" y2="1000" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="1120" y1="0" x2="1120" y2="1000" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="1200" y1="0" x2="1200" y2="1000" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="1280" y1="0" x2="1280" y2="1000" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="1360" y1="0" x2="1360" y2="1000" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="1440" y1="0" x2="1440" y2="1000" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="1520" y1="0" x2="1520" y2="1000" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="0" y1="80" x2="1600" y2="80" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="0" y1="160" x2="1600" y2="160" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="0" y1="240" x2="1600" y2="240" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="0" y1="320" x2="1600" y2="320" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="0" y1="400" x2="1600" y2="400" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="0" y1="480" x2="1600" y2="480" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="0" y1="560" x2="1600" y2="560" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="0" y1="640" x2="1600" y2="640" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="0" y1="720" x2="1600" y2="720" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="0" y1="800" x2="1600" y2="800" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="0" y1="880" x2="1600" y2="880" stroke="#F0E8D8" stroke-width="1"/>
-                <line x1="0" y1="960" x2="1600" y2="960" stroke="#F0E8D8" stroke-width="1"/>
-              </g>
-
-              <!-- ── NAV ── -->
-              <rect width="1600" height="68" fill="#141210" opacity="0.95"/>
-              <line x1="0" y1="68" x2="1600" y2="68" stroke="#F0E8D8" stroke-width="1" opacity="0.12"/>
-              <!-- Logo mark -->
-              <rect x="56" y="22" width="28" height="24" rx="3" fill="#D4A843"/>
-              <text x="91" y="39" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#F0E8D8" letter-spacing="-0.5">Müller Elektro</text>
-              <!-- Nav links -->
-              <text x="1040" y="38" font-family="system-ui,sans-serif" font-size="13" fill="#F0E8D8" opacity="0.5">Leistungen</text>
-              <text x="1160" y="38" font-family="system-ui,sans-serif" font-size="13" fill="#F0E8D8" opacity="0.5">Über uns</text>
-              <text x="1268" y="38" font-family="system-ui,sans-serif" font-size="13" fill="#F0E8D8" opacity="0.5">Referenzen</text>
-              <!-- Nav CTA -->
-              <rect x="1396" y="18" width="148" height="32" rx="4" fill="#D4A843"/>
-              <text x="1470" y="38" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#1C1A16" text-anchor="middle">Kontakt</text>
-
-              <!-- ── HERO CONTENT ── -->
-              <!-- Kicker label -->
-              <rect x="56" y="116" width="6" height="18" rx="2" fill="#D4A843"/>
-              <text x="72" y="130" font-family="system-ui,sans-serif" font-size="13" font-weight="600" fill="#D4A843" letter-spacing="2">ELEKTROTECHNIK · SÜDDEUTSCHLAND</text>
-
-              <!-- Main headline -->
-              <text x="56" y="218" font-family="system-ui,sans-serif" font-size="86" font-weight="800" fill="#F0E8D8" letter-spacing="-4">Strom. Sicherheit.</text>
-              <text x="56" y="318" font-family="system-ui,sans-serif" font-size="86" font-weight="800" fill="#D4A843" letter-spacing="-4">Vertrauen.</text>
-
-              <!-- Subtitle -->
-              <text x="56" y="388" font-family="system-ui,sans-serif" font-size="22" fill="#F0E8D8" opacity="0.55">Elektroinstallationen für Privat und Gewerbe.</text>
-              <text x="56" y="414" font-family="system-ui,sans-serif" font-size="22" fill="#F0E8D8" opacity="0.55">Festpreis. Liefertermin. Direkter Ansprechpartner.</text>
-
-              <!-- CTA Buttons -->
-              <rect x="56" y="456" width="220" height="52" rx="5" fill="#D4A843"/>
-              <text x="166" y="487" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#1C1A16" text-anchor="middle" letter-spacing="0.5">Jetzt anfragen →</text>
-              <rect x="292" y="456" width="188" height="52" rx="5" fill="none" stroke="#F0E8D8" stroke-width="1.5" opacity="0.3"/>
-              <text x="386" y="487" font-family="system-ui,sans-serif" font-size="15" font-weight="600" fill="#F0E8D8" text-anchor="middle" opacity="0.6">Leistungen</text>
-
-              <!-- ── RIGHT VISUAL — Abstract photo frame ── -->
-              <!-- Main image frame -->
-              <rect x="860" y="88" width="680" height="500" rx="10" fill="#2A2520" opacity="0.7"/>
-              <rect x="876" y="104" width="648" height="468" rx="6" fill="#332C24" opacity="0.5"/>
-              <!-- Abstract content lines (simulating photo) -->
-              <rect x="876" y="104" width="648" height="468" rx="6" fill="url(#glow)" opacity="2"/>
-              <!-- Visual "photo" abstract shapes -->
-              <ellipse cx="1100" cy="340" rx="180" ry="140" fill="#D4A843" opacity="0.06"/>
-              <ellipse cx="1300" cy="250" rx="120" ry="100" fill="#F0E8D8" opacity="0.04"/>
-              <!-- Measurement/spec lines on image -->
-              <line x1="900" y1="200" x2="1490" y2="200" stroke="#F0E8D8" stroke-width="0.5" opacity="0.12" stroke-dasharray="8,8"/>
-              <line x1="900" y1="400" x2="1490" y2="400" stroke="#F0E8D8" stroke-width="0.5" opacity="0.12" stroke-dasharray="8,8"/>
-              <!-- Craft/technical icon -->
-              <circle cx="1190" cy="338" r="64" fill="none" stroke="#D4A843" stroke-width="1.5" opacity="0.3"/>
-              <circle cx="1190" cy="338" r="44" fill="none" stroke="#D4A843" stroke-width="1" opacity="0.2"/>
-              <circle cx="1190" cy="338" r="8" fill="#D4A843" opacity="0.4"/>
-              <!-- Corner brackets -->
-              <path d="M900 120 L900 148 M900 120 L928 120" stroke="#D4A843" stroke-width="2" opacity="0.5" fill="none" stroke-linecap="round"/>
-              <path d="M1492 120 L1492 148 M1492 120 L1464 120" stroke="#D4A843" stroke-width="2" opacity="0.5" fill="none" stroke-linecap="round"/>
-              <path d="M900 556 L900 528 M900 556 L928 556" stroke="#D4A843" stroke-width="2" opacity="0.5" fill="none" stroke-linecap="round"/>
-              <path d="M1492 556 L1492 528 M1492 556 L1464 556" stroke="#D4A843" stroke-width="2" opacity="0.5" fill="none" stroke-linecap="round"/>
-
-              <!-- ── STATS ROW ── -->
-              <line x1="56" y1="560" x2="820" y2="560" stroke="#F0E8D8" stroke-width="1" opacity="0.1"/>
-              <g transform="translate(56, 580)">
-                <text font-family="system-ui,sans-serif" font-size="42" font-weight="800" fill="#F0E8D8" letter-spacing="-2">98</text>
-                <text y="0" x="64" font-family="system-ui,sans-serif" font-size="14" fill="#F0E8D8" opacity="0.4" dy="0">/ 100</text>
-                <text y="52" font-family="system-ui,sans-serif" font-size="12" fill="#F0E8D8" opacity="0.35" letter-spacing="1">PAGESPEED</text>
-              </g>
-              <line x1="240" y1="590" x2="240" y2="650" stroke="#F0E8D8" stroke-width="1" opacity="0.1"/>
-              <g transform="translate(264, 580)">
-                <text font-family="system-ui,sans-serif" font-size="42" font-weight="800" fill="#D4A843" letter-spacing="-2">1,4s</text>
-                <text y="52" font-family="system-ui,sans-serif" font-size="12" fill="#F0E8D8" opacity="0.35" letter-spacing="1">LADEZEIT</text>
-              </g>
-              <line x1="460" y1="590" x2="460" y2="650" stroke="#F0E8D8" stroke-width="1" opacity="0.1"/>
-              <g transform="translate(484, 580)">
-                <text font-family="system-ui,sans-serif" font-size="42" font-weight="800" fill="#F0E8D8" letter-spacing="-2">14</text>
-                <text y="0" x="56" font-family="system-ui,sans-serif" font-size="16" fill="#F0E8D8" opacity="0.4" dy="2"> Tage</text>
-                <text y="52" font-family="system-ui,sans-serif" font-size="12" fill="#F0E8D8" opacity="0.35" letter-spacing="1">LIEFERZEIT</text>
-              </g>
-
-              <!-- ── BOTTOM SECTION — light ── -->
-              <rect y="700" width="1600" height="300" fill="#F5EDE0"/>
-              <line x1="0" y1="700" x2="1600" y2="700" stroke="#1C1A16" stroke-width="1" opacity="0.08"/>
-
-              <!-- Section heading -->
-              <text x="56" y="758" font-family="system-ui,sans-serif" font-size="36" font-weight="800" fill="#1C1A16" letter-spacing="-1.5">Unsere Leistungen</text>
-
-              <!-- Service cards -->
-              <rect x="56" y="778" width="340" height="188" rx="6" fill="#EDE3D4"/>
-              <rect x="56" y="778" width="4" height="188" rx="2" fill="#D4A843"/>
-              <text x="76" y="812" font-family="system-ui,sans-serif" font-size="16" font-weight="700" fill="#1C1A16">Elektroinstallation</text>
-              <rect x="76" y="826" width="200" height="9" rx="2" fill="#1C1A16" opacity="0.15"/>
-              <rect x="76" y="842" width="240" height="9" rx="2" fill="#1C1A16" opacity="0.1"/>
-              <rect x="76" y="858" width="180" height="9" rx="2" fill="#1C1A16" opacity="0.08"/>
-
-              <rect x="420" y="778" width="340" height="188" rx="6" fill="#EDE3D4"/>
-              <rect x="420" y="778" width="4" height="188" rx="2" fill="#D4A843"/>
-              <text x="440" y="812" font-family="system-ui,sans-serif" font-size="16" font-weight="700" fill="#1C1A16">Zählertausch</text>
-              <rect x="440" y="826" width="220" height="9" rx="2" fill="#1C1A16" opacity="0.15"/>
-              <rect x="440" y="842" width="260" height="9" rx="2" fill="#1C1A16" opacity="0.1"/>
-              <rect x="440" y="858" width="200" height="9" rx="2" fill="#1C1A16" opacity="0.08"/>
-
-              <rect x="784" y="778" width="340" height="188" rx="6" fill="#EDE3D4"/>
-              <rect x="784" y="778" width="4" height="188" rx="2" fill="#D4A843"/>
-              <text x="804" y="812" font-family="system-ui,sans-serif" font-size="16" font-weight="700" fill="#1C1A16">Photovoltaik</text>
-              <rect x="804" y="826" width="200" height="9" rx="2" fill="#1C1A16" opacity="0.15"/>
-              <rect x="804" y="842" width="240" height="9" rx="2" fill="#1C1A16" opacity="0.1"/>
-              <rect x="804" y="858" width="160" height="9" rx="2" fill="#1C1A16" opacity="0.08"/>
-
-              <rect x="1148" y="778" width="396" height="188" rx="6" fill="#1C1A16"/>
-              <rect x="1148" y="778" width="4" height="188" rx="2" fill="#D4A843"/>
-              <text x="1168" y="812" font-family="system-ui,sans-serif" font-size="16" font-weight="700" fill="#F0E8D8">Smart Home</text>
-              <rect x="1168" y="826" width="220" height="9" rx="2" fill="#F0E8D8" opacity="0.15"/>
-              <rect x="1168" y="842" width="260" height="9" rx="2" fill="#F0E8D8" opacity="0.1"/>
-              <rect x="1168" y="858" width="200" height="9" rx="2" fill="#F0E8D8" opacity="0.08"/>
-            </svg>
+          <div class="hero-trust-chips">
+            <span>Festpreis</span>
+            <span>Liefertermin</span>
+            <span>Antwort heute</span>
           </div>
         </div>
+      </div>
 
-        <div class="float-card top">
-          <span class="float-card-label">Performance</span>
-          <span class="float-card-value">98<span class="float-card-value-unit"> / 100</span></span>
-          <span class="float-card-sub">PageSpeed Mobile</span>
-        </div>
-
-        <div class="float-card bottom">
-          <span class="float-card-label">Ladezeit</span>
-          <span class="float-card-value">1,4<span class="float-card-value-unit"> s</span></span>
-          <span class="float-card-sub">vorher 7,8 s<span class="delta">−82 %</span></span>
+      <!-- Phone Mockup -->
+      <div class="hero-phone" aria-hidden="true">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="phone-island"></div>
+            <div class="ph-status">
+              <span>9:41</span>
+              <span class="ph-status-right">
+                <span class="ph-sig"><i></i><i></i><i></i><i></i></span>
+                <span class="ph-bat"><span class="ph-bat-fill"></span></span>
+              </span>
+            </div>
+            <div class="ph-body">
+              <div class="ph-nav">
+                <span class="ph-logo-bar"></span>
+                <span class="ph-hamburger"><i></i><i></i><i></i></span>
+              </div>
+              <div class="ph-hl">
+                <div class="ph-hl-line"></div>
+                <div class="ph-hl-line y"></div>
+                <div class="ph-hl-line w2"></div>
+              </div>
+              <div class="ph-desc"><i></i><i></i><i></i></div>
+              <div class="ph-cta-btn"></div>
+              <div class="ph-cards">
+                <div class="ph-card">
+                  <div class="ph-card-title"></div>
+                  <div class="ph-card-lines"><i></i><i></i><i></i></div>
+                </div>
+                <div class="ph-card">
+                  <div class="ph-card-title"></div>
+                  <div class="ph-card-lines"><i></i><i></i></div>
+                </div>
+              </div>
+              <div class="ph-perf">
+                <div class="ph-perf-item">
+                  <span class="ph-perf-num">&lt;2s</span>
+                  <span class="ph-perf-lbl">Ladezeit</span>
+                  <div class="ph-score-wrap"><div class="ph-score-bar"></div></div>
+                </div>
+                <div class="ph-perf-item">
+                  <span class="ph-perf-num">98</span>
+                  <span class="ph-perf-lbl">PageSpeed</span>
+                  <div class="ph-score-wrap"><div class="ph-score-bar" style="animation-delay:1050ms"></div></div>
+                </div>
+                <div class="ph-perf-item">
+                  <span class="ph-perf-num">100%</span>
+                  <span class="ph-perf-lbl">Mobile</span>
+                  <div class="ph-score-wrap"><div class="ph-score-bar" style="animation-delay:1200ms"></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="phone-home-wrap"><div class="phone-home-bar"></div></div>
+          </div>
         </div>
       </div>
 
