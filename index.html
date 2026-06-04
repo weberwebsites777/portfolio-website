@@ -122,41 +122,41 @@
     }
     .display-1 {
       font-family: var(--font-display);
-      font-size: clamp(56px, 9vw, 148px);
+      font-size: clamp(48px, 7vw, 112px);
       font-weight: 900;
-      line-height: 0.92;
-      letter-spacing: -0.05em;
+      line-height: 0.94;
+      letter-spacing: -0.046em;
       color: var(--text);
     }
     .display-2 {
       font-family: var(--font-display);
-      font-size: clamp(40px, 5.5vw, 84px);
+      font-size: clamp(34px, 4.4vw, 64px);
       font-weight: 800;
-      line-height: 0.96;
-      letter-spacing: -0.044em;
+      line-height: 1;
+      letter-spacing: -0.038em;
       color: var(--text);
     }
     .display-3 {
       font-family: var(--font-display);
-      font-size: clamp(28px, 3vw, 44px);
+      font-size: clamp(22px, 2.2vw, 32px);
       font-weight: 700;
-      line-height: 1.05;
-      letter-spacing: -0.032em;
+      line-height: 1.1;
+      letter-spacing: -0.028em;
       color: var(--text);
     }
     .display-4 {
       font-family: var(--font-display);
-      font-size: 22px;
+      font-size: 18px;
       font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: -0.022em;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
       color: var(--text);
     }
     .lede {
-      font-size: clamp(17px, 1.3vw, 19px);
+      font-size: clamp(15px, 1.1vw, 17px);
       line-height: 1.55;
       color: var(--text-2);
-      letter-spacing: -0.013em;
+      letter-spacing: -0.011em;
       max-width: 56ch;
     }
     em.gold {
@@ -272,7 +272,7 @@
     ════════════════════════════════════════════════════════════ */
     section { position: relative; }
     .section-head {
-      margin-bottom: clamp(48px, 6vw, 80px);
+      margin-bottom: clamp(36px, 4.5vw, 56px);
     }
     .section-head .mono-label {
       margin-bottom: 24px;
@@ -290,8 +290,8 @@
        HERO — Drenched dark, rotating ornament, golden glow
     ════════════════════════════════════════════════════════════ */
     .hero {
-      min-height: 100svh;
-      padding: 120px 0 80px;
+      min-height: 88svh;
+      padding: 112px 0 88px;
       display: flex;
       align-items: center;
       position: relative;
@@ -360,12 +360,12 @@
     }
     .hero-headline {
       font-family: var(--font-display);
-      font-size: clamp(56px, 9vw, 156px);
+      font-size: clamp(48px, 7vw, 116px);
       font-weight: 900;
-      line-height: 0.9;
-      letter-spacing: -0.054em;
+      line-height: 0.93;
+      letter-spacing: -0.048em;
       color: var(--text);
-      margin-bottom: clamp(28px, 3vw, 40px);
+      margin-bottom: clamp(24px, 2.4vw, 32px);
     }
     .hero-headline .word {
       display: inline-block;
@@ -378,12 +378,12 @@
       color: var(--gold);
     }
     .hero-sub {
-      font-size: clamp(17px, 1.4vw, 21px);
-      line-height: 1.5;
+      font-size: clamp(15px, 1.15vw, 17px);
+      line-height: 1.55;
       color: var(--text-2);
-      max-width: 52ch;
-      letter-spacing: -0.013em;
-      margin-bottom: clamp(36px, 4vw, 52px);
+      max-width: 50ch;
+      letter-spacing: -0.011em;
+      margin-bottom: clamp(28px, 3vw, 40px);
       opacity: 0;
       animation: fade-up 900ms var(--ease-quint) 600ms forwards;
     }
@@ -442,7 +442,7 @@
       position: relative;
       width: 100%;
       aspect-ratio: 1 / 1;
-      max-width: 540px;
+      max-width: 440px;
       margin-left: auto;
       opacity: 0;
       animation: fade-in 1400ms var(--ease) 400ms forwards;
@@ -487,34 +487,34 @@
        BENTO — Manifesto / Difference
     ════════════════════════════════════════════════════════════ */
     .manifesto {
-      padding: clamp(120px, 14vw, 200px) 0 clamp(80px, 10vw, 140px);
+      padding: clamp(80px, 9vw, 128px) 0 clamp(64px, 7vw, 96px);
       border-top: 1px solid var(--border);
     }
     .manifesto-head {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(40px, 5vw, 96px);
+      grid-template-columns: 1.1fr 1fr;
+      gap: clamp(32px, 4vw, 72px);
       align-items: end;
-      margin-bottom: clamp(56px, 6vw, 88px);
+      margin-bottom: clamp(40px, 4.5vw, 64px);
     }
     .bento {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
-      grid-auto-rows: minmax(180px, auto);
-      gap: 16px;
+      grid-auto-rows: minmax(150px, auto);
+      gap: 12px;
     }
     .bento-card {
       background: var(--bg-1);
       border: 1px solid var(--border);
-      border-radius: var(--r-xl);
-      padding: clamp(28px, 3vw, 40px);
+      border-radius: var(--r-lg);
+      padding: clamp(20px, 2.4vw, 32px);
       position: relative;
       overflow: hidden;
       transition: border-color 320ms var(--ease), transform 480ms var(--ease-quint), background 320ms var(--ease);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 24px;
+      gap: 20px;
     }
     .bento-card:hover {
       border-color: var(--border-2);
@@ -553,10 +553,10 @@
 
     /* Bento visuals */
     .perf-ring {
-      width: 168px;
-      height: 168px;
+      width: 132px;
+      height: 132px;
       position: relative;
-      margin: 12px 0;
+      margin: 4px 0;
     }
     .perf-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
     .perf-ring-track { stroke: var(--border); fill: none; stroke-width: 8; }
@@ -581,9 +581,9 @@
     }
     .perf-ring-num .val {
       font-family: var(--font-display);
-      font-size: 40px;
+      font-size: 32px;
       font-weight: 800;
-      letter-spacing: -0.034em;
+      letter-spacing: -0.032em;
       color: var(--text);
       font-variant-numeric: tabular-nums;
     }
@@ -684,7 +684,7 @@
        TRANSFORMATION — Before/After Slider
     ════════════════════════════════════════════════════════════ */
     .transformation {
-      padding: clamp(80px, 10vw, 140px) 0;
+      padding: clamp(64px, 8vw, 112px) 0;
       border-top: 1px solid var(--border);
       position: relative;
       overflow: hidden;
@@ -808,7 +808,7 @@
        CAPABILITIES — Notion clean, 4 disciplines
     ════════════════════════════════════════════════════════════ */
     .capabilities {
-      padding: clamp(100px, 12vw, 160px) 0;
+      padding: clamp(72px, 8vw, 112px) 0;
       border-top: 1px solid var(--border);
       background: var(--bg);
     }
@@ -820,12 +820,12 @@
       border-top: 1px solid var(--border);
     }
     .cap-item {
-      padding: clamp(32px, 3.5vw, 48px) clamp(20px, 2.5vw, 32px);
+      padding: clamp(24px, 2.6vw, 36px) clamp(18px, 2vw, 26px);
       border-right: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 14px;
       transition: background 320ms var(--ease);
     }
     .cap-item:nth-child(4n) { border-right: 0; }
@@ -837,15 +837,15 @@
       letter-spacing: 0.16em;
     }
     .cap-icon {
-      width: 44px; height: 44px;
+      width: 32px; height: 32px;
       color: var(--gold);
-      margin-bottom: 12px;
+      margin-bottom: 6px;
     }
     .cap-title {
       font-family: var(--font-display);
-      font-size: 22px;
+      font-size: 18px;
       font-weight: 700;
-      letter-spacing: -0.024em;
+      letter-spacing: -0.022em;
       color: var(--text);
     }
     .cap-body {
@@ -872,7 +872,7 @@
        PROOF — Testimonial + Live Stats
     ════════════════════════════════════════════════════════════ */
     .proof {
-      padding: clamp(100px, 12vw, 160px) 0;
+      padding: clamp(72px, 8vw, 112px) 0;
       border-top: 1px solid var(--border);
       position: relative;
       overflow: hidden;
@@ -898,21 +898,21 @@
     }
     .testimonial-mark {
       font-family: var(--font-display);
-      font-size: 96px;
+      font-size: 72px;
       font-weight: 900;
       line-height: 0.8;
       color: var(--gold);
-      margin-bottom: -20px;
-      opacity: 0.4;
+      margin-bottom: -16px;
+      opacity: 0.35;
     }
     .testimonial-quote {
       font-family: var(--font-display);
-      font-size: clamp(24px, 2.6vw, 36px);
+      font-size: clamp(20px, 2.1vw, 28px);
       font-weight: 600;
-      line-height: 1.25;
-      letter-spacing: -0.028em;
+      line-height: 1.3;
+      letter-spacing: -0.024em;
       color: var(--text);
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
     .testimonial-quote em {
       font-style: normal;
@@ -983,11 +983,11 @@
     }
     .live-stat-val {
       font-family: var(--font-display);
-      font-size: 56px;
+      font-size: 44px;
       font-weight: 900;
       line-height: 1;
       color: var(--gold);
-      letter-spacing: -0.045em;
+      letter-spacing: -0.04em;
       font-variant-numeric: tabular-nums;
       margin-bottom: 8px;
     }
@@ -1002,7 +1002,7 @@
        PROCESS — 4 Steps, vertical staggered
     ════════════════════════════════════════════════════════════ */
     .process {
-      padding: clamp(100px, 12vw, 160px) 0;
+      padding: clamp(72px, 8vw, 112px) 0;
       border-top: 1px solid var(--border);
       background: var(--bg);
     }
@@ -1015,10 +1015,10 @@
     }
     .process-step {
       display: grid;
-      grid-template-columns: 96px 1fr auto;
-      gap: 32px;
+      grid-template-columns: 72px 1fr auto;
+      gap: 28px;
       align-items: start;
-      padding: clamp(28px, 3vw, 40px) 0;
+      padding: clamp(20px, 2.4vw, 32px) 0;
       border-bottom: 1px solid var(--border);
       transition: background 320ms var(--ease);
     }
@@ -1028,11 +1028,11 @@
     .process-step:last-child { border-bottom: 0; }
     .process-num {
       font-family: var(--font-display);
-      font-size: 72px;
+      font-size: 52px;
       font-weight: 900;
       line-height: 0.9;
       color: var(--bg-3);
-      letter-spacing: -0.05em;
+      letter-spacing: -0.044em;
       font-variant-numeric: tabular-nums;
       transition: color 320ms var(--ease);
     }
@@ -1069,7 +1069,7 @@
        CONTACT — Multi-Step Form
     ════════════════════════════════════════════════════════════ */
     .contact {
-      padding: clamp(100px, 12vw, 160px) 0 clamp(80px, 10vw, 120px);
+      padding: clamp(72px, 8vw, 112px) 0 clamp(56px, 6vw, 88px);
       border-top: 1px solid var(--border);
       position: relative;
       overflow: hidden;
@@ -1094,8 +1094,8 @@
       position: sticky;
       top: 120px;
     }
-    .contact-left .display-2 { margin: 24px 0; }
-    .contact-left .lede { margin-bottom: 40px; }
+    .contact-left .display-2 { margin: 16px 0; }
+    .contact-left .lede { margin-bottom: 32px; }
 
     .contact-trust {
       display: flex;
@@ -1403,13 +1403,13 @@
     }
     .footer-mark {
       position: absolute;
-      bottom: -40px;
-      right: -20px;
+      bottom: -32px;
+      right: -16px;
       font-family: var(--font-display);
-      font-size: 240px;
+      font-size: 180px;
       font-weight: 900;
       color: var(--text);
-      opacity: 0.025;
+      opacity: 0.02;
       letter-spacing: -0.06em;
       line-height: 1;
       user-select: none;
@@ -1668,7 +1668,7 @@
     <div class="manifesto-head">
       <div>
         <div class="mono-label reveal"><span class="num">01</span>DER UNTERSCHIED</div>
-        <h2 class="display-2 reveal d1" style="margin-top:24px">Templates haben Grenzen.<br><em class="gold">Maßarbeit nicht.</em></h2>
+        <h2 class="display-2 reveal d1" style="margin-top:18px">Templates haben Grenzen.<br><em class="gold">Maßarbeit nicht.</em></h2>
       </div>
       <p class="lede reveal d2">
         Eine Standard-Lösung kostet weniger im Angebot und mehr im Betrieb. Jeder Klick weniger, jede Sekunde länger, jede Conversion verloren ist Geld, das Sie nicht zurückbekommen.
@@ -1827,7 +1827,7 @@
 
     <div class="section-head">
       <div class="mono-label reveal"><span class="num">03</span>DISZIPLINEN</div>
-      <h2 class="display-2 reveal d1" style="margin-top:24px">Vier Felder.<br><em class="gold">Ein Ergebnis.</em></h2>
+      <h2 class="display-2 reveal d1" style="margin-top:16px">Vier Felder.<br><em class="gold">Ein Ergebnis.</em></h2>
     </div>
 
     <div class="cap-grid">
@@ -1891,7 +1891,7 @@
 
     <div class="section-head">
       <div class="mono-label reveal"><span class="num">04</span>VERTRAUEN</div>
-      <h2 class="display-2 reveal d1" style="margin-top:24px">Zahlen.<br><em class="gold">Stimmen.</em></h2>
+      <h2 class="display-2 reveal d1" style="margin-top:16px">Zahlen.<br><em class="gold">Stimmen.</em></h2>
     </div>
 
     <div class="proof-grid">
@@ -1938,7 +1938,7 @@
 
     <div class="section-head" style="text-align:center; max-width: 760px; margin: 0 auto clamp(48px, 5vw, 72px)">
       <div class="mono-label reveal" style="justify-content:center; display:inline-flex"><span class="num">05</span>PROZESS</div>
-      <h2 class="display-2 reveal d1" style="margin-top:24px">Vier Schritte. Festpreis. <br><em class="gold">Liefertermin garantiert.</em></h2>
+      <h2 class="display-2 reveal d1" style="margin-top:16px">Vier Schritte. Festpreis. <br><em class="gold">Liefertermin garantiert.</em></h2>
     </div>
 
     <div class="process-steps">
