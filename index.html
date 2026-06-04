@@ -595,12 +595,96 @@
       letter-spacing: -0.005em;
     }
 
-    /* Bento sizing — horizontal, compact */
+    /* Bento sizing — conversion-optimized layout */
     .bento-a { grid-column: span 5; }
     .bento-b { grid-column: span 4; }
     .bento-c { grid-column: span 3; }
     .bento-d { grid-column: span 5; }
     .bento-e { grid-column: span 7; }
+
+    /* Card D — split layout with portrait */
+    .bento-d {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    .bento-d-content {
+      padding: clamp(20px, 2.4vw, 32px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .bento-d-portrait {
+      width: 140px;
+      background: var(--bg-2);
+      border-left: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .bento-d-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(1) contrast(1.05);
+      opacity: 0.85;
+    }
+    .bento-d-portrait-placeholder {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--gold);
+      opacity: 0.2;
+    }
+
+    /* Card E — double width, full bottom row */
+    .bento-e {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(20px, 3vw, 40px);
+      align-items: center;
+    }
+    .bento-e p {
+      font-size: 14.5px !important;
+      line-height: 1.6 !important;
+    }
+
+    /* Card B — higher contrast strikethrough */
+    .bento-strikethrough {
+      text-decoration: line-through;
+      color: oklch(42% 0.012 261) !important;
+    }
+
+    /* Card C — Notion checkmark list */
+    .check-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: var(--text-2);
+    }
+    .check-list li::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
 
     /* Bento visuals */
     .perf-ring {
@@ -1524,8 +1608,8 @@
       .bento-a { grid-column: span 6; }
       .bento-b { grid-column: span 3; }
       .bento-c { grid-column: span 3; }
-      .bento-d { grid-column: span 3; }
-      .bento-e { grid-column: span 3; }
+      .bento-d { grid-column: span 6; }
+      .bento-e { grid-column: span 6; grid-template-columns: 1fr; }
       .cap-grid { grid-template-columns: repeat(2, 1fr); }
       .cap-item:nth-child(2n) { border-right: 0; }
       .cap-item:nth-child(4n) { border-right: 1px solid var(--border); }
@@ -1767,14 +1851,14 @@
 
     <div class="bento">
 
-      <!-- Card A — Das Problem (featured) -->
+      <!-- Card A — Das Problem (featured, text -30%) -->
       <div class="bento-card bento-a featured reveal">
         <div>
           <div class="mono-label"><span class="num">A</span>DAS PROBLEM</div>
           <h3 class="display-3" style="margin-top:18px">Ihre Kunden suchen Sie gerade. <em class="gold">Finden sie Sie?</em></h3>
         </div>
-        <p style="font-size:15.5px; max-width:52ch; line-height:1.6">
-          90% aller Kaufentscheidungen beginnen mit einer Google-Suche. Wenn Ihre Website langsam lädt, veraltet aussieht oder auf dem Handy nicht funktioniert, verlieren Sie diese Kunden an den Wettbewerber, dessen Seite besser ist. Nicht weil er besser arbeitet. Sondern weil er besser aussieht.
+        <p style="font-size:14.5px; max-width:50ch; line-height:1.65; color:var(--text-2)">
+          90% aller Kaufentscheidungen starten bei Google. Ist Ihre Website langsam oder veraltet, verlieren Sie Kunden an den Wettbewerber mit der besseren Seite.
         </p>
         <div class="stat-stack">
           <div class="stat-row">
@@ -1788,7 +1872,7 @@
         </div>
       </div>
 
-      <!-- Card B — Vorher/Nachher Gefühl -->
+      <!-- Card B — Vorher/Nachher, higher strikethrough contrast -->
       <div class="bento-card bento-b reveal d1">
         <div>
           <div class="mono-label"><span class="num">B</span>DER UNTERSCHIED</div>
@@ -1796,49 +1880,61 @@
         </div>
         <div class="stat-stack">
           <div class="stat-row">
-            <span class="stat-row-key" style="text-decoration:line-through;color:var(--text-4)">Sieht aus wie 1.000 andere</span>
-            <span class="stat-row-val" style="font-size:15px;color:var(--gold)">Einzigartig für Sie</span>
+            <span class="stat-row-key bento-strikethrough">Sieht aus wie 1.000 andere</span>
+            <span class="stat-row-val" style="font-size:14px;color:var(--gold)">Einzigartig für Sie</span>
           </div>
           <div class="stat-row">
-            <span class="stat-row-key" style="text-decoration:line-through;color:var(--text-4)">Lädt 5+ Sekunden</span>
-            <span class="stat-row-val" style="font-size:15px;color:var(--gold)">Unter 2 Sekunden</span>
+            <span class="stat-row-key bento-strikethrough">Lädt 5+ Sekunden</span>
+            <span class="stat-row-val" style="font-size:14px;color:var(--gold)">Unter 2 Sekunden</span>
           </div>
           <div class="stat-row">
-            <span class="stat-row-key" style="text-decoration:line-through;color:var(--text-4)">Besucher gehen wieder</span>
-            <span class="stat-row-val" style="font-size:15px;color:var(--gold)">Besucher fragen an</span>
+            <span class="stat-row-key bento-strikethrough">Besucher gehen wieder</span>
+            <span class="stat-row-val" style="font-size:14px;color:var(--gold)">Besucher fragen an</span>
           </div>
         </div>
       </div>
 
-      <!-- Card C — Wie einfach es ist -->
+      <!-- Card C — Checkmark list (Notion-style) -->
       <div class="bento-card bento-c reveal d2">
         <div>
           <div class="mono-label"><span class="num">C</span>SO EINFACH</div>
           <h3 class="display-4" style="margin-top:14px">Kein Technik-Wissen nötig.</h3>
         </div>
-        <p style="font-size:14px;line-height:1.6;color:var(--text-2)">
-          Sie sagen mir, was Ihr Betrieb macht und wen Sie erreichen wollen. Den Rest übernehme ich. In 14 Tagen ist Ihre neue Website online. Festpreis, keine Überraschungen.
-        </p>
+        <ul class="check-list">
+          <li>Sie beschreiben Ihr Ziel</li>
+          <li>Ich konzipiere und baue</li>
+          <li>In 14 Tagen online</li>
+          <li>Festpreis, keine Überraschungen</li>
+        </ul>
       </div>
 
-      <!-- Card D — Wer dahinter steht -->
+      <!-- Card D — Split layout with portrait placeholder -->
       <div class="bento-card bento-d reveal d3">
-        <div>
-          <div class="mono-label"><span class="num">D</span>WER ICH BIN</div>
-          <h3 class="display-4" style="margin-top:14px">Ein Ansprechpartner. Kein Callcenter.</h3>
+        <div class="bento-d-content">
+          <div>
+            <div class="mono-label"><span class="num">D</span>WER ICH BIN</div>
+            <h3 class="display-4" style="margin-top:14px">Ein Ansprechpartner.<br>Kein Callcenter.</h3>
+          </div>
+          <p style="font-size:13.5px;line-height:1.6;color:var(--text-2)">
+            Andreas Weber, Webentwickler aus dem Schwarzwald. Sie rufen an, ich gehe ran.
+          </p>
         </div>
-        <p style="font-size:14px;line-height:1.6;color:var(--text-2)">
-          Andreas Weber, Webentwickler aus dem Schwarzwald. Sie rufen an, ich gehe ran. Sie schreiben, ich antworte heute.
-        </p>
+        <div class="bento-d-portrait">
+          <!-- Replace with real portrait: <img src="portrait-aw.jpg" alt="Andreas Weber"> -->
+          <span class="bento-d-portrait-placeholder">AW</span>
+        </div>
       </div>
 
-      <!-- Card E — Was Sie bekommen -->
+      <!-- Card E — Full-width value proposition -->
       <div class="bento-card bento-e reveal d4">
         <div>
           <div class="mono-label"><span class="num">E</span>WAS SIE BEKOMMEN</div>
           <h3 class="display-3" style="margin-top:18px">Eine Website, die für Sie arbeitet.<br><em class="gold">Nicht umgekehrt.</em></h3>
         </div>
-        <p>Schnell, professionell, auf jedem Gerät perfekt. Ihre Kunden finden Sie bei Google, sehen sofort, was Sie anbieten, und können direkt anfragen. Kein Abo, kein Kleingedrucktes, die Seite gehört Ihnen.</p>
+        <div>
+          <p>Schnell, professionell, auf jedem Gerät perfekt. Ihre Kunden finden Sie bei Google, sehen sofort, was Sie anbieten, und können direkt anfragen.</p>
+          <p style="margin-top:12px;color:var(--text-3)">Kein Abo. Kein Kleingedrucktes. Die Website gehört Ihnen.</p>
+        </div>
       </div>
 
     </div>
