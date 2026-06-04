@@ -3,10 +3,2396 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weber Websites</title>
+  <title>Weber Websites — Maßgeschneiderte Webentwicklung</title>
+  <meta name="description" content="Websites, die führen. Maßgeschneidert für Unternehmen, die wissen, dass jedes Detail zählt. Aus dem Schwarzwald, für ganz Deutschland.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
+
+  <style>
+    /* ════════════════════════════════════════════════════════════
+       TOKENS — Drenched Dark Luxury
+       Scene: Geschäftsführer Premium-Betrieb, abends, MacBook Pro
+    ════════════════════════════════════════════════════════════ */
+    :root {
+      /* Surface */
+      --bg:           oklch(13% 0.014 260);
+      --bg-1:         oklch(17% 0.018 260);
+      --bg-2:         oklch(20.2% 0.022 261);
+      --bg-3:         oklch(24% 0.022 261);
+      --bg-glass:     oklch(13% 0.014 260 / 0.7);
+
+      /* Text */
+      --text:         oklch(96% 0.018 86);
+      --text-2:       oklch(75% 0.014 86);
+      --text-3:       oklch(56% 0.010 86);
+      --text-4:       oklch(40% 0.012 261);
+
+      /* Border */
+      --border:       oklch(28% 0.020 261);
+      --border-2:     oklch(36% 0.022 261);
+      --border-3:     oklch(46% 0.024 261);
+
+      /* Accent — Gold */
+      --gold:         oklch(78% 0.13 86);
+      --gold-2:       oklch(85% 0.14 88);
+      --gold-deep:    oklch(60% 0.12 82);
+      --gold-glow:    oklch(78% 0.13 86 / 0.18);
+      --gold-soft:    oklch(78% 0.13 86 / 0.08);
+
+      /* Cream — for inverted moments */
+      --cream:        oklch(96% 0.018 86);
+
+      /* Fonts */
+      --font:         "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-display: "Inter Tight", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+      /* Layout */
+      --max:          1380px;
+      --max-text:     960px;
+      --r-sm:         4px;
+      --r:            10px;
+      --r-lg:         16px;
+      --r-xl:         24px;
+
+      /* Motion */
+      --ease:         cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-quint:   cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-expo:    cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       RESET + BASE
+    ════════════════════════════════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+      background: var(--bg);
+      color-scheme: dark;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.55;
+      letter-spacing: -0.011em;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img, svg { display: block; max-width: 100%; }
+    button { font: inherit; cursor: pointer; background: none; border: none; color: inherit; }
+    input, textarea, select { font: inherit; color: inherit; }
+    ::selection { background: var(--gold); color: var(--bg); }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--border-3); }
+
+    .wrap {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       TYPOGRAPHY UTILITIES
+    ════════════════════════════════════════════════════════════ */
+    .mono-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-3);
+    }
+    .mono-label .num {
+      color: var(--gold);
+      margin-right: 8px;
+    }
+    .display-1 {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 9vw, 148px);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+      color: var(--text);
+    }
+    .display-2 {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5.5vw, 84px);
+      font-weight: 800;
+      line-height: 0.96;
+      letter-spacing: -0.044em;
+      color: var(--text);
+    }
+    .display-3 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3vw, 44px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.032em;
+      color: var(--text);
+    }
+    .display-4 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.022em;
+      color: var(--text);
+    }
+    .lede {
+      font-size: clamp(17px, 1.3vw, 19px);
+      line-height: 1.55;
+      color: var(--text-2);
+      letter-spacing: -0.013em;
+      max-width: 56ch;
+    }
+    em.gold {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       NAV — Glass, minimal, golden hover
+    ════════════════════════════════════════════════════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 68px;
+      background: transparent;
+      transition: background 320ms var(--ease), border-color 320ms var(--ease);
+      border-bottom: 1px solid transparent;
+    }
+    nav.scrolled {
+      background: var(--bg-glass);
+      backdrop-filter: saturate(160%) blur(20px);
+      -webkit-backdrop-filter: saturate(160%) blur(20px);
+      border-bottom-color: var(--border);
+    }
+    .nav-row {
+      height: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-mark {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.022em;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-mark::before {
+      content: '';
+      width: 8px; height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--gold-glow);
+    }
+    .nav-links { list-style: none; display: flex; align-items: center; gap: 32px; }
+    .nav-links a {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-2);
+      letter-spacing: -0.008em;
+      transition: color 220ms var(--ease);
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      padding: 10px 18px;
+      border-radius: var(--r-sm);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      color: var(--bg);
+      background: var(--gold);
+      transition: background 240ms var(--ease), transform 240ms var(--ease), box-shadow 280ms var(--ease);
+    }
+    .nav-cta:hover {
+      background: var(--gold-2);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px -8px var(--gold-glow);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       BUTTONS
+    ════════════════════════════════════════════════════════════ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.008em;
+      border-radius: var(--r-sm);
+      border: 1px solid transparent;
+      transition: background 240ms var(--ease), color 240ms var(--ease), border-color 240ms var(--ease), transform 240ms var(--ease), box-shadow 320ms var(--ease);
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--bg);
+      box-shadow: 0 8px 24px -8px var(--gold-glow), 0 1px 0 oklch(90% 0.10 88) inset;
+    }
+    .btn-primary:hover {
+      background: var(--gold-2);
+      transform: translateY(-2px);
+      box-shadow: 0 16px 36px -8px var(--gold-glow);
+    }
+    .btn-ghost {
+      color: var(--text);
+      border-color: var(--border-2);
+    }
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    .btn .arrow { transition: transform 240ms var(--ease); display: inline-block; }
+    .btn:hover .arrow { transform: translateX(4px); }
+
+    /* ════════════════════════════════════════════════════════════
+       SECTION SCAFFOLDING
+    ════════════════════════════════════════════════════════════ */
+    section { position: relative; }
+    .section-head {
+      margin-bottom: clamp(48px, 6vw, 80px);
+    }
+    .section-head .mono-label {
+      margin-bottom: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-head .mono-label::before {
+      content: '';
+      width: 24px; height: 1px;
+      background: var(--gold);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       HERO — Drenched dark, rotating ornament, golden glow
+    ════════════════════════════════════════════════════════════ */
+    .hero {
+      min-height: 100svh;
+      padding: 120px 0 80px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Ambient bloom */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%; right: -10%;
+      width: 1200px; height: 1200px;
+      background: radial-gradient(circle at center, var(--gold-glow), transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(40px);
+    }
+    /* Dot grid */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, oklch(78% 0.13 86 / 0.06) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(ellipse 70% 60% at 30% 50%, oklch(0% 0 0) 0%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 30% 50%, oklch(0% 0 0) 0%, transparent 80%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero > .wrap { position: relative; z-index: 1; width: 100%; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: clamp(40px, 5vw, 80px);
+      align-items: center;
+    }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .hero-text { max-width: 760px; }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: clamp(28px, 3vw, 40px);
+      opacity: 0;
+      animation: fade-up 700ms var(--ease-quint) 60ms forwards;
+    }
+    .hero-eyebrow-pulse {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 0 var(--gold-glow);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 oklch(78% 0.13 86 / 0.4); }
+      50%      { box-shadow: 0 0 0 12px oklch(78% 0.13 86 / 0); }
+    }
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 9vw, 156px);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.054em;
+      color: var(--text);
+      margin-bottom: clamp(28px, 3vw, 40px);
+    }
+    .hero-headline .word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(32px);
+      animation: fade-up 900ms var(--ease-quint) forwards;
+    }
+    .hero-headline em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-size: clamp(17px, 1.4vw, 21px);
+      line-height: 1.5;
+      color: var(--text-2);
+      max-width: 52ch;
+      letter-spacing: -0.013em;
+      margin-bottom: clamp(36px, 4vw, 52px);
+      opacity: 0;
+      animation: fade-up 900ms var(--ease-quint) 600ms forwards;
+    }
+    .hero-sub strong { color: var(--text); font-weight: 600; }
+
+    .hero-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fade-up 900ms var(--ease-quint) 760ms forwards;
+    }
+
+    /* Hero footer status */
+    .hero-status {
+      position: absolute;
+      bottom: clamp(28px, 4vw, 48px);
+      left: 32px;
+      right: 32px;
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0;
+      animation: fade-in 900ms var(--ease) 1200ms forwards;
+    }
+    .hero-status-left, .hero-status-right {
+      pointer-events: auto;
+    }
+    .hero-status .mono-label { font-size: 10.5px; }
+    .hero-status-scroll {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-3);
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .hero-status-scroll svg {
+      width: 14px; height: 14px;
+      animation: bob 2s ease-in-out infinite;
+    }
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(4px); }
+    }
+
+    /* ── HERO ORNAMENT — Rotating wireframe orbital ── */
+    .hero-orbital {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      max-width: 540px;
+      margin-left: auto;
+      opacity: 0;
+      animation: fade-in 1400ms var(--ease) 400ms forwards;
+    }
+    .hero-orbital-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes spin-reverse { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+    .orbital-ring-1 { animation: spin-slow 60s linear infinite; transform-origin: center; }
+    .orbital-ring-2 { animation: spin-reverse 90s linear infinite; transform-origin: center; }
+    .orbital-ring-3 { animation: spin-slow 120s linear infinite; transform-origin: center; }
+    .orbital-particle {
+      animation: pulse-particle 3s ease-in-out infinite;
+      transform-origin: center;
+    }
+    .orbital-particle:nth-child(2) { animation-delay: 0.5s; }
+    .orbital-particle:nth-child(3) { animation-delay: 1s; }
+    .orbital-particle:nth-child(4) { animation-delay: 1.5s; }
+    .orbital-particle:nth-child(5) { animation-delay: 2s; }
+    @keyframes pulse-particle {
+      0%, 100% { opacity: 0.5; }
+      50%      { opacity: 1; }
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       BENTO — Manifesto / Difference
+    ════════════════════════════════════════════════════════════ */
+    .manifesto {
+      padding: clamp(120px, 14vw, 200px) 0 clamp(80px, 10vw, 140px);
+      border-top: 1px solid var(--border);
+    }
+    .manifesto-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 5vw, 96px);
+      align-items: end;
+      margin-bottom: clamp(56px, 6vw, 88px);
+    }
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: minmax(180px, auto);
+      gap: 16px;
+    }
+    .bento-card {
+      background: var(--bg-1);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: clamp(28px, 3vw, 40px);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 320ms var(--ease), transform 480ms var(--ease-quint), background 320ms var(--ease);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .bento-card:hover {
+      border-color: var(--border-2);
+      transform: translateY(-4px);
+    }
+    .bento-card.featured {
+      border-color: oklch(78% 0.13 86 / 0.5);
+      box-shadow:
+        0 1px 0 oklch(78% 0.13 86 / 0.1) inset,
+        0 0 80px -20px var(--gold-glow);
+    }
+    .bento-card.featured::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 80% 0%, var(--gold-soft), transparent 60%);
+      pointer-events: none;
+    }
+    .bento-card > * { position: relative; z-index: 1; }
+    .bento-card .mono-label { margin-bottom: 0; }
+    .bento-card .display-3,
+    .bento-card .display-4 { letter-spacing: -0.028em; }
+    .bento-card p {
+      color: var(--text-2);
+      font-size: 14.5px;
+      line-height: 1.55;
+      letter-spacing: -0.005em;
+    }
+
+    /* Bento sizing */
+    .bento-a { grid-column: span 7; grid-row: span 2; }
+    .bento-b { grid-column: span 5; }
+    .bento-c { grid-column: span 5; }
+    .bento-d { grid-column: span 4; }
+    .bento-e { grid-column: span 8; }
+
+    /* Bento visuals */
+    .perf-ring {
+      width: 168px;
+      height: 168px;
+      position: relative;
+      margin: 12px 0;
+    }
+    .perf-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .perf-ring-track { stroke: var(--border); fill: none; stroke-width: 8; }
+    .perf-ring-bar {
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-dasharray: 460;
+      stroke-dashoffset: 460;
+      transition: stroke-dashoffset 1800ms var(--ease-expo);
+    }
+    .perf-ring.in .perf-ring-bar { stroke-dashoffset: 9.2; /* 98% */ }
+    .perf-ring-num {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .perf-ring-num .val {
+      font-family: var(--font-display);
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -0.034em;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+    .perf-ring-num .lbl {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-3);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .perf-meters {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .perf-meter {
+      padding: 14px 0 0;
+      border-top: 1px solid var(--border);
+    }
+    .perf-meter-val {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.022em;
+      font-variant-numeric: tabular-nums;
+    }
+    .perf-meter-lbl {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-3);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* Code snippet */
+    .code-snippet {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--text-2);
+      background: var(--bg);
+      border-radius: var(--r);
+      padding: 18px 20px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .code-snippet .ck { color: oklch(78% 0.13 86); }
+    .code-snippet .cs { color: oklch(70% 0.13 175); }
+    .code-snippet .cn { color: oklch(78% 0.06 60); }
+    .code-snippet .cm { color: var(--text-4); }
+
+    /* Stats vertical */
+    .stat-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-row:last-child { border-bottom: 0; }
+    .stat-row-key {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--text-3);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .stat-row-val {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: -0.026em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Not-list */
+    .not-list { list-style: none; }
+    .not-list li {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-4);
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--border);
+      text-decoration: line-through;
+      letter-spacing: 0.04em;
+    }
+    .not-list li:last-child { border-bottom: 0; }
+
+    /* ════════════════════════════════════════════════════════════
+       TRANSFORMATION — Before/After Slider
+    ════════════════════════════════════════════════════════════ */
+    .transformation {
+      padding: clamp(80px, 10vw, 140px) 0;
+      border-top: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .transformation::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 60%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .transformation-head {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto clamp(48px, 5vw, 72px);
+    }
+    .transformation-head .mono-label {
+      justify-content: center;
+      display: inline-flex;
+    }
+    .transformation-head .display-2 { margin: 24px auto; }
+    .transformation-head .lede { margin: 0 auto; }
+    .transformation-status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1180px;
+      margin: 0 auto 24px;
+      padding: 0 clamp(16px, 2.5vw, 32px);
+      gap: 24px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .transformation-status-left { color: var(--text-4); }
+    .transformation-status-right { color: var(--gold); }
+
+    .ba-frame {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 clamp(16px, 2.5vw, 32px);
+    }
+    .before-after {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      cursor: col-resize;
+      user-select: none;
+      touch-action: none;
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border-2);
+      background: var(--bg-1);
+      box-shadow:
+        0 1px 0 oklch(40% 0.020 261 / 0.4) inset,
+        0 64px 120px -32px oklch(0% 0 0 / 0.6),
+        0 0 80px -16px var(--gold-glow);
+    }
+    .ba-after, .ba-before { position: absolute; inset: 0; }
+    .ba-after { z-index: 1; }
+    .ba-before { z-index: 2; clip-path: inset(0 50% 0 0); filter: grayscale(0.4) brightness(0.85); }
+    .ba-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      pointer-events: none;
+    }
+    .ba-handle {
+      position: absolute; top: 0; bottom: 0; left: 50%;
+      width: 2px;
+      background: var(--gold);
+      z-index: 10;
+      transform: translateX(-50%);
+      pointer-events: none;
+      box-shadow: 0 0 24px var(--gold-glow), 0 0 0 1px var(--bg);
+    }
+    .ba-grip {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 56px; height: 56px;
+      background: var(--gold);
+      color: var(--bg);
+      border: 2px solid var(--bg);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 32px -8px oklch(0% 0 0 / 0.5), 0 0 32px var(--gold-glow);
+    }
+    .ba-grip svg { width: 22px; height: 22px; }
+    .ba-label {
+      position: absolute;
+      top: 18px;
+      z-index: 20;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 8px 14px;
+      pointer-events: none;
+      border-radius: var(--r-sm);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .ba-label-before {
+      left: 18px;
+      background: oklch(20% 0.018 261 / 0.7);
+      color: var(--text-3);
+      border: 1px solid var(--border);
+    }
+    .ba-label-after {
+      right: 18px;
+      background: var(--gold);
+      color: var(--bg);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       CAPABILITIES — Notion clean, 4 disciplines
+    ════════════════════════════════════════════════════════════ */
+    .capabilities {
+      padding: clamp(100px, 12vw, 160px) 0;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: clamp(48px, 5vw, 72px);
+      border-top: 1px solid var(--border);
+    }
+    .cap-item {
+      padding: clamp(32px, 3.5vw, 48px) clamp(20px, 2.5vw, 32px);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      transition: background 320ms var(--ease);
+    }
+    .cap-item:nth-child(4n) { border-right: 0; }
+    .cap-item:hover { background: var(--bg-1); }
+    .cap-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 0.16em;
+    }
+    .cap-icon {
+      width: 44px; height: 44px;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .cap-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.024em;
+      color: var(--text);
+    }
+    .cap-body {
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: var(--text-2);
+      flex-grow: 1;
+    }
+    .cap-stat {
+      padding-top: 16px;
+      margin-top: 8px;
+      border-top: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--text-3);
+      letter-spacing: 0.04em;
+    }
+    .cap-stat strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       PROOF — Testimonial + Live Stats
+    ════════════════════════════════════════════════════════════ */
+    .proof {
+      padding: clamp(100px, 12vw, 160px) 0;
+      border-top: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .proof::before {
+      content: '';
+      position: absolute;
+      top: -20%; left: -10%;
+      width: 800px; height: 800px;
+      background: radial-gradient(circle at center, var(--gold-soft), transparent 65%);
+      pointer-events: none;
+      filter: blur(40px);
+    }
+    .proof-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: clamp(40px, 5vw, 96px);
+      align-items: center;
+    }
+    .testimonial {
+      position: relative;
+    }
+    .testimonial-mark {
+      font-family: var(--font-display);
+      font-size: 96px;
+      font-weight: 900;
+      line-height: 0.8;
+      color: var(--gold);
+      margin-bottom: -20px;
+      opacity: 0.4;
+    }
+    .testimonial-quote {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 2.6vw, 36px);
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -0.028em;
+      color: var(--text);
+      margin-bottom: 32px;
+    }
+    .testimonial-quote em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .testimonial-byline {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .testimonial-avatar {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--bg-3);
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--gold);
+    }
+    .testimonial-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .testimonial-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.011em;
+    }
+    .testimonial-role {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-3);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .live-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .live-stat {
+      padding: 24px 28px;
+      border: 1px solid var(--border);
+      background: var(--bg-1);
+      border-radius: var(--r-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .live-stat::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      transform: translateX(-100%);
+      animation: scan 4s ease-in-out infinite;
+    }
+    @keyframes scan {
+      0%, 100% { transform: translateX(-100%); opacity: 0; }
+      50%      { transform: translateX(100%); opacity: 1; }
+    }
+    .live-stat-val {
+      font-family: var(--font-display);
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--gold);
+      letter-spacing: -0.045em;
+      font-variant-numeric: tabular-nums;
+      margin-bottom: 8px;
+    }
+    .live-stat-lbl {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.4;
+      letter-spacing: -0.005em;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       PROCESS — 4 Steps, vertical staggered
+    ════════════════════════════════════════════════════════════ */
+    .process {
+      padding: clamp(100px, 12vw, 160px) 0;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .process-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 960px;
+      margin: clamp(48px, 5vw, 72px) auto 0;
+    }
+    .process-step {
+      display: grid;
+      grid-template-columns: 96px 1fr auto;
+      gap: 32px;
+      align-items: start;
+      padding: clamp(28px, 3vw, 40px) 0;
+      border-bottom: 1px solid var(--border);
+      transition: background 320ms var(--ease);
+    }
+    .process-step:hover {
+      background: linear-gradient(90deg, var(--bg-1), transparent);
+    }
+    .process-step:last-child { border-bottom: 0; }
+    .process-num {
+      font-family: var(--font-display);
+      font-size: 72px;
+      font-weight: 900;
+      line-height: 0.9;
+      color: var(--bg-3);
+      letter-spacing: -0.05em;
+      font-variant-numeric: tabular-nums;
+      transition: color 320ms var(--ease);
+    }
+    .process-step:hover .process-num { color: var(--gold); }
+    .process-content h3 {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.2vw, 28px);
+      font-weight: 700;
+      letter-spacing: -0.028em;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .process-content p {
+      font-size: 15.5px;
+      line-height: 1.55;
+      color: var(--text-2);
+      max-width: 60ch;
+    }
+    .process-duration {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: 6px 12px;
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      white-space: nowrap;
+      align-self: start;
+      margin-top: 8px;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       CONTACT — Multi-Step Form
+    ════════════════════════════════════════════════════════════ */
+    .contact {
+      padding: clamp(100px, 12vw, 160px) 0 clamp(80px, 10vw, 120px);
+      border-top: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact::before {
+      content: '';
+      position: absolute;
+      bottom: -30%; right: -10%;
+      width: 900px; height: 900px;
+      background: radial-gradient(circle at center, var(--gold-glow), transparent 60%);
+      pointer-events: none;
+      filter: blur(40px);
+    }
+    .contact-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: clamp(40px, 5vw, 80px);
+      align-items: start;
+    }
+    .contact-left {
+      position: sticky;
+      top: 120px;
+    }
+    .contact-left .display-2 { margin: 24px 0; }
+    .contact-left .lede { margin-bottom: 40px; }
+
+    .contact-trust {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+    .contact-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 14.5px;
+      color: var(--text-2);
+      letter-spacing: -0.006em;
+    }
+    .contact-trust-item svg {
+      width: 18px; height: 18px;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .contact-direct {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .contact-channel {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 22px;
+      background: var(--bg-1);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      transition: border-color 240ms var(--ease), background 240ms var(--ease);
+    }
+    .contact-channel:hover {
+      border-color: var(--gold);
+      background: var(--bg-2);
+    }
+    .contact-channel svg {
+      width: 22px; height: 22px;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .contact-channel-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex: 1;
+    }
+    .contact-channel-lbl {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-3);
+    }
+    .contact-channel-val {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.022em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Multi-step form */
+    .form-shell {
+      background: var(--bg-1);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: clamp(32px, 4vw, 48px);
+      position: relative;
+      overflow: hidden;
+    }
+    .form-shell::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .form-progress {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .form-progress-step {
+      flex: 1;
+      height: 3px;
+      background: var(--border);
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+    }
+    .form-progress-step.active::before,
+    .form-progress-step.done::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      transform-origin: left;
+      animation: fill-bar 400ms var(--ease-quint) forwards;
+    }
+    @keyframes fill-bar {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    .form-progress-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-3);
+      letter-spacing: 0.14em;
+    }
+
+    .form-step { display: none; animation: fade-up 400ms var(--ease-quint); }
+    .form-step.active { display: block; }
+    .form-step-head {
+      margin-bottom: 28px;
+    }
+    .form-step-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .form-step-title {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 2.4vw, 32px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    /* Option cards (Step 1) */
+    .form-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .form-option {
+      padding: 22px 20px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      cursor: pointer;
+      transition: border-color 240ms var(--ease), background 240ms var(--ease), transform 240ms var(--ease);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      text-align: left;
+    }
+    .form-option:hover {
+      border-color: var(--border-3);
+      transform: translateY(-2px);
+    }
+    .form-option.selected {
+      border-color: var(--gold);
+      background: linear-gradient(180deg, var(--gold-soft), var(--bg-2));
+      box-shadow: 0 0 0 1px var(--gold-glow), 0 8px 24px -8px var(--gold-glow);
+    }
+    .form-option-icon {
+      width: 28px; height: 28px;
+      color: var(--gold);
+    }
+    .form-option-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.018em;
+    }
+    .form-option-sub {
+      font-size: 12.5px;
+      color: var(--text-3);
+      line-height: 1.45;
+    }
+
+    /* Form fields */
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .form-label {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--text-3);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .form-input, .form-textarea, .form-select {
+      font: inherit;
+      font-family: var(--font);
+      font-size: 15px;
+      padding: 14px 16px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: var(--r);
+      transition: border-color 220ms var(--ease), background 220ms var(--ease);
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      outline: none;
+      border-color: var(--gold);
+      background: var(--bg-3);
+    }
+    .form-input::placeholder, .form-textarea::placeholder {
+      color: var(--text-4);
+    }
+    .form-textarea { min-height: 120px; resize: vertical; }
+
+    /* Form navigation */
+    .form-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+    .form-back {
+      color: var(--text-3);
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: color 220ms var(--ease);
+    }
+    .form-back:hover { color: var(--text); }
+    .form-back:disabled { opacity: 0; pointer-events: none; }
+    .form-next, .form-submit {
+      padding: 13px 26px;
+      background: var(--gold);
+      color: var(--bg);
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: -0.005em;
+      border-radius: var(--r-sm);
+      transition: background 220ms var(--ease), transform 240ms var(--ease), box-shadow 320ms var(--ease);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 8px 24px -8px var(--gold-glow);
+    }
+    .form-next:hover, .form-submit:hover {
+      background: var(--gold-2);
+      transform: translateY(-2px);
+      box-shadow: 0 16px 36px -8px var(--gold-glow);
+    }
+    .form-next:disabled {
+      background: var(--bg-3);
+      color: var(--text-4);
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+    .form-privacy {
+      font-size: 12px;
+      color: var(--text-4);
+      line-height: 1.5;
+      margin-top: 18px;
+    }
+    .form-privacy a {
+      color: var(--text-3);
+      border-bottom: 1px solid var(--border);
+    }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 48px 0;
+    }
+    .form-success.show { display: block; animation: fade-up 600ms var(--ease-quint); }
+    .form-success-icon {
+      width: 64px; height: 64px;
+      background: var(--gold);
+      color: var(--bg);
+      border-radius: 50%;
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 8px var(--gold-soft);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════════════════════════ */
+    footer {
+      padding: 40px 0 32px;
+      border-top: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .footer-mark {
+      position: absolute;
+      bottom: -40px;
+      right: -20px;
+      font-family: var(--font-display);
+      font-size: 240px;
+      font-weight: 900;
+      color: var(--text);
+      opacity: 0.025;
+      letter-spacing: -0.06em;
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+    }
+    .footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .footer-brand strong {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.018em;
+    }
+    .footer-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-4);
+      letter-spacing: 0.1em;
+    }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a {
+      font-size: 12.5px;
+      color: var(--text-3);
+      transition: color 220ms var(--ease);
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ════════════════════════════════════════════════════════════
+       REVEALS
+    ════════════════════════════════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 900ms var(--ease-quint), transform 900ms var(--ease-quint);
+    }
+    .reveal.d1 { transition-delay: 80ms; }
+    .reveal.d2 { transition-delay: 160ms; }
+    .reveal.d3 { transition-delay: 240ms; }
+    .reveal.d4 { transition-delay: 320ms; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    /* ════════════════════════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+      .hero-orbital { max-width: 380px; margin: 0 auto; }
+      .manifesto-head { grid-template-columns: 1fr; gap: 32px; align-items: start; }
+      .bento { grid-template-columns: repeat(6, 1fr); }
+      .bento-a { grid-column: span 6; }
+      .bento-b, .bento-c { grid-column: span 6; }
+      .bento-d { grid-column: span 6; }
+      .bento-e { grid-column: span 6; }
+      .cap-grid { grid-template-columns: repeat(2, 1fr); }
+      .cap-item:nth-child(2n) { border-right: 0; }
+      .cap-item:nth-child(4n) { border-right: 1px solid var(--border); }
+      .cap-item:nth-child(even) { border-right: 0; }
+      .proof-grid { grid-template-columns: 1fr; gap: 64px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 56px; }
+      .contact-left { position: static; }
+    }
+    @media (max-width: 720px) {
+      .wrap { padding: 0 20px; }
+      .nav-row { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 100px 0 56px; min-height: auto; }
+      .hero-status { display: none; }
+      .cap-grid { grid-template-columns: 1fr; }
+      .cap-item { border-right: 0 !important; }
+      .process-step { grid-template-columns: 56px 1fr; gap: 20px; }
+      .process-num { font-size: 48px; }
+      .process-duration { grid-column: 1 / -1; margin-top: 16px; justify-self: start; }
+      .form-row { grid-template-columns: 1fr; }
+      .form-options { grid-template-columns: 1fr; }
+      .testimonial-quote { font-size: 22px; }
+      .live-stat-val { font-size: 44px; }
+      .footer-row { flex-direction: column; align-items: flex-start; gap: 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+      .reveal, .hero-eyebrow, .hero-headline, .hero-headline .word, .hero-sub, .hero-actions, .hero-status, .hero-orbital {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
 </head>
 <body>
+
+<!-- ════════════════════════════════════════════════════════════
+     NAV
+════════════════════════════════════════════════════════════ -->
+<nav id="nav">
+  <div class="nav-row">
+    <a href="#top" class="nav-mark">Weber Websites</a>
+    <ul class="nav-links">
+      <li><a href="#arbeiten">Arbeiten</a></li>
+      <li><a href="#disziplinen">Disziplinen</a></li>
+      <li><a href="#prozess">Prozess</a></li>
+      <li><a href="#kontakt" class="nav-cta">Erstgespräch</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════════════ -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+
+      <div class="hero-text">
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-pulse"></span>
+          <span class="mono-label">WEBER · EST. 2026 · SCHWARZWALD</span>
+        </div>
+
+        <h1 class="hero-headline">
+          <span class="word" style="animation-delay: 180ms">Websites,</span>
+          <span class="word" style="animation-delay: 280ms">die</span>
+          <span class="word" style="animation-delay: 380ms"><em>führen.</em></span>
+        </h1>
+
+        <p class="hero-sub">
+          Maßgeschneiderte Webentwicklung für Unternehmen, die wissen, dass <strong>jede Sekunde Ladezeit, jede Conversion und jedes Detail zählt.</strong> Keine Templates. Keine Kompromisse.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#kontakt" class="btn btn-primary">
+            Projekt-Erstgespräch
+            <span class="arrow">→</span>
+          </a>
+          <a href="#arbeiten" class="btn btn-ghost">
+            Arbeiten ansehen
+            <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ── ORBITAL ORNAMENT ── -->
+      <div class="hero-orbital" aria-hidden="true">
+        <svg class="hero-orbital-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="core" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="oklch(78% 0.13 86)" stop-opacity="0.8"/>
+              <stop offset="50%" stop-color="oklch(78% 0.13 86)" stop-opacity="0.15"/>
+              <stop offset="100%" stop-color="oklch(78% 0.13 86)" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="oklch(78% 0.13 86)" stop-opacity="0.8"/>
+              <stop offset="100%" stop-color="oklch(78% 0.13 86)" stop-opacity="0.1"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Core glow -->
+          <circle cx="250" cy="250" r="180" fill="url(#core)"/>
+
+          <!-- Outer ring -->
+          <g class="orbital-ring-1">
+            <ellipse cx="250" cy="250" rx="220" ry="80" fill="none" stroke="url(#ringGrad)" stroke-width="1" opacity="0.6"/>
+            <circle cx="470" cy="250" r="4" fill="oklch(78% 0.13 86)">
+              <animate attributeName="opacity" values="0.4;1;0.4" dur="2.5s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+
+          <!-- Mid ring -->
+          <g class="orbital-ring-2">
+            <ellipse cx="250" cy="250" rx="180" ry="180" fill="none" stroke="oklch(78% 0.13 86 / 0.25)" stroke-width="1"/>
+            <circle cx="250" cy="70" r="3" fill="oklch(78% 0.13 86)">
+              <animate attributeName="opacity" values="0.4;1;0.4" dur="3s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="250" cy="430" r="3" fill="oklch(78% 0.13 86)">
+              <animate attributeName="opacity" values="0.4;1;0.4" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+
+          <!-- Tilted ring -->
+          <g class="orbital-ring-3" transform="rotate(35 250 250)">
+            <ellipse cx="250" cy="250" rx="240" ry="60" fill="none" stroke="oklch(78% 0.13 86 / 0.4)" stroke-width="1"/>
+          </g>
+
+          <!-- Inner core -->
+          <circle cx="250" cy="250" r="48" fill="oklch(13% 0.014 260)" stroke="oklch(78% 0.13 86 / 0.6)" stroke-width="1.5"/>
+          <circle cx="250" cy="250" r="32" fill="none" stroke="oklch(78% 0.13 86 / 0.3)" stroke-width="0.5"/>
+
+          <!-- Center mark -->
+          <text x="250" y="258" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" font-weight="600" fill="oklch(78% 0.13 86)" letter-spacing="2">WW</text>
+
+          <!-- Floating particles -->
+          <g class="orbital-particle">
+            <circle cx="120" cy="180" r="2" fill="oklch(78% 0.13 86)"/>
+          </g>
+          <g class="orbital-particle">
+            <circle cx="380" cy="160" r="2.5" fill="oklch(78% 0.13 86)"/>
+          </g>
+          <g class="orbital-particle">
+            <circle cx="80" cy="320" r="1.5" fill="oklch(78% 0.13 86)"/>
+          </g>
+          <g class="orbital-particle">
+            <circle cx="420" cy="340" r="2" fill="oklch(78% 0.13 86)"/>
+          </g>
+          <g class="orbital-particle">
+            <circle cx="250" cy="120" r="2" fill="oklch(78% 0.13 86)"/>
+          </g>
+
+          <!-- Crosshair marks -->
+          <g stroke="oklch(78% 0.13 86 / 0.3)" stroke-width="0.5">
+            <line x1="40" y1="250" x2="60" y2="250"/>
+            <line x1="440" y1="250" x2="460" y2="250"/>
+            <line x1="250" y1="40" x2="250" y2="60"/>
+            <line x1="250" y1="440" x2="250" y2="460"/>
+          </g>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="hero-status">
+    <div class="hero-status-left">
+      <span class="mono-label"><span style="color:oklch(70% 0.15 145)">●</span> &nbsp;&nbsp;VERFÜGBAR FÜR Q3 2026</span>
+    </div>
+    <div class="hero-status-right">
+      <span class="hero-status-scroll">
+        Weiter
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+      </span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     MANIFESTO — Bento Grid
+════════════════════════════════════════════════════════════ -->
+<section class="manifesto" id="arbeiten">
+  <div class="wrap">
+
+    <div class="manifesto-head">
+      <div>
+        <div class="mono-label reveal"><span class="num">01</span>DER UNTERSCHIED</div>
+        <h2 class="display-2 reveal d1" style="margin-top:24px">Templates haben Grenzen.<br><em class="gold">Maßarbeit nicht.</em></h2>
+      </div>
+      <p class="lede reveal d2">
+        Eine Standard-Lösung kostet weniger im Angebot und mehr im Betrieb. Jeder Klick weniger, jede Sekunde länger, jede Conversion verloren ist Geld, das Sie nicht zurückbekommen.
+      </p>
+    </div>
+
+    <div class="bento">
+
+      <!-- Card A — Performance Visualizer (featured) -->
+      <div class="bento-card bento-a featured reveal" data-perf>
+        <div>
+          <div class="mono-label"><span class="num">A</span>MESSBAR SCHNELLER</div>
+          <h3 class="display-3" style="margin-top:18px">Während andere laden,<br>verkauft Ihre Seite bereits.</h3>
+        </div>
+
+        <div class="perf-ring">
+          <svg viewBox="0 0 160 160">
+            <circle class="perf-ring-track" cx="80" cy="80" r="73"/>
+            <circle class="perf-ring-bar" cx="80" cy="80" r="73"/>
+          </svg>
+          <div class="perf-ring-num">
+            <span class="val">98</span>
+            <span class="lbl">PAGESPEED</span>
+          </div>
+        </div>
+
+        <div class="perf-meters">
+          <div class="perf-meter">
+            <div class="perf-meter-val">1.4<span style="color:var(--text-3);font-size:0.65em">s</span></div>
+            <div class="perf-meter-lbl">LCP</div>
+          </div>
+          <div class="perf-meter">
+            <div class="perf-meter-val">8<span style="color:var(--text-3);font-size:0.65em">ms</span></div>
+            <div class="perf-meter-lbl">FID</div>
+          </div>
+          <div class="perf-meter">
+            <div class="perf-meter-val">0.01</div>
+            <div class="perf-meter-lbl">CLS</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card B — Code Snippet -->
+      <div class="bento-card bento-b reveal d1">
+        <div>
+          <div class="mono-label"><span class="num">B</span>CLEAN STACK</div>
+          <h3 class="display-4" style="margin-top:14px">Eigener Code.<br>Funktioniert in fünf Jahren noch.</h3>
+        </div>
+        <div class="code-snippet">
+          <span class="cm">// component/Hero.tsx</span><br>
+          <span class="ck">export</span> <span class="ck">const</span> <span class="cn">Hero</span> = () =&gt; (<br>
+          &nbsp;&nbsp;&lt;<span class="cs">section</span>&gt;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="cs">h1</span>&gt;{<span class="cn">headline</span>}&lt;/<span class="cs">h1</span>&gt;<br>
+          &nbsp;&nbsp;&lt;/<span class="cs">section</span>&gt;<br>
+          );<br>
+          <span class="cm">// 0 plugins, 0 trackers, 0 bloat</span>
+        </div>
+      </div>
+
+      <!-- Card C — Conversion Stats -->
+      <div class="bento-card bento-c reveal d2">
+        <div>
+          <div class="mono-label"><span class="num">C</span>RESULTATE</div>
+          <h3 class="display-4" style="margin-top:14px">Was sich nach 30 Tagen verändert.</h3>
+        </div>
+        <div class="stat-stack">
+          <div class="stat-row">
+            <span class="stat-row-key">Anfragen</span>
+            <span class="stat-row-val">+218%</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-row-key">Verweildauer</span>
+            <span class="stat-row-val">+140%</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-row-key">Bounce Rate</span>
+            <span class="stat-row-val">−62%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card D — Not-List -->
+      <div class="bento-card bento-d reveal d3">
+        <div>
+          <div class="mono-label"><span class="num">D</span>WAS WIR NICHT TUN</div>
+          <h3 class="display-4" style="margin-top:14px">Klare Absage.</h3>
+        </div>
+        <ul class="not-list">
+          <li>Wix · Squarespace</li>
+          <li>WordPress-Themes</li>
+          <li>Plugin-Salat</li>
+          <li>Stundenabrechnung</li>
+          <li>Subunternehmer</li>
+        </ul>
+      </div>
+
+      <!-- Card E — Approach Statement -->
+      <div class="bento-card bento-e reveal d4">
+        <div>
+          <div class="mono-label"><span class="num">E</span>UNSER ANSATZ</div>
+          <h3 class="display-3" style="margin-top:18px">Ein Mensch. Eine Verantwortung.<br><em class="gold">Vom ersten Strich bis zum Launch.</em></h3>
+        </div>
+        <p>Keine Agentur-Hierarchie, kein Whitelabel, keine Übergaben. Sie arbeiten direkt mit Andreas Weber — dem Entwickler, der Ihre Site auch baut. Antwort am selben Tag.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     TRANSFORMATION
+════════════════════════════════════════════════════════════ -->
+<section class="transformation">
+
+  <div class="transformation-head">
+    <div class="mono-label reveal"><span class="num">02</span>FALLSTUDIE · WEBER ELEKTROTECHNIK</div>
+    <h2 class="display-2 reveal d1">Sehen Sie selbst.</h2>
+    <p class="lede reveal d2">Bewegen Sie den Regler. Links: WordPress-Theme. Rechts: Maßgeschneidert. 14 Tage Arbeit.</p>
+  </div>
+
+  <div class="transformation-status reveal d3">
+    <span class="transformation-status-left">LEGACY · WORDPRESS · 7.8s · SCORE 34</span>
+    <span class="transformation-status-right">WEBER · CUSTOM · 1.4s · SCORE 98</span>
+  </div>
+
+  <div class="ba-frame reveal d3">
+    <div class="before-after" role="img" aria-label="Vergleich Vorher und Nachher">
+      <div class="ba-after">
+        <img src="nachher.png" alt="Nachher" class="ba-img">
+      </div>
+      <div class="ba-before">
+        <img src="vorher.png" alt="Vorher" class="ba-img">
+      </div>
+      <div class="ba-handle" aria-hidden="true">
+        <div class="ba-grip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6 6-6M9 18l-6-6 6-6"/>
+            <path d="M21 18l-6-6 6-6"/>
+          </svg>
+        </div>
+      </div>
+      <span class="ba-label ba-label-before">Vorher</span>
+      <span class="ba-label ba-label-after">Nachher</span>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     CAPABILITIES — 4 Disciplines
+════════════════════════════════════════════════════════════ -->
+<section class="capabilities" id="disziplinen">
+  <div class="wrap">
+
+    <div class="section-head">
+      <div class="mono-label reveal"><span class="num">03</span>DISZIPLINEN</div>
+      <h2 class="display-2 reveal d1" style="margin-top:24px">Vier Felder.<br><em class="gold">Ein Ergebnis.</em></h2>
+    </div>
+
+    <div class="cap-grid">
+
+      <div class="cap-item reveal">
+        <div class="cap-num">01</div>
+        <svg class="cap-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M16 4l-12 8 12 8 12-8z"/>
+          <path d="M4 20l12 8 12-8"/>
+          <path d="M16 16v12"/>
+        </svg>
+        <h3 class="cap-title">Performance Engineering</h3>
+        <p class="cap-body">Jeder Request gezählt, jedes Byte optimiert. Ihre Seite lädt, bevor der Konkurrent fertig ist mit der Animation.</p>
+        <div class="cap-stat"><strong>≤ 1.5s</strong> LCP · <strong>100/100</strong> Mobile</div>
+      </div>
+
+      <div class="cap-item reveal d1">
+        <div class="cap-num">02</div>
+        <svg class="cap-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="4" y="6" width="24" height="20" rx="2"/>
+          <path d="M4 12h24"/>
+          <path d="M10 18h6M10 22h10"/>
+        </svg>
+        <h3 class="cap-title">Custom UX Architecture</h3>
+        <p class="cap-body">Information Architecture, die zu Ihrem Geschäft passt. Nicht zu einem Template, das auch für zehn Millionen andere passen soll.</p>
+        <div class="cap-stat"><strong>0</strong> Templates · <strong>0</strong> Plugins</div>
+      </div>
+
+      <div class="cap-item reveal d2">
+        <div class="cap-num">03</div>
+        <svg class="cap-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 28V14l8-6 8 6v14M12 28v-8h8v8"/>
+          <path d="M22 8l6 6"/>
+        </svg>
+        <h3 class="cap-title">Conversion Strategy</h3>
+        <p class="cap-body">Verkaufspsychologie ist Wissenschaft. Wir wenden sie an — sichtbar, wo Sie sie sehen wollen, unsichtbar, wo sie wirken soll.</p>
+        <div class="cap-stat">Ø <strong>+180%</strong> Anfragen nach 60 Tagen</div>
+      </div>
+
+      <div class="cap-item reveal d3">
+        <div class="cap-num">04</div>
+        <svg class="cap-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="6" y="4" width="20" height="24" rx="2"/>
+          <path d="M11 11h10M11 17h10M11 23h6"/>
+        </svg>
+        <h3 class="cap-title">Built to Last</h3>
+        <p class="cap-body">Eigener Code, eigene Domain, eigene Daten. Sie sind nicht an eine Plattform gebunden, nicht an mich. In fünf Jahren funktioniert sie noch.</p>
+        <div class="cap-stat"><strong>5 Jahre</strong> · <strong>0</strong> Breaking Changes</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     PROOF — Testimonial + Live Stats
+════════════════════════════════════════════════════════════ -->
+<section class="proof">
+  <div class="wrap">
+
+    <div class="section-head">
+      <div class="mono-label reveal"><span class="num">04</span>VERTRAUEN</div>
+      <h2 class="display-2 reveal d1" style="margin-top:24px">Zahlen.<br><em class="gold">Stimmen.</em></h2>
+    </div>
+
+    <div class="proof-grid">
+
+      <figure class="testimonial reveal">
+        <div class="testimonial-mark">"</div>
+        <blockquote class="testimonial-quote">
+          Innerhalb von 30 Tagen kamen <em>mehr Anfragen rein als im gesamten Vorjahr.</em> Die Seite verkauft, während ich auf der Baustelle bin.
+        </blockquote>
+        <figcaption class="testimonial-byline">
+          <div class="testimonial-avatar">AW</div>
+          <div class="testimonial-meta">
+            <span class="testimonial-name">Alexander Weber</span>
+            <span class="testimonial-role">Geschäftsführer · Weber Elektrotechnik</span>
+          </div>
+        </figcaption>
+      </figure>
+
+      <div class="live-stats">
+        <div class="live-stat reveal d1">
+          <div class="live-stat-val" data-target="218" data-suffix="%" data-prefix="+">+218%</div>
+          <div class="live-stat-lbl">Durchschnittliche Steigerung der Anfragen nach 60 Tagen</div>
+        </div>
+        <div class="live-stat reveal d2">
+          <div class="live-stat-val">1,4<span style="font-size:0.6em;color:var(--text-3)"> s</span></div>
+          <div class="live-stat-lbl">Durchschnittliche Ladezeit aller Live-Projekte</div>
+        </div>
+        <div class="live-stat reveal d3">
+          <div class="live-stat-val">100 / 100</div>
+          <div class="live-stat-lbl">Mobile Score · alle Projekte</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     PROCESS — 4 Steps
+════════════════════════════════════════════════════════════ -->
+<section class="process" id="prozess">
+  <div class="wrap">
+
+    <div class="section-head" style="text-align:center; max-width: 760px; margin: 0 auto clamp(48px, 5vw, 72px)">
+      <div class="mono-label reveal" style="justify-content:center; display:inline-flex"><span class="num">05</span>PROZESS</div>
+      <h2 class="display-2 reveal d1" style="margin-top:24px">Vier Schritte. Festpreis. <br><em class="gold">Liefertermin garantiert.</em></h2>
+    </div>
+
+    <div class="process-steps">
+
+      <div class="process-step reveal">
+        <div class="process-num">01</div>
+        <div class="process-content">
+          <h3>Gespräch</h3>
+          <p>30 Minuten am Telefon. Sie schildern Ihr Ziel, ich frage gezielt. Wir prüfen, ob ich der Richtige bin und Sie der richtige Kunde.</p>
+        </div>
+        <div class="process-duration">Tag 0</div>
+      </div>
+
+      <div class="process-step reveal">
+        <div class="process-num">02</div>
+        <div class="process-content">
+          <h3>Konzept</h3>
+          <p>Sie erhalten ein schriftliches Angebot mit Festpreis, Liefertermin und Strukturplan. Bevor eine Zeile Code geschrieben wird, wissen Sie genau, was Sie bekommen.</p>
+        </div>
+        <div class="process-duration">Tag 1 – 3</div>
+      </div>
+
+      <div class="process-step reveal">
+        <div class="process-num">03</div>
+        <div class="process-content">
+          <h3>Entwicklung</h3>
+          <p>Eigener Code, eigenes Tempo. Sie sehen den Fortschritt in einem persönlichen Preview-Link. Tägliche Updates, eine Revisionsrunde inklusive.</p>
+        </div>
+        <div class="process-duration">Tag 4 – 12</div>
+      </div>
+
+      <div class="process-step reveal">
+        <div class="process-num">04</div>
+        <div class="process-content">
+          <h3>Launch</h3>
+          <p>Übergabe von Quellcode und Domain auf Ihren Namen. Sie besitzen alles. Optional: laufende Wartung oder weiterführende Optimierung.</p>
+        </div>
+        <div class="process-duration">Tag 13 – 14</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     CONTACT — Multi-Step
+════════════════════════════════════════════════════════════ -->
+<section class="contact" id="kontakt">
+  <div class="wrap">
+
+    <div class="contact-grid">
+
+      <!-- LEFT — Pitch + Trust + Direct -->
+      <div class="contact-left">
+        <div class="mono-label reveal"><span class="num">06</span>KONTAKT</div>
+        <h2 class="display-2 reveal d1">Drei Fragen.<br><em class="gold">Dann reden wir.</em></h2>
+        <p class="lede reveal d2">Kein Verkaufsgespräch. Sie erzählen, was Sie vorhaben, ich sage Ihnen ehrlich, was möglich ist und was es kostet.</p>
+
+        <div class="contact-trust reveal d3">
+          <div class="contact-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Antwort innerhalb von 24 Stunden
+          </div>
+          <div class="contact-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Festpreis &amp; Liefertermin schriftlich
+          </div>
+          <div class="contact-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Direkt mit dem Entwickler, kein Sales-Funnel
+          </div>
+          <div class="contact-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Unverbindlich &amp; kostenfrei
+          </div>
+        </div>
+
+        <div class="contact-direct reveal d4">
+          <a href="tel:+49160254070" class="contact-channel">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.89 12 19.79 19.79 0 0 1 1.83 3.5 2 2 0 0 1 3.81 1.3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.11a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div class="contact-channel-meta">
+              <span class="contact-channel-lbl">Telefon</span>
+              <span class="contact-channel-val">+49 160 254 070</span>
+            </div>
+          </a>
+          <a href="mailto:info@weberwebsites.com" class="contact-channel">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+            <div class="contact-channel-meta">
+              <span class="contact-channel-lbl">E-Mail</span>
+              <span class="contact-channel-val">info@weberwebsites.com</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT — Multi-Step Form -->
+      <div class="contact-right reveal d2">
+        <form class="form-shell" id="contactForm" action="https://formspree.io/f/mgoqrqoa" method="POST" novalidate>
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+          <input type="hidden" name="_subject" value="Neue Projekt-Anfrage über weberwebsites.com">
+
+          <div class="form-progress">
+            <div class="form-progress-step active" data-step="1"></div>
+            <div class="form-progress-step" data-step="2"></div>
+            <div class="form-progress-step" data-step="3"></div>
+            <span class="form-progress-num" id="progressNum">01 / 03</span>
+          </div>
+
+          <!-- STEP 1 -->
+          <div class="form-step active" data-step="1">
+            <div class="form-step-head">
+              <div class="form-step-eyebrow">Schritt 01</div>
+              <h3 class="form-step-title">Was bauen wir?</h3>
+            </div>
+            <div class="form-options">
+              <button type="button" class="form-option" data-value="Neue Website">
+                <svg class="form-option-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3v18"/></svg>
+                <span class="form-option-title">Neue Website</span>
+                <span class="form-option-sub">Greenfield. Von Konzept bis Launch.</span>
+              </button>
+              <button type="button" class="form-option" data-value="Redesign">
+                <svg class="form-option-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>
+                <span class="form-option-title">Redesign</span>
+                <span class="form-option-sub">Bestehende Site auf neues Niveau.</span>
+              </button>
+              <button type="button" class="form-option" data-value="Performance-Audit">
+                <svg class="form-option-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-6"/></svg>
+                <span class="form-option-title">Performance-Audit</span>
+                <span class="form-option-sub">Bestehende Site analysieren, beschleunigen.</span>
+              </button>
+              <button type="button" class="form-option" data-value="Noch unsicher">
+                <svg class="form-option-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 4 2c-.7.4-1.5 1-1.5 2"/><circle cx="12" cy="17" r="0.5" fill="currentColor"/></svg>
+                <span class="form-option-title">Noch unsicher</span>
+                <span class="form-option-sub">Wir klären es im Gespräch.</span>
+              </button>
+            </div>
+            <input type="hidden" name="projekt" id="projektInput">
+
+            <div class="form-nav">
+              <button type="button" class="form-back" disabled>← Zurück</button>
+              <button type="button" class="form-next" id="next1" disabled>Weiter <span class="arrow">→</span></button>
+            </div>
+          </div>
+
+          <!-- STEP 2 -->
+          <div class="form-step" data-step="2">
+            <div class="form-step-head">
+              <div class="form-step-eyebrow">Schritt 02</div>
+              <h3 class="form-step-title">Für wen ist es?</h3>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="company">Unternehmen</label>
+              <input class="form-input" type="text" id="company" name="company" placeholder="z.B. Müller GmbH" required>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label" for="branche">Branche</label>
+                <select class="form-select" id="branche" name="branche">
+                  <option value="">Bitte wählen</option>
+                  <option>Handwerk &amp; Bau</option>
+                  <option>Beratung &amp; Dienstleistung</option>
+                  <option>Industrie &amp; Produktion</option>
+                  <option>Gastronomie &amp; Hotellerie</option>
+                  <option>Gesundheit &amp; Medizin</option>
+                  <option>E-Commerce</option>
+                  <option>Andere</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="zeit">Zeitrahmen</label>
+                <select class="form-select" id="zeit" name="zeitrahmen">
+                  <option value="">Bitte wählen</option>
+                  <option>Sofort / Q3 2026</option>
+                  <option>In 1 – 3 Monaten</option>
+                  <option>In 3 – 6 Monaten</option>
+                  <option>Noch flexibel</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-nav">
+              <button type="button" class="form-back" data-back="1">← Zurück</button>
+              <button type="button" class="form-next" id="next2">Weiter <span class="arrow">→</span></button>
+            </div>
+          </div>
+
+          <!-- STEP 3 -->
+          <div class="form-step" data-step="3">
+            <div class="form-step-head">
+              <div class="form-step-eyebrow">Schritt 03</div>
+              <h3 class="form-step-title">Wie erreichen wir Sie?</h3>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label" for="name">Name</label>
+                <input class="form-input" type="text" id="name" name="name" placeholder="Vor- &amp; Nachname" required autocomplete="name">
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="phone">Telefon</label>
+                <input class="form-input" type="tel" id="phone" name="phone" placeholder="optional" autocomplete="tel">
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="email">E-Mail</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="ihre@firma.de" required autocomplete="email">
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="message">Was möchten Sie erreichen?</label>
+              <textarea class="form-textarea" id="message" name="message" placeholder="Kurz beschreiben: Was ist das Ziel, was leistet die aktuelle Seite nicht, was haben Sie vor?" required></textarea>
+            </div>
+
+            <div class="form-nav">
+              <button type="button" class="form-back" data-back="2">← Zurück</button>
+              <button type="submit" class="form-submit">Anfrage senden <span class="arrow">→</span></button>
+            </div>
+            <p class="form-privacy">Mit Absenden stimmen Sie der <a href="datenschutz.html">Datenschutzerklärung</a> zu. Ihre Daten werden ausschließlich zur Bearbeitung der Anfrage genutzt.</p>
+          </div>
+
+          <!-- SUCCESS -->
+          <div class="form-success" id="formSuccess">
+            <div class="form-success-icon">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h3 class="display-3" style="margin-bottom:12px">Danke.</h3>
+            <p class="lede" style="margin: 0 auto">Ihre Anfrage ist eingegangen. Ich melde mich heute bei Ihnen zurück.</p>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-mark" aria-hidden="true">WW</div>
+  <div class="wrap">
+    <div class="footer-row">
+      <div class="footer-brand">
+        <strong>Weber Websites</strong>
+        <span class="footer-meta">TROSSINGEN · SCHWARZWALD · © 2026</span>
+      </div>
+      <div class="footer-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════════════════════════ -->
+<script>
+  /* NAV scroll state */
+  (function() {
+    const nav = document.getElementById('nav');
+    let raf = null;
+    function update() {
+      nav.classList.toggle('scrolled', window.scrollY > 24);
+      raf = null;
+    }
+    window.addEventListener('scroll', () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    }, { passive: true });
+    update();
+  })();
+
+  /* Scroll reveals */
+  (function() {
+    const els = document.querySelectorAll('.reveal, [data-perf]');
+    if (!('IntersectionObserver' in window) || !els.length) {
+      els.forEach(el => el.classList.add('in'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          if (entry.target.hasAttribute('data-perf')) {
+            const ring = entry.target.querySelector('.perf-ring');
+            if (ring) ring.classList.add('in');
+          }
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
+    els.forEach(el => io.observe(el));
+  })();
+
+  /* Count-up stats */
+  (function() {
+    const counters = document.querySelectorAll('[data-target]');
+    if (!counters.length || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseInt(el.dataset.target, 10);
+        const prefix = el.dataset.prefix || '';
+        const suffix = el.dataset.suffix || '';
+        const duration = 1800;
+        const start = performance.now();
+        function step(now) {
+          const p = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - p, 4);
+          el.textContent = prefix + Math.round(target * eased) + suffix;
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+        io.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(c => io.observe(c));
+  })();
+
+  /* Before / After slider */
+  (function() {
+    const slider = document.querySelector('.before-after');
+    if (!slider) return;
+    const before = slider.querySelector('.ba-before');
+    const handle = slider.querySelector('.ba-handle');
+    let active = false;
+
+    function setPos(clientX) {
+      const rect = slider.getBoundingClientRect();
+      const p = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+      before.style.clipPath = `inset(0 ${((1 - p) * 100).toFixed(2)}% 0 0)`;
+      handle.style.left = `${(p * 100).toFixed(2)}%`;
+    }
+
+    slider.addEventListener('mousedown', e => { active = true; setPos(e.clientX); });
+    slider.addEventListener('touchstart', e => { active = true; setPos(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('mousemove', e => { if (active) setPos(e.clientX); });
+    window.addEventListener('touchmove', e => { if (active) setPos(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('mouseup', () => active = false);
+    window.addEventListener('touchend', () => active = false);
+
+    // Auto-demo on first view
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        let pos = 0.5;
+        const rect = slider.getBoundingClientRect();
+        const target = rect.left + rect.width * 0.85;
+        const back = rect.left + rect.width * 0.5;
+        setTimeout(() => {
+          let i = 0;
+          const animate = () => {
+            const t = i / 60;
+            const eased = 1 - Math.pow(1 - t, 3);
+            setPos(rect.left + rect.width * (0.5 + eased * 0.35));
+            i++;
+            if (i <= 60) requestAnimationFrame(animate);
+            else {
+              setTimeout(() => {
+                let j = 0;
+                const animateBack = () => {
+                  const t = j / 60;
+                  const eased = 1 - Math.pow(1 - t, 3);
+                  setPos(rect.left + rect.width * (0.85 - eased * 0.35));
+                  j++;
+                  if (j <= 60) requestAnimationFrame(animateBack);
+                };
+                requestAnimationFrame(animateBack);
+              }, 600);
+            }
+          };
+          requestAnimationFrame(animate);
+        }, 400);
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.4 });
+    io.observe(slider);
+  })();
+
+  /* Multi-Step Form */
+  (function() {
+    const form = document.getElementById('contactForm');
+    if (!form) return;
+    const steps = form.querySelectorAll('.form-step');
+    const progressSteps = form.querySelectorAll('.form-progress-step');
+    const progressNum = document.getElementById('progressNum');
+    const options = form.querySelectorAll('.form-option');
+    const projektInput = document.getElementById('projektInput');
+    const next1 = document.getElementById('next1');
+    const next2 = document.getElementById('next2');
+    const backs = form.querySelectorAll('[data-back]');
+    let currentStep = 1;
+
+    function goToStep(n) {
+      currentStep = n;
+      steps.forEach(s => s.classList.toggle('active', parseInt(s.dataset.step) === n));
+      progressSteps.forEach(p => {
+        const stepN = parseInt(p.dataset.step);
+        p.classList.toggle('active', stepN === n);
+        p.classList.toggle('done', stepN < n);
+      });
+      progressNum.textContent = String(n).padStart(2, '0') + ' / 03';
+    }
+
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        options.forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        projektInput.value = opt.dataset.value;
+        next1.disabled = false;
+      });
+    });
+
+    next1.addEventListener('click', () => goToStep(2));
+    next2.addEventListener('click', () => {
+      const company = document.getElementById('company');
+      if (!company.value.trim()) {
+        company.focus();
+        company.style.borderColor = 'oklch(70% 0.20 25)';
+        setTimeout(() => company.style.borderColor = '', 1200);
+        return;
+      }
+      goToStep(3);
+    });
+
+    backs.forEach(b => {
+      b.addEventListener('click', () => goToStep(parseInt(b.dataset.back)));
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submit = form.querySelector('.form-submit');
+      submit.disabled = true;
+      submit.innerHTML = 'Senden...';
+      try {
+        const data = new FormData(form);
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          steps.forEach(s => s.classList.remove('active'));
+          form.querySelector('.form-progress').style.display = 'none';
+          document.getElementById('formSuccess').classList.add('show');
+        } else {
+          submit.innerHTML = 'Erneut versuchen <span class="arrow">→</span>';
+          submit.disabled = false;
+        }
+      } catch (err) {
+        submit.innerHTML = 'Erneut versuchen <span class="arrow">→</span>';
+        submit.disabled = false;
+      }
+    });
+  })();
+</script>
 
 </body>
 </html>
