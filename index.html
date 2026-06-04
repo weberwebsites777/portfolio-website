@@ -656,34 +656,71 @@
       line-height: 1.6 !important;
     }
 
-    /* Card B — higher contrast strikethrough */
-    .bento-strikethrough {
+    /* Card B — Visual comparison rows */
+    .compare-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .compare-row:last-child { border-bottom: 0; }
+    .compare-old {
+      flex: 1;
+      font-size: 13px;
+      color: oklch(40% 0.010 261);
       text-decoration: line-through;
-      color: oklch(42% 0.012 261) !important;
+      line-height: 1.4;
+    }
+    .compare-arrow {
+      width: 24px;
+      text-align: center;
+      color: var(--gold);
+      font-size: 14px;
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+    .compare-new {
+      flex: 1;
+      font-family: var(--font-display);
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1.4;
+      text-align: right;
     }
 
-    /* Card C — Notion checkmark list */
-    .check-list {
-      list-style: none;
+    /* Card C — Step flow */
+    .step-flow {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 0;
     }
-    .check-list li {
+    .step-flow-item {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+    }
+    .step-flow-item:last-child { border-bottom: 0; }
+    .step-flow-num {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
       display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 13.5px;
-      line-height: 1.5;
-      color: var(--text-2);
-    }
-    .check-list li::before {
-      content: '✓';
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
       color: var(--gold);
-      font-weight: 700;
-      font-size: 13px;
-      flex-shrink: 0;
-      margin-top: 1px;
+    }
+    .step-flow-text {
+      font-size: 13.5px;
+      color: var(--text-2);
+      line-height: 1.4;
     }
 
     /* Bento visuals */
@@ -1872,40 +1909,51 @@
         </div>
       </div>
 
-      <!-- Card B — Vorher/Nachher, higher strikethrough contrast -->
+      <!-- Card B — Visual comparison with arrows -->
       <div class="bento-card bento-b reveal d1">
         <div>
           <div class="mono-label"><span class="num">B</span>DER UNTERSCHIED</div>
           <h3 class="display-4" style="margin-top:14px">Baukasten vs. Maßarbeit.</h3>
         </div>
-        <div class="stat-stack">
-          <div class="stat-row">
-            <span class="stat-row-key bento-strikethrough">Sieht aus wie 1.000 andere</span>
-            <span class="stat-row-val" style="font-size:14px;color:var(--gold)">Einzigartig für Sie</span>
+        <div>
+          <div class="compare-row">
+            <span class="compare-old">Sieht aus wie 1.000 andere</span>
+            <span class="compare-arrow">→</span>
+            <span class="compare-new">Einzigartig für Sie</span>
           </div>
-          <div class="stat-row">
-            <span class="stat-row-key bento-strikethrough">Lädt 5+ Sekunden</span>
-            <span class="stat-row-val" style="font-size:14px;color:var(--gold)">Unter 2 Sekunden</span>
+          <div class="compare-row">
+            <span class="compare-old">Lädt 5+ Sekunden</span>
+            <span class="compare-arrow">→</span>
+            <span class="compare-new">Unter 2 Sekunden</span>
           </div>
-          <div class="stat-row">
-            <span class="stat-row-key bento-strikethrough">Besucher gehen wieder</span>
-            <span class="stat-row-val" style="font-size:14px;color:var(--gold)">Besucher fragen an</span>
+          <div class="compare-row">
+            <span class="compare-old">Besucher gehen wieder</span>
+            <span class="compare-arrow">→</span>
+            <span class="compare-new">Besucher fragen an</span>
           </div>
         </div>
       </div>
 
-      <!-- Card C — Checkmark list (Notion-style) -->
+      <!-- Card C — Numbered step flow -->
       <div class="bento-card bento-c reveal d2">
         <div>
           <div class="mono-label"><span class="num">C</span>SO EINFACH</div>
           <h3 class="display-4" style="margin-top:14px">Kein Technik-Wissen nötig.</h3>
         </div>
-        <ul class="check-list">
-          <li>Sie beschreiben Ihr Ziel</li>
-          <li>Ich konzipiere und baue</li>
-          <li>In 14 Tagen online</li>
-          <li>Festpreis, keine Überraschungen</li>
-        </ul>
+        <div class="step-flow">
+          <div class="step-flow-item">
+            <span class="step-flow-num">01</span>
+            <span class="step-flow-text">Sie beschreiben Ihr Ziel</span>
+          </div>
+          <div class="step-flow-item">
+            <span class="step-flow-num">02</span>
+            <span class="step-flow-text">Ich konzipiere und baue</span>
+          </div>
+          <div class="step-flow-item">
+            <span class="step-flow-num">03</span>
+            <span class="step-flow-text">In 14 Tagen online</span>
+          </div>
+        </div>
       </div>
 
       <!-- Card D — Split layout with portrait placeholder -->
