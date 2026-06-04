@@ -224,15 +224,19 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       height: 64px;
-      background: oklch(13% 0.012 60 / 0);
-      transition: background 280ms var(--ease), border-color 280ms var(--ease), box-shadow 280ms var(--ease);
+      background: transparent;
+      transition: background 280ms var(--ease), border-color 280ms var(--ease);
       border-bottom: 1px solid transparent;
+      --nav-text: oklch(78% 0.006 65);
+      --nav-text-strong: oklch(96% 0.008 70);
     }
     nav.scrolled {
-      background: oklch(96.5% 0.009 70 / 0.85);
+      background: oklch(96.5% 0.009 70 / 0.92);
       backdrop-filter: saturate(160%) blur(14px);
       -webkit-backdrop-filter: saturate(160%) blur(14px);
       border-bottom-color: var(--line);
+      --nav-text: var(--ink-2);
+      --nav-text-strong: var(--ink);
     }
     .nav-row {
       height: 100%;
@@ -255,28 +259,30 @@
     .nav-links a {
       font-size: 13px;
       font-weight: 500;
-      color: var(--ink-2);
+      color: var(--nav-text);
       letter-spacing: -0.009em;
       transition: color 200ms var(--ease);
     }
     .nav-links a:hover { color: var(--hero-accent); }
     .nav-phone {
       font-variant-numeric: tabular-nums;
-      color: var(--ink) !important;
+      color: var(--nav-text-strong) !important;
       font-weight: 600;
     }
-    .nav-phone:hover { color: var(--brick-2) !important; }
+    .nav-phone:hover { color: var(--brick) !important; }
+    .nav-logo { filter: brightness(0) invert(1); transition: filter 280ms var(--ease); }
+    nav.scrolled .nav-logo { filter: none; }
 
-    /* Tokens fuer den Hero — light paper edition */
+    /* Tokens fuer den Hero — Dark Premium */
     :root {
-      --hero-bg:       var(--paper);
-      --hero-bg-2:     var(--paper-2);
-      --hero-bg-3:     var(--paper-3);
-      --hero-text:     var(--ink);
-      --hero-text-2:   var(--ink-2);
-      --hero-text-3:   var(--ink-3);
-      --hero-line:     var(--line);
-      --hero-line-2:   var(--line-2);
+      --hero-bg:       oklch(11% 0.012 60);
+      --hero-bg-2:     oklch(15% 0.011 60);
+      --hero-bg-3:     oklch(19% 0.010 60);
+      --hero-text:     oklch(96% 0.008 70);
+      --hero-text-2:   oklch(68% 0.006 65);
+      --hero-text-3:   oklch(48% 0.005 60);
+      --hero-line:     oklch(22% 0.009 60);
+      --hero-line-2:   oklch(30% 0.009 60);
       --hero-accent:   oklch(82% 0.17 88);
       --hero-accent-2: oklch(72% 0.16 85);
       --hero-accent-deep: oklch(58% 0.14 82);
@@ -299,7 +305,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(circle, oklch(82% 0.17 88 / 0.14) 1.5px, transparent 1.5px);
+      background-image: radial-gradient(circle, oklch(82% 0.17 88 / 0.08) 1.5px, transparent 1.5px);
       background-size: 28px 28px;
       pointer-events: none;
       z-index: 0;
@@ -308,9 +314,9 @@
     .hero::after {
       content: '';
       position: absolute;
-      top: -20%; right: -10%;
-      width: 900px; height: 900px;
-      background: radial-gradient(circle at center, oklch(82% 0.17 88 / 0.18), transparent 60%);
+      top: -30%; right: -15%;
+      width: 1100px; height: 1100px;
+      background: radial-gradient(circle at center, oklch(82% 0.17 88 / 0.14), transparent 55%);
       pointer-events: none;
       z-index: 0;
     }
@@ -340,7 +346,7 @@
       animation: fade-up 700ms var(--ease-out) 60ms forwards;
     }
     .hero-logo-large {
-      width: clamp(100px, 13vw, 190px);
+      width: clamp(140px, 18vw, 260px);
       height: auto;
       display: block;
     }
@@ -348,7 +354,7 @@
     /* Vertical divider */
     .hero-divider {
       width: 1px;
-      height: 56vh;
+      height: 70vh;
       background: var(--line-2);
       flex-shrink: 0;
       align-self: center;
@@ -363,12 +369,12 @@
     }
     .hero-h1 {
       font-family: var(--font-display);
-      font-size: clamp(52px, 8vw, 116px);
+      font-size: clamp(64px, 10vw, 148px);
       font-weight: 900;
-      line-height: 0.93;
-      letter-spacing: -0.044em;
+      line-height: 0.91;
+      letter-spacing: -0.048em;
       text-transform: uppercase;
-      margin-bottom: clamp(32px, 4vw, 52px);
+      margin-bottom: clamp(40px, 5vw, 64px);
       opacity: 0;
       animation: fade-up 700ms var(--ease-out) 180ms forwards;
     }
@@ -434,7 +440,7 @@
       animation: fade-up 700ms var(--ease-out) 480ms forwards;
     }
     .phone-frame {
-      width: 178px;
+      width: 230px;
       background: oklch(18% 0.01 60);
       border: 1px solid oklch(82% 0.17 88 / 0.28);
       border-radius: 38px;
@@ -1753,9 +1759,9 @@
             <span class="arrow" aria-hidden="true">→</span>
           </a>
           <div class="hero-trust-chips">
-            <span>Festpreis</span>
-            <span>Liefertermin</span>
-            <span>Antwort heute</span>
+            <span>Festpreis. Kein Abo.</span>
+            <span>Liefertermin garantiert</span>
+            <span>Direkt erreichbar</span>
           </div>
         </div>
       </div>
@@ -1843,7 +1849,7 @@
     </div>
 
     <p class="proof-caption">
-      <strong>Weber Elektrotechnik · Trossingen.</strong> Wix raus, Werkstück rein. 14 Tage Arbeit, 1,4 s Ladezeit. <a href="https://weber-elektrotechnik-test.netlify.app" target="_blank" rel="noopener noreferrer">Live ansehen</a>.
+      <strong>Weber Elektrotechnik · Trossingen.</strong> Von Wix zur professionellen Website. 14 Tage, 1,4 s Ladezeit. <a href="https://weber-elektrotechnik-test.netlify.app" target="_blank" rel="noopener noreferrer">Live ansehen</a>.
       <span class="proof-caption-hint">Ziehen zum Vergleichen</span>
     </p>
 
@@ -1858,9 +1864,9 @@
 
   <section class="cases-intro">
     <div class="wrap">
-      <span class="cases-intro-label">Renovierungen</span>
-      <h2>Zwei Seiten. <em>Renoviert.</em></h2>
-      <p class="cases-intro-sub">Gleiche Ausgangslage: eine Website, die nicht mehr trägt. Gleiches Vorgehen: Festpreis, Liefertermin, sauber abgegeben. Ihre Seite könnte die dritte sein.</p>
+      <span class="cases-intro-label">Ausgewählte Projekte</span>
+      <h2>Ergebnisse, <em>die sprechen.</em></h2>
+      <p class="cases-intro-sub">Zwei echte Projekte. Messbare Ergebnisse. Ihr Unternehmen könnte das nächste sein.</p>
     </div>
   </section>
 
@@ -1874,8 +1880,8 @@
           <span class="case-tagline-tag">Elektrofachbetrieb · Süddeutschland</span>
         </div>
         <div class="case-head-text">
-          <h3>Baukasten raus. <em>Werkstück rein.</em></h3>
-          <p>Alte Wix-Seite mit 7,8 s Ladezeit ersetzt durch eine <strong>maßgeschneiderte Website</strong>: 1,4 s, PageSpeed 98, klare Anfrage-Strecke. <strong>14 Tage, Festpreis gehalten.</strong></p>
+          <h3>Von 7,8 Sekunden auf <em>1,4 s. Mehr Anfragen.</em></h3>
+          <p>Veraltete Website ersetzt durch eine schnelle, klare Online-Präsenz mit direkter Anfrage-Strecke. <strong>PageSpeed 98. Lieferung in 14 Tagen.</strong></p>
         </div>
       </div>
 
@@ -1920,8 +1926,8 @@
           <span class="case-tagline-tag">Handwerksbetrieb · Süddeutschland</span>
         </div>
         <div class="case-head-text">
-          <h3>Nichts war da. <em>Jetzt steht etwas.</em></h3>
-          <p>Handwerksbetrieb ohne digitale Sichtbarkeit. Heute: <strong>eine mobil-first Website</strong> mit klarer Leistungsübersicht und Anfrage-Formular direkt ins Postfach. <strong>21 Tage, Festpreis gehalten.</strong></p>
+          <h3>Von null auf <em>online sichtbar.</em></h3>
+          <p>Kein digitaler Auftritt, keine Anfragen. Heute: eine professionelle Website mit klarer Leistungsdarstellung. <strong>Kunden finden den Betrieb. Lieferung in 21 Tagen.</strong></p>
         </div>
       </div>
 
@@ -1982,16 +1988,16 @@
         <div class="section-mark reveal">
           <span class="section-mark-num">03</span>
           <span class="section-mark-rule" aria-hidden="true"></span>
-          <span>Werkstatt</span>
+          <span>Über mich</span>
         </div>
 
-        <h2 class="display-2 reveal d1" style="font-size: clamp(44px, 6vw, 80px); letter-spacing: -0.046em; line-height: 0.95;">Eine Werkstatt.<br>Ein Mensch.</h2>
+        <h2 class="display-2 reveal d1" style="font-size: clamp(44px, 6vw, 80px); letter-spacing: -0.046em; line-height: 0.95;">Direkt.<br>Persönlich.<br>Verlässlich.</h2>
 
-        <p class="reveal d1"><strong>Andreas Weber</strong>, Webdesigner aus Trossingen. Ich renoviere Websites für Betriebe, deren Seite nicht mehr trägt.</p>
+        <p class="reveal d1"><strong>Andreas Weber</strong> — Webdesigner aus dem Schwarzwald. Ich entwickle Websites, die Unternehmen online sichtbar machen und Anfragen generieren.</p>
 
-        <p class="reveal d2">Keine Agentur, keine Subunternehmer. Sie sprechen direkt mit dem, der die Seite schreibt. <strong>Antwort am selben Tag.</strong></p>
+        <p class="reveal d2">Kein Agentur-Overhead, keine Subunternehmer. Sie arbeiten direkt mit mir. <strong>Eine Ansprechperson, volle Verantwortung.</strong></p>
 
-        <p class="reveal d3">Mein Anspruch: <strong>handwerkliche Qualität in einem digitalen Werkstück.</strong> Schnell, klar, langlebig — eine Website, die in zwei Jahren noch dasselbe leistet wie am Übergabetag.</p>
+        <p class="reveal d3">Ich liefere Ergebnisse, keine Präsentationen. Jede Website, die ich baue, ist auf Performance, Sichtbarkeit und Conversion optimiert — messbar, nicht nur schön.</p>
 
         <div class="werkstatt-meta reveal d3">
           <div class="werkstatt-meta-item">
@@ -2025,14 +2031,14 @@
   <div class="manifest-inner">
 
     <div class="manifest-left">
-      <div class="manifest-kicker">Haltung</div>
-      <p class="manifest-quote" id="manifest-q">Renoviert.<br>Nicht neu gebaut.</p>
+      <div class="manifest-kicker">Mein Ansatz</div>
+      <p class="manifest-quote" id="manifest-q">Ihre Website<br>ist Ihr bester<br>Mitarbeiter.</p>
     </div>
 
     <div class="manifest-body">
-      <p>Eine neue Website klingt nach Großprojekt. Ist es selten. Meistens steht das Fundament — es fehlt nur die <strong>handwerkliche Renovierung</strong>: schneller, klarer, langlebig.</p>
-      <p>Festpreis im Angebot. Liefertermin im Angebot. <strong>Ein Mensch, der die Arbeit selbst macht.</strong> Kein Abo, kein Stundenzettel, kein Subunternehmer.</p>
-      <p class="manifest-sign"><strong>Andreas Weber</strong> · Webdesign-Werkstatt · Trossingen</p>
+      <p>Eine Website, die nicht konvertiert, kostet Sie täglich potenzielle Kunden. <strong>Das ändern wir.</strong> Mit klarer Struktur, schneller Ladezeit und einer Nutzerführung, die Besucher zu Anfragen macht.</p>
+      <p>Kein Stundensatz, kein Abo, kein Overhead. <strong>Festpreis, Liefertermin, direkte Kommunikation.</strong> Sie wissen vom ersten Tag an, was Sie bekommen und wann.</p>
+      <p class="manifest-sign"><strong>Andreas Weber</strong> · Weber Websites · Trossingen</p>
     </div>
 
   </div>
@@ -2050,8 +2056,8 @@
       <span class="section-mark-rule" aria-hidden="true"></span>
       <span>Angebot</span>
     </div>
-    <h2 class="display-2">Drei Größen.<br>Festpreis.</h2>
-    <p class="lede">Kein Abo, keine Stundenrechnung, keine versteckten Kosten.</p>
+    <h2 class="display-2">Transparent.<br>Festpreis.</h2>
+    <p class="lede">Sie wissen vor dem Start, was Sie investieren. Kein Abo, keine Stundenrechnung, keine Überraschungen.</p>
   </div>
 
   <div class="angebot-grid reveal">
@@ -2150,7 +2156,7 @@
       <span class="section-mark-rule" aria-hidden="true"></span>
       <span>Häufige Fragen</span>
     </div>
-    <h2 class="display-2">Vor dem Anruf.</h2>
+    <h2 class="display-2">Ihre Fragen.<br>Meine Antworten.</h2>
   </div>
 
   <div class="faq-list">
@@ -2230,15 +2236,15 @@
     <div class="kontakt-left reveal">
       <div class="kontakt-left-content">
         <div class="kontakt-left-kicker">Kontakt · 06</div>
-        <h2>Reden wir.<br>Kostenfrei.</h2>
-        <p>20 Minuten Telefon. Kein Verkaufsgespräch — Sie erzählen, was Ihre Seite leisten soll, ich sage Ihnen offen, ob ich der richtige bin.</p>
+        <h2>Jetzt<br>starten.</h2>
+        <p>20 Minuten reichen. Keine Verpflichtung — Sie schildern Ihr Ziel, ich sage Ihnen ehrlich, was möglich ist und was es kostet.</p>
       </div>
 
       <div class="kontakt-trust reveal d1">
-        <div class="kontakt-trust-item">Antwort am selben Tag</div>
-        <div class="kontakt-trust-item">Festpreis &amp; Liefertermin im Angebot</div>
-        <div class="kontakt-trust-item">Ein Mensch — kein Subunternehmer</div>
-        <div class="kontakt-trust-item">Keine Verpflichtung</div>
+        <div class="kontakt-trust-item">Antwort innerhalb von 24 Stunden</div>
+        <div class="kontakt-trust-item">Festpreis &amp; Liefertermin schriftlich</div>
+        <div class="kontakt-trust-item">Direkt mit dem Entwickler sprechen</div>
+        <div class="kontakt-trust-item">Unverbindlich und kostenfrei</div>
       </div>
 
       <div class="reveal d2">
@@ -2254,8 +2260,8 @@
     <div class="kontakt-right reveal d1">
 
       <div class="kontakt-form-head">
-        <p>Oder schreiben Sie</p>
-        <h3>Anfrage senden —<br>ich melde mich heute.</h3>
+        <p>Oder schreiben Sie direkt</p>
+        <h3>Anfrage senden.<br>Ich antworte heute.</h3>
       </div>
 
       <form
