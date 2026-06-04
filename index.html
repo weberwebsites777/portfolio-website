@@ -287,36 +287,51 @@
     }
 
     /* ════════════════════════════════════════════════════════════
-       HERO — Drenched dark, rotating ornament, golden glow
+       HERO — Deep dark, generative lattice, film grain, golden core
     ════════════════════════════════════════════════════════════ */
     .hero {
-      min-height: 88svh;
-      padding: 112px 0 88px;
+      min-height: 92svh;
+      padding: 112px 0 80px;
       display: flex;
       align-items: center;
       position: relative;
       overflow: hidden;
     }
-    /* Ambient bloom */
+    /* Ambient bloom — deep gold, right-biased */
     .hero::before {
       content: '';
       position: absolute;
-      top: -20%; right: -10%;
-      width: 1200px; height: 1200px;
-      background: radial-gradient(circle at center, var(--gold-glow), transparent 60%);
+      top: -25%; right: -15%;
+      width: 1400px; height: 1400px;
+      background: radial-gradient(circle at center,
+        oklch(78% 0.13 86 / 0.12) 0%,
+        oklch(60% 0.10 82 / 0.06) 35%,
+        transparent 60%);
       pointer-events: none;
       z-index: 0;
-      filter: blur(40px);
+      filter: blur(60px);
     }
-    /* Dot grid */
+    /* Film grain overlay */
     .hero::after {
       content: '';
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(circle, oklch(78% 0.13 86 / 0.06) 1px, transparent 1px);
-      background-size: 32px 32px;
-      mask-image: radial-gradient(ellipse 70% 60% at 30% 50%, oklch(0% 0 0) 0%, transparent 80%);
-      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 30% 50%, oklch(0% 0 0) 0%, transparent 80%);
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+      background-size: 128px 128px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+    /* Technical grid behind hero text */
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(oklch(78% 0.13 86 / 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, oklch(78% 0.13 86 / 0.03) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 55% 65% at 65% 45%, oklch(0% 0 0) 0%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 55% 65% at 65% 45%, oklch(0% 0 0) 0%, transparent 80%);
       pointer-events: none;
       z-index: 0;
     }
@@ -324,8 +339,8 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.3fr 1fr;
-      gap: clamp(40px, 5vw, 80px);
+      grid-template-columns: 1.2fr 1fr;
+      gap: clamp(40px, 5vw, 72px);
       align-items: center;
     }
 
@@ -338,7 +353,7 @@
       to   { opacity: 1; }
     }
 
-    .hero-text { max-width: 760px; }
+    .hero-text { max-width: 700px; }
     .hero-eyebrow {
       display: inline-flex;
       align-items: center;
@@ -346,6 +361,11 @@
       margin-bottom: clamp(28px, 3vw, 40px);
       opacity: 0;
       animation: fade-up 700ms var(--ease-quint) 60ms forwards;
+    }
+    .hero-eyebrow .mono-label {
+      letter-spacing: 0.22em;
+      font-size: 10.5px;
+      color: oklch(72% 0.008 260);
     }
     .hero-eyebrow-pulse {
       width: 8px; height: 8px;
@@ -360,12 +380,12 @@
     }
     .hero-headline {
       font-family: var(--font-display);
-      font-size: clamp(48px, 7vw, 116px);
+      font-size: clamp(48px, 7vw, 112px);
       font-weight: 900;
-      line-height: 0.93;
+      line-height: 0.94;
       letter-spacing: -0.048em;
       color: var(--text);
-      margin-bottom: clamp(24px, 2.4vw, 32px);
+      margin-bottom: clamp(20px, 2.2vw, 28px);
     }
     .hero-headline .word {
       display: inline-block;
@@ -378,11 +398,11 @@
       color: var(--gold);
     }
     .hero-sub {
-      font-size: clamp(15px, 1.15vw, 17px);
-      line-height: 1.55;
+      font-size: clamp(14.5px, 1.1vw, 16px);
+      line-height: 1.6;
       color: var(--text-2);
-      max-width: 50ch;
-      letter-spacing: -0.011em;
+      max-width: 48ch;
+      letter-spacing: -0.008em;
       margin-bottom: clamp(28px, 3vw, 40px);
       opacity: 0;
       animation: fade-up 900ms var(--ease-quint) 600ms forwards;
@@ -392,16 +412,43 @@
     .hero-actions {
       display: inline-flex;
       align-items: center;
-      gap: 18px;
+      gap: 16px;
       flex-wrap: wrap;
       opacity: 0;
       animation: fade-up 900ms var(--ease-quint) 760ms forwards;
+    }
+    /* Pulsing inner glow on primary CTA */
+    .hero-actions .btn-primary {
+      animation: cta-pulse 3s ease-in-out infinite;
+    }
+    @keyframes cta-pulse {
+      0%, 100% { box-shadow: 0 8px 24px -8px var(--gold-glow), 0 1px 0 oklch(90% 0.10 88) inset; }
+      50%      { box-shadow: 0 8px 24px -8px var(--gold-glow), 0 1px 0 oklch(90% 0.10 88) inset, inset 0 0 24px oklch(78% 0.13 86 / 0.15); }
+    }
+    .hero-actions .btn-primary:hover { animation: none; }
+    /* Angular double chevron arrows */
+    .hero-actions .arrow {
+      font-size: 0;
+      width: 16px; height: 16px;
+      background: none;
+      display: inline-flex;
+      align-items: center;
+    }
+    .hero-actions .arrow::before {
+      content: '»';
+      font-size: 16px;
+      font-family: var(--font-display);
+      font-weight: 700;
+    }
+    /* Finer ghost outline */
+    .hero-actions .btn-ghost {
+      border-width: 0.5px;
     }
 
     /* Hero footer status */
     .hero-status {
       position: absolute;
-      bottom: clamp(28px, 4vw, 48px);
+      bottom: clamp(24px, 3vw, 40px);
       left: 32px;
       right: 32px;
       max-width: var(--max);
@@ -414,74 +461,79 @@
       opacity: 0;
       animation: fade-in 900ms var(--ease) 1200ms forwards;
     }
-    .hero-status-left, .hero-status-right {
-      pointer-events: auto;
-    }
-    .hero-status .mono-label { font-size: 10.5px; }
+    .hero-status-left, .hero-status-right { pointer-events: auto; }
+    .hero-status .mono-label { font-size: 10px; letter-spacing: 0.22em; }
     .hero-status-scroll {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      color: var(--text-3);
+      color: var(--text-4);
       font-family: var(--font-mono);
-      font-size: 10.5px;
-      letter-spacing: 0.16em;
+      font-size: 10px;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
     }
     .hero-status-scroll svg {
-      width: 14px; height: 14px;
+      width: 12px; height: 12px;
       animation: bob 2s ease-in-out infinite;
     }
     @keyframes bob {
       0%, 100% { transform: translateY(0); }
-      50%      { transform: translateY(4px); }
+      50%      { transform: translateY(3px); }
     }
 
-    /* ── HERO ORNAMENT — Rotating wireframe orbital ── */
-    .hero-orbital {
+    /* ── HERO VISUAL — Generative lattice with glowing WW core ── */
+    .hero-visual {
       position: relative;
       width: 100%;
       aspect-ratio: 1 / 1;
-      max-width: 440px;
+      max-width: 480px;
       margin-left: auto;
       opacity: 0;
-      animation: fade-in 1400ms var(--ease) 400ms forwards;
+      animation: fade-in 1800ms var(--ease) 300ms forwards;
     }
-    .hero-orbital-svg {
+    .hero-visual-svg {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
     }
-    .hero-orbital-logo {
+    .hero-visual-logo {
       position: absolute;
       top: 50%; left: 50%;
-      width: 17%;
-      max-width: 92px;
+      width: 15%;
+      max-width: 76px;
       height: auto;
       transform: translate(-50%, -50%);
       filter: brightness(0) invert(1);
-      z-index: 2;
+      z-index: 3;
       pointer-events: none;
-      opacity: 0.92;
+      opacity: 0.95;
     }
+    /* Ring rotations */
     @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     @keyframes spin-reverse { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
-    .orbital-ring-1 { animation: spin-slow 60s linear infinite; transform-origin: center; }
-    .orbital-ring-2 { animation: spin-reverse 90s linear infinite; transform-origin: center; }
-    .orbital-ring-3 { animation: spin-slow 120s linear infinite; transform-origin: center; }
-    .orbital-particle {
-      animation: pulse-particle 3s ease-in-out infinite;
-      transform-origin: center;
+    .lattice-ring-1 { animation: spin-slow 80s linear infinite; transform-origin: center; }
+    .lattice-ring-2 { animation: spin-reverse 120s linear infinite; transform-origin: center; }
+    .lattice-ring-3 { animation: spin-slow 60s linear infinite; transform-origin: center; }
+    .lattice-ring-4 { animation: spin-reverse 100s linear infinite; transform-origin: center; }
+    /* Particle pulse */
+    .lattice-node {
+      animation: node-pulse 3s ease-in-out infinite;
     }
-    .orbital-particle:nth-child(2) { animation-delay: 0.5s; }
-    .orbital-particle:nth-child(3) { animation-delay: 1s; }
-    .orbital-particle:nth-child(4) { animation-delay: 1.5s; }
-    .orbital-particle:nth-child(5) { animation-delay: 2s; }
-    @keyframes pulse-particle {
-      0%, 100% { opacity: 0.5; }
+    @keyframes node-pulse {
+      0%, 100% { opacity: 0.3; r: 2; }
+      50%      { opacity: 1; r: 3; }
+    }
+    .lattice-node:nth-child(2n) { animation-delay: 0.8s; }
+    .lattice-node:nth-child(3n) { animation-delay: 1.6s; }
+    .lattice-node:nth-child(5n) { animation-delay: 2.2s; }
+    /* Core breathe */
+    @keyframes core-breathe {
+      0%, 100% { opacity: 0.6; }
       50%      { opacity: 1; }
     }
+    .lattice-core-glow { animation: core-breathe 4s ease-in-out infinite; }
 
     /* ════════════════════════════════════════════════════════════
        BENTO — Manifesto / Difference
@@ -1466,7 +1518,7 @@
     ════════════════════════════════════════════════════════════ */
     @media (max-width: 1024px) {
       .hero-grid { grid-template-columns: 1fr; gap: 56px; }
-      .hero-orbital { max-width: 380px; margin: 0 auto; }
+      .hero-visual { max-width: 380px; margin: 0 auto; }
       .manifesto-head { grid-template-columns: 1fr; gap: 32px; align-items: start; }
       .bento { grid-template-columns: repeat(6, 1fr); }
       .bento-a { grid-column: span 6; }
@@ -1505,7 +1557,7 @@
         transition-duration: 0.01ms !important;
       }
       html { scroll-behavior: auto; }
-      .reveal, .hero-eyebrow, .hero-headline, .hero-headline .word, .hero-sub, .hero-actions, .hero-status, .hero-orbital {
+      .reveal, .hero-eyebrow, .hero-headline, .hero-headline .word, .hero-sub, .hero-actions, .hero-status, .hero-visual {
         opacity: 1 !important;
         transform: none !important;
         animation: none !important;
@@ -1531,113 +1583,153 @@
 </nav>
 
 
-<!-- ════════════════════════════════════════════════════════════
-     HERO
-════════════════════════════════════════════════════════════ -->
+<!-- ============================================================
+     HERO - Generative Lattice
+============================================================ -->
 <section class="hero" id="top">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
   <div class="wrap">
     <div class="hero-grid">
 
       <div class="hero-text">
         <div class="hero-eyebrow">
           <span class="hero-eyebrow-pulse"></span>
-          <span class="mono-label">WEBER · EST. 2026 · SCHWARZWALD</span>
+          <span class="mono-label">WEBER &nbsp;&middot;&nbsp; EST. 2026 &nbsp;&middot;&nbsp; SCHWARZWALD</span>
         </div>
 
         <h1 class="hero-headline">
           <span class="word" style="animation-delay: 180ms">Websites,</span>
-          <span class="word" style="animation-delay: 280ms">die</span>
-          <span class="word" style="animation-delay: 380ms"><em>führen.</em></span>
+          <span class="word" style="animation-delay: 280ms">die</span><br>
+          <span class="word" style="animation-delay: 400ms"><em>f&uuml;hren.</em></span>
         </h1>
 
         <p class="hero-sub">
-          Maßgeschneiderte Webentwicklung für Unternehmen, die wissen, dass <strong>jede Sekunde Ladezeit, jede Conversion und jedes Detail zählt.</strong> Keine Templates. Keine Kompromisse.
+          Ma&szlig;geschneiderte Webentwicklung f&uuml;r Performance, Conversion und jedes Detail. <strong>Keine</strong> Templates. <strong>Keine</strong> Kompromisse.
         </p>
 
         <div class="hero-actions">
           <a href="#kontakt" class="btn btn-primary">
-            Projekt-Erstgespräch
-            <span class="arrow">→</span>
+            Projekt-Erstgespr&auml;ch
+            <span class="arrow"></span>
           </a>
           <a href="#arbeiten" class="btn btn-ghost">
             Arbeiten ansehen
-            <span class="arrow">→</span>
+            <span class="arrow"></span>
           </a>
         </div>
       </div>
 
-      <!-- ── ORBITAL ORNAMENT ── -->
-      <div class="hero-orbital" aria-hidden="true">
-        <svg class="hero-orbital-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+      <!-- GENERATIVE LATTICE VISUAL -->
+      <div class="hero-visual" aria-hidden="true">
+        <svg class="hero-visual-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <radialGradient id="core" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="oklch(78% 0.13 86)" stop-opacity="0.8"/>
-              <stop offset="50%" stop-color="oklch(78% 0.13 86)" stop-opacity="0.15"/>
-              <stop offset="100%" stop-color="oklch(78% 0.13 86)" stop-opacity="0"/>
+            <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="oklch(78% 0.13 86)" stop-opacity="0.7"/>
+              <stop offset="30%" stop-color="oklch(78% 0.13 86)" stop-opacity="0.2"/>
+              <stop offset="60%" stop-color="oklch(60% 0.10 82)" stop-opacity="0.06"/>
+              <stop offset="100%" stop-color="oklch(60% 0.10 82)" stop-opacity="0"/>
             </radialGradient>
-            <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="oklch(78% 0.13 86)" stop-opacity="0.8"/>
-              <stop offset="100%" stop-color="oklch(78% 0.13 86)" stop-opacity="0.1"/>
+            <radialGradient id="innerCore" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="oklch(78% 0.13 86)" stop-opacity="0.15"/>
+              <stop offset="100%" stop-color="oklch(13% 0.014 260)" stop-opacity="1"/>
+            </radialGradient>
+            <linearGradient id="meshLine" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="oklch(78% 0.13 86)" stop-opacity="0.6"/>
+              <stop offset="50%" stop-color="oklch(78% 0.13 86)" stop-opacity="0.15"/>
+              <stop offset="100%" stop-color="oklch(78% 0.13 86)" stop-opacity="0.4"/>
             </linearGradient>
+            <filter id="glow"><feGaussianBlur stdDeviation="3" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
           </defs>
 
-          <!-- Core glow -->
-          <circle cx="250" cy="250" r="180" fill="url(#core)"/>
+          <!-- Deep ambient glow -->
+          <circle cx="250" cy="250" r="220" fill="url(#coreGlow)" class="lattice-core-glow"/>
 
-          <!-- Outer ring -->
-          <g class="orbital-ring-1">
-            <ellipse cx="250" cy="250" rx="220" ry="80" fill="none" stroke="url(#ringGrad)" stroke-width="1" opacity="0.6"/>
-            <circle cx="470" cy="250" r="4" fill="oklch(78% 0.13 86)">
-              <animate attributeName="opacity" values="0.4;1;0.4" dur="2.5s" repeatCount="indefinite"/>
-            </circle>
+          <!-- Outer measurement lines -->
+          <g stroke="oklch(78% 0.13 86 / 0.08)" stroke-width="0.5" stroke-dasharray="4,8">
+            <line x1="250" y1="10" x2="250" y2="490"/>
+            <line x1="10" y1="250" x2="490" y2="250"/>
+            <line x1="75" y1="75" x2="425" y2="425"/>
+            <line x1="425" y1="75" x2="75" y2="425"/>
+          </g>
+          <g stroke="oklch(78% 0.13 86 / 0.05)" stroke-width="0.5" fill="none">
+            <circle cx="250" cy="250" r="240"/>
+            <circle cx="250" cy="250" r="200"/>
+            <circle cx="250" cy="250" r="160"/>
+            <circle cx="250" cy="250" r="120"/>
           </g>
 
-          <!-- Mid ring -->
-          <g class="orbital-ring-2">
-            <ellipse cx="250" cy="250" rx="180" ry="180" fill="none" stroke="oklch(78% 0.13 86 / 0.25)" stroke-width="1"/>
-            <circle cx="250" cy="70" r="3" fill="oklch(78% 0.13 86)">
-              <animate attributeName="opacity" values="0.4;1;0.4" dur="3s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="250" cy="430" r="3" fill="oklch(78% 0.13 86)">
-              <animate attributeName="opacity" values="0.4;1;0.4" dur="3s" begin="1.5s" repeatCount="indefinite"/>
-            </circle>
+          <!-- Lattice ring 1 - outer hexagonal -->
+          <g class="lattice-ring-1">
+            <polygon points="250,30 440,140 440,360 250,470 60,360 60,140" fill="none" stroke="url(#meshLine)" stroke-width="0.8" opacity="0.5"/>
+            <polygon points="250,50 420,150 420,350 250,450 80,350 80,150" fill="none" stroke="oklch(78% 0.13 86 / 0.15)" stroke-width="0.5"/>
+            <circle class="lattice-node" cx="250" cy="30" r="2.5" fill="oklch(78% 0.13 86)"/>
+            <circle class="lattice-node" cx="440" cy="140" r="2" fill="oklch(78% 0.13 86)"/>
+            <circle class="lattice-node" cx="440" cy="360" r="2.5" fill="oklch(78% 0.13 86)"/>
+            <circle class="lattice-node" cx="250" cy="470" r="2" fill="oklch(78% 0.13 86)"/>
+            <circle class="lattice-node" cx="60" cy="360" r="2.5" fill="oklch(78% 0.13 86)"/>
+            <circle class="lattice-node" cx="60" cy="140" r="2" fill="oklch(78% 0.13 86)"/>
           </g>
 
-          <!-- Tilted ring -->
-          <g class="orbital-ring-3" transform="rotate(35 250 250)">
-            <ellipse cx="250" cy="250" rx="240" ry="60" fill="none" stroke="oklch(78% 0.13 86 / 0.4)" stroke-width="1"/>
+          <!-- Lattice ring 2 - triangle mesh -->
+          <g class="lattice-ring-2">
+            <polygon points="250,65 415,345 85,345" fill="none" stroke="oklch(78% 0.13 86 / 0.35)" stroke-width="0.7"/>
+            <polygon points="250,435 85,155 415,155" fill="none" stroke="oklch(78% 0.13 86 / 0.25)" stroke-width="0.5"/>
+            <line x1="250" y1="65" x2="85" y2="155" stroke="oklch(78% 0.13 86 / 0.12)" stroke-width="0.5"/>
+            <line x1="250" y1="65" x2="415" y2="155" stroke="oklch(78% 0.13 86 / 0.12)" stroke-width="0.5"/>
+            <line x1="415" y1="345" x2="250" y2="435" stroke="oklch(78% 0.13 86 / 0.1)" stroke-width="0.5"/>
+            <line x1="85" y1="345" x2="250" y2="435" stroke="oklch(78% 0.13 86 / 0.1)" stroke-width="0.5"/>
+            <circle class="lattice-node" cx="250" cy="65" r="2" fill="oklch(78% 0.13 86)"/>
+            <circle class="lattice-node" cx="415" cy="345" r="2.5" fill="oklch(78% 0.13 86)"/>
+            <circle class="lattice-node" cx="85" cy="345" r="2" fill="oklch(78% 0.13 86)"/>
           </g>
 
-          <!-- Inner core -->
-          <circle cx="250" cy="250" r="56" fill="oklch(13% 0.014 260)" stroke="oklch(78% 0.13 86 / 0.6)" stroke-width="1.5"/>
-          <circle cx="250" cy="250" r="40" fill="none" stroke="oklch(78% 0.13 86 / 0.3)" stroke-width="0.5"/>
+          <!-- Lattice ring 3 - inner diamond -->
+          <g class="lattice-ring-3">
+            <polygon points="250,100 400,250 250,400 100,250" fill="none" stroke="oklch(78% 0.13 86 / 0.4)" stroke-width="0.8"/>
+            <polygon points="250,130 370,250 250,370 130,250" fill="none" stroke="oklch(78% 0.13 86 / 0.2)" stroke-width="0.5"/>
+            <circle class="lattice-node" cx="400" cy="250" r="2.5" fill="oklch(78% 0.13 86)"/>
+            <circle class="lattice-node" cx="100" cy="250" r="2" fill="oklch(78% 0.13 86)"/>
+          </g>
+
+          <!-- Lattice ring 4 - tight octagon -->
+          <g class="lattice-ring-4">
+            <polygon points="250,160 310,180 340,230 340,270 310,320 250,340 190,320 160,270 160,230 190,180" fill="none" stroke="oklch(78% 0.13 86 / 0.5)" stroke-width="0.7"/>
+          </g>
+
+          <!-- Core structure -->
+          <circle cx="250" cy="250" r="68" fill="url(#innerCore)" stroke="oklch(78% 0.13 86 / 0.5)" stroke-width="1.5" filter="url(#glow)"/>
+          <circle cx="250" cy="250" r="52" fill="none" stroke="oklch(78% 0.13 86 / 0.25)" stroke-width="0.5"/>
+          <circle cx="250" cy="250" r="80" fill="none" stroke="oklch(78% 0.13 86 / 0.12)" stroke-width="0.5"/>
 
           <!-- Floating particles -->
-          <g class="orbital-particle">
-            <circle cx="120" cy="180" r="2" fill="oklch(78% 0.13 86)"/>
-          </g>
-          <g class="orbital-particle">
-            <circle cx="380" cy="160" r="2.5" fill="oklch(78% 0.13 86)"/>
-          </g>
-          <g class="orbital-particle">
-            <circle cx="80" cy="320" r="1.5" fill="oklch(78% 0.13 86)"/>
-          </g>
-          <g class="orbital-particle">
-            <circle cx="420" cy="340" r="2" fill="oklch(78% 0.13 86)"/>
-          </g>
-          <g class="orbital-particle">
-            <circle cx="250" cy="120" r="2" fill="oklch(78% 0.13 86)"/>
+          <circle class="lattice-node" cx="145" cy="120" r="1.5" fill="oklch(78% 0.13 86)"/>
+          <circle class="lattice-node" cx="370" cy="95" r="2" fill="oklch(78% 0.13 86)"/>
+          <circle class="lattice-node" cx="420" cy="420" r="1.5" fill="oklch(78% 0.13 86)"/>
+          <circle class="lattice-node" cx="70" cy="400" r="2" fill="oklch(78% 0.13 86)"/>
+          <circle class="lattice-node" cx="320" cy="440" r="1.5" fill="oklch(78% 0.13 86)"/>
+          <circle class="lattice-node" cx="180" cy="60" r="1.5" fill="oklch(78% 0.13 86)"/>
+
+          <!-- Corner brackets -->
+          <g stroke="oklch(78% 0.13 86 / 0.2)" stroke-width="0.5" fill="none">
+            <path d="M30 40 L30 60 M30 40 L50 40"/>
+            <path d="M470 40 L470 60 M470 40 L450 40"/>
+            <path d="M30 460 L30 440 M30 460 L50 460"/>
+            <path d="M470 460 L470 440 M470 460 L450 460"/>
           </g>
 
-          <!-- Crosshair marks -->
-          <g stroke="oklch(78% 0.13 86 / 0.3)" stroke-width="0.5">
-            <line x1="40" y1="250" x2="60" y2="250"/>
-            <line x1="440" y1="250" x2="460" y2="250"/>
-            <line x1="250" y1="40" x2="250" y2="60"/>
-            <line x1="250" y1="440" x2="250" y2="460"/>
+          <!-- Scale ticks -->
+          <g stroke="oklch(78% 0.13 86 / 0.1)" stroke-width="0.5">
+            <line x1="130" y1="245" x2="130" y2="255"/>
+            <line x1="170" y1="245" x2="170" y2="255"/>
+            <line x1="330" y1="245" x2="330" y2="255"/>
+            <line x1="370" y1="245" x2="370" y2="255"/>
+            <line x1="245" y1="130" x2="255" y2="130"/>
+            <line x1="245" y1="170" x2="255" y2="170"/>
+            <line x1="245" y1="330" x2="255" y2="330"/>
+            <line x1="245" y1="370" x2="255" y2="370"/>
           </g>
         </svg>
-        <img src="logo-cropped.png" alt="" class="hero-orbital-logo">
+        <img src="logo-cropped.png" alt="" class="hero-visual-logo">
       </div>
 
     </div>
@@ -1645,12 +1737,12 @@
 
   <div class="hero-status">
     <div class="hero-status-left">
-      <span class="mono-label"><span style="color:oklch(70% 0.15 145)">●</span> &nbsp;&nbsp;VERFÜGBAR FÜR Q3 2026</span>
+      <span class="mono-label"><span style="color:oklch(70% 0.15 145)">&#9679;</span> &nbsp;&nbsp;VERF&Uuml;GBAR F&Uuml;R Q3 2026</span>
     </div>
     <div class="hero-status-right">
       <span class="hero-status-scroll">
         Weiter
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg>
       </span>
     </div>
   </div>
