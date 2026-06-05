@@ -169,13 +169,13 @@
     ════════════════════════════════════════════════════════════ */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      height: 68px;
+      height: 72px;
       background: transparent;
       transition: background 320ms var(--ease), border-color 320ms var(--ease);
       border-bottom: 1px solid transparent;
     }
     nav.scrolled {
-      background: var(--bg-glass);
+      background: oklch(13% 0.014 260 / 0.85);
       backdrop-filter: saturate(160%) blur(20px);
       -webkit-backdrop-filter: saturate(160%) blur(20px);
       border-bottom-color: var(--border);
@@ -190,37 +190,39 @@
       justify-content: space-between;
     }
     .nav-mark {
-      font-family: var(--font-display);
-      font-size: 16px;
-      font-weight: 800;
-      letter-spacing: -0.022em;
-      color: var(--text);
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
-    .nav-mark::before {
-      content: '';
-      width: 8px; height: 8px;
-      background: var(--gold);
-      border-radius: 50%;
-      box-shadow: 0 0 12px var(--gold-glow);
+    .nav-mark img {
+      height: 32px;
+      width: auto;
+      filter: brightness(0) saturate(100%) invert(78%) sepia(30%) saturate(600%) hue-rotate(10deg) brightness(95%);
     }
-    .nav-links { list-style: none; display: flex; align-items: center; gap: 32px; }
+    .nav-mark-text {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--gold);
+    }
+    .nav-links { list-style: none; display: flex; align-items: center; gap: 28px; }
     .nav-links a {
-      font-size: 13.5px;
-      font-weight: 500;
-      color: var(--text-2);
-      letter-spacing: -0.008em;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 600;
+      color: oklch(85% 0.014 86);
+      letter-spacing: -0.01em;
       transition: color 220ms var(--ease);
     }
     .nav-links a:hover { color: var(--gold); }
     .nav-cta {
-      padding: 10px 18px;
-      border-radius: var(--r-sm);
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: -0.005em;
+      padding: 10px 20px;
+      border-radius: var(--r);
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
       color: var(--bg);
       background: var(--gold);
       transition: background 240ms var(--ease), transform 240ms var(--ease), box-shadow 280ms var(--ease);
@@ -1615,7 +1617,10 @@
 ════════════════════════════════════════════════════════════ -->
 <nav id="nav">
   <div class="nav-row">
-    <a href="#top" class="nav-mark">Weber Websites</a>
+    <a href="#top" class="nav-mark">
+      <img src="logo-cropped.png" alt="Weber Websites Logo">
+      <span class="nav-mark-text">Weber Websites</span>
+    </a>
     <ul class="nav-links">
       <li><a href="#arbeiten">Arbeiten</a></li>
       <li><a href="#disziplinen">Disziplinen</a></li>
