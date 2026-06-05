@@ -549,307 +549,48 @@
       align-items: end;
       margin-bottom: clamp(40px, 4.5vw, 64px);
     }
-    .bento {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 12px;
-    }
-    .bento-card {
-      background: var(--bg-1);
-      border: 1px solid var(--border);
-      border-radius: var(--r-lg);
-      padding: clamp(20px, 2.4vw, 32px);
-      position: relative;
-      overflow: hidden;
-      transition: border-color 320ms var(--ease), transform 480ms var(--ease-quint), background 320ms var(--ease);
+    /* Legacy bento removed — replaced by .value-points */
+
+    /* Value propositions — no cards, clean flow */
+    .value-points {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      gap: 20px;
-    }
-    .bento-card:hover {
-      border-color: var(--border-2);
-      transform: translateY(-4px);
-    }
-    .bento-card.featured {
-      border-color: oklch(78% 0.13 86 / 0.5);
-      box-shadow:
-        0 1px 0 oklch(78% 0.13 86 / 0.1) inset,
-        0 0 80px -20px var(--gold-glow);
-    }
-    .bento-card.featured::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 80% 0%, var(--gold-soft), transparent 60%);
-      pointer-events: none;
-    }
-    .bento-card > * { position: relative; z-index: 1; }
-    .bento-card .mono-label { margin-bottom: 0; }
-    .bento-card .display-3,
-    .bento-card .display-4 { letter-spacing: -0.028em; }
-    .bento-card p {
-      color: var(--text-2);
-      font-size: 14.5px;
-      line-height: 1.55;
-      letter-spacing: -0.005em;
-    }
-
-    /* Bento sizing — conversion-optimized layout */
-    .bento-a { grid-column: span 5; }
-    .bento-b { grid-column: span 4; }
-    .bento-c { grid-column: span 3; }
-    .bento-d { grid-column: span 5; }
-    .bento-e { grid-column: span 7; }
-
-    /* Card D — split layout with portrait */
-    .bento-d {
-      display: grid;
-      grid-template-columns: 1fr auto;
       gap: 0;
-      padding: 0;
-      overflow: hidden;
     }
-    .bento-d-content {
-      padding: clamp(20px, 2.4vw, 32px);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 16px;
-    }
-    .bento-d-portrait {
-      width: 140px;
-      background: var(--bg-2);
-      border-left: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .bento-d-portrait img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      filter: grayscale(1) contrast(1.05);
-      opacity: 0.85;
-    }
-    .bento-d-portrait-placeholder {
-      font-family: var(--font-display);
-      font-size: 48px;
-      font-weight: 900;
-      color: var(--gold);
-      opacity: 0.2;
-    }
-
-    /* Card E — double width, full bottom row */
-    .bento-e {
-      grid-column: 1 / -1;
+    .value-point {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: clamp(20px, 3vw, 40px);
-      align-items: center;
-    }
-    .bento-e p {
-      font-size: 14.5px !important;
-      line-height: 1.6 !important;
-    }
-
-    /* Card B — Visual comparison rows */
-    .compare-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .compare-row:last-child { border-bottom: 0; }
-    .compare-old {
-      flex: 1;
-      font-size: 13px;
-      color: oklch(40% 0.010 261);
-      text-decoration: line-through;
-      line-height: 1.4;
-    }
-    .compare-arrow {
-      width: 24px;
-      text-align: center;
-      color: var(--gold);
-      font-size: 14px;
-      flex-shrink: 0;
-      opacity: 0.7;
-    }
-    .compare-new {
-      flex: 1;
-      font-family: var(--font-display);
-      font-size: 13.5px;
-      font-weight: 700;
-      color: var(--gold);
-      line-height: 1.4;
-      text-align: right;
-    }
-
-    /* Card C — Step flow */
-    .step-flow {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-    .step-flow-item {
-      display: grid;
-      grid-template-columns: 28px 1fr;
-      gap: 12px;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
-      align-items: center;
-    }
-    .step-flow-item:last-child { border-bottom: 0; }
-    .step-flow-num {
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      border: 1px solid var(--gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 600;
-      color: var(--gold);
-    }
-    .step-flow-text {
-      font-size: 13.5px;
-      color: var(--text-2);
-      line-height: 1.4;
-    }
-
-    /* Bento visuals */
-    .perf-ring {
-      width: 132px;
-      height: 132px;
-      position: relative;
-      margin: 4px 0;
-    }
-    .perf-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-    .perf-ring-track { stroke: var(--border); fill: none; stroke-width: 8; }
-    .perf-ring-bar {
-      stroke: var(--gold);
-      fill: none;
-      stroke-width: 8;
-      stroke-linecap: round;
-      stroke-dasharray: 460;
-      stroke-dashoffset: 460;
-      transition: stroke-dashoffset 1800ms var(--ease-expo);
-    }
-    .perf-ring.in .perf-ring-bar { stroke-dashoffset: 9.2; /* 98% */ }
-    .perf-ring-num {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .perf-ring-num .val {
-      font-family: var(--font-display);
-      font-size: 32px;
-      font-weight: 800;
-      letter-spacing: -0.032em;
-      color: var(--text);
-      font-variant-numeric: tabular-nums;
-    }
-    .perf-ring-num .lbl {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: var(--text-3);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-    }
-    .perf-meters {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-    .perf-meter {
-      padding: 14px 0 0;
-      border-top: 1px solid var(--border);
-    }
-    .perf-meter-val {
-      font-family: var(--font-display);
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.022em;
-      font-variant-numeric: tabular-nums;
-    }
-    .perf-meter-lbl {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: var(--text-3);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-top: 4px;
-    }
-
-    /* Code snippet */
-    .code-snippet {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      line-height: 1.7;
-      color: var(--text-2);
-      background: var(--bg);
-      border-radius: var(--r);
-      padding: 18px 20px;
-      border: 1px solid var(--border);
-      overflow: hidden;
-    }
-    .code-snippet .ck { color: oklch(78% 0.13 86); }
-    .code-snippet .cs { color: oklch(70% 0.13 175); }
-    .code-snippet .cn { color: oklch(78% 0.06 60); }
-    .code-snippet .cm { color: var(--text-4); }
-
-    /* Stats vertical */
-    .stat-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .stat-row {
-      display: flex;
-      justify-content: space-between;
+      gap: clamp(32px, 5vw, 80px);
       align-items: baseline;
-      padding: 14px 0;
+      padding: clamp(28px, 3.5vw, 48px) 0;
       border-bottom: 1px solid var(--border);
     }
-    .stat-row:last-child { border-bottom: 0; }
-    .stat-row-key {
-      font-family: var(--font-mono);
-      font-size: 10.5px;
-      color: var(--text-3);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+    .value-point:first-child {
+      padding-top: 0;
     }
-    .stat-row-val {
+    .value-point:last-child {
+      border-bottom: none;
+    }
+    .value-point-statement {
       font-family: var(--font-display);
-      font-size: 24px;
+      font-size: clamp(20px, 2.2vw, 30px);
       font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.25;
+      color: var(--text);
+    }
+    .value-point-statement em {
       color: var(--gold);
-      letter-spacing: -0.026em;
-      font-variant-numeric: tabular-nums;
+      font-style: normal;
+    }
+    .value-point-detail {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text-2);
+      max-width: 42ch;
     }
 
-    /* Not-list */
-    .not-list { list-style: none; }
-    .not-list li {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--text-4);
-      padding: 12px 0;
-      border-bottom: 1px dashed var(--border);
-      text-decoration: line-through;
-      letter-spacing: 0.04em;
-    }
+    /* Legacy bento visuals removed */
     .not-list li:last-child { border-bottom: 0; }
 
     /* ════════════════════════════════════════════════════════════
@@ -1641,12 +1382,7 @@
       .hero-grid { grid-template-columns: 1fr; gap: 56px; }
       .hero-visual { max-width: 380px; margin: 0 auto; }
       .manifesto-head { grid-template-columns: 1fr; gap: 32px; align-items: start; }
-      .bento { grid-template-columns: repeat(6, 1fr); }
-      .bento-a { grid-column: span 6; }
-      .bento-b { grid-column: span 3; }
-      .bento-c { grid-column: span 3; }
-      .bento-d { grid-column: span 6; }
-      .bento-e { grid-column: span 6; grid-template-columns: 1fr; }
+      .value-point { grid-template-columns: 1fr; gap: 12px; }
       .cap-grid { grid-template-columns: repeat(2, 1fr); }
       .cap-item:nth-child(2n) { border-right: 0; }
       .cap-item:nth-child(4n) { border-right: 1px solid var(--border); }
@@ -1886,103 +1622,26 @@
       </p>
     </div>
 
-    <div class="bento">
+    <div class="value-points">
 
-      <!-- Card A — Das Problem (featured, text -30%) -->
-      <div class="bento-card bento-a featured reveal">
-        <div>
-          <div class="mono-label"><span class="num">A</span>DAS PROBLEM</div>
-          <h3 class="display-3" style="margin-top:18px">Ihre Kunden suchen Sie gerade. <em class="gold">Finden sie Sie?</em></h3>
-        </div>
-        <p style="font-size:14.5px; max-width:50ch; line-height:1.65; color:var(--text-2)">
-          90% aller Kaufentscheidungen starten bei Google. Ist Ihre Website langsam oder veraltet, verlieren Sie Kunden an den Wettbewerber mit der besseren Seite.
-        </p>
-        <div class="stat-stack">
-          <div class="stat-row">
-            <span class="stat-row-key">Verlassen die Seite nach</span>
-            <span class="stat-row-val">3 Sek.</span>
-          </div>
-          <div class="stat-row">
-            <span class="stat-row-key">Vertrauen dem ersten Eindruck</span>
-            <span class="stat-row-val">94%</span>
-          </div>
-        </div>
+      <div class="value-point reveal">
+        <div class="value-point-statement">Ihre Kunden suchen Sie bei Google. <em>Finden sie Sie?</em></div>
+        <p class="value-point-detail">Wer heute nicht online überzeugt, verliert Aufträge an den Wettbewerber mit der besseren Seite.</p>
       </div>
 
-      <!-- Card B — Visual comparison with arrows -->
-      <div class="bento-card bento-b reveal d1">
-        <div>
-          <div class="mono-label"><span class="num">B</span>DER UNTERSCHIED</div>
-          <h3 class="display-4" style="margin-top:14px">Baukasten vs. Maßarbeit.</h3>
-        </div>
-        <div>
-          <div class="compare-row">
-            <span class="compare-old">Sieht aus wie 1.000 andere</span>
-            <span class="compare-arrow">→</span>
-            <span class="compare-new">Einzigartig für Sie</span>
-          </div>
-          <div class="compare-row">
-            <span class="compare-old">Lädt 5+ Sekunden</span>
-            <span class="compare-arrow">→</span>
-            <span class="compare-new">Unter 2 Sekunden</span>
-          </div>
-          <div class="compare-row">
-            <span class="compare-old">Besucher gehen wieder</span>
-            <span class="compare-arrow">→</span>
-            <span class="compare-new">Besucher fragen an</span>
-          </div>
-        </div>
+      <div class="value-point reveal d1">
+        <div class="value-point-statement">Kein Baukasten. <em>Maßgeschneidert für Ihr Unternehmen.</em></div>
+        <p class="value-point-detail">Schnell, professionell, auf jedem Gerät perfekt. Einzigartig statt austauschbar.</p>
       </div>
 
-      <!-- Card C — Numbered step flow -->
-      <div class="bento-card bento-c reveal d2">
-        <div>
-          <div class="mono-label"><span class="num">C</span>SO EINFACH</div>
-          <h3 class="display-4" style="margin-top:14px">Kein Technik-Wissen nötig.</h3>
-        </div>
-        <div class="step-flow">
-          <div class="step-flow-item">
-            <span class="step-flow-num">01</span>
-            <span class="step-flow-text">Sie beschreiben Ihr Ziel</span>
-          </div>
-          <div class="step-flow-item">
-            <span class="step-flow-num">02</span>
-            <span class="step-flow-text">Ich konzipiere und baue</span>
-          </div>
-          <div class="step-flow-item">
-            <span class="step-flow-num">03</span>
-            <span class="step-flow-text">In 14 Tagen online</span>
-          </div>
-        </div>
+      <div class="value-point reveal d2">
+        <div class="value-point-statement">Sie sagen, was Sie brauchen. <em>In 14 Tagen ist es online.</em></div>
+        <p class="value-point-detail">Kein Technik-Wissen nötig. Ein Ansprechpartner, kein Callcenter.</p>
       </div>
 
-      <!-- Card D — Split layout with portrait placeholder -->
-      <div class="bento-card bento-d reveal d3">
-        <div class="bento-d-content">
-          <div>
-            <div class="mono-label"><span class="num">D</span>WER ICH BIN</div>
-            <h3 class="display-4" style="margin-top:14px">Ein Ansprechpartner.<br>Kein Callcenter.</h3>
-          </div>
-          <p style="font-size:13.5px;line-height:1.6;color:var(--text-2)">
-            Andreas Weber, Webentwickler aus dem Schwarzwald. Sie rufen an, ich gehe ran.
-          </p>
-        </div>
-        <div class="bento-d-portrait">
-          <!-- Replace with real portrait: <img src="portrait-aw.jpg" alt="Andreas Weber"> -->
-          <span class="bento-d-portrait-placeholder">AW</span>
-        </div>
-      </div>
-
-      <!-- Card E — Full-width value proposition -->
-      <div class="bento-card bento-e reveal d4">
-        <div>
-          <div class="mono-label"><span class="num">E</span>WAS SIE BEKOMMEN</div>
-          <h3 class="display-3" style="margin-top:18px">Eine Website, die für Sie arbeitet.<br><em class="gold">Nicht umgekehrt.</em></h3>
-        </div>
-        <div>
-          <p>Schnell, professionell, auf jedem Gerät perfekt. Ihre Kunden finden Sie bei Google, sehen sofort, was Sie anbieten, und können direkt anfragen.</p>
-          <p style="margin-top:12px;color:var(--text-3)">Kein Abo. Kein Kleingedrucktes. Die Website gehört Ihnen.</p>
-        </div>
+      <div class="value-point reveal d3">
+        <div class="value-point-statement">Kein Abo. Kein Kleingedrucktes. <em>Die Website gehört Ihnen.</em></div>
+        <p class="value-point-detail">Festpreis, fertig. Ihre Kunden finden Sie, sehen was Sie anbieten, und fragen direkt an.</p>
       </div>
 
     </div>
