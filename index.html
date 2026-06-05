@@ -906,6 +906,155 @@
     }
 
     /* ════════════════════════════════════════════════════════════
+       PRICING — 3 Tiers
+    ════════════════════════════════════════════════════════════ */
+    .pricing {
+      padding: clamp(72px, 8vw, 112px) 0;
+      border-top: 1px solid var(--border);
+      position: relative;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      position: relative;
+    }
+    .pricing-card {
+      background: var(--bg-1);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: clamp(28px, 3vw, 40px);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      position: relative;
+      transition: border-color 320ms var(--ease), transform 480ms var(--ease-quint);
+    }
+    .pricing-card:hover {
+      border-color: var(--border-2);
+      transform: translateY(-4px);
+    }
+    .pricing-card.popular {
+      border-color: var(--gold);
+      box-shadow: 0 0 60px -20px var(--gold-glow);
+    }
+    .pricing-card.popular::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--r-lg);
+      background: radial-gradient(ellipse at 50% 0%, oklch(78% 0.13 86 / 0.06), transparent 60%);
+      pointer-events: none;
+    }
+    .pricing-badge {
+      position: absolute;
+      top: -1px; right: 28px;
+      background: var(--gold);
+      color: var(--bg);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 0 0 var(--r-sm) var(--r-sm);
+    }
+    .pricing-tier {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-3);
+    }
+    .pricing-name {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.2vw, 28px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      color: var(--text);
+      margin-top: 4px;
+    }
+    .pricing-price {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .pricing-price-val {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 3.5vw, 48px);
+      font-weight: 900;
+      letter-spacing: -0.035em;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .pricing-price-note {
+      font-size: 14px;
+      color: var(--text-3);
+    }
+    .pricing-desc {
+      font-size: 15px;
+      line-height: 1.6;
+      color: oklch(80% 0.014 86);
+    }
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      flex: 1;
+    }
+    .pricing-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14.5px;
+      color: oklch(85% 0.014 86);
+      line-height: 1.45;
+    }
+    .pricing-features li::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .pricing-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border-radius: var(--r);
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      transition: all 320ms var(--ease);
+      text-align: center;
+    }
+    .pricing-cta-outline {
+      border: 1px solid var(--border-2);
+      color: var(--text);
+      background: transparent;
+    }
+    .pricing-cta-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    .pricing-cta-gold {
+      background: var(--gold);
+      color: var(--bg);
+      border: 1px solid var(--gold);
+    }
+    .pricing-cta-gold:hover {
+      background: var(--gold-2);
+      border-color: var(--gold-2);
+    }
+
+    /* ════════════════════════════════════════════════════════════
        CONTACT — Multi-Step Form
     ════════════════════════════════════════════════════════════ */
     .contact {
@@ -1323,6 +1472,8 @@
       .upgrade-grid { grid-template-columns: 1fr; }
       .upgrade-item { border-right: none; border-bottom: 1px solid var(--border); }
       .upgrade-item:last-child { border-bottom: none; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 480px; }
+      .pricing-card.popular { order: -1; }
       .contact-grid { grid-template-columns: 1fr; gap: 56px; }
       .contact-left { position: static; }
     }
@@ -1369,6 +1520,7 @@
       <li><a href="#arbeiten">Arbeiten</a></li>
       <li><a href="#disziplinen">Disziplinen</a></li>
       <li><a href="#prozess">Prozess</a></li>
+      <li><a href="#preise">Preise</a></li>
       <li><a href="#kontakt" class="nav-cta">Erstgespräch</a></li>
     </ul>
   </div>
@@ -1780,6 +1932,91 @@
 
 
 <!-- ════════════════════════════════════════════════════════════
+     PRICING — Transparent & Fair
+════════════════════════════════════════════════════════════ -->
+<section class="pricing" id="preise">
+  <div class="wrap">
+
+    <div class="section-head" style="text-align:center; max-width: 760px; margin: 0 auto clamp(48px, 5vw, 72px)">
+      <div class="mono-label reveal" style="justify-content:center; display:inline-flex"><span class="num">06</span>PREISE</div>
+      <h2 class="display-2 reveal d1" style="margin-top:16px">Was kostet eine Website,<br><em class="gold">die wirklich funktioniert?</em></h2>
+    </div>
+
+    <div class="pricing-grid">
+
+      <!-- BASIC -->
+      <div class="pricing-card reveal">
+        <div>
+          <div class="pricing-tier">Basic</div>
+          <div class="pricing-name">Starter Website</div>
+        </div>
+        <div class="pricing-price">
+          <span class="pricing-price-val">999€</span>
+          <span class="pricing-price-note">einmalig</span>
+        </div>
+        <p class="pricing-desc">Für Unternehmen, die endlich professionell online sein wollen. Klar, schnell, auf den Punkt.</p>
+        <ul class="pricing-features">
+          <li>One-Page Design</li>
+          <li>Responsive auf allen Geräten</li>
+          <li>Kontaktformular</li>
+          <li>Google-optimiert (SEO)</li>
+          <li>SSL-Zertifikat &amp; Hosting-Setup</li>
+          <li>Lieferung in 7 – 10 Tagen</li>
+        </ul>
+        <a href="#kontakt" class="pricing-cta pricing-cta-outline">Projekt starten</a>
+      </div>
+
+      <!-- PREMIUM -->
+      <div class="pricing-card popular reveal d1">
+        <div class="pricing-badge">Beliebt</div>
+        <div>
+          <div class="pricing-tier">Premium</div>
+          <div class="pricing-name">Business Website</div>
+        </div>
+        <div class="pricing-price">
+          <span class="pricing-price-val">2.499€</span>
+          <span class="pricing-price-note">einmalig</span>
+        </div>
+        <p class="pricing-desc">Für Unternehmen, die mit ihrer Website Kunden gewinnen wollen. Mehr Seiten, mehr Wirkung.</p>
+        <ul class="pricing-features">
+          <li>Bis zu 5 Unterseiten</li>
+          <li>Individuelles Design nach Ihrem CI</li>
+          <li>Animationen &amp; Micro-Interactions</li>
+          <li>Erweiterte SEO-Optimierung</li>
+          <li>Google Maps &amp; Bewertungen</li>
+          <li>Analyse-Dashboard (Analytics)</li>
+          <li>Lieferung in 10 – 14 Tagen</li>
+        </ul>
+        <a href="#kontakt" class="pricing-cta pricing-cta-gold">Projekt starten</a>
+      </div>
+
+      <!-- INDIVIDUELL -->
+      <div class="pricing-card reveal d2">
+        <div>
+          <div class="pricing-tier">Individuell</div>
+          <div class="pricing-name">Maßanfertigung</div>
+        </div>
+        <div class="pricing-price">
+          <span class="pricing-price-val">Auf Anfrage</span>
+        </div>
+        <p class="pricing-desc">Für Projekte, die über eine klassische Website hinausgehen. Shops, Portale, Web-Apps.</p>
+        <ul class="pricing-features">
+          <li>Unbegrenzte Seiten &amp; Funktionen</li>
+          <li>E-Commerce / Buchungssysteme</li>
+          <li>Individuelle Schnittstellen (API)</li>
+          <li>CMS für eigene Inhalte</li>
+          <li>Laufende Betreuung möglich</li>
+          <li>Zeitplan nach Projektumfang</li>
+        </ul>
+        <a href="#kontakt" class="pricing-cta pricing-cta-outline">Gespräch vereinbaren</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════
      CONTACT — Multi-Step
 ════════════════════════════════════════════════════════════ -->
 <section class="contact" id="kontakt">
@@ -1789,7 +2026,7 @@
 
       <!-- LEFT — Pitch + Trust + Direct -->
       <div class="contact-left">
-        <div class="mono-label reveal"><span class="num">06</span>KONTAKT</div>
+        <div class="mono-label reveal"><span class="num">07</span>KONTAKT</div>
         <h2 class="display-2 reveal d1">Drei Fragen.<br><em class="gold">Dann reden wir.</em></h2>
         <p class="lede reveal d2">Kein Verkaufsgespräch. Sie erzählen, was Sie vorhaben, ich sage Ihnen ehrlich, was möglich ist und was es kostet.</p>
 
