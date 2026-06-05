@@ -599,7 +599,124 @@
       max-width: 42ch;
     }
 
-    /* Legacy bento visuals removed */
+    /* ════════════════════════════════════════════════════════════
+       PORTFOLIO — Project showcases
+    ════════════════════════════════════════════════════════════ */
+    .portfolio {
+      padding: clamp(72px, 8vw, 112px) 0;
+      border-top: 1px solid var(--border);
+    }
+    .portfolio-grid {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(24px, 3vw, 40px);
+      margin-top: clamp(40px, 4vw, 56px);
+    }
+    .portfolio-item {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 0;
+      background: var(--bg-1);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      transition: border-color 320ms var(--ease), transform 480ms var(--ease-quint);
+    }
+    .portfolio-item:hover {
+      border-color: var(--border-2);
+      transform: translateY(-4px);
+    }
+    .portfolio-item:nth-child(even) {
+      direction: rtl;
+    }
+    .portfolio-item:nth-child(even) > * {
+      direction: ltr;
+    }
+    .portfolio-preview {
+      aspect-ratio: 16 / 10;
+      background: var(--bg-2);
+      position: relative;
+      overflow: hidden;
+    }
+    .portfolio-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 600ms var(--ease-quint);
+    }
+    .portfolio-item:hover .portfolio-preview img {
+      transform: scale(1.03);
+    }
+    .portfolio-preview-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 900;
+      color: var(--gold);
+      opacity: 0.08;
+      letter-spacing: -0.03em;
+    }
+    .portfolio-info {
+      padding: clamp(24px, 2.5vw, 36px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+    }
+    .portfolio-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .portfolio-title {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2vw, 26px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      color: var(--text);
+    }
+    .portfolio-desc {
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: var(--text-2);
+    }
+    .portfolio-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .portfolio-tech span {
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: var(--text-3);
+    }
+    .portfolio-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-top: 4px;
+      transition: gap 240ms var(--ease);
+    }
+    .portfolio-item:hover .portfolio-link {
+      gap: 10px;
+    }
     .not-list li:last-child { border-bottom: 0; }
 
     /* ════════════════════════════════════════════════════════════
@@ -1574,6 +1691,9 @@
       .hero-visual { max-width: 380px; margin: 0 auto; }
       .manifesto-head { grid-template-columns: 1fr; gap: 32px; align-items: start; }
       .value-point { grid-template-columns: 1fr; gap: 12px; }
+      .portfolio-item,
+      .portfolio-item:nth-child(even) { grid-template-columns: 1fr; direction: ltr; }
+      .portfolio-preview { aspect-ratio: 16 / 9; }
       .urgency-pains { grid-template-columns: 1fr; }
       .urgency-pain { border-right: none; border-bottom: 1px solid var(--border); }
       .urgency-pain:last-child { border-bottom: none; }
@@ -1664,7 +1784,7 @@
             Projekt-Erstgespr&auml;ch
             <span class="arrow"></span>
           </a>
-          <a href="#arbeiten" class="btn btn-ghost">
+          <a href="#warum" class="btn btn-ghost">
             Arbeiten ansehen
             <span class="arrow"></span>
           </a>
@@ -1804,7 +1924,7 @@
 <!-- ════════════════════════════════════════════════════════════
      MANIFESTO — Bento Grid
 ════════════════════════════════════════════════════════════ -->
-<section class="manifesto" id="arbeiten">
+<section class="manifesto" id="warum">
   <div class="wrap">
 
     <div class="manifesto-head">
@@ -1881,6 +2001,77 @@
     </div>
   </div>
 
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     PORTFOLIO — Bisherige Projekte
+════════════════════════════════════════════════════════════ -->
+<section class="portfolio" id="arbeiten">
+  <div class="wrap">
+
+    <div class="section-head">
+      <h2 class="display-2 reveal" style="margin-top:0">Projekte, die <em class="gold">für sich sprechen.</em></h2>
+    </div>
+
+    <div class="portfolio-grid">
+
+      <!-- Weber Elektrotechnik -->
+      <div class="portfolio-item reveal">
+        <div class="portfolio-preview">
+          <img src="nachher.png" alt="Weber Elektrotechnik Website" loading="lazy">
+        </div>
+        <div class="portfolio-info">
+          <span class="portfolio-tag">Redesign · Handwerk</span>
+          <h3 class="portfolio-title">Weber Elektrotechnik</h3>
+          <p class="portfolio-desc">Von einem veralteten WordPress-Theme zu einer maßgeschneiderten Website. Ladezeit von 7,8s auf 1,4s reduziert. Mobile Score von 34 auf 98.</p>
+          <div class="portfolio-tech">
+            <span>Custom Code</span>
+            <span>SEO</span>
+            <span>Responsive</span>
+          </div>
+          <a href="https://weber-elektrotechnik.de" target="_blank" rel="noopener" class="portfolio-link">Website ansehen →</a>
+        </div>
+      </div>
+
+      <!-- Hotz Fenster & Türen -->
+      <div class="portfolio-item reveal d1">
+        <div class="portfolio-preview">
+          <span class="portfolio-preview-placeholder">HOTZ</span>
+        </div>
+        <div class="portfolio-info">
+          <span class="portfolio-tag">Neubau · Handwerk</span>
+          <h3 class="portfolio-title">Hotz Fenster &amp; Türen</h3>
+          <p class="portfolio-desc">Statische Website für einen Fensterbauer. Klare Struktur, Anfrageformular, optimiert für lokale Google-Suche.</p>
+          <div class="portfolio-tech">
+            <span>Custom Code</span>
+            <span>Formular</span>
+            <span>Lokal SEO</span>
+          </div>
+          <span class="portfolio-link" style="color:var(--text-3)">In Arbeit</span>
+        </div>
+      </div>
+
+      <!-- Face to Face / Unveiled 2026 -->
+      <div class="portfolio-item reveal d2">
+        <div class="portfolio-preview">
+          <span class="portfolio-preview-placeholder">F2F</span>
+        </div>
+        <div class="portfolio-info">
+          <span class="portfolio-tag">Neubau · Event</span>
+          <h3 class="portfolio-title">Face to Face Conference</h3>
+          <p class="portfolio-desc">Event-Website für die Unveiled 2026 Konferenz. Registrierung, Programm, Speaker-Übersicht. Dark Premium Design.</p>
+          <div class="portfolio-tech">
+            <span>Event-Page</span>
+            <span>Registrierung</span>
+            <span>Responsive</span>
+          </div>
+          <span class="portfolio-link" style="color:var(--text-3)">In Arbeit</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
 
 
