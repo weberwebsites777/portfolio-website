@@ -931,12 +931,7 @@
       transition: border-color 320ms var(--ease), transform 480ms var(--ease-quint), box-shadow 400ms var(--ease);
       cursor: pointer;
     }
-    .pricing-card:hover {
-      border-color: var(--border-2);
-      transform: translateY(-4px);
-    }
-
-    /* ── Flowing gold border on selected card ── */
+    /* ── Flowing gold border on hover ── */
     .pricing-card::before {
       content: '';
       position: absolute;
@@ -954,7 +949,7 @@
       opacity: 0;
       z-index: -1;
       transition: opacity 500ms var(--ease-quint);
-      animation: none;
+      animation: flowBorder 3s linear infinite;
     }
     .pricing-card::after {
       content: '';
@@ -964,14 +959,13 @@
       background: var(--bg-1);
       z-index: -1;
     }
-    .pricing-card.selected {
+    .pricing-card:hover {
       border-color: transparent;
       transform: translateY(-6px);
       box-shadow: 0 0 80px -20px var(--gold-glow), 0 24px 48px -16px oklch(13% 0.014 260 / 0.5);
     }
-    .pricing-card.selected::before {
+    .pricing-card:hover::before {
       opacity: 1;
-      animation: flowBorder 3s linear infinite;
     }
     @property --border-angle {
       syntax: '<angle>';
@@ -987,7 +981,7 @@
       border-color: var(--gold);
       box-shadow: 0 0 60px -20px var(--gold-glow);
     }
-    .pricing-card.popular.selected {
+    .pricing-card.popular:hover {
       border-color: transparent;
     }
     .pricing-badge {
@@ -2341,20 +2335,6 @@
       });
     }, { threshold: 0.5 });
     counters.forEach(c => io.observe(c));
-  })();
-
-  /* Pricing card selection — flowing gold border */
-  (function() {
-    const cards = document.querySelectorAll('.pricing-card');
-    if (!cards.length) return;
-    cards.forEach(card => {
-      card.addEventListener('click', (e) => {
-        if (e.target.closest('.pricing-cta')) return;
-        const wasSelected = card.classList.contains('selected');
-        cards.forEach(c => c.classList.remove('selected'));
-        if (!wasSelected) card.classList.add('selected');
-      });
-    });
   })();
 
   /* Before / After slider */
