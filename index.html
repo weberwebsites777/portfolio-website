@@ -633,15 +633,18 @@
       direction: ltr;
     }
     .portfolio-preview {
-      aspect-ratio: 16 / 10;
       background: var(--bg-2);
       position: relative;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 240px;
     }
     .portfolio-preview img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      display: block;
       transition: transform 600ms var(--ease-quint);
     }
     .portfolio-item:hover .portfolio-preview img {
@@ -1693,7 +1696,7 @@
       .value-point { grid-template-columns: 1fr; gap: 12px; }
       .portfolio-item,
       .portfolio-item:nth-child(even) { grid-template-columns: 1fr; direction: ltr; }
-      .portfolio-preview { aspect-ratio: 16 / 9; }
+      .portfolio-preview { max-height: 320px; }
       .urgency-pains { grid-template-columns: 1fr; }
       .urgency-pain { border-right: none; border-bottom: 1px solid var(--border); }
       .urgency-pain:last-child { border-bottom: none; }
