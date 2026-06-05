@@ -724,185 +724,242 @@
     }
 
     /* ════════════════════════════════════════════════════════════
-       CAPABILITIES — Notion clean, 4 disciplines
+       URGENCY — What your old site costs you
     ════════════════════════════════════════════════════════════ */
-    .capabilities {
-      padding: clamp(72px, 8vw, 112px) 0;
-      border-top: 1px solid var(--border);
-      background: var(--bg);
-    }
-    .cap-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      margin-top: clamp(48px, 5vw, 72px);
-      border-top: 1px solid var(--border);
-    }
-    .cap-item {
-      padding: clamp(24px, 2.6vw, 36px) clamp(18px, 2vw, 26px);
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      transition: background 320ms var(--ease);
-    }
-    .cap-item:nth-child(4n) { border-right: 0; }
-    .cap-item:hover { background: var(--bg-1); }
-    .cap-num {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--gold);
-      letter-spacing: 0.16em;
-    }
-    .cap-icon {
-      width: 32px; height: 32px;
-      color: var(--gold);
-      margin-bottom: 6px;
-    }
-    .cap-title {
-      font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: -0.022em;
-      color: var(--text);
-    }
-    .cap-body {
-      font-size: 14.5px;
-      line-height: 1.6;
-      color: var(--text-2);
-      flex-grow: 1;
-    }
-    .cap-stat {
-      padding-top: 16px;
-      margin-top: 8px;
-      border-top: 1px solid var(--border);
-      font-family: var(--font-mono);
-      font-size: 11.5px;
-      color: var(--text-3);
-      letter-spacing: 0.04em;
-    }
-    .cap-stat strong {
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    /* ════════════════════════════════════════════════════════════
-       UPGRADE — Why modern websites win
-    ════════════════════════════════════════════════════════════ */
-    .upgrade {
-      padding: clamp(72px, 8vw, 112px) 0;
-      border-top: 1px solid var(--border);
+    .urgency {
+      padding: clamp(80px, 9vw, 128px) 0;
+      background: var(--bg-2);
       position: relative;
       overflow: hidden;
     }
-    .upgrade::before {
+    .urgency::before {
       content: '';
       position: absolute;
-      top: -20%; left: -10%;
-      width: 800px; height: 800px;
-      background: radial-gradient(circle at center, var(--gold-soft), transparent 65%);
-      pointer-events: none;
-      filter: blur(40px);
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.4;
     }
-    .upgrade-grid {
-      position: relative;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      border: 1px solid var(--border);
-      border-radius: var(--r-lg);
-      overflow: hidden;
-    }
-    .upgrade-item {
-      padding: clamp(28px, 3vw, 40px);
-      border-right: 1px solid var(--border);
-      position: relative;
-    }
-    .upgrade-item:last-child { border-right: none; }
-    .upgrade-item-icon {
-      font-size: 28px;
-      margin-bottom: 20px;
-      line-height: 1;
-    }
-    .upgrade-item-title {
+    .urgency-statement {
       font-family: var(--font-display);
-      font-size: clamp(18px, 1.8vw, 22px);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.25;
+      font-size: clamp(28px, 3.8vw, 56px);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.1;
       color: var(--text);
-      margin-bottom: 10px;
+      max-width: 14ch;
+      margin-bottom: clamp(48px, 5vw, 72px);
     }
-    .upgrade-item-title em {
+    .urgency-statement em {
       color: var(--gold);
       font-style: normal;
     }
-    .upgrade-item-text {
+    .urgency-pains {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .urgency-pain {
+      padding: clamp(24px, 2.5vw, 36px);
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+    .urgency-pain:last-child { border-right: none; }
+    .urgency-pain-num {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 5vw, 72px);
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      opacity: 0.15;
+      position: absolute;
+      top: clamp(16px, 2vw, 28px);
+      right: clamp(16px, 2vw, 28px);
+    }
+    .urgency-pain-title {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 1.8vw, 24px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .urgency-pain-text {
       font-size: 15px;
       line-height: 1.6;
       color: oklch(80% 0.014 86);
     }
+    .urgency-cta {
+      margin-top: clamp(48px, 5vw, 72px);
+      text-align: center;
+    }
+    .urgency-cta a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: -0.01em;
+      padding: 14px 32px;
+      border: 1px solid var(--gold);
+      border-radius: var(--r);
+      transition: all 320ms var(--ease);
+    }
+    .urgency-cta a:hover {
+      background: var(--gold);
+      color: var(--bg);
+    }
 
     /* ════════════════════════════════════════════════════════════
-       PROCESS — 4 Steps, vertical staggered
+       OUTCOME — Visual chain: upgrade → results
+    ════════════════════════════════════════════════════════════ */
+    .outcome {
+      padding: clamp(72px, 8vw, 112px) 0;
+      border-top: 1px solid var(--border);
+      position: relative;
+    }
+    .outcome-chain {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      position: relative;
+      margin-top: clamp(48px, 5vw, 72px);
+    }
+    .outcome-step {
+      flex: 1;
+      text-align: center;
+      padding: clamp(28px, 3vw, 44px) clamp(16px, 2vw, 28px);
+      position: relative;
+    }
+    .outcome-step::after {
+      content: '→';
+      position: absolute;
+      right: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 24px;
+      color: var(--gold);
+      z-index: 2;
+    }
+    .outcome-step:last-child::after { display: none; }
+    .outcome-step-num {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 4.5vw, 64px);
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin-bottom: 12px;
+    }
+    .outcome-step-label {
+      font-family: var(--font-display);
+      font-size: clamp(15px, 1.5vw, 19px);
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.015em;
+      line-height: 1.3;
+    }
+    .outcome-step-sub {
+      font-size: 13.5px;
+      color: var(--text-2);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+    .outcome-bottom {
+      margin-top: clamp(40px, 4vw, 56px);
+      padding-top: clamp(28px, 3vw, 40px);
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .outcome-bottom-text {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.2vw, 30px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--text);
+    }
+    .outcome-bottom-text em {
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       PROCESS — Timeline with gold connector
     ════════════════════════════════════════════════════════════ */
     .process {
       padding: clamp(72px, 8vw, 112px) 0;
       border-top: 1px solid var(--border);
       background: var(--bg);
     }
-    .process-steps {
+    .process-timeline {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 0;
-      margin: clamp(36px, 4vw, 56px) auto 0;
-      border-top: 1px solid var(--border);
+      margin-top: clamp(48px, 5vw, 72px);
+      position: relative;
     }
-    .process-step {
+    /* Gold connector line behind steps */
+    .process-timeline::before {
+      content: '';
+      position: absolute;
+      top: 24px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold) 15%, var(--gold) 85%, transparent);
+      opacity: 0.3;
+    }
+    .process-tl-step {
+      text-align: center;
+      padding: 0 clamp(12px, 1.5vw, 24px);
+      position: relative;
+    }
+    .process-tl-dot {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      background: var(--bg);
       display: flex;
-      flex-direction: column;
-      gap: 16px;
-      padding: clamp(24px, 2.6vw, 36px) clamp(18px, 2vw, 28px);
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      transition: background 320ms var(--ease);
-    }
-    .process-step:hover {
-      background: var(--bg-1);
-    }
-    .process-step:last-child { border-right: 0; }
-    .process-num {
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      position: relative;
+      z-index: 1;
       font-family: var(--font-display);
-      font-size: 36px;
-      font-weight: 900;
-      line-height: 1;
-      color: var(--bg-3);
-      letter-spacing: -0.04em;
-      font-variant-numeric: tabular-nums;
-      transition: color 320ms var(--ease);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--gold);
+      transition: all 400ms var(--ease-quint);
     }
-    .process-step:hover .process-num { color: var(--gold); }
-    .process-content h3 {
+    .process-tl-step:hover .process-tl-dot {
+      background: var(--gold);
+      color: var(--bg);
+      box-shadow: 0 0 32px var(--gold-glow);
+    }
+    .process-tl-title {
       font-family: var(--font-display);
       font-size: 18px;
       font-weight: 700;
-      letter-spacing: -0.022em;
+      letter-spacing: -0.02em;
       color: var(--text);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
-    .process-content p {
+    .process-tl-desc {
       font-size: 14px;
       line-height: 1.55;
       color: var(--text-2);
     }
-    .process-duration {
+    .process-tl-time {
       font-family: var(--font-mono);
       font-size: 10.5px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-top: auto;
+      margin-top: 14px;
     }
 
     /* ════════════════════════════════════════════════════════════
@@ -1503,13 +1560,13 @@
       .hero-visual { max-width: 380px; margin: 0 auto; }
       .manifesto-head { grid-template-columns: 1fr; gap: 32px; align-items: start; }
       .value-point { grid-template-columns: 1fr; gap: 12px; }
-      .cap-grid { grid-template-columns: repeat(2, 1fr); }
-      .cap-item:nth-child(2n) { border-right: 0; }
-      .cap-item:nth-child(4n) { border-right: 1px solid var(--border); }
-      .cap-item:nth-child(even) { border-right: 0; }
-      .upgrade-grid { grid-template-columns: 1fr; }
-      .upgrade-item { border-right: none; border-bottom: 1px solid var(--border); }
-      .upgrade-item:last-child { border-bottom: none; }
+      .urgency-pains { grid-template-columns: 1fr; }
+      .urgency-pain { border-right: none; border-bottom: 1px solid var(--border); }
+      .urgency-pain:last-child { border-bottom: none; }
+      .outcome-chain { flex-direction: column; }
+      .outcome-step::after { display: none; }
+      .process-timeline { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .process-timeline::before { display: none; }
       .pricing-grid { grid-template-columns: 1fr; max-width: 480px; }
       .pricing-card.popular { order: -1; }
       .contact-grid { grid-template-columns: 1fr; gap: 56px; }
@@ -1521,10 +1578,7 @@
       .nav-links { display: none; }
       .hero { padding: 100px 0 56px; min-height: auto; }
       .hero-status { display: none; }
-      .cap-grid { grid-template-columns: 1fr; }
-      .cap-item { border-right: 0 !important; }
-      .process-steps { grid-template-columns: repeat(2, 1fr); }
-      .process-step:nth-child(2) { border-right: 0; }
+      .process-timeline { grid-template-columns: 1fr; gap: 24px; }
       .form-row { grid-template-columns: 1fr; }
       .form-options { grid-template-columns: 1fr; }
       /* testimonial removed */
@@ -1815,101 +1869,76 @@
 
 
 <!-- ════════════════════════════════════════════════════════════
-     CAPABILITIES — 4 Disciplines
+     URGENCY — What your old site costs you
 ════════════════════════════════════════════════════════════ -->
-<section class="capabilities" id="disziplinen">
+<section class="urgency" id="disziplinen">
   <div class="wrap">
 
-    <div class="section-head">
-      <div class="mono-label reveal"><span class="num">03</span>DISZIPLINEN</div>
-      <h2 class="display-2 reveal d1" style="margin-top:16px">Vier Felder.<br><em class="gold">Ein Ergebnis.</em></h2>
+    <h2 class="urgency-statement reveal">Jeden Tag ohne moderne Website <em>verlieren Sie Kunden.</em></h2>
+
+    <div class="urgency-pains">
+      <div class="urgency-pain reveal">
+        <span class="urgency-pain-num">01</span>
+        <div class="urgency-pain-title">Sie sind unsichtbar</div>
+        <p class="urgency-pain-text">Google zeigt schnelle, sichere Seiten zuerst. Ihre alte Website landet auf Seite 2. Da sucht niemand.</p>
+      </div>
+      <div class="urgency-pain reveal d1">
+        <span class="urgency-pain-num">02</span>
+        <div class="urgency-pain-title">Besucher springen ab</div>
+        <p class="urgency-pain-text">Drei Sekunden Ladezeit. Danach ist die Hälfte weg. Auf dem Handy unbedienbar? Der Rest auch.</p>
+      </div>
+      <div class="urgency-pain reveal d2">
+        <span class="urgency-pain-num">03</span>
+        <div class="urgency-pain-title">Ihr Wettbewerber gewinnt</div>
+        <p class="urgency-pain-text">Er hat letzte Woche seine Seite erneuert. Jetzt sieht Ihr Unternehmen daneben alt aus. Kunden vergleichen.</p>
+      </div>
     </div>
 
-    <div class="cap-grid">
-
-      <div class="cap-item reveal">
-        <div class="cap-num">01</div>
-        <svg class="cap-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M16 4l-12 8 12 8 12-8z"/>
-          <path d="M4 20l12 8 12-8"/>
-          <path d="M16 16v12"/>
-        </svg>
-        <h3 class="cap-title">Performance Engineering</h3>
-        <p class="cap-body">Jeder Request gezählt, jedes Byte optimiert. Ihre Seite lädt, bevor der Konkurrent fertig ist mit der Animation.</p>
-        <div class="cap-stat"><strong>≤ 1.5s</strong> LCP · <strong>100/100</strong> Mobile</div>
-      </div>
-
-      <div class="cap-item reveal d1">
-        <div class="cap-num">02</div>
-        <svg class="cap-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="4" y="6" width="24" height="20" rx="2"/>
-          <path d="M4 12h24"/>
-          <path d="M10 18h6M10 22h10"/>
-        </svg>
-        <h3 class="cap-title">Custom UX Architecture</h3>
-        <p class="cap-body">Information Architecture, die zu Ihrem Geschäft passt. Nicht zu einem Template, das auch für zehn Millionen andere passen soll.</p>
-        <div class="cap-stat"><strong>0</strong> Templates · <strong>0</strong> Plugins</div>
-      </div>
-
-      <div class="cap-item reveal d2">
-        <div class="cap-num">03</div>
-        <svg class="cap-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M4 28V14l8-6 8 6v14M12 28v-8h8v8"/>
-          <path d="M22 8l6 6"/>
-        </svg>
-        <h3 class="cap-title">Conversion Strategy</h3>
-        <p class="cap-body">Verkaufspsychologie ist Wissenschaft. Wir wenden sie an — sichtbar, wo Sie sie sehen wollen, unsichtbar, wo sie wirken soll.</p>
-        <div class="cap-stat">Ø <strong>+180%</strong> Anfragen nach 60 Tagen</div>
-      </div>
-
-      <div class="cap-item reveal d3">
-        <div class="cap-num">04</div>
-        <svg class="cap-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="6" y="4" width="20" height="24" rx="2"/>
-          <path d="M11 11h10M11 17h10M11 23h6"/>
-        </svg>
-        <h3 class="cap-title">Built to Last</h3>
-        <p class="cap-body">Eigener Code, eigene Domain, eigene Daten. Sie sind nicht an eine Plattform gebunden, nicht an mich. In fünf Jahren funktioniert sie noch.</p>
-        <div class="cap-stat"><strong>5 Jahre</strong> · <strong>0</strong> Breaking Changes</div>
-      </div>
-
+    <div class="urgency-cta reveal d3">
+      <a href="#preise">Das ändern wir →</a>
     </div>
+
   </div>
 </section>
 
 
 <!-- ════════════════════════════════════════════════════════════
-     UPGRADE — Warum moderne Websites gewinnen
+     OUTCOME — What an upgrade actually delivers
 ════════════════════════════════════════════════════════════ -->
-<section class="upgrade">
+<section class="outcome">
   <div class="wrap">
 
-    <div class="section-head" style="margin-bottom: clamp(40px, 4.5vw, 64px)">
-      <div class="mono-label reveal"><span class="num">04</span>WEBSITE-UPGRADE</div>
-      <h2 class="display-2 reveal d1" style="margin-top:16px">Veraltete Seiten kosten Kunden.<br><em class="gold">Moderne Seiten gewinnen sie.</em></h2>
+    <div class="section-head">
+      <h2 class="display-2 reveal" style="margin-top:0">Ein Upgrade startet eine Kettenreaktion.</h2>
     </div>
 
-    <div class="upgrade-grid">
-
-      <div class="upgrade-item reveal">
-        <div class="upgrade-item-icon">⚡</div>
-        <div class="upgrade-item-title">Schneller als <em>der Wettbewerb</em></div>
-        <p class="upgrade-item-text">Jede Sekunde Ladezeit kostet Besucher. Moderne Websites laden in unter zwei Sekunden, ältere brauchen fünf oder mehr. Wer schneller ist, bekommt den Auftrag.</p>
+    <div class="outcome-chain">
+      <div class="outcome-step reveal">
+        <div class="outcome-step-num">2s</div>
+        <div class="outcome-step-label">Seite lädt sofort</div>
+        <div class="outcome-step-sub">Statt 5+ Sekunden. Kein Besucher wartet.</div>
       </div>
-
-      <div class="upgrade-item reveal d1">
-        <div class="upgrade-item-icon">📱</div>
-        <div class="upgrade-item-title">Perfekt auf <em>jedem Gerät</em></div>
-        <p class="upgrade-item-text">Über 70% Ihrer Besucher kommen vom Handy. Alte Seiten sind dort kaum bedienbar. Eine moderne Website sieht überall professionell aus und funktioniert einwandfrei.</p>
+      <div class="outcome-step reveal d1">
+        <div class="outcome-step-num">+70%</div>
+        <div class="outcome-step-label">Mehr Besucher bleiben</div>
+        <div class="outcome-step-sub">Professionell auf Handy, Tablet, Desktop.</div>
       </div>
-
-      <div class="upgrade-item reveal d2">
-        <div class="upgrade-item-icon">🔍</div>
-        <div class="upgrade-item-title">Sichtbar bei <em>Google</em></div>
-        <p class="upgrade-item-text">Google bevorzugt schnelle, sichere Websites mit klarer Struktur. Ein Upgrade bedeutet: besseres Ranking, mehr Besucher, mehr Anfragen.</p>
+      <div class="outcome-step reveal d2">
+        <div class="outcome-step-num">Seite 1</div>
+        <div class="outcome-step-label">Sichtbar bei Google</div>
+        <div class="outcome-step-sub">Schnelle, sichere Seiten ranken besser.</div>
       </div>
-
+      <div class="outcome-step reveal d3">
+        <div class="outcome-step-num">↑</div>
+        <div class="outcome-step-label">Mehr Anfragen</div>
+        <div class="outcome-step-sub">Besucher werden zu Kunden.</div>
+      </div>
     </div>
+
+    <div class="outcome-bottom reveal d4">
+      <div class="outcome-bottom-text">Das ist kein Redesign. Das ist ein <em>Umsatz-Upgrade.</em></div>
+    </div>
+
   </div>
 </section>
 
@@ -1920,47 +1949,39 @@
 <section class="process" id="prozess">
   <div class="wrap">
 
-    <div class="section-head" style="text-align:center; max-width: 760px; margin: 0 auto clamp(48px, 5vw, 72px)">
-      <div class="mono-label reveal" style="justify-content:center; display:inline-flex"><span class="num">05</span>PROZESS</div>
-      <h2 class="display-2 reveal d1" style="margin-top:16px">Vier Schritte. <em class="gold">Festpreis.</em></h2>
+    <div class="section-head" style="text-align:center; max-width: 760px; margin: 0 auto 0">
+      <h2 class="display-2 reveal" style="margin-top:0">Vier Schritte. <em class="gold">Festpreis.</em></h2>
+      <p class="lede reveal d1">Von Ihrem Anruf bis zur fertigen Website: 14 Tage. Kein Technik-Wissen nötig.</p>
     </div>
 
-    <div class="process-steps">
+    <div class="process-timeline">
 
-      <div class="process-step reveal">
-        <div class="process-num">01</div>
-        <div class="process-content">
-          <h3>Gespräch</h3>
-          <p>30 Minuten am Telefon. Wir prüfen, ob es passt.</p>
-        </div>
-        <div class="process-duration">Tag 0</div>
+      <div class="process-tl-step reveal">
+        <div class="process-tl-dot">01</div>
+        <div class="process-tl-title">Gespräch</div>
+        <p class="process-tl-desc">30 Minuten. Sie erzählen, ich höre zu. Passt es? Dann geht's los.</p>
+        <div class="process-tl-time">Tag 0</div>
       </div>
 
-      <div class="process-step reveal">
-        <div class="process-num">02</div>
-        <div class="process-content">
-          <h3>Konzept</h3>
-          <p>Schriftliches Angebot mit Festpreis und Liefertermin.</p>
-        </div>
-        <div class="process-duration">Tag 1 – 3</div>
+      <div class="process-tl-step reveal d1">
+        <div class="process-tl-dot">02</div>
+        <div class="process-tl-title">Angebot</div>
+        <p class="process-tl-desc">Festpreis, schwarz auf weiß. Keine versteckten Kosten, kein Kleingedrucktes.</p>
+        <div class="process-tl-time">Tag 1 – 3</div>
       </div>
 
-      <div class="process-step reveal">
-        <div class="process-num">03</div>
-        <div class="process-content">
-          <h3>Entwicklung</h3>
-          <p>Eigener Code. Tägliche Updates. Eine Revisionsrunde.</p>
-        </div>
-        <div class="process-duration">Tag 4 – 12</div>
+      <div class="process-tl-step reveal d2">
+        <div class="process-tl-dot">03</div>
+        <div class="process-tl-title">Umsetzung</div>
+        <p class="process-tl-desc">Ich baue, Sie sehen Fortschritte. Tägliche Updates, eine Korrekturschleife inklusive.</p>
+        <div class="process-tl-time">Tag 4 – 12</div>
       </div>
 
-      <div class="process-step reveal">
-        <div class="process-num">04</div>
-        <div class="process-content">
-          <h3>Launch</h3>
-          <p>Übergabe. Quellcode und Domain gehören Ihnen.</p>
-        </div>
-        <div class="process-duration">Tag 13 – 14</div>
+      <div class="process-tl-step reveal d3">
+        <div class="process-tl-dot">04</div>
+        <div class="process-tl-title">Online</div>
+        <p class="process-tl-desc">Ihre neue Website ist live. Quellcode, Domain, alles gehört Ihnen.</p>
+        <div class="process-tl-time">Tag 13 – 14</div>
       </div>
 
     </div>
