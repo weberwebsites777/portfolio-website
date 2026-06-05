@@ -788,15 +788,15 @@
     }
 
     /* ════════════════════════════════════════════════════════════
-       PROOF — Testimonial + Live Stats
+       UPGRADE — Why modern websites win
     ════════════════════════════════════════════════════════════ */
-    .proof {
+    .upgrade {
       padding: clamp(72px, 8vw, 112px) 0;
       border-top: 1px solid var(--border);
       position: relative;
       overflow: hidden;
     }
-    .proof::before {
+    .upgrade::before {
       content: '';
       position: absolute;
       top: -20%; left: -10%;
@@ -805,116 +805,43 @@
       pointer-events: none;
       filter: blur(40px);
     }
-    .proof-grid {
+    .upgrade-grid {
       position: relative;
       display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: clamp(40px, 5vw, 96px);
-      align-items: center;
-    }
-    .testimonial {
-      position: relative;
-    }
-    .testimonial-mark {
-      font-family: var(--font-display);
-      font-size: 72px;
-      font-weight: 900;
-      line-height: 0.8;
-      color: var(--gold);
-      margin-bottom: -16px;
-      opacity: 0.35;
-    }
-    .testimonial-quote {
-      font-family: var(--font-display);
-      font-size: clamp(20px, 2.1vw, 28px);
-      font-weight: 600;
-      line-height: 1.3;
-      letter-spacing: -0.024em;
-      color: var(--text);
-      margin-bottom: 28px;
-    }
-    .testimonial-quote em {
-      font-style: normal;
-      color: var(--gold);
-    }
-    .testimonial-byline {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .testimonial-avatar {
-      width: 56px; height: 56px;
-      border-radius: 50%;
-      background: var(--bg-3);
-      border: 2px solid var(--gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 800;
-      color: var(--gold);
-    }
-    .testimonial-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .testimonial-name {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--text);
-      letter-spacing: -0.011em;
-    }
-    .testimonial-role {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--text-3);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .live-stats {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-    .live-stat {
-      padding: 24px 28px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
       border: 1px solid var(--border);
-      background: var(--bg-1);
       border-radius: var(--r-lg);
-      position: relative;
       overflow: hidden;
     }
-    .live-stat::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      transform: translateX(-100%);
-      animation: scan 4s ease-in-out infinite;
+    .upgrade-item {
+      padding: clamp(28px, 3vw, 40px);
+      border-right: 1px solid var(--border);
+      position: relative;
     }
-    @keyframes scan {
-      0%, 100% { transform: translateX(-100%); opacity: 0; }
-      50%      { transform: translateX(100%); opacity: 1; }
-    }
-    .live-stat-val {
-      font-family: var(--font-display);
-      font-size: 44px;
-      font-weight: 900;
+    .upgrade-item:last-child { border-right: none; }
+    .upgrade-item-icon {
+      font-size: 28px;
+      margin-bottom: 20px;
       line-height: 1;
-      color: var(--gold);
-      letter-spacing: -0.04em;
-      font-variant-numeric: tabular-nums;
-      margin-bottom: 8px;
     }
-    .live-stat-lbl {
-      font-size: 13px;
-      color: var(--text-2);
-      line-height: 1.4;
-      letter-spacing: -0.005em;
+    .upgrade-item-title {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 1.8vw, 22px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .upgrade-item-title em {
+      color: var(--gold);
+      font-style: normal;
+    }
+    .upgrade-item-text {
+      font-size: 15px;
+      line-height: 1.6;
+      color: oklch(80% 0.014 86);
     }
 
     /* ════════════════════════════════════════════════════════════
@@ -1393,7 +1320,9 @@
       .cap-item:nth-child(2n) { border-right: 0; }
       .cap-item:nth-child(4n) { border-right: 1px solid var(--border); }
       .cap-item:nth-child(even) { border-right: 0; }
-      .proof-grid { grid-template-columns: 1fr; gap: 64px; }
+      .upgrade-grid { grid-template-columns: 1fr; }
+      .upgrade-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .upgrade-item:last-child { border-bottom: none; }
       .contact-grid { grid-template-columns: 1fr; gap: 56px; }
       .contact-left { position: static; }
     }
@@ -1409,7 +1338,7 @@
       .process-step:nth-child(2) { border-right: 0; }
       .form-row { grid-template-columns: 1fr; }
       .form-options { grid-template-columns: 1fr; }
-      .testimonial-quote { font-size: 22px; }
+      /* testimonial removed */
       .live-stat-val { font-size: 44px; }
       .footer-row { flex-direction: column; align-items: flex-start; gap: 20px; }
     }
@@ -1760,45 +1689,34 @@
 
 
 <!-- ════════════════════════════════════════════════════════════
-     PROOF — Testimonial + Live Stats
+     UPGRADE — Warum moderne Websites gewinnen
 ════════════════════════════════════════════════════════════ -->
-<section class="proof">
+<section class="upgrade">
   <div class="wrap">
 
-    <div class="section-head">
-      <div class="mono-label reveal"><span class="num">04</span>VERTRAUEN</div>
-      <h2 class="display-2 reveal d1" style="margin-top:16px">Zahlen.<br><em class="gold">Stimmen.</em></h2>
+    <div class="section-head" style="margin-bottom: clamp(40px, 4.5vw, 64px)">
+      <div class="mono-label reveal"><span class="num">04</span>WEBSITE-UPGRADE</div>
+      <h2 class="display-2 reveal d1" style="margin-top:16px">Veraltete Seiten kosten Kunden.<br><em class="gold">Moderne Seiten gewinnen sie.</em></h2>
     </div>
 
-    <div class="proof-grid">
+    <div class="upgrade-grid">
 
-      <figure class="testimonial reveal">
-        <div class="testimonial-mark">"</div>
-        <blockquote class="testimonial-quote">
-          Innerhalb von 30 Tagen kamen <em>mehr Anfragen rein als im gesamten Vorjahr.</em> Die Seite verkauft, während ich auf der Baustelle bin.
-        </blockquote>
-        <figcaption class="testimonial-byline">
-          <div class="testimonial-avatar">AW</div>
-          <div class="testimonial-meta">
-            <span class="testimonial-name">Alexander Weber</span>
-            <span class="testimonial-role">Geschäftsführer · Weber Elektrotechnik</span>
-          </div>
-        </figcaption>
-      </figure>
+      <div class="upgrade-item reveal">
+        <div class="upgrade-item-icon">⚡</div>
+        <div class="upgrade-item-title">Schneller als <em>der Wettbewerb</em></div>
+        <p class="upgrade-item-text">Jede Sekunde Ladezeit kostet Besucher. Moderne Websites laden in unter zwei Sekunden, ältere brauchen fünf oder mehr. Wer schneller ist, bekommt den Auftrag.</p>
+      </div>
 
-      <div class="live-stats">
-        <div class="live-stat reveal d1">
-          <div class="live-stat-val" data-target="218" data-suffix="%" data-prefix="+">+218%</div>
-          <div class="live-stat-lbl">Durchschnittliche Steigerung der Anfragen nach 60 Tagen</div>
-        </div>
-        <div class="live-stat reveal d2">
-          <div class="live-stat-val">1,4<span style="font-size:0.6em;color:var(--text-3)"> s</span></div>
-          <div class="live-stat-lbl">Durchschnittliche Ladezeit aller Live-Projekte</div>
-        </div>
-        <div class="live-stat reveal d3">
-          <div class="live-stat-val">100 / 100</div>
-          <div class="live-stat-lbl">Mobile Score · alle Projekte</div>
-        </div>
+      <div class="upgrade-item reveal d1">
+        <div class="upgrade-item-icon">📱</div>
+        <div class="upgrade-item-title">Perfekt auf <em>jedem Gerät</em></div>
+        <p class="upgrade-item-text">Über 70% Ihrer Besucher kommen vom Handy. Alte Seiten sind dort kaum bedienbar. Eine moderne Website sieht überall professionell aus und funktioniert einwandfrei.</p>
+      </div>
+
+      <div class="upgrade-item reveal d2">
+        <div class="upgrade-item-icon">🔍</div>
+        <div class="upgrade-item-title">Sichtbar bei <em>Google</em></div>
+        <p class="upgrade-item-text">Google bevorzugt schnelle, sichere Websites mit klarer Struktur. Ein Upgrade bedeutet: besseres Ranking, mehr Besucher, mehr Anfragen.</p>
       </div>
 
     </div>
