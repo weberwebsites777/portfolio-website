@@ -1,15 +1,85 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weber Websites — Maßgeschneiderte Webentwicklung</title>
-  <meta name="description" content="Websites, die führen. Maßgeschneidert für Unternehmen, die wissen, dass jedes Detail zählt. Aus dem Schwarzwald, für ganz Deutschland.">
+
+  <!-- Primary Meta -->
+  <title>Weber Websites — Webdesign & Webentwicklung aus dem Schwarzwald</title>
+  <meta name="description" content="Weber Websites: Professionelles Webdesign für kleine und mittlere Unternehmen. Schnelle, conversion-optimierte Websites – Festpreis, aus Trossingen im Schwarzwald.">
+  <meta name="keywords" content="Webdesign Schwarzwald, Webentwicklung Trossingen, Website erstellen lassen, Webdesign KMU, professionelle Website, Weber Websites">
+  <meta name="author" content="Andy Weber – Weber Websites">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://weberwebsites.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://weberwebsites.com/">
+  <meta property="og:title" content="Weber Websites — Webdesign & Webentwicklung aus dem Schwarzwald">
+  <meta property="og:description" content="Professionelles Webdesign für KMUs. Schnelle, conversion-optimierte Websites zum Festpreis – aus Trossingen, für ganz Deutschland.">
+  <meta property="og:image" content="https://weberwebsites.com/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:site_name" content="Weber Websites">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://weberwebsites.com/">
+  <meta name="twitter:title" content="Weber Websites — Webdesign aus dem Schwarzwald">
+  <meta name="twitter:description" content="Professionelles Webdesign für KMUs. Conversion-optimiert, Festpreis.">
+  <meta name="twitter:image" content="https://weberwebsites.com/og-image.jpg">
+
+  <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="theme-color" content="#0F0D0A">
+
+  <!-- Structured Data: LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Weber Websites",
+    "description": "Webdesign und Webentwicklung für kleine und mittlere Unternehmen. Schnelle, conversion-optimierte Websites zum Festpreis.",
+    "url": "https://weberwebsites.com",
+    "email": "weberwebsites777@gmail.com",
+    "founder": {
+      "@type": "Person",
+      "name": "Andy Weber"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Trossingen",
+      "addressRegion": "Baden-Württemberg",
+      "addressCountry": "DE"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Deutschland"
+    },
+    "serviceType": ["Webdesign", "Webentwicklung", "Landing Page", "Online-Shop", "SEO-Optimierung"],
+    "priceRange": "€€",
+    "sameAs": [
+      "https://weberwebsites.com"
+    ]
+  }
+  </script>
+
+  <!-- Structured Data: WebSite (Sitelinks Searchbox) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Weber Websites",
+    "url": "https://weberwebsites.com"
+  }
+  </script>
+
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://formspree.io">
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
 
@@ -24,7 +94,6 @@
       --bg-1:         oklch(17% 0.018 260);
       --bg-2:         oklch(20.2% 0.022 261);
       --bg-3:         oklch(24% 0.022 261);
-      --bg-glass:     oklch(13% 0.014 260 / 0.7);
 
       /* Text */
       --text:         oklch(96% 0.018 86);
@@ -40,12 +109,8 @@
       /* Accent — Gold */
       --gold:         oklch(78% 0.13 86);
       --gold-2:       oklch(85% 0.14 88);
-      --gold-deep:    oklch(60% 0.12 82);
       --gold-glow:    oklch(78% 0.13 86 / 0.18);
       --gold-soft:    oklch(78% 0.13 86 / 0.08);
-
-      /* Cream — for inverted moments */
-      --cream:        oklch(96% 0.018 86);
 
       /* Fonts */
       --font:         "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
@@ -63,7 +128,6 @@
       /* Motion */
       --ease:         cubic-bezier(0.22, 1, 0.36, 1);
       --ease-quint:   cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-expo:    cubic-bezier(0.19, 1, 0.22, 1);
     }
 
     /* ════════════════════════════════════════════════════════════
@@ -120,14 +184,6 @@
       color: var(--gold);
       margin-right: 8px;
     }
-    .display-1 {
-      font-family: var(--font-display);
-      font-size: clamp(48px, 7vw, 112px);
-      font-weight: 900;
-      line-height: 0.94;
-      letter-spacing: -0.046em;
-      color: var(--text);
-    }
     .display-2 {
       font-family: var(--font-display);
       font-size: clamp(32px, 4vw, 56px);
@@ -142,14 +198,6 @@
       font-weight: 700;
       line-height: 1.1;
       letter-spacing: -0.028em;
-      color: var(--text);
-    }
-    .display-4 {
-      font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 700;
-      line-height: 1.25;
-      letter-spacing: -0.02em;
       color: var(--text);
     }
     .lede {
@@ -1717,8 +1765,6 @@
       .process-timeline { grid-template-columns: 1fr; gap: 24px; }
       .form-row { grid-template-columns: 1fr; }
       .form-options { grid-template-columns: 1fr; }
-      /* testimonial removed */
-      .live-stat-val { font-size: 44px; }
       .footer-row { flex-direction: column; align-items: flex-start; gap: 20px; }
     }
 
@@ -1761,6 +1807,7 @@
 <!-- ============================================================
      HERO - Generative Lattice
 ============================================================ -->
+<main>
 <section class="hero" id="top">
   <div class="hero-grid-bg" aria-hidden="true"></div>
   <div class="wrap">
@@ -2499,6 +2546,7 @@
 <!-- ════════════════════════════════════════════════════════════
      FOOTER
 ════════════════════════════════════════════════════════════ -->
+</main>
 <footer>
   <div class="footer-mark" aria-hidden="true">WW</div>
   <div class="wrap">
@@ -2538,50 +2586,19 @@
 
   /* Scroll reveals */
   (function() {
-    const els = document.querySelectorAll('.reveal, [data-perf]');
+    const els = document.querySelectorAll('.reveal');
     if (!('IntersectionObserver' in window) || !els.length) {
       els.forEach(el => el.classList.add('in'));
       return;
     }
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in');
-          if (entry.target.hasAttribute('data-perf')) {
-            const ring = entry.target.querySelector('.perf-ring');
-            if (ring) ring.classList.add('in');
-          }
-          io.unobserve(entry.target);
-        }
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
     els.forEach(el => io.observe(el));
-  })();
-
-  /* Count-up stats */
-  (function() {
-    const counters = document.querySelectorAll('[data-target]');
-    if (!counters.length || !('IntersectionObserver' in window)) return;
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
-        const target = parseInt(el.dataset.target, 10);
-        const prefix = el.dataset.prefix || '';
-        const suffix = el.dataset.suffix || '';
-        const duration = 1800;
-        const start = performance.now();
-        function step(now) {
-          const p = Math.min((now - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - p, 4);
-          el.textContent = prefix + Math.round(target * eased) + suffix;
-          if (p < 1) requestAnimationFrame(step);
-        }
-        requestAnimationFrame(step);
-        io.unobserve(el);
-      });
-    }, { threshold: 0.5 });
-    counters.forEach(c => io.observe(c));
   })();
 
   /* Before / After slider */
@@ -2610,10 +2627,7 @@
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
-        let pos = 0.5;
         const rect = slider.getBoundingClientRect();
-        const target = rect.left + rect.width * 0.85;
-        const back = rect.left + rect.width * 0.5;
         setTimeout(() => {
           let i = 0;
           const animate = () => {
@@ -2656,10 +2670,8 @@
     const next1 = document.getElementById('next1');
     const next2 = document.getElementById('next2');
     const backs = form.querySelectorAll('[data-back]');
-    let currentStep = 1;
 
     function goToStep(n) {
-      currentStep = n;
       steps.forEach(s => s.classList.toggle('active', parseInt(s.dataset.step) === n));
       progressSteps.forEach(p => {
         const stepN = parseInt(p.dataset.step);
@@ -2724,3 +2736,4 @@
 
 </body>
 </html>
+
